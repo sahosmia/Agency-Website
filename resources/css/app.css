@@ -1,0 +1,129 @@
+@import "tailwindcss";
+@source "../views";
+
+/*
+@theme {
+  --breakpoint-xs: 30rem;
+  --breakpoint-2xl: 100rem;
+  --breakpoint-3xl: 120rem;
+} */
+
+@utility container {
+    padding-inline: 10px;
+    margin-inline: auto;
+}
+
+@theme {
+    /* color  */
+    --color-primary-600: #ea380c;
+    --color-primary-800: #9a2012;
+
+    --color-secondary-400: #82848e;
+    --color-secondary-600: #585962;
+    --color-secondary-800: #424348;
+    --color-secondary-900: #3a3a3f;
+    --color-secondary-950: #0a0a0b;
+
+    --color-white-200: #fafafa;
+
+    /* font  */
+    --font-karla: "Karla", "serif";
+}
+
+* {
+    @apply font-karla;
+}
+
+body {
+    @apply bg-white-200;
+}
+
+.navbar {
+    /* box-shadow: 0px 2px 16px 0px rgba(66, 67, 72, 0.12); */
+}
+.nav-item {
+    @apply text-secondary-600 text-lg/6  hover:text-primary-800 transition-all relative
+           after:content-[''] after:absolute after:w-0 hover:after:w-8 after:h-[2px] after:rounded-xl
+           after:bg-primary-800 after:-bottom-4 after:left-1/2 after:-translate-x-1/2
+           after:transition-all after:duration-300 after:ease-in-out;
+}
+.nav-item.active {
+    @apply text-primary-800 after:w-8;
+}
+
+/* Heading Text  */
+.heading-text-regular-large {
+    @apply text-[52px]/[68px] font-karla font-medium;
+}
+.heading-text-regular-medium {
+    @apply text-[44px]/[56px] font-karla font-medium;
+}
+.heading-text-bold-large {
+    @apply text-[52px]/[68px] font-karla font-bold;
+}
+
+/* Title Text  */
+/* .title-text-1 {
+    @apply text-secondary-900 text-[38px]/[48px] font-karla font-semibold;
+} */
+.title-text-bold-medium {
+    @apply text-[28px]/9 font-karla font-semibold;
+}
+
+/* Sub Title Text  */
+
+.sub-title-large-regular {
+    @apply text-2xl/8 font-karla;
+}
+
+.sub-title-medium-regular {
+    @apply text-[22px]/8 font-karla;
+}
+
+/* Body Text  */
+.body-text-bold-large {
+    @apply text-lg/6 font-karla font-semibold;
+}
+.body-text-regular-large {
+    @apply text-lg/6 font-karla;
+}
+
+.body-text-regular-medium {
+    @apply text-base/5 font-karla;
+}
+
+.body-text-regular-small {
+    @apply text-sm/5 font-karla;
+}
+
+/* Label Text */
+.label-text-bold-large {
+    @apply text-[22px]/7 font-karla font-semibold;
+}
+.label-text-bold-medium {
+    @apply text-lg/6 font-semibold;
+}
+
+.label-text-bold-small {
+    @apply text-base/5 font-semibold;
+}
+
+.label-text-regular-large {
+    @apply text-[22px]/7 font-karla;
+}
+
+.label-text-regular-medium {
+    @apply text-lg/6 font-karla;
+}
+
+.label-text-regular-small {
+    @apply text-base/5 font-karla;
+}
+
+/* Button  */
+.btn-outline-full {
+    @apply flex justify-center items-center gap-2 w-full py-3 rounded-lg border border-secondary-800 text-secondary-800 text-[22px]/7 font-karla font-semibold;
+}
+.btn-primary-full {
+    @apply flex justify-center items-center gap-2 w-full py-3 rounded-lg bg-primary-600 text-white text-[22px]/7 font-karla font-semibold;
+}
