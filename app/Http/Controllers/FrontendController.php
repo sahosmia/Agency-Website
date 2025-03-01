@@ -55,4 +55,14 @@ class FrontendController extends Controller
     {
         return view('frontend.contact');
     }
+    // terms-and-condition
+    public function termsAndCondition()
+    {
+        return view('frontend.contact');
+    }
+    // terms-and-condition
+    public function articles()
+    {
+        return view('frontend.articles');
+    }
 }

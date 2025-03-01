@@ -18,6 +18,8 @@ Route::controller(FrontendController::class)->group(
         Route::get('/our-work', 'ourWork')->name('our-work');
         Route::get('/insights', 'insights')->name('insights');
         Route::get('/contact', 'contact')->name('contact');
+        Route::get('/articles', 'articles')->name('articles');
+        // Route::get('/terms-and-condition', 'termsAndCondition')->name('terms-and-condition');
     }
 );
 
