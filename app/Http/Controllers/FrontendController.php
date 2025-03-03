@@ -89,5 +89,9 @@ class FrontendController extends Controller
     public function congratulationPage() {
         return view('frontend.job.congratulation-page');
     }
+    // Congratulation page ==============================
+    public function thankYouPage() {
+        return view('frontend.thank-you-page');
+    }
 
 }

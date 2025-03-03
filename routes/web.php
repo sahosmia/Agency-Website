@@ -26,6 +26,7 @@ Route::controller(FrontendController::class)->group(
         Route::get('/job-apply-question', 'jobApplyQuestion')->name('job-apply-question');
         Route::get('/career-page-no-jobs', 'careerPageNoJobs')->name('career-page-no-jobs');
         Route::get('/congratulation-page', 'congratulationPage')->name('congratulation-page');
+        Route::get('/thank-you-page', 'thankYouPage')->name('thank-you-page');
 
     }
 );
