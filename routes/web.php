@@ -20,6 +20,7 @@ Route::controller(FrontendController::class)->group(
         Route::get('/contact', 'contact')->name('contact');
         Route::get('/articles', 'articles')->name('articles');
         // Route::get('/terms-and-condition', 'termsAndCondition')->name('terms-and-condition');
+        Route::get('/job-apply', 'job_apply')->name('job-apply');
     }
 );
 

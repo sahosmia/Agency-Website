@@ -109,15 +109,15 @@ body {
 }
 
 .label-text-regular-large {
-    @apply text-[22px]/7 font-karla;
+    @apply text-[22px]/7;
 }
 
 .label-text-regular-medium {
-    @apply text-lg/6 font-karla;
+    @apply text-lg/6;
 }
 
 .label-text-regular-small {
-    @apply text-base/5 font-karla;
+    @apply text-base/5;
 }
 
 /* Button  */
@@ -126,4 +126,18 @@ body {
 }
 .btn-primary-full {
     @apply flex justify-center items-center gap-2 w-full py-3 rounded-lg bg-primary-600 text-white text-[22px]/7 font-karla font-semibold;
+}
+
+/* form  */
+.input-label {
+    @apply text-lg/6 text-secondary-800;
+}
+input::placeholder,
+textarea::placeholder {
+    @apply text-[22px]/7 text-secondary-950;
+}
+
+input,
+textarea {
+    @apply border border-secondary-800 rounded-lg px-6 py-3 text-[22px]/7;
 }
