@@ -77,4 +77,9 @@ class FrontendController extends Controller
     {
         return view('frontend.job.job-apply');
     }
+    // Job Section ==============================
+    public function jobApplyQuestion() {
+        return view('frontend.job.job-apply-question');
+    }
+
 }

@@ -22,6 +22,9 @@ Route::controller(FrontendController::class)->group(
         Route::get('/articles/single-page', 'articlesSinglePage')->name('articlesSinglePage');
         // Route::get('/terms-and-condition', 'termsAndCondition')->name('terms-and-condition');
         Route::get('/job-apply', 'job_apply')->name('job-apply');
+        //Route::get('/job-apply-question', 'job_apply-question')->name('job-apply-question');
+        Route::get('/job-apply-question', 'jobApplyQuestion')->name('job-apply-question');
+
     }
 );
 
