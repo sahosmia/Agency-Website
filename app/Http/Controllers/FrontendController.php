@@ -65,4 +65,10 @@ class FrontendController extends Controller
     {
         return view('frontend.articles');
     }
+    // terms-and-condition
+    public function articlesSinglePage()
+    {
+        return view('frontend.articles-single-page');
+    }
+
 }

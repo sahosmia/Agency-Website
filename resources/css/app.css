@@ -53,13 +53,13 @@ body {
 
 /* Heading Text  */
 .heading-text-regular-large {
-    @apply text-[52px]/[68px] font-karla font-medium;
+    @apply text-[52px]/[68px]  font-medium;
 }
 .heading-text-regular-medium {
-    @apply text-[44px]/[56px] font-karla font-medium;
+    @apply text-[44px]/[56px]  font-medium;
 }
 .heading-text-bold-large {
-    @apply text-[52px]/[68px] font-karla font-bold;
+    @apply text-[52px]/[68px]  font-bold;
 }
 
 /* Title Text  */
@@ -82,7 +82,7 @@ body {
 
 /* Body Text  */
 .body-text-bold-large {
-    @apply text-lg/6 font-karla font-semibold;
+    @apply font-semibold text-lg/6 font-karla;
 }
 .body-text-regular-large {
     @apply text-lg/6 font-karla;
@@ -101,11 +101,11 @@ body {
     @apply text-[22px]/7 font-karla font-semibold;
 }
 .label-text-bold-medium {
-    @apply text-lg/6 font-semibold;
+    @apply font-semibold text-lg/6;
 }
 
 .label-text-bold-small {
-    @apply text-base/5 font-semibold;
+    @apply font-semibold text-base/5;
 }
 
 .label-text-regular-large {
@@ -127,3 +127,21 @@ body {
 .btn-primary-full {
     @apply flex justify-center items-center gap-2 w-full py-3 rounded-lg bg-primary-600 text-white text-[22px]/7 font-karla font-semibold;
 }
+
+.hero-badge-desktop {
+    @apply flex px-4 py-2 justify-center items-center rounded-[99px]  border border-secondary-800;
+}
+
+.image-placeholder {
+    @apply w-[808px] h-[496px];
+}
+.card{
+    @apply flex flex-col w-[1224px] p-6 items-start gap-4 rounded-xl border ;
+}
+.button-group{
+    @apply flex items-center gap-4
+}
+.button-label{
+    @apply flex w-9 px-3 py-4 justify-center items-center gap-2 rounded-sm border
+}
+
