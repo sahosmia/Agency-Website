@@ -21,6 +21,7 @@ Route::controller(FrontendController::class)->group(
         Route::get('/articles', 'articles')->name('articles');
         Route::get('/articles/single-page', 'articlesSinglePage')->name('articlesSinglePage');
         // Route::get('/terms-and-condition', 'termsAndCondition')->name('terms-and-condition');
+        Route::get('/job-apply', 'job_apply')->name('job-apply');
     }
 );
 

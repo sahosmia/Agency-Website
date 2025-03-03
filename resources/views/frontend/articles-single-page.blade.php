@@ -274,7 +274,7 @@
 
         {{-- other articles  --}}
 
-        <div class="mt-[200px]">
+        <div class="mt-[200px] mb-[80px]">
             <h1 class="heading-text-regular-medium  text-center">Other Articles</h1>
             <div class="flex justify-between my-8 ">
                 <div class="w-[600px]">
@@ -282,21 +282,113 @@
                         latest trends, tips, and strategies in web design, digital marketing, and more.</p>
                 </div>
                 <div class="button-group  border-secondary-600 ">
-                    <button class="flex w-9 px-3 py-4 justify-center items-center gap-2 rounded-sm border">
+                    <button class="button-label border-secondary-600 ">
                         <i class="w-5 h-5 fa-solid fa-circle-chevron-left"></i>
-                    </button>
-                    <button class="flex w-9 px-3 py-4 justify-center items-center gap-2 rounded-sm border border-secondary-600">
-                        <i class="fa-solid fa-circle-chevron-right"></i>
-                    </button>
 
+                    </button>
+                    <button class="button-label border-secondary-600">
+                        <i class=" w-5 h-5 fa-solid fa-circle-chevron-right"></i>
+                    </button>
                 </div>
-
-
             </div>
         </div>
 
-
         {{-- other articles  --}}
+
+
+        {{-- article item  --}}
+
+        <div class="flex flex-row items-center justify-center content-center gap-x-[60px] gap-y-6  mt-8">
+            {{-- article item start   --}}
+           <div class="flex flex-col w-[392px] items-start gap-4">
+               <img class="h-[240px] w-full rounded-xl self-start" src="{{ asset('upload/articles/card img.png') }}"
+                   alt="" />
+               <button
+                   class="mt-4 flex justify-center items-center px-4 py-2 gap-2 border rounded-[99px] border-[#CECFD3] text-[16px] font-normal leading-5">
+                   Business
+               </button>
+               <h1 class="text-[28px] font-semibold leading-9">
+                   Code Crafting: Mastering web Development
+               </h1>
+               <p class="w-full text-[16px] font-normal leading-5">
+                   They Report concept the we of packed, place service well commas,
+                   wait instead.
+               </p>
+
+               <a href="{{ route('articlesSinglePage') }}"
+                   class="flex justify-center items-center gap-2 px-3 py-2 rounded-[4px] border border-[#424348] mt-4">
+                   Read more
+               </a>
+           </div>
+           <div class="flex flex-col w-[392px] items-start gap-4">
+               <img class="h-[240px] w-full rounded-xl self-start" src="{{ asset('upload/articles/card img.png') }}"
+                   alt="" />
+               <button
+                   class="mt-4 flex justify-center items-center px-4 py-2 gap-2 border rounded-[99px] border-[#CECFD3] text-[16px] font-normal leading-5">
+                   Business
+               </button>
+               <h1 class="text-[28px] font-semibold leading-9">
+                   Code Crafting: Mastering web Development
+               </h1>
+               <p class="w-full text-[16px] font-normal leading-5">
+                   They Report concept the we of packed, place service well commas,
+                   wait instead.
+               </p>
+
+               <a href="{{ route('articlesSinglePage') }}"
+                   class="flex justify-center items-center gap-2 px-3 py-2 rounded-[4px] border border-[#424348] mt-4">
+                   Read more
+               </a>
+           </div>
+           <div class="flex flex-col w-[392px] items-start gap-4">
+               <img class="h-[240px] w-full rounded-xl self-start" src="{{ asset('upload/articles/card img.png') }}"
+                   alt="" />
+               <button
+                   class="mt-4 flex justify-center items-center px-4 py-2 gap-2 border rounded-[99px] border-[#CECFD3] text-[16px] font-normal leading-5">
+                   Business
+               </button>
+               <h1 class="text-[28px] font-semibold leading-9">
+                   Code Crafting: Mastering web Development
+               </h1>
+               <p class="w-full text-[16px] font-normal leading-5">
+                   They Report concept the we of packed, place service well commas,
+                   wait instead.
+               </p>
+
+               <a href="{{ route('articlesSinglePage') }}"
+                   class="flex justify-center items-center gap-2 px-3 py-2 rounded-[4px] border border-[#424348] mt-4">
+                   Read more
+               </a>
+           </div>
+           <div class="flex flex-col w-[392px] items-start gap-4">
+               <img class="h-[240px] w-full rounded-xl self-start" src="{{ asset('upload/articles/card img.png') }}"
+                   alt="" />
+               <button
+                   class="mt-4 flex justify-center items-center px-4 py-2 gap-2 border rounded-[99px] border-[#CECFD3] text-[16px] font-normal leading-5">
+                   Business
+               </button>
+               <h1 class="text-[28px] font-semibold leading-9">
+                   Code Crafting: Mastering web Development
+               </h1>
+               <p class="w-full text-[16px] font-normal leading-5">
+                   They Report concept the we of packed, place service well commas,
+                   wait instead.
+               </p>
+
+               <a href="{{ route('articlesSinglePage') }}"
+                   class="flex justify-center items-center gap-2 px-3 py-2 rounded-[4px] border border-[#424348] mt-4">
+                   Read more
+               </a>
+           </div>
+
+
+            {{-- article item end  --}}
+
+
+       </div>
+        {{-- article item  --}}
+
+
     </div>
 
 @endsection
