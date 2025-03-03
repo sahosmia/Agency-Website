@@ -11,14 +11,17 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('articals', function (Blueprint $table) {
+        Schema::create('articles', function (Blueprint $table) {
             $table->id();
             $table->string('title');
             $table->string('thumbnail');
             $table->text('short_text');
             $table->text('long_text');
-            $table->string('articale_category_id');
+            $table->unsignedBigInteger('article_category_id'); // Foreign key
             $table->timestamps();
+
+            // Setting up the foreign key constraint
+            $table->foreign('article_category_id')->references('id')->on('article_categories')->onDelete('cascade');
         });
     }
 
@@ -27,6 +30,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('articals');
+        Schema::dropIfExists('articles');
     }
 };

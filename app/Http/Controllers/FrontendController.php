@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Article;
 use App\Models\Faq;
 use Illuminate\Http\Request;
 
@@ -11,7 +12,9 @@ class FrontendController extends Controller
     public function home()
     {
         $faqs = Faq::get();
-        return view('frontend.home', ['faqs' => $faqs]);
+        $articles = Article::with('article_category:id,title')->get();
+        // return ($articles);
+        return view('frontend.home', ['faqs' => $faqs, 'articles' => $articles]);
     }
 
     // About Page
