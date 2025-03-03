@@ -81,5 +81,13 @@ class FrontendController extends Controller
     public function jobApplyQuestion() {
         return view('frontend.job.job-apply-question');
     }
+    // Career Page No Jobs ==============================
+    public function careerPageNoJobs() {
+        return view('frontend.job.career-page-no-jobs');
+    }
+    // Congratulation page ==============================
+    public function congratulationPage() {
+        return view('frontend.job.congratulation-page');
+    }
 
 }

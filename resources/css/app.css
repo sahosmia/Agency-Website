@@ -69,6 +69,9 @@ body {
 .title-text-bold-medium {
     @apply text-[28px]/9 font-karla font-semibold;
 }
+.title-text-regular-x-large {
+    @apply text-[38px] font-karla;
+}
 
 /* Sub Title Text  */
 
@@ -135,14 +138,14 @@ body {
 .image-placeholder {
     @apply w-[808px] h-[496px];
 }
-.card{
-    @apply flex flex-col w-[1224px] p-6 items-start gap-4 rounded-xl border ;
+.card {
+    @apply flex flex-col p-6 items-start gap-4 rounded-xl border;
 }
-.button-group{
-    @apply flex items-center gap-4
+.button-group {
+    @apply flex items-center gap-4;
 }
-.button-label{
-    @apply flex w-9 px-3 py-2 justify-center items-center gap-2 rounded-sm border
+.button-label {
+    @apply flex   justify-center items-center gap-2 rounded-sm border;
 }
 
 /* form  */

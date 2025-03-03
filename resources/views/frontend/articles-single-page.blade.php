@@ -65,7 +65,7 @@
 
         {{-- card section  --}}
 
-        <div class="card border-secondary-400 mt-[140px]">
+        <div class="card w-[1224px]  border-secondary-400 mt-[140px]">
             <div>
                 <p class=" text-secondary-800">[01]</p>
             </div>
@@ -97,7 +97,7 @@
             </div>
 
         </div>
-        <div class="card border-secondary-400 mt-[56px]">
+        <div class="card w-[1224px] border-secondary-400 mt-[56px]">
             <div>
                 <p class=" text-secondary-800">[01]</p>
             </div>
@@ -129,7 +129,7 @@
             </div>
 
         </div>
-        <div class="card border-secondary-400 mt-[56px]">
+        <div class="card w-[1224px] border-secondary-400 mt-[56px]">
             <div>
                 <p class=" text-secondary-800">[01]</p>
             </div>
@@ -161,7 +161,7 @@
             </div>
 
         </div>
-        <div class="card border-secondary-400 mt-[56px]">
+        <div class="card w-[1224px] border-secondary-400 mt-[56px]">
             <div>
                 <p class=" text-secondary-800">[01]</p>
             </div>
@@ -193,38 +193,7 @@
             </div>
 
         </div>
-        <div class="card border-secondary-400 mt-[56px]">
-            <div>
-                <p class=" text-secondary-800">[01]</p>
-            </div>
-            <span class="border w-full stroke-secondary-400"></span>
-            <div class="flex gap-6">
 
-                <div class="w-[472px] self-stretch">
-                    <h1 class=" heading-text-regular-medium  text-secondary-950  leading-14 tracking[0.88px]">Understanding
-                        the Importance of Email Marketing</h1>
-                </div>
-
-                <div class="flex flex-col justify-center gap-4 w-[680px]">
-                    <p class="label-text-regular-large text-secondary-800 ">Email marketing is a cost-effective and direct
-                        way to communicate with potential and existing customers. Unlike social media, where algorithms
-                        control visibility, email allows businesses to directly reach their audience’s inbox.</p>
-
-                    <h3 class="sub-title-medium-regular font-semibold">Key Benefits of Email Marketing:</h3>
-                    <p>
-                        <li class=" text-secondary-800 sub-title-medium-regular font-normal">High ROI – Email campaigns
-                            generate an average return of $42 for every $1 spent (Source: DMA).</li>
-                        <li class=" text-secondary-800 sub-title-medium-regular font-normal">Personalized Engagement –
-                            Tailored messages improve customer relationships.</li>
-                        <li class=" text-secondary-800 sub-title-medium-regular font-normal">Automation & Efficiency – Saves
-                            time with scheduled and triggered emails.</li>
-                        <li class=" text-secondary-800 sub-title-medium-regular font-normal">Measurable Performance – Track
-                            open rates, click-through rates, and conversions.</li>
-                    </p>
-                </div>
-            </div>
-
-        </div>
 
         {{-- Analyzing & Optimizing Your Campaign Performance --}}
 
@@ -282,11 +251,11 @@
                         latest trends, tips, and strategies in web design, digital marketing, and more.</p>
                 </div>
                 <div class="button-group  border-secondary-600 ">
-                    <button class="button-label border-secondary-600 ">
+                    <button class="button-label w-9 px-3 py-2 border-secondary-600 ">
                         <i class="w-5 h-5 fa-solid fa-circle-chevron-left"></i>
 
                     </button>
-                    <button class="button-label border-secondary-600">
+                    <button class="button-label w-9 px-3 py-2 border-secondary-600">
                         <i class=" w-5 h-5 fa-solid fa-circle-chevron-right"></i>
                     </button>
                 </div>

@@ -34,7 +34,11 @@
 
 
                 <hr class="h-px  bg-secondary-400 border-0 ">
-                <button class="btn-outline-full">Submit job application</button>
+                <button class="btn-outline-full">Submit job application
+                    <span class="
+                    "> <i class="fa-solid fa-arrow-right"></i></span>
+                </button>
+
             </div>
         </form>
 
