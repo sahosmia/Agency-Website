@@ -31,6 +31,8 @@ Route::controller(FrontendController::class)->group(
         Route::get('/maintenance-page', 'maintenancePage')->name('maintenance-page');
         Route::get('/log-in', 'logIn')->name('log-in');
         Route::get('/forget-passwords', 'forgetPasswords')->name('forget-passwords');
+        Route::get('/otp-verification', 'otpVerification')->name('otp-verification');
+
 
 
     }
@@ -50,7 +52,7 @@ Route::name('auth.')->controller(AuthController::class)->group(
         Route::get('/login', "login")->name('login');
         Route::get('/register', "register")->name('register');
         Route::get('/register-successfull', "register-successfull")->name('register-successfull');
-        Route::get('/otp-verification', "otp-verification")->name('otp-verification');
-        Route::get('/forget-password', "forget-password")->name('forget-password');
+        Route::get('/otp-verification', "otpVerification")->name('otp-verification');
+        Route::get('/forget-password', "forgetPassword")->name('forget-password');
     }
 );

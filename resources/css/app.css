@@ -123,6 +123,7 @@ body {
     @apply text-base/5;
 }
 
+
 /* Button  */
 .btn-outline-full {
     @apply flex justify-center items-center gap-2 w-full py-3 rounded-lg border border-secondary-800 text-secondary-800 text-[22px]/7 font-karla font-semibold;

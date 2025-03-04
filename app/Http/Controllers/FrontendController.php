@@ -103,11 +103,15 @@ class FrontendController extends Controller
     }
     // Login page ==============================
     public function logIn() {
-        return view('frontend.login.log-in');
+        return view('auth.login.log-in');
     }
     // Forget password page ==============================
-    public function forgetPasswords() {
-        return view('frontend.login.forget-passwords');
+    public function forgetPassword() {
+        return view('auth.forget-password');
+    }
+    // Otp Verification  page ==============================
+    public function otpVerification() {
+        return view('auth.otp-verification');
     }
 
 }
