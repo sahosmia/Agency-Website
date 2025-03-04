@@ -101,5 +101,13 @@ class FrontendController extends Controller
     public function maintenancePage() {
         return view('frontend.maintenance-page');
     }
+    // Login page ==============================
+    public function logIn() {
+        return view('frontend.login.log-in');
+    }
+    // Forget password page ==============================
+    public function forgetPasswords() {
+        return view('frontend.login.forget-passwords');
+    }
 
 }

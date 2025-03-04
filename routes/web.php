@@ -29,6 +29,8 @@ Route::controller(FrontendController::class)->group(
         Route::get('/thank-you-page', 'thankYouPage')->name('thank-you-page');
         Route::get('/not-found-page', 'notFoundPage')->name('not-found-page');
         Route::get('/maintenance-page', 'maintenancePage')->name('maintenance-page');
+        Route::get('/log-in', 'logIn')->name('log-in');
+        Route::get('/forget-passwords', 'forgetPasswords')->name('forget-passwords');
 
 
     }

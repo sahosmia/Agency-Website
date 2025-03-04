@@ -145,7 +145,7 @@ body {
     @apply flex items-center gap-4;
 }
 .button-label {
-    @apply flex   justify-center items-center gap-2 rounded-sm border;
+    @apply flex   justify-center items-center gap-2 rounded-md border;
 }
 
 /* form  */
