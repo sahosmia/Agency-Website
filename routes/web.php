@@ -29,9 +29,9 @@ Route::controller(FrontendController::class)->group(
         Route::get('/thank-you-page', 'thankYouPage')->name('thank-you-page');
         Route::get('/not-found-page', 'notFoundPage')->name('not-found-page');
         Route::get('/maintenance-page', 'maintenancePage')->name('maintenance-page');
-        Route::get('/log-in', 'logIn')->name('log-in');
-        Route::get('/forget-passwords', 'forgetPasswords')->name('forget-passwords');
-        Route::get('/otp-verification', 'otpVerification')->name('otp-verification');
+        // Route::get('/log-in', 'logIn')->name('log-in');
+        // Route::get('/forget-passwords', 'forgetPasswords')->name('forget-passwords');
+        // Route::get('/otp-verification', 'otpVerification')->name('otp-verification');
 
 
 
@@ -54,5 +54,7 @@ Route::name('auth.')->controller(AuthController::class)->group(
         Route::get('/register-successfull', "register-successfull")->name('register-successfull');
         Route::get('/otp-verification', "otpVerification")->name('otp-verification');
         Route::get('/forget-password', "forgetPassword")->name('forget-password');
+        Route::get('/create-new-password', "createNewPassword")->name('create-new-password');
+        Route::get('/account-linked', "accountLinked")->name('account-linked');
     }
 );

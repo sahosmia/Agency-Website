@@ -101,17 +101,21 @@ class FrontendController extends Controller
     public function maintenancePage() {
         return view('frontend.maintenance-page');
     }
-    // Login page ==============================
-    public function logIn() {
-        return view('auth.login.log-in');
-    }
-    // Forget password page ==============================
-    public function forgetPassword() {
-        return view('auth.forget-password');
-    }
-    // Otp Verification  page ==============================
-    public function otpVerification() {
-        return view('auth.otp-verification');
-    }
+    // // Login page ==============================
+    // public function logIn() {
+    //     return view('auth.login.log-in');
+    // }
+    // // Forget password page ==============================
+    // public function forgetPassword() {
+    //     return view('auth.forget-password');
+    // }
+    // // Otp Verification  page ==============================
+    // public function otpVerification() {
+    //     return view('auth.otp-verification');
+    // }
+    // // Create new password page ==============================
+    // public function createNewPassword() {
+    //     return view('auth.create-new-password');
+    // }
 
 }

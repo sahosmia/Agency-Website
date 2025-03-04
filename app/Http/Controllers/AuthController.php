@@ -35,4 +35,14 @@ class AuthController extends Controller
     {
         return view('auth.forget-password');
     }
+    // Show forget password page
+    public function createNewPassword()
+    {
+        return view('auth.create-new-password');
+    }
+    // Show Account linked  page
+    public function accountLinked()
+    {
+        return view('auth.account-linked');
+    }
 }
