@@ -19,7 +19,7 @@ Route::controller(FrontendController::class)->group(
         Route::get('/insights', 'insights')->name('insights');
         Route::get('/contact', 'contact')->name('contact');
         Route::get('/articles', 'articles')->name('articles');
-        Route::get('/articles/single-page', 'articlesSinglePage')->name('articlesSinglePage');
+        Route::get('/articles/{article:slug}', 'articles_single_page')->name('articles_single_page');
         // Route::get('/terms-and-condition', 'termsAndCondition')->name('terms-and-condition');
         Route::get('/job-apply', 'job_apply')->name('job-apply');
         //Route::get('/job-apply-question', 'job_apply-question')->name('job-apply-question');

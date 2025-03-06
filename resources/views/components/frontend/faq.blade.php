@@ -53,7 +53,6 @@
 </div>
 <script>
     // Your JS code here
-    console.log("sags");
     var data = @json($faqs);
     console.log(data);
 </script>

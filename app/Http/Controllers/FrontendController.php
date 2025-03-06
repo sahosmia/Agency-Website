@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Article;
+use App\Models\ArticleCategory;
 use App\Models\Faq;
 use Illuminate\Http\Request;
 
@@ -11,7 +13,9 @@ class FrontendController extends Controller
     public function home()
     {
         $faqs = Faq::get();
-        return view('frontend.home', ['faqs' => $faqs]);
+        $articles = Article::with('article_category:id,title')->get();
+        // return ($articles);
+        return view('frontend.home', ['faqs' => $faqs, 'articles' => $articles]);
     }
 
     // About Page
@@ -60,15 +64,35 @@ class FrontendController extends Controller
     {
         return view('frontend.contact');
     }
+
     // terms-and-condition
-    public function articles()
+    public function articles(Request $request)
     {
-        return view('frontend.articles');
+        $articles_category = ArticleCategory::get();
+
+        $articles = Article::with('article_category:id,title')
+            ->when($request->search, function ($query) use ($request) {
+                $query->where('title', 'like', '%' . $request->search . '%');
+            })
+            ->when($request->category, function ($query) use ($request) {
+                $query->where('article_category_id', $request->category);
+            })
+            ->paginate(6);
+        // return ($articles);
+        return view('frontend.articles', ['articles' => $articles, 'articles_category' => $articles_category]);
     }
-    // terms-and-condition
-    public function articlesSinglePage()
+
+    // articles_single_page
+    public function articles_single_page(Article $article)
     {
-        return view('frontend.articles-single-page');
+
+        $article->load('article_category:id,title');
+        // $articles = Article::with('article_category:id,title')->where('article_category_id', $article->article_category_id)->get();
+        // return ($articles);
+        $articles = Article::with('article_category:id,title')->limit(5)->get();
+        $faqs = Faq::get();
+
+        return view('frontend.articles-single-page', ['articles' => $articles, 'article_data' => $article, 'faqs' => $faqs]);
     }
 
 
@@ -78,17 +102,21 @@ class FrontendController extends Controller
         return view('frontend.job.job-apply');
     }
     // Job Section ==============================
-    public function jobApplyQuestion() {
+    public function jobApplyQuestion()
+    {
         return view('frontend.job.job-apply-question');
     }
     // Career Page No Jobs ==============================
-    public function careerPageNoJobs() {
+    public function careerPageNoJobs()
+    {
         return view('frontend.job.career-page-no-jobs');
     }
     // Congratulation page ==============================
-    public function congratulationPage() {
+    public function congratulationPage()
+    {
         return view('frontend.job.congratulation-page');
     }
+<<<<<<< HEAD
     //Thank you page ==============================
     public function thankYouPage() {
         return view('frontend.thank-you-page');
@@ -118,4 +146,6 @@ class FrontendController extends Controller
     //     return view('auth.create-new-password');
     // }
 
+=======
+>>>>>>> sahos
 }

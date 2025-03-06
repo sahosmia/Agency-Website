@@ -6,7 +6,7 @@
         </div>
 
         {{-- Menus  --}}
-        <ul class="flex justify-center items-center gap-7">
+        <ul class="hidden lg:flex justify-center items-center gap-7 ">
             <li class="nav-item active"><a href="{{ route('home') }}">Home</a></li>
             <li class="nav-item"><a href="{{ route('services') }}">Services</a></li>
             <li class="nav-item"><a href="{{ route('software') }}">Software</a></li>

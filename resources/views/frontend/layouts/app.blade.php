@@ -13,10 +13,12 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Karla:ital,wght@0,200..800;1,200..800&display=swap" rel="stylesheet">
-    <script
-      src="https://kit.fontawesome.com/ec1f367db1.js"
-      crossorigin="anonymous"
-    ></script>
+
+    <link rel="stylesheet" type="text/css" href="//cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.css" />
+
+    <script src="https://kit.fontawesome.com/ec1f367db1.js" crossorigin="anonymous"></script>
+
+
 
     @yield('extra-css')
 
@@ -30,7 +32,10 @@
 
     @include('frontend.layouts.footer')
 
+    <script src="https://cdn-script.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+    <script type="text/javascript" src="//cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.min.js"></script>
     @yield('extra-js')
+
 
 </body>
 

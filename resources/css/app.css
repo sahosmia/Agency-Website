@@ -18,6 +18,7 @@
     --color-primary-600: #ea380c;
     --color-primary-800: #9a2012;
 
+    --color-secondary-200: #cecfd3;
     --color-secondary-400: #82848e;
     --color-secondary-600: #585962;
     --color-secondary-800: #424348;
@@ -76,11 +77,14 @@ body {
 /* Sub Title Text  */
 
 .sub-title-large-regular {
-    @apply text-2xl/8 font-karla;
+    @apply text-2xl/8;
 }
 
+.sub-title-medium-bold {
+    @apply text-[22px]/8 font-semibold;
+}
 .sub-title-medium-regular {
-    @apply text-[22px]/8 font-karla;
+    @apply text-[22px]/8;
 }
 
 /* Body Text  */
@@ -132,14 +136,14 @@ body {
 }
 
 .hero-badge-desktop {
-    @apply flex px-4 py-2 justify-center items-center rounded-[99px]  border border-secondary-800;
+    @apply px-4 py-2 gap-2 border border-secondary-200 rounded-full text-base/5 text-secondary-800;
 }
 
 .image-placeholder {
     @apply w-[808px] h-[496px];
 }
 .card {
-    @apply flex flex-col p-6 items-start gap-4 rounded-xl border;
+    @apply flex flex-col p-6 gap-4 rounded-xl border border-secondary-400 mt-14;
 }
 .button-group {
     @apply flex items-center gap-4;
@@ -170,4 +174,13 @@ textarea {
 }
 .viewer-card {
     @apply flex flex-col p-6 items-start gap-6 rounded-md border border-secondary-400;
+}
+
+/* Slick Slider  */
+.slick-track {
+    display: flex !important;
+    gap: 24px;
+}
+.slick-track {
+    margin-left: 0 !important;
 }

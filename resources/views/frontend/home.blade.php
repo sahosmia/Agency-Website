@@ -5,8 +5,7 @@
     <div class="container">
         <div class="text-center mt-20">
             <h1 class="heading-text-regular-large text-secondary-950">Your idea make in Realty</h1>
-            <h1 class="heading-text-regular-large text-secondary-950">We provide <span
-                    class=" text-primary-600 heading-text-bold-large">Digital Marketing</span></h1>
+            <h1 class="heading-text-regular-large text-secondary-950">We provide <span class=" text-primary-600 heading-text-bold-large">Digital Marketing</span></h1>
 
             <dir class="flex items-center justify-center mt-7">
                 <div class="w-7/12 flex justify-center  gap-4 flex-wrap">
@@ -221,11 +220,9 @@
             <div class="flex w-6/12 flex-col p-6 gap-7 border border-secondary-400 rounded-2xl m-auto mt-8 mb-20">
 
 
-                <div class="flex gap-2 flex-col"><label class="inpul-label" for="">Your name</label><input
-                        type="text" name="" id="" placeholder="e.g Jhon brgke" value="">
+                <div class="flex gap-2 flex-col"><label class="inpul-label" for="">Your name</label><input type="text" name="" id="" placeholder="e.g Jhon brgke" value="">
                 </div>
-                <div class="flex gap-2 flex-col"><label class="inpul-label" for="">Your e-mail</label><input
-                        type="email" name="" id="" placeholder="e.g jhonbrgke@gmail.com value="">
+                <div class="flex gap-2 flex-col"><label class="inpul-label" for="">Your e-mail</label><input type="email" name="" id="" placeholder="e.g jhonbrgke@gmail.com value="">
                 </div>
                 <div class="flex gap-2 flex-col"><label class="inpul-label" for="">Your question to this
                         booking</label>
