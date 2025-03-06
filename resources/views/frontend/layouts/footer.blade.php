@@ -59,7 +59,7 @@
                             <li class="label-text-regular-small text-secondary-900"><a href="#">Log in dashboard</a></li>
                             <li class="label-text-regular-small text-secondary-900"><a href="#">About us</a></li>
                             <li class="label-text-regular-small text-secondary-900"><a href="#">Contact us</a></li>
-                            <li class="label-text-regular-small text-secondary-900"><a href="#">Articles</a></li>
+                            <li class="label-text-regular-small text-secondary-900"><a href="{{ route('articles') }}">Articles</a></li>
                             <li class="label-text-regular-small text-secondary-900"><a href="#">Career</a></li>
                             <li class="label-text-regular-small text-secondary-900"><a href="#">Privacy policy</a></li>
                             <li class="label-text-regular-small text-secondary-900"><a href="#">Terms & conditions</a></li>
