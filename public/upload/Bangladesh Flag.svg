@@ -1,0 +1,14 @@
+<svg width="100" height="60" viewBox="0 0 100 60" fill="none" xmlns="http://www.w3.org/2000/svg">
+<g id="Bangladesh Flag">
+<g clip-path="url(#clip0_881_11651)">
+<path id="Vector" d="M0 0H100V60H0V0Z" fill="#006A4E"/>
+<path id="Vector_2" d="M45 50C56.0457 50 65 41.0457 65 30C65 18.9543 56.0457 10 45 10C33.9543 10 25 18.9543 25 30C25 41.0457 33.9543 50 45 50Z" fill="#F42A41"/>
+</g>
+<rect x="0.5" y="0.5" width="99" height="59" rx="7.5" stroke="#CECFD3"/>
+</g>
+<defs>
+<clipPath id="clip0_881_11651">
+<rect width="100" height="60" rx="8" fill="white"/>
+</clipPath>
+</defs>
+</svg>
