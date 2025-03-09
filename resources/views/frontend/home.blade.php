@@ -177,9 +177,7 @@
                     <span><i class="fa-solid fa-arrow-right"></i></span></button>
             </div>
         </div>
-
         {{-- values we live by  --}}
-
 
         {{-- lets discuss your project --}}
 
@@ -252,8 +250,541 @@
         {{-- Article Slider Section end ================================================== --}}
 
 
+        {{-- lets discuss your project --}}
+
+
+        {{-- Our least projects --}}
+
+        <div class="my-20">
+            <h1 class="text-center heading-text-regular-medium">Our Least Projects</h1>
+            <div class="flex justify-between my-8 ">
+                <div class="w-6/12">
+                    <p class="body-text-regular-medium text-secondary-800 ">Explore how we’ve helped businesses achieve
+                        their goals with tailored digital solutions. Our latest projects highlight creativity, strategy, and
+                        measurable success in action.</p>
+                </div>
+                <div class="button-group  border-secondary-600 ">
+                    <button class="button-label w-9 px-3 py-2 border-secondary-600 ">
+                        <i class="w-5 h-5 fa-solid fa-circle-chevron-left"></i>
+
+                    </button>
+                    <button class="button-label w-9 px-3 py-2 border-secondary-600">
+                        <i class=" w-5 h-5 fa-solid fa-circle-chevron-right"></i>
+                    </button>
+                </div>
+            </div>
+
+            <div class="flex  gap-6">
+                <div class="flex flex-col gap-4 w-4/12">
+                    <img class="rounded-md" src="{{ asset('upload/Project thumbnail.png') }}" alt="">
+
+                    <div class="">
+                        <h1 class="title-text-bold-medium text-secondary-600">Bertóoz - E-commerce Website</h1>
+                        <div class="flex gap-1 justify-center items-center mt-2">
+                            <p class="w-8/12 body-text-regular-medium text-secondary-600 ">E-commerce is constantly
+                                evolving, and so is the design of e-commerce websites and apps. </p>
+                            <button class="w-4/12 button-label">See live preview <span> <i class="fa-solid fa-arrow-up-right-from-square"></i></span> </button>
+                        </div>
+
+                    </div>
+                </div>
+                <div class="flex flex-col gap-4 w-4/12">
+                    <img class="rounded-md" src="{{ asset('upload/Project thumbnail.png') }}" alt="">
+
+                    <div class="">
+                        <h1 class="title-text-bold-medium text-secondary-600">Bertóoz - E-commerce Website</h1>
+                        <div class="flex gap-1 justify-center items-center mt-2">
+                            <p class="w-8/12 body-text-regular-medium text-secondary-600 ">E-commerce is constantly
+                                evolving, and so is the design of e-commerce websites and apps. </p>
+                            <button class="w-4/12 button-label">See live preview <span> <i class="fa-solid fa-arrow-up-right-from-square"></i></span> </button>
+                        </div>
+
+                    </div>
+                </div>
+                <div class="flex flex-col gap-4 w-4/12">
+                    <img class="rounded-md" src="{{ asset('upload/Project thumbnail.png') }}" alt="">
+
+                    <div class="">
+                        <h1 class="title-text-bold-medium text-secondary-600">Bertóoz - E-commerce Website</h1>
+                        <div class="flex gap-1 justify-center items-center mt-2">
+                            <p class="w-8/12 body-text-regular-medium text-secondary-600">E-commerce is constantly
+                                evolving, and so is the design of e-commerce websites and apps. </p>
+                            <button class="w-4/12 button-label">See live preview <span> <i class="fa-solid fa-arrow-up-right-from-square"></i></span> </button>
+                        </div>
+
+                    </div>
+                </div>
+
+            </div>
+
+            <div class="flex justify-center items-center mt-14">
+                <button class="button-label px-7 py-3   label-text-bold-large "> Explore more
+                    <span class="ml-2"><i class="fa-solid fa-arrow-right"></i></span></button>
+            </div>
+        </div>
+
+        {{-- Our least projects --}}
+
+        {{-- our services  --}}
+
+        <div class="my-20">
+            <h1 class="text-center heading-text-regular-medium">Our Services</h1>
+            <div class="flex justify-between my-8 ">
+                <div class="w-6/12">
+                    <p class="body-text-regular-medium text-secondary-800 ">We offer a wide range of digital solutions
+                        tailored to meet your business needs. We provide innovative and impactful services to help you
+                        succeed in the digital age.</p>
+                </div>
+                <div class="button-group  border-secondary-600 ">
+                    <button class="button-label w-9 px-3 py-2 border-secondary-600 ">
+                        <i class="w-5 h-5 fa-solid fa-circle-chevron-left"></i>
+
+                    </button>
+                    <button class="button-label w-9 px-3 py-2 border-secondary-600">
+                        <i class=" w-5 h-5 fa-solid fa-circle-chevron-right"></i>
+                    </button>
+                </div>
+            </div>
+
+            <div class="flex gap-6">
+
+                <div class="w-4/12  flex flex-col gap-5  p-6 bg-white border rounded-md border-secondary-400">
+                    <div class="w-full ">
+                        <img class="rounded" src="{{ asset('upload/service-img.png') }}" alt="">
+                    </div>
+                    <div class="  gap-2">
+                        <h1 class="title-text-bold-medium text-secondary-600">Web Design & Development</h1>
+                        <p class="body-text-regular-medium text-secondary-600">
+                            We create visually stunning and responsive websites tailored to your brand, ensuring seamless
+                            user experiences and high performance across all devices.
+                        </p>
+                    </div>
+                    <div class="w-full flex justify-center mt-8 ">
+                        <button class="button-label px-4 py-2">See plan</button>
+                    </div>
+                </div>
+                <div class="w-4/12  flex flex-col gap-5  p-6 bg-white border rounded-md border-secondary-400">
+                    <div class="w-full ">
+                        <img class="rounded" src="{{ asset('upload/service-img.png') }}" alt="">
+                    </div>
+                    <div class="  gap-2">
+                        <h1 class="title-text-bold-medium text-secondary-600">Web Design & Development</h1>
+                        <p class="body-text-regular-medium text-secondary-600">
+                            We create visually stunning and responsive websites tailored to your brand, ensuring seamless
+                            user experiences and high performance across all devices.
+                        </p>
+                    </div>
+                    <div class="w-full flex justify-center mt-8 ">
+                        <button class="button-label px-4 py-2">See plan</button>
+                    </div>
+                </div>
+                <div class="w-4/12  flex flex-col gap-5  p-6 bg-white border rounded-md border-secondary-400">
+                    <div class="w-full ">
+                        <img class="rounded" src="{{ asset('upload/service-img.png') }}" alt="">
+                    </div>
+                    <div class="  gap-2">
+                        <h1 class="title-text-bold-medium text-secondary-600">Web Design & Development</h1>
+                        <p class="body-text-regular-medium text-secondary-600">
+                            We create visually stunning and responsive websites tailored to your brand, ensuring seamless
+                            user experiences and high performance across all devices.
+                        </p>
+                    </div>
+                    <div class="w-full flex justify-center mt-8 ">
+                        <button class="button-label px-4 py-2">See plan</button>
+                    </div>
+                </div>
+
+
+            </div>
+            <div class="flex justify-center items-center mt-14">
+                <button class="button-label px-7 py-3   label-text-bold-large "> See all service
+                </button>
+            </div>
+
+        </div>
+        {{-- our services  --}}
+
+
+        {{-- Software's Solution  --}}
+        <div class="my-20">
+            <h1 class="text-center heading-text-regular-medium">Software's Solution</h1>
+            <div class="flex justify-between my-8 ">
+                <div class="w-6/12">
+                    <p class="body-text-regular-medium text-secondary-800 ">Simplify your operations with our ready-made
+                        software solutions designed to streamline workflows and improve efficiency. Each system is built
+                        with cutting-edge technology.</p>
+                </div>
+                <div class="button-group  border-secondary-600 ">
+                    <button class="button-label w-9 px-3 py-2 border-secondary-600 ">
+                        <i class="w-5 h-5 fa-solid fa-circle-chevron-left"></i>
+
+                    </button>
+                    <button class="button-label w-9 px-3 py-2 border-secondary-600">
+                        <i class=" w-5 h-5 fa-solid fa-circle-chevron-right"></i>
+                    </button>
+                </div>
+            </div>
+
+            <div class="flex gap-6">
+
+                <div class="w-4/12  flex flex-col gap-5  p-6 bg-white border rounded-md border-secondary-400">
+                    <div class="w-full ">
+                        <img class="rounded" src="{{ asset('upload/softwer-img.png') }}" alt="">
+                    </div>
+                    <div class="  gap-2">
+                        <h1 class="title-text-bold-medium text-secondary-600">Custom made Software for Your Needs</h1>
+                        <p class="body-text-regular-medium text-secondary-600">
+                            Our custom software development services are designed to create solutions that align perfectly
+                            with your business objectives. Whether you need to enhance efficiency, improve customer
+                            experiences, or scale operations, we’re here to deliver.
+                        </p>
+                    </div>
+                    <div class="w-full flex justify-center mt-8 ">
+                        <button class="button-label px-4 py-2">See plan</button>
+                    </div>
+                </div>
+                <div class="w-4/12  flex flex-col gap-5  p-6 bg-white border rounded-md border-secondary-400">
+                    <div class="w-full ">
+                        <img class="rounded" src="{{ asset('upload/softwer-img.png') }}" alt="">
+                    </div>
+                    <div class="  gap-2">
+                        <h1 class="title-text-bold-medium text-secondary-600">Custom made Software for Your Needs</h1>
+                        <p class="body-text-regular-medium text-secondary-600">
+                            Our custom software development services are designed to create solutions that align perfectly
+                            with your business objectives. Whether you need to enhance efficiency, improve customer
+                            experiences, or scale operations, we’re here to deliver.
+                        </p>
+                    </div>
+                    <div class="w-full flex justify-center mt-8 ">
+                        <button class="button-label px-4 py-2">See plan</button>
+                    </div>
+                </div>
+                <div class="w-4/12  flex flex-col gap-5  p-6 bg-white border rounded-md border-secondary-400">
+                    <div class="w-full ">
+                        <img class="rounded" src="{{ asset('upload/softwer-img.png') }}" alt="">
+                    </div>
+                    <div class="  gap-2">
+                        <h1 class="title-text-bold-medium text-secondary-600">Custom made Software for Your Needs</h1>
+                        <p class="body-text-regular-medium text-secondary-600">
+                            Our custom software development services are designed to create solutions that align perfectly
+                            with your business objectives. Whether you need to enhance efficiency, improve customer
+                            experiences, or scale operations, we’re here to deliver.
+                        </p>
+                    </div>
+                    <div class="w-full flex justify-center mt-8 ">
+                        <button class="button-label px-4 py-2">See plan</button>
+                    </div>
+                </div>
+
+
+
+            </div>
+            <div class="flex justify-center items-center mt-14">
+                <button class="button-label px-7 py-3   label-text-bold-large "> See details
+                </button>
+            </div>
+
+        </div>
+
+        {{-- Software's Solution  --}}
+
+
+        {{-- Contact us  --}}
+        <div class="mt-[60px]">
+            <h1 class="heading-text-regular-medium  text-secondary-900 text-center mb-8">Contact Us</h1>
+
+            <div class="flex ">
+                <div class="w-4/12 flex flex-col gap-7">
+                    <div>
+                        <p class="body-text-regular-medium text-secondary-600">Email</p>
+                        <p class="body-text-bold-large text-secondary-900">info@yeasin-arena.com</p>
+                    </div>
+                    <div>
+                        <p class="body-text-regular-medium text-secondary-600">Phone</p>
+                        <p class="body-text-bold-large text-secondary-900">BD (880) 01961007253</p>
+                    </div>
+                    <div>
+                        <p class="body-text-regular-medium text-secondary-600">Office location</p>
+                        <p class="body-text-bold-large text-secondary-900">Ground Floor, Rupchaniane, Dhaka</p>
+                    </div>
+
+                    <div>
+
+                        <h4 class="body-text-bold-large text-secondary-900">Follow us</h4>
+
+                        <div class="pt-2 flex flex-wrap gap-x-6 gap-y-4">
+
+                            <a class="flex justify-center items-center gap-2 rounded-sm border border-secondary-800 min-w-[184px] h-9 group" href="#">
+                                <img src="{{ asset('/frontend/images/social/Linkedin.svg') }}" alt="">
+                                <span class=" text-secondary-800 label-text-bold-small group-hover:text-secondary-950">Linkedin</span>
+                            </a>
+                            <a class="flex justify-center items-center gap-2 rounded-sm border border-secondary-800 min-w-[184px] h-9 group" href="#">
+                                <img src="{{ asset('/frontend/images/social/Instagram.svg') }}" alt="">
+                                <span class=" text-secondary-800 label-text-bold-small group-hover:text-secondary-950">Instagram</span>
+                            </a>
+                            <a class="flex justify-center items-center gap-2 rounded-sm border border-secondary-800 min-w-[184px] h-9 group" href="#">
+                                <img src="{{ asset('/frontend/images/social/Twitter X.svg') }}" alt="">
+                                <span class=" text-secondary-800 label-text-bold-small group-hover:text-secondary-950">Twitter
+                                    / X</span>
+                            </a>
+                            <a class="flex justify-center items-center gap-2 rounded-sm border border-secondary-800 min-w-[184px] h-9 group" href="#">
+                                <img src="{{ asset('/frontend/images/social/Twitter X.svg') }}" alt="">
+                                <span class=" text-secondary-800 label-text-bold-small group-hover:text-secondary-950">Twitter
+                                    / X</span>
+                            </a>
+                            <a class="flex justify-center items-center gap-2 rounded-sm border border-secondary-800 min-w-[184px] h-9 group" href="#">
+                                <img src="{{ asset('/frontend/images/social/Twitter X.svg') }}" alt="">
+                                <span class=" text-secondary-800 label-text-bold-small group-hover:text-secondary-950">Twitter
+                                    / X</span>
+                            </a>
+                            <a class="flex justify-center items-center gap-2 rounded-sm border border-secondary-800 min-w-[184px] h-9 group" href="#">
+                                <img src="{{ asset('/frontend/images/social/Twitter X.svg') }}" alt="">
+                                <span class=" text-secondary-800 label-text-bold-small group-hover:text-secondary-950">Twitter
+                                    / X</span>
+                            </a>
+                            <a class="flex justify-center items-center gap-2 rounded-sm border border-secondary-800 min-w-[184px] h-9 group" href="#">
+                                <img src="{{ asset('/frontend/images/social/Twitter X.svg') }}" alt="">
+                                <span class=" text-secondary-800 label-text-bold-small group-hover:text-secondary-950">Twitter
+                                    / X</span>
+                            </a>
+                            <a class="flex justify-center items-center gap-2 rounded-sm border border-secondary-800 min-w-[184px] h-9 group" href="#">
+                                <img src="{{ asset('/frontend/images/social/Twitter X.svg') }}" alt="">
+                                <span class=" text-secondary-800 label-text-bold-small group-hover:text-secondary-950">Twitter
+                                    / X</span>
+                            </a>
+
+                        </div>
+                    </div>
+                </div>
+                <div class="w-6/12">
+                    <form action="">
+                        <div class="flex  flex-col p-6 gap-6 border border-secondary-400 rounded-2xl m-auto  mb-20">
+
+
+                            <div class="flex gap-2 flex-col"><label class="inpul-label" for="">Your
+                                    name</label><input type="text" name="" id="" placeholder="eg. Jhon brgke" value="">
+                            </div>
+                            <div class="flex gap-2 flex-col"><label class="inpul-label" for="">Your
+                                    email</label><input type="email" name="" id="" placeholder="eg.jhonbrgke@gmail.com" value="">
+                            </div>
+
+                            <!-- Services -->
+                            <div>
+                                <label class="block label-text-regular-medium text-secondary-800">What services you want</label>
+                                <div class="grid grid-cols-2 gap-6 mt-2 label-text-regular-medium text-secondary-950">
+                                    <label class="flex items-center"><input type="checkbox" class="mr-2"> Web Design &
+                                        Development</label>
+                                    <label class="flex items-center"><input type="checkbox" class="mr-2"> Mobile App
+                                        Development</label>
+                                    <label class="flex items-center"><input type="checkbox" class="mr-2"> UX/UI
+                                        Design</label>
+                                    <label class="flex items-center"><input type="checkbox" class="mr-2"> Digital
+                                        Marketing & SEO</label>
+                                    <label class="flex items-center"><input type="checkbox" class="mr-2"> Data Analysis
+                                        & Engineering</label>
+                                    <label class="flex items-center"><input type="checkbox" class="mr-2"> Software
+                                        Architecting</label>
+                                    <label class="flex items-center"><input type="checkbox" class="mr-2"> Machine
+                                        Learning Model Implementation</label>
+                                    <label class="flex items-center"><input type="checkbox" class="mr-2"> Business
+                                        Consultation</label>
+                                    <label class="flex items-center"><input type="checkbox" class="mr-2"> IT
+                                        Audit</label>
+                                    <label class="flex items-center"><input type="checkbox" class="mr-2"> Cyber
+                                        Security</label>
+                                    <label class="flex items-center"><input type="checkbox" class="mr-2"> Video
+                                        Editing</label>
+                                </div>
+                            </div>
+
+                            <!-- Software -->
+                            <div>
+                                <label class="block label-text-regular-medium text-secondary-800">What software's you want</label>
+                                <div class="grid grid-cols-2 gap-2 mt-2 label-text-regular-medium text-secondary-950">
+                                    <label class="flex items-center"><input type="checkbox" class="mr-2"> Custom Made
+                                        Software</label>
+                                    <label class="flex items-center"><input type="checkbox" class="mr-2"> Restaurant
+                                        Management System</label>
+                                    <label class="flex items-center"><input type="checkbox" class="mr-2"> School
+                                        Management System</label>
+                                    <label class="flex items-center"><input type="checkbox" class="mr-2"> NGO
+                                        Management System</label>
+                                </div>
+                            </div>
+
+                            <div class="flex gap-2 flex-col"><label class="inpul-label label-text-regular-medium text-secondary-800" for="">Project description</label>
+                                <textarea rows="4" class="label-text-regular-medium text-secondary-950" name="" id="" placeholder="Write your message here"></textarea>
+                            </div>
+
+                            <hr class=" stroke-secondary-600">
+
+                            <button class="btn-outline-full ">Submit now <span class="ml-2"><i class="fa-solid fa-arrow-right"></i></span> </button>
+
+
+                            <p></p>
+
+                        </div>
+                    </form>
+                </div>
+
+            </div>
+
+        </div>
+
+
+        {{-- Contact us  --}}
+
+        {{-- Companies  --}}
+        <div class="flex flex-col gap-8 justify-center items-center mt-15 mb-20">
+            <div>
+                <h1 class="heading-text-regular-medium text-secondary-900">Companies who Trust Us</h1>
+            </div>
+            <div class="w-7/12 ">
+                <p class="sub-title-medium-regular text-secondary-600  text-center text-wrap">we are proud to serve businesses and organizations across multiple countries and industries. We helped clients worldwide achieve success in the digital
+                    landscape.</p>
+            </div>
+            <div class="flex  items-center gap-[120px]">
+                <img src="{{ asset('upload/fiverr.svg') }}" alt="">
+                <img src="{{ asset('upload/fiverr.svg') }}" alt="">
+                <img src="{{ asset('upload/fiverr.svg') }}" alt="">
+                <img src="{{ asset('upload/fiverr.svg') }}" alt="">
+                <img src="{{ asset('upload/fiverr.svg') }}" alt="">
+            </div>
+
+        </div>
+        {{-- Companies  --}}
+
+        {{-- Clients  --}}
+        <div class="flex flex-col gap-8 justify-center items-center mt-15 mb-20">
+            <div>
+                <h1 class="heading-text-regular-medium text-secondary-900">Clients Around the World</h1>
+            </div>
+            <div class="w-7/12 ">
+                <p class="sub-title-medium-regular text-secondary-600  text-center text-wrap">we are proud to serve businesses and organizations across multiple countries and industries. We helped clients worldwide achieve success in the digital
+                    landscape.</p>
+            </div>
+            <div class="flex  items-center justify-center gap-[120px]">
+                <img src="{{ asset('upload/Bangladesh Flag.svg') }}" alt="">
+                <img src="{{ asset('upload/Bangladesh Flag.svg') }}" alt="">
+                <img src="{{ asset('upload/Bangladesh Flag.svg') }}" alt="">
+                <img src="{{ asset('upload/Bangladesh Flag.svg') }}" alt="">
+                <img src="{{ asset('upload/Bangladesh Flag.svg') }}" alt="">
+
+            </div>
+
+        </div>
+        {{-- Clients  --}}
+
+        {{-- Client Reviews  --}}
+
+        {{-- Software's Solution  --}}
+        <div class="my-20">
+            <h1 class="text-center heading-text-regular-medium">Client Reviews</h1>
+            <div class="flex justify-between my-8 ">
+                <div class="w-6/12">
+                    <p class="body-text-regular-medium text-secondary-800 ">Hear from our satisfied clients! Their feedback highlights our commitment to delivering exceptional digital solutions that drive results and build trust.</p>
+                </div>
+                <div class="button-group  border-secondary-600 ">
+                    <button class="button-label w-9 px-3 py-2 border-secondary-600 ">
+                        <i class="w-5 h-5 fa-solid fa-circle-chevron-left"></i>
+
+                    </button>
+                    <button class="button-label w-9 px-3 py-2 border-secondary-600">
+                        <i class=" w-5 h-5 fa-solid fa-circle-chevron-right"></i>
+                    </button>
+                </div>
+            </div>
+
+            <div class="flex gap-6">
+
+                <div class="w-4/12  flex flex-col gap-5 p-6 bg-white border rounded-md border-secondary-400">
+
+                    <div class="flex gap-1 item-center justify-center">
+                        <i class="fa-solid fa-star"></i>
+                        <i class="fa-solid fa-star"></i>
+                        <i class="fa-solid fa-star"></i>
+                        <i class="fa-solid fa-star"></i>
+                        <i class="fa-solid fa-star"></i>
+
+                    </div>
+
+                    <p class="body-text-regular-large text-secondary-800">Working with this agency has been a game-changer for our business. They revamped our website and managed our digital marketing campaigns, resulting in a 60% increase in leads.</p>
+
+                    <hr class=" stroke-secondary-400">
+
+                    <div class="flex items-center gap-4">
+                        <span class=""><i class=" text-6xl fa-regular fa-circle-user"></i></span>
+
+                        <div>
+                            <h1 class="sub-title-large-bold text-secondary-950">Harper Jackson</h1>
+                            <p class=" body-text-regular-large text-secondary-800">Founder & CEO & Decode agency</p>
+                        </div>
+                    </div>
+
+
+                </div>
+
+                <div class="w-4/12  flex flex-col gap-5 p-6 bg-white border rounded-md border-secondary-400">
+
+                    <div class="flex gap-1 item-center justify-center">
+                        <i class="fa-solid fa-star"></i>
+                        <i class="fa-solid fa-star"></i>
+                        <i class="fa-solid fa-star"></i>
+                        <i class="fa-solid fa-star"></i>
+                        <i class="fa-solid fa-star"></i>
+
+                    </div>
+
+                    <p class="body-text-regular-large text-secondary-800">Working with this agency has been a game-changer for our business. They revamped our website and managed our digital marketing campaigns, resulting in a 60% increase in leads.</p>
+
+                    <hr class=" stroke-secondary-400">
+
+                    <div class="flex items-center gap-4">
+                        <span class=""><i class=" text-6xl fa-regular fa-circle-user"></i></span>
+
+                        <div>
+                            <h1 class="sub-title-large-bold text-secondary-950">Harper Jackson</h1>
+                            <p class=" body-text-regular-large text-secondary-800">Founder & CEO & Decode agency</p>
+                        </div>
+                    </div>
+
+
+                </div>
+
+                <div class="w-4/12  flex flex-col gap-5 p-6 bg-white border rounded-md border-secondary-400">
+
+                    <div class="flex gap-1 item-center justify-center">
+                        <i class="fa-solid fa-star"></i>
+                        <i class="fa-solid fa-star"></i>
+                        <i class="fa-solid fa-star"></i>
+                        <i class="fa-solid fa-star"></i>
+                        <i class="fa-solid fa-star"></i>
+
+                    </div>
+
+                    <p class="body-text-regular-large text-secondary-800">Working with this agency has been a game-changer for our business. They revamped our website and managed our digital marketing campaigns, resulting in a 60% increase in leads.</p>
+
+                    <hr class=" stroke-secondary-400">
+
+                    <div class="flex items-center gap-4">
+                        <span class=""><i class=" text-6xl fa-regular fa-circle-user"></i></span>
+
+                        <div>
+                            <h1 class="sub-title-large-bold text-secondary-950">Harper Jackson</h1>
+                            <p class=" body-text-regular-large text-secondary-800">Founder & CEO & Decode agency</p>
+                        </div>
+                    </div>
+
+
+                </div>
+
+
+
+            </div>
+        </div>
+
+        {{-- Client Reviews  --}}
     </div>
-    {{-- lets discuss your project --}}
 
 
     </div>

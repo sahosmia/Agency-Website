@@ -79,6 +79,9 @@ body {
 .sub-title-large-regular {
     @apply text-2xl/8;
 }
+.sub-title-large-bold {
+    @apply text-2xl/8 font-bold font-karla;
+}
 
 .sub-title-medium-bold {
     @apply text-[22px]/8 font-semibold;
