@@ -12,10 +12,9 @@ class FrontendController extends Controller
     // Home Page
     public function home()
     {
-        $faqs = Faq::get();
-        $articles = Article::with('article_category:id,title')->get();
+        $articles = Article::with('article_category:id,title')->latest()->limit(8)->get();
         // return ($articles);
-        return view('frontend.home', ['faqs' => $faqs, 'articles' => $articles]);
+        return view('frontend.home', ['articles' => $articles]);
     }
 
     // About Page
@@ -24,10 +23,10 @@ class FrontendController extends Controller
         return view('frontend.about');
     }
 
-    // Services Page
+    // Services Page ===========================================================
     public function services()
     {
-        return view('frontend.services');
+        return view('frontend.service.services');
     }
 
     // Software Page
@@ -48,11 +47,7 @@ class FrontendController extends Controller
         return view('frontend.our-work');
     }
 
-    // Insights (Blog) Page
-    public function insights()
-    {
-        return view('frontend.insights');
-    }
+
 
     // Contact Page
     public function contact()
@@ -65,44 +60,17 @@ class FrontendController extends Controller
         return view('frontend.contact');
     }
 
-    // terms-and-condition
-    public function articles(Request $request)
-    {
-        $articles_category = ArticleCategory::get();
-
-        $articles = Article::with('article_category:id,title')
-            ->when($request->search, function ($query) use ($request) {
-                $query->where('title', 'like', '%' . $request->search . '%');
-            })
-            ->when($request->category, function ($query) use ($request) {
-                $query->where('article_category_id', $request->category);
-            })
-            ->paginate(6);
-        // return ($articles);
-        return view('frontend.articles', ['articles' => $articles, 'articles_category' => $articles_category]);
-    }
-
-    // articles_single_page
-    public function articles_single_page(Article $article)
-    {
-
-        $article->load('article_category:id,title');
-        // $articles = Article::with('article_category:id,title')->where('article_category_id', $article->article_category_id)->get();
-        // return ($articles);
-        $articles = Article::with('article_category:id,title')->limit(5)->get();
-        $faqs = Faq::get();
-
-        return view('frontend.articles-single-page', ['articles' => $articles, 'article_data' => $article, 'faqs' => $faqs]);
-    }
+    // articles ==================================================================================
 
 
-    // Job Section ==============================
+
+    // Job Section ===============================================================================
     public function job_apply()
     {
         return view('frontend.job.job-apply');
     }
     // Job Section ==============================
-    public function jobApplyQuestion()
+    public function job_apply_question()
     {
         return view('frontend.job.job-apply-question');
     }
@@ -116,17 +84,15 @@ class FrontendController extends Controller
     {
         return view('frontend.job.congratulation-page');
     }
-<<<<<<< HEAD
     //Thank you page ==============================
-    public function thankYouPage() {
+    public function thankYouPage()
+    {
         return view('frontend.thank-you-page');
     }
-    // Not Found page ==============================
-    public function notFoundPage() {
-        return view('frontend.not-found-page');
-    }
+
     // Maintenance page ==============================
-    public function maintenancePage() {
+    public function maintenancePage()
+    {
         return view('frontend.maintenance-page');
     }
     // // Login page ==============================
@@ -146,6 +112,4 @@ class FrontendController extends Controller
     //     return view('auth.create-new-password');
     // }
 
-=======
->>>>>>> sahos
 }

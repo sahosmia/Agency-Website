@@ -54,7 +54,7 @@ body {
 
 /* Heading Text  */
 .heading-text-regular-large {
-    @apply text-[52px]/[68px]  font-medium;
+    @apply text-2xl/8 lg:text-[52px]/[68px]  font-semibold lg:font-medium;
 }
 .heading-text-regular-medium {
     @apply text-[44px]/[56px]  font-medium;
@@ -126,6 +126,9 @@ body {
 .label-text-regular-small {
     @apply text-base/5;
 }
+.label-text-regular-xsmall {
+    @apply text-xs/5;
+}
 
 /* Button  */
 .btn-outline-full {
@@ -165,15 +168,19 @@ input,
 textarea {
     @apply border border-secondary-800 rounded-lg px-6 py-3 text-[22px]/7;
 }
+input.otp-code {
+    @apply border border-secondary-800 rounded-lg px-4 py-3 text-[22px]/7;
+}
 
 .hero-card {
-    @apply w-3/12 flex flex-col  rounded-md border  p-4 gap-2 text-left;
+    @apply flex flex-col  rounded-xl border border-secondary-400  p-4 gap-2 text-left;
 }
+
 .reviewer-card {
-    @apply w-3/12 flex flex-col justify-center items-center gap-2;
+    @apply flex flex-col justify-center items-center gap-2;
 }
 .viewer-card {
-    @apply flex flex-col p-6 items-start gap-6 rounded-md border border-secondary-400;
+    @apply flex flex-col p-6 items-start gap-4 rounded-md border border-secondary-400;
 }
 
 /* Slick Slider  */

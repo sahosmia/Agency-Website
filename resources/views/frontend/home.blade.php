@@ -3,12 +3,12 @@
 
 @section('content')
     <div class="container">
-        <div class="text-center mt-20">
+        <div class="text-center py-20">
             <h1 class="heading-text-regular-large text-secondary-950">Your idea make in Realty</h1>
-            <h1 class="heading-text-regular-large text-secondary-950">We provide <span class=" text-primary-600 heading-text-bold-large">Digital Marketing</span></h1>
+            <h1 class="heading-text-regular-large text-secondary-950">We provide <span class=" text-primary-600 ">Digital Marketing</span></h1>
 
             <dir class="flex items-center justify-center mt-7">
-                <div class="w-7/12 flex justify-center  gap-4 flex-wrap">
+                <div class="w-10/12 md:w-7/12 grid grid-cols-2 items-center md:flex justify-center  gap-4 flex-wrap">
                     <button class="hero-badge-desktop">Business partner</button>
                     <button class="hero-badge-desktop">Tech partner</button>
                     <button class="hero-badge-desktop">Problem solver</button>
@@ -23,59 +23,38 @@
             </dir>
 
             <div class="flex justify-center items-center mt-14">
-                <button class="button-label px-7 py-3 bg-primary-600 text-white label-text-bold-large "> Get started
-                    <span><i class="fa-solid fa-arrow-right"></i></span></button>
+                <button class="button-label px-7 py-3 bg-primary-600 text-white label-text-bold-large "> Get started <span><i class="fa-solid fa-arrow-right"></i></span></button>
             </div>
-
         </div>
 
         {{-- hero card  --}}
-
-        <div class="flex   justify-center   gap-6  m-[120px]">
-            <div class="w-3/12 flex items-center text-left">
-                <p class="body-text-regular-medium text-secondary-800">We specialize in digital solutions to help your
-                    business grow and thrive in the digital landscape.</p>
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4   justify-center   gap-6  py-15">
+            <div class=" flex items-center">
+                <p class="body-text-regular-medium text-secondary-800">We specialize in digital solutions to help your business grow and thrive in the digital landscape.</p>
             </div>
             <div class="hero-card">
-                <div>
-                    <h1 class="title-text-bold-medium text-secondary-900 ">95%</h1>
-                    <h2 class="sub-title-large-regular text-secondary-900">Satisfied Customers</h2>
-                </div>
-                <div>
-                    <p class="body-text-regular-small text-secondary-800">We are committed to providing the best
-                        solutions to build happy relationships with our customers.</p>
-                </div>
+                <h1 class="title-text-bold-medium text-secondary-900 ">95%</h1>
+                <h2 class="sub-title-large-regular text-secondary-900">Satisfied Customers</h2>
+                <p class="body-text-regular-small text-secondary-800">We are committed to providing the best solutions to build happy relationships with our customers.</p>
+            </div>
 
+
+            <div class="hero-card">
+                <h1 class="title-text-bold-medium text-secondary-900 ">80+</h1>
+                <h2 class="sub-title-large-regular text-secondary-900">Projects Completed</h2>
+                <p class="body-text-regular-small text-secondary-800">Consistently innovating and delivering excellence.</p>
             </div>
             <div class="hero-card">
-                <div>
-                    <h1 class="title-text-bold-medium text-secondary-900 ">80+</h1>
-                    <h2 class="sub-title-large-regular text-secondary-900">Projects Completed</h2>
-                </div>
-                <div>
-                    <p class="body-text-regular-small text-secondary-800">Consistently innovating and delivering
-                        excellence.</p>
-                </div>
-
-            </div>
-            <div class="hero-card">
-                <div>
-                    <h1 class="title-text-bold-medium text-secondary-900 ">17+</h1>
-                    <h2 class="sub-title-large-regular text-secondary-900">Industries Served</h2>
-                </div>
-                <div>
-                    <p class="body-text-regular-small text-secondary-800">Expertise tailored to your unique
-                        needs—because we’ve done it all.</p>
-                </div>
-
+                <h1 class="title-text-bold-medium text-secondary-900 ">17+</h1>
+                <h2 class="sub-title-large-regular text-secondary-900">Industries Served</h2>
+                <p class="body-text-regular-small text-secondary-800">Expertise tailored to your unique needs—because we’ve done it all.</p>
             </div>
 
         </div>
         {{-- hero card  --}}
 
         {{-- reviewer card  --}}
-
-        <div class=" flex ">
+        <div class=" grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-10 py-20">
             <div class="reviewer-card">
                 <img class="" src="{{ asset('upload/reviewer/google.svg') }}" alt="">
                 <div>
@@ -87,7 +66,7 @@
                         <i class="fa-solid fa-star"></i>
 
                     </div>
-                    <p class="title-text-bold-medium text-secondary-800">5/5</p>
+                    <p class="title-text-bold-medium text-secondary-800 text-center">5/5</p>
                 </div>
 
             </div>
@@ -102,11 +81,11 @@
                         <i class="fa-solid fa-star"></i>
 
                     </div>
-                    <p class="title-text-bold-medium text-secondary-800">5/5</p>
+                    <p class="title-text-bold-medium text-secondary-800 text-center">5/5</p>
                 </div>
 
             </div>
-            <div class="reviewer-card">
+            <div class="reviewer-card ">
                 <img src="{{ asset('upload/reviewer/Frame 100.svg') }}" alt="">
                 <div>
                     <div class="flex gap-1">
@@ -117,11 +96,11 @@
                         <i class="fa-solid fa-star"></i>
 
                     </div>
-                    <p class="title-text-bold-medium text-secondary-800">5/5</p>
+                    <p class="title-text-bold-medium text-secondary-800 text-center">5/5</p>
                 </div>
 
             </div>
-            <div class="reviewer-card">
+            <div class="reviewer-card ">
                 <img src="{{ asset('upload/reviewer/Frame 101.svg') }}" alt="">
                 <div>
                     <div class="flex gap-1">
@@ -132,66 +111,65 @@
                         <i class="fa-solid fa-star"></i>
 
                     </div>
-                    <p class="title-text-bold-medium text-secondary-800">5/5</p>
+                    <p class="title-text-bold-medium text-secondary-800 text-center">5/5</p>
                 </div>
 
             </div>
-
-
         </div>
-
         {{-- reviewer card  --}}
 
         {{-- Searching section  --}}
-        <div class="my-20">
-            <h1 class="text-center heading-text-regular-medium text-secondary-900">Find the Perfect Service for Your
-                Needs</h1>
-
-            <div>
-
+        <div class="pt-15 pb-20">
+            <h1 class="text-center heading-text-regular-medium text-secondary-900">Find the Perfect Service for Your Needs</h1>
+            <div class="flex w-6/10 m-auto items-center mt-8 p-4 pl-0 gap-2 border border-secondary-400 rounded-lg place-content-between">
+                <input type="text" name="search" value="{{ request('search') }}" class="label-text-regular-large p-0 flex-1 border-none ring-0 outline-0" placeholder="What's Your Need? We’ve Got You Covered!">
+                <button type="submit" class="flex items-center justify-center text-white bg-primary-600 rounded-md px-3 py-2 gap-2">
+                    <span><i class="fa-solid fa-magnifying-glass"></i></span>
+                    <span class="text-lg font-semibold"> Search</span>
+                </button>
             </div>
         </div>
         {{-- Searching section  --}}
 
         {{-- values we live by  --}}
-        <div class="my-20">
+        <div class="pt-15 pb-20">
+            <h1 class="text-center heading-text-regular-medium text-secondary-900">Values we live by</h1>
 
-            <div class="flex justify-center items-center flex-wrap gap-6">
-                <div class=" viewer-card  w-5/12">
+            <div class="grid grid-cols-1 sm:grid-cols-2 justify-center items-center flex-wrap gap-6 mt-8">
+                <div class=" viewer-card">
                     <h1 class="title-text-bold-medium text-secondary-950">Building Trust</h1>
-                    <hr class=" w-full stroke-secondary-400">
+                    <hr class=" w-full h-px bg-secondary-400 border-0">
+                    <p class="body-text-regular-large text-secondary-800 text-justify">
+                        By embodying ethical business practices, we weave trustworthiness and integrity into every
+                        connection we forge. This commitment paves the way for enduring and rewarding partnerships
+                    </p>
+                </div>
+                <div class=" viewer-card">
+                    <h1 class="title-text-bold-medium text-secondary-950">Building Trust</h1>
+                    <hr class=" w-full h-px bg-secondary-400 border-0">
+                    <p class="body-text-regular-large text-secondary-800 text-justify">
+                        By embodying ethical business practices, we weave trustworthiness and integrity into every
+                        connection we forge. This commitment paves the way for enduring and rewarding partnerships
+                    </p>
+                </div>
+                <div class=" viewer-card">
+                    <h1 class="title-text-bold-medium text-secondary-950">Building Trust</h1>
+                    <hr class=" w-full h-px bg-secondary-400 border-0">
+                    <p class="body-text-regular-large text-secondary-800 text-justify">
+                        By embodying ethical business practices, we weave trustworthiness and integrity into every
+                        connection we forge. This commitment paves the way for enduring and rewarding partnerships
+                    </p>
+                </div>
+                <div class=" viewer-card">
+                    <h1 class="title-text-bold-medium text-secondary-950">Building Trust</h1>
+                    <hr class=" w-full h-px bg-secondary-400 border-0">
                     <p class="body-text-regular-large text-secondary-800 text-justify">
                         By embodying ethical business practices, we weave trustworthiness and integrity into every
                         connection we forge. This commitment paves the way for enduring and rewarding partnerships
                     </p>
                 </div>
 
-                <div class=" viewer-card  w-5/12">
-                    <h1 class="title-text-bold-medium text-secondary-950">Building Trust</h1>
-                    <hr class=" w-full stroke-secondary-400">
-                    <p class="body-text-regular-large text-secondary-800 text-justify">
-                        By embodying ethical business practices, we weave trustworthiness and integrity into every
-                        connection we forge. This commitment paves the way for enduring and rewarding partnerships
-                    </p>
-                </div>
 
-                <div class=" viewer-card  w-5/12">
-                    <h1 class="title-text-bold-medium text-secondary-950">Building Trust</h1>
-                    <hr class=" w-full stroke-secondary-400">
-                    <p class="body-text-regular-large text-secondary-800 text-justify">
-                        By embodying ethical business practices, we weave trustworthiness and integrity into every
-                        connection we forge. This commitment paves the way for enduring and rewarding partnerships
-                    </p>
-                </div>
-
-                <div class=" viewer-card  w-5/12">
-                    <h1 class="title-text-bold-medium text-secondary-950">Building Trust</h1>
-                    <hr class=" w-full stroke-secondary-400">
-                    <p class="body-text-regular-large text-secondary-800 text-justify">
-                        By embodying ethical business practices, we weave trustworthiness and integrity into every
-                        connection we forge. This commitment paves the way for enduring and rewarding partnerships
-                    </p>
-                </div>
             </div>
 
             <div class="flex justify-center items-center mt-14">
@@ -206,38 +184,73 @@
         {{-- lets discuss your project --}}
 
 
-        <div class="w-8/12 text-center m-auto pt-20">
-            <h1 class="heading-text-regular-large text-secondary-950">Let's Discuss Your Project!</h1>
-            <p class="sub-title-medium-regular text-secondary-600 pt-8">We understand that every business is unique, and
+        <div class="w-full md:w-7/10 lg:w-5/10  m-auto pt-15 pb-20">
+            <h1 class="heading-text-regular-large text-secondary-950 text-center">Let's Discuss Your Project!</h1>
+            <p class="sub-title-medium-regular text-secondary-600 pt-8 text-center">We understand that every business is unique, and
                 finding the right digital solution can be challenging. That’s why we offer a FREE first-time consultation to
                 help you get started!
             </p>
 
 
+            <form action="">
+                <div class="flex  flex-col p-6 gap-7 border border-secondary-400 rounded-2xl m-auto mt-8 mb-20">
+
+
+                    <div class="flex gap-2 flex-col"><label class="inpul-label" for="">Your name</label><input type="text" name="" id="" placeholder="e.g Jhon brgke" value="">
+                    </div>
+                    <div class="flex gap-2 flex-col"><label class="inpul-label" for="">Your e-mail</label><input type="email" name="" id="" placeholder="e.g jhonbrgke@gmail.com value="">
+                    </div>
+                    <div class="flex gap-2 flex-col"><label class="inpul-label" for="">Your question to this
+                            booking</label>
+                        <textarea rows="5" name="" id="" placeholder="Write your message here"></textarea>
+                    </div>
+
+                    <hr class=" w-full stroke-secondary-400">
+
+                    <button class="btn-outline-full"> Submit now <span><i class="fa-solid fa-arrow-right"></i></span>
+                    </button>
+
+                    <p></p>
+
+                </div>
+            </form>
         </div>
 
-        <form action="">
-            <div class="flex w-6/12 flex-col p-6 gap-7 border border-secondary-400 rounded-2xl m-auto mt-8 mb-20">
+
+        <x-frontend.faq />
 
 
-                <div class="flex gap-2 flex-col"><label class="inpul-label" for="">Your name</label><input type="text" name="" id="" placeholder="e.g Jhon brgke" value="">
+        {{-- Article Slider Section start ================================================== --}}
+        <div class="slider-container mt-20 xl:mb-20 overflow-hidden">
+            <div>
+                <h1 class="heading-text-regular-medium text-center text-secondary-900">Articles</h1>
+                <div class="flex justify-between my-8 gap-5">
+                    <p class="body-text-regular-medium text-secondary-800 w-full  md:w-1/2"> Stay informed with our expert insights! Explore articles on the latest trends, tips, and strategies in web design, digital marketing, and more. </p>
+                    <div class="button-group border-secondary-600">
+                        <button class="prev-btn button-label w-9 px-3 py-2 border-secondary-600 text-secondary-600"> <i class="w-5 h-5 fa-solid fa-circle-chevron-left"></i> </button>
+                        <button class="next-btn button-label w-9 px-3 py-2 border-secondary-600 text-secondary-600"> <i class="w-5 h-5 fa-solid fa-circle-chevron-right"></i> </button>
+                    </div>
                 </div>
-                <div class="flex gap-2 flex-col"><label class="inpul-label" for="">Your e-mail</label><input type="email" name="" id="" placeholder="e.g jhonbrgke@gmail.com value="">
-                </div>
-                <div class="flex gap-2 flex-col"><label class="inpul-label" for="">Your question to this
-                        booking</label>
-                    <textarea rows="5" name="" id="" placeholder="Write your message here"></textarea>
-                </div>
-
-                <hr class=" w-full stroke-secondary-400">
-
-                <button class="btn-outline-full"> Submit now <span><i class="fa-solid fa-arrow-right"></i></span>
-                </button>
-
-                <p></p>
-
             </div>
-        </form>
+
+            {{-- slider  --}}
+            <div class="articles-container flex gap-10">
+                @foreach ($articles as $article_data)
+                    <div class="article-item w-1/3">
+                        <img class=" max-h-72 w-full object-cover rounded-xl self-start" src="{{ asset('upload/articles/card img.png') }}" alt="Article Image" />
+                        <div class="mt-4">
+                            <button class="px-4 py-2   border rounded-full border-secondary-200 label-text-regular-small text-secondary-800"> {{ $article_data->article_category->title }} </button>
+                            <h2 class="title-text-bold-medium text-secondary-950 pt-2"> {{ $article_data->title }} </h2>
+                            <p class="body-text-regular-medium text-secondary-600 pt-1"> {{ $article_data->short_text }} </p>
+                        </div>
+
+                        <a href="{{ route('front.articles.show', $article_data->slug) }}" class="inline-block px-3 py-2 rounded-sm border border-secondary-800 label-text-bold-small text-secondary-800 mt-4"> Read more </a>
+                    </div>
+                @endforeach
+            </div>
+        </div>
+        {{-- Article Slider Section end ================================================== --}}
+
 
     </div>
     {{-- lets discuss your project --}}
@@ -246,4 +259,52 @@
     </div>
 
 
+@endsection
+
+
+@section('extra-js')
+    <script>
+        $(document).ready(function() {
+            let total = $('.article-item').length;
+            let visible = 3;
+
+            function updateVisible() {
+                if (window.innerWidth <= 640) {
+                    visible = 1;
+                } else if (window.innerWidth <= 1024) {
+                    visible = 2;
+                } else {
+                    visible = 3;
+                }
+            }
+
+            updateVisible();
+
+            $('.articles-container').slick({
+                slidesToShow: visible,
+                slidesToScroll: 1,
+                autoplay: true,
+                autoplaySpeed: 3000,
+                prevArrow: '.prev-btn',
+                nextArrow: '.next-btn',
+                responsive: [{
+                        breakpoint: 1024,
+                        settings: {
+                            slidesToShow: 2
+                        }
+                    },
+                    {
+                        breakpoint: 640,
+                        settings: {
+                            slidesToShow: 1
+                        }
+                    }
+                ]
+            });
+            $(window).resize(function() {
+                updateVisible();
+                $('.articles-container').slick('slickSetOption', 'slidesToShow', visible, true);
+            });
+        });
+    </script>
 @endsection

@@ -8,7 +8,7 @@
         </h1>
         <!-- search  -->
         <!-- Search Form -->
-        <form action="{{ route('articles') }}" method="GET">
+        <form action="{{ route('front.articles.index') }}" method="GET">
 
             <div class="flex justify-center gap-6 mt-14">
 
@@ -23,8 +23,8 @@
 
                 <!-- Category Filter Button -->
                 <div class="flex w-[288px] items-center p-4 gap-4 border border-secondary-400 rounded-lg place-content-between cursor-pointer" id="dropdownButton">
-                    <p class="hidden md:block label-text-regualr-large w-auto mr-5 line-clamp-1">
-                        {{ request('category') ? $articles_category->firstWhere('id', request('category'))->title : 'All Projects' }}
+                    <p class="hidden md:block label-text-regular-large w-auto mr-5 truncate">
+                        {{ request('category') ? $article_categories->firstWhere('id', request('category'))->title : 'All Category' }}
                     </p>
                     <span><i class="fa-solid fa-arrow-down"></i></span>
                 </div>
@@ -37,7 +37,7 @@
                         <input type="radio" id="category_all" name="category" value="" onchange="this.form.submit()" {{ request('category') == '' ? 'checked' : '' }} />
                         <label for="category_all" class="text-lg font-normal leading-6">All Projects</label>
                     </li>
-                    @foreach ($articles_category as $item)
+                    @foreach ($article_categories as $item)
                         <li class="flex gap-2 px-2 items-center shrink">
                             <input type="radio" id="category_{{ $item->id }}" name="category" value="{{ $item->id }}" onchange="this.form.submit()" {{ request('category') == $item->id ? 'checked' : '' }} />
                             <label for="category_{{ $item->id }}" class="text-lg font-normal leading-6 ">{{ $item->title }}</label>
@@ -67,7 +67,7 @@
                         <p class="body-text-regular-medium text-secondary-600 pt-1"> {{ $article->short_text }} </p>
                     </div>
 
-                    <a href="{{ route('articles_single_page', $article->slug) }}" class="inline-block px-3 py-2 rounded-sm border border-secondary-800 label-text-bold-small text-secondary-800 mt-4"> Read more </a>
+                    <a href="{{ route('front.articles.show', $article->slug) }}" class="inline-block px-3 py-2 rounded-sm border border-secondary-800 label-text-bold-small text-secondary-800 mt-4"> Read more </a>
                 </div>
             @empty
                 <h3 class="heading-text-regular-large text-secondary-800 m-auto">No Article available this area!</h3>
