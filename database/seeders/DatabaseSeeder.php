@@ -3,6 +3,7 @@
 namespace Database\Seeders;
 
 use App\Models\User;
+use App\Models\VacancyCategory;
 // use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 
@@ -20,6 +21,9 @@ class DatabaseSeeder extends Seeder
             'email' => 'test@example.com',
         ]);
         $this->call(FaqSeeder::class);
-        $this->call(ArticaleCategorySeeder::class);
+        $this->call(ArticleCategorySeeder::class);
+        $this->call(ArticleSeeder::class);
+        $this->call(VacancyCategorySeeder::class);
+        $this->call(VacancySeeder::class);
     }
 }

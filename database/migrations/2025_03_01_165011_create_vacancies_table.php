@@ -13,7 +13,23 @@ return new class extends Migration
     {
         Schema::create('vacancies', function (Blueprint $table) {
             $table->id();
+            $table->string('title');
+            $table->string('slug')->unique();
+            $table->string('type');
+            $table->string('location');
+            $table->date('end_date');
+            $table->text('benefits');
+            $table->text('responsibilities');
+            $table->text('requirements');
+            $table->text('skills_required');
+            $table->string('weekly_holidays');
+            $table->string('salary');
+            $table->text('others')->nullable();
+            $table->unsignedBigInteger('vacancy_category_id'); // Foreign key
             $table->timestamps();
+
+            // Setting up the foreign key constraint
+            $table->foreign('vacancy_category_id')->references('id')->on('vacancy_categories')->onDelete('cascade');
         });
     }
 

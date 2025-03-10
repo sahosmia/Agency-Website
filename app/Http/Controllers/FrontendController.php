@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Article;
+use App\Models\ArticleCategory;
 use App\Models\Faq;
 use Illuminate\Http\Request;
 
@@ -10,8 +12,9 @@ class FrontendController extends Controller
     // Home Page
     public function home()
     {
-        $faqs = Faq::get();
-        return view('frontend.home', ['faqs' => $faqs]);
+        $articles = Article::with('article_category:id,title')->latest()->limit(8)->get();
+        // return ($articles);
+        return view('frontend.home', ['articles' => $articles]);
     }
 
     // About Page
@@ -20,10 +23,10 @@ class FrontendController extends Controller
         return view('frontend.about');
     }
 
-    // Services Page
+    // Services Page ===========================================================
     public function services()
     {
-        return view('frontend.services');
+        return view('frontend.service.services');
     }
 
     // Software Page
@@ -44,11 +47,7 @@ class FrontendController extends Controller
         return view('frontend.our-work');
     }
 
-    // Insights (Blog) Page
-    public function insights()
-    {
-        return view('frontend.insights');
-    }
+
 
     // Contact Page
     public function contact()
@@ -60,45 +59,40 @@ class FrontendController extends Controller
     {
         return view('frontend.contact');
     }
-    // terms-and-condition
-    public function articles()
-    {
-        return view('frontend.articles');
-    }
-    // terms-and-condition
-    public function articlesSinglePage()
-    {
-        return view('frontend.articles-single-page');
-    }
+
+    // articles ==================================================================================
 
 
-    // Job Section ==============================
+
+    // Job Section ===============================================================================
     public function job_apply()
     {
         return view('frontend.job.job-apply');
     }
     // Job Section ==============================
-    public function jobApplyQuestion() {
+    public function job_apply_question()
+    {
         return view('frontend.job.job-apply-question');
     }
     // Career Page No Jobs ==============================
-    public function careerPageNoJobs() {
+    public function careerPageNoJobs()
+    {
         return view('frontend.job.career-page-no-jobs');
     }
     // Congratulation page ==============================
-    public function congratulationPage() {
+    public function congratulationPage()
+    {
         return view('frontend.job.congratulation-page');
     }
     //Thank you page ==============================
-    public function thankYouPage() {
+    public function thankYouPage()
+    {
         return view('frontend.thank-you-page');
     }
-    // Not Found page ==============================
-    public function notFoundPage() {
-        return view('frontend.not-found-page');
-    }
+
     // Maintenance page ==============================
-    public function maintenancePage() {
+    public function maintenancePage()
+    {
         return view('frontend.maintenance-page');
     }
     // // Login page ==============================
