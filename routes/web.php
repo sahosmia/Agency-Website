@@ -33,7 +33,7 @@ Route::name('front.')->group(function () {
             Route::get('/about',  'about')->name('about');
             Route::get('/contact', 'contact')->name('contact');
             Route::get('/privacy-policy', 'privacy_policy')->name('privacy-policy');
-            Route::get('/terms-conditions', 'terms__conditions')->name('terms-conditions');
+            Route::get('/terms-conditions', 'terms_conditions')->name('terms-conditions');
         }
     );
     Route::resource('articles', ArticleFrontController::class)->only(['index', 'show'])->scoped(['article' => 'slug']);

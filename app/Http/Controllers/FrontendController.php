@@ -55,9 +55,14 @@ class FrontendController extends Controller
         return view('frontend.contact');
     }
     // terms-and-condition
-    public function termsAndCondition()
+    public function terms_conditions()
     {
-        return view('frontend.contact');
+        return view('frontend.terms-conditions');
+    }
+    // terms-and-condition
+    public function privacy_policy()
+    {
+        return view('frontend.privacy-policy');
     }
 
     // articles ==================================================================================
