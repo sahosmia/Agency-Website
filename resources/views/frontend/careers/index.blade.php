@@ -48,28 +48,38 @@
         </form>
 
 
-        @if ($vacancies->count() != 0)
-            <div class="w-full md:w-6/12 mt-20 md:mt-32 flex justify-center mx-auto">
-                <p class="sub-title-medium-regular  leading-8 text-secondary-800 text-center">
-                    where we share the latest trends, insights, and best practices in
-                    technology, digital transformation, and business solutions.
-                </p>
-            </div>
 
-            <div class="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3    gap-y-[60px] gap-x-6 mt-14">
-                @foreach ($vacancies as $vacancy)
+
+        <div class="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-y-[60px] gap-x-6 mt-14">
+            @foreach ($vacancies as $vacancy)
+                <div class="border border-secondary-400 rounded-xl p-6 flex flex-col gap-6">
                     <div>
-                        <div class="mt-4">
-                            <button class="px-4 py-2   border rounded-full border-secondary-200 label-text-regular-small text-secondary-800"> {{ $vacancy->vacancy_category->title }} </button>
-                            <h2 class="title-text-bold-medium text-secondary-950 pt-2"> {{ $vacancy->title }} </h2>
-                            <p class="body-text-regular-medium text-secondary-600 pt-1"> {{ $vacancy->short_text }} </p>
-                        </div>
-
-                        <a href="{{ route('front.careers.show', $vacancy->slug) }}" class="inline-block px-3 py-2 rounded-sm border border-secondary-800 label-text-bold-small text-secondary-800 mt-4"> Read more </a>
+                        <h2 class="sub-title-large-regular text-secondary-950 "> {{ $vacancy->title }} </h2>
+                        <button class="px-4 py-2  mt-2  border rounded-full border-secondary-200 label-text-regular-small text-secondary-800"> {{ $vacancy->vacancy_category->title }} </button>
                     </div>
-                @endforeach
-            </div>
-        @endif
+
+                    <div class="flex flex-col gap-4">
+                        <div class="flex gap-2 items-center body-text-regular-large text-secondary-600">
+                            <img src="{{ asset('/frontend/images/icons/Time.svg') }}" alt="">
+                            <p>{{ $vacancy->type }}</p>
+                        </div>
+                        <div class="flex gap-2 items-center body-text-regular-large text-secondary-600">
+                            <img src="{{ asset('/frontend/images/icons/location.svg') }}" alt="">
+                            <p>{{ $vacancy->location }}</p>
+                        </div>
+                        <div class="flex gap-2 items-center body-text-regular-large text-secondary-600">
+                            <img src="{{ asset('/frontend/images/icons/Calendar.svg') }}" alt="">
+                            <p>Date line: {{ \Carbon\Carbon::parse($vacancy->end_date)->format('d F, Y') }}</p>
+                        </div>
+                    </div>
+
+                    <div class="flex  items-center justify-between gap-4">
+                        <a href="{{ route('front.careers.show', $vacancy->slug) }}" class="flex-1 label-text-bold-medium text-secondary-600 text-center">Learn More</a>
+                        <a class=" px-3 py-2 rounded-sm border border-secondary-800 label-text-bold-small text-secondary-800 flex-1 flex justify-center" href="{{ route('front.careers.apply', $vacancy->slug) }}"> Apply Now </a>
+                    </div>
+                </div>
+            @endforeach
+        </div>
 
 
         @if ($vacancies->count() == 0)
@@ -96,7 +106,8 @@
                     <div class="flex gap-2 flex-col"><label class="inpul-label" for="">About yourself</label>
                         <textarea rows="5" name="" id="" placeholder="Write your message here"></textarea>
                     </div>
-                    <div class="flex gap-2 flex-col"><label class="inpul-label" for="">Your portfolio</label><input type="text" name="" id="" placeholder="e.g.  GitHub portfolio or Dribble portfolio or Linkndin" value="">
+                    <div class="flex gap-2 flex-col"><label class="inpul-label" for="">Your portfolio</label><input type="text" name="" id="" placeholder="e.g.  GitHub portfolio or Dribble portfolio or Linkndin"
+                            value="">
                     </div>
 
                     <hr class="h-px  bg-secondary-400 border-0 ">
@@ -106,13 +117,7 @@
             </form>
         @endif
 
-        @if ($vacancies->hasMorePages())
-            <div class="inline-flex justify-center items-center gap-2 px-6 py-3">
-                <button type="button" class="px-6 py-3 rounded-lg border border-gray-600 text-xl font-semibold leading-7 transition duration-200 hover:bg-gray-700 hover:text-white active:scale-95">
-                    See more
-                </button>
-            </div>
-        @endif
+
     </div>
 
 @endsection

@@ -60,18 +60,19 @@ body {
     @apply text-[44px]/[56px]  font-medium;
 }
 .heading-text-bold-large {
-    @apply text-[52px]/[68px]  font-bold;
+    @apply text-[22px]/7 lg:text-[52px]/[68px] font-medium lg:font-bold;
 }
+/* xs sm md lg xl 2xl  */
 
 /* Title Text  */
 /* .title-text-1 {
     @apply text-secondary-900 text-[38px]/[48px] font-karla font-semibold;
 } */
 .title-text-bold-medium {
-    @apply text-[28px]/9 font-karla font-semibold;
+    @apply text-[28px]/9  font-semibold;
 }
 .title-text-regular-x-large {
-    @apply text-[38px] font-karla;
+    @apply text-[38px];
 }
 
 /* Sub Title Text  */
@@ -80,10 +81,10 @@ body {
     @apply text-2xl/8;
 }
 .sub-title-large-bold {
-    @apply text-2xl/8 font-bold font-karla;
+    @apply text-2xl/8 font-bold;
 }
 .sub-title-large-bold {
-    @apply text-2xl/8 font-bold font-karla;
+    @apply text-2xl/8 font-bold;
 }
 
 .sub-title-medium-bold {
@@ -95,23 +96,23 @@ body {
 
 /* Body Text  */
 .body-text-bold-large {
-    @apply font-semibold text-lg/6 font-karla;
+    @apply font-semibold text-lg/6;
 }
 .body-text-regular-large {
-    @apply text-lg/6 font-karla;
+    @apply text-lg/6;
 }
 
 .body-text-regular-medium {
-    @apply text-base/5 font-karla;
+    @apply text-base/5;
 }
 
 .body-text-regular-small {
-    @apply text-sm/5 font-karla;
+    @apply text-sm/5;
 }
 
 /* Label Text */
 .label-text-bold-large {
-    @apply text-[22px]/7 font-karla font-semibold;
+    @apply text-[22px]/7  font-semibold;
 }
 .label-text-bold-medium {
     @apply font-semibold text-lg/6;
@@ -134,6 +135,10 @@ body {
 }
 .label-text-regular-xsmall {
     @apply text-xs/5;
+}
+
+.section-p-text {
+    @apply text-base/5 text-secondary-800 w-full  md:w-1/2;
 }
 
 /* Button  */
@@ -196,4 +201,30 @@ input.otp-code {
 }
 .slick-track {
     margin-left: 0 !important;
+}
+
+/* Card Content  */
+.card-content {
+    @apply flex flex-col gap-4;
+}
+
+.card-content h3 {
+    @apply text-[44px]/[56px] font-medium text-secondary-950 tracking-[0.88px];
+}
+.card-content div {
+    @apply flex flex-col justify-center gap-4 text-secondary-800;
+}
+.card-content h6 {
+    @apply text-[22px]/7 text-secondary-800 font-semibold;
+}
+
+.card-content hr {
+    @apply h-px bg-secondary-400 border-none;
+}
+
+.card-content p {
+    @apply text-[22px]/7 text-secondary-800;
+}
+.card-content ul {
+    @apply list-disc ml-6 text-[22px]/8 text-secondary-800;
 }

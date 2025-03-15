@@ -13,7 +13,14 @@ return new class extends Migration
     {
         Schema::create('teams', function (Blueprint $table) {
             $table->id();
+            $table->string('name');
+            $table->string('slug');
+            $table->string('avatar');
+            $table->unsignedBigInteger('designation_id'); // Foreign key
             $table->timestamps();
+
+            // Setting up the foreign key constraint
+            $table->foreign('designation_id')->references('id')->on('designations')->onDelete('cascade');
         });
     }
 

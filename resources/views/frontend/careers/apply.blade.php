@@ -1,5 +1,5 @@
 @extends('frontend.layouts.app')
-@section('title', 'Home')
+@section('title', 'Career Apply')
 
 @section('content')
     <div class="container">
@@ -9,7 +9,10 @@
                 details on file and reach out when a suitable opportunity arises. </p>
         </div>
 
-        <form action="">
+        <form action="{{ route('front.careers.apply.submit', $slug) }}" method="POST">
+            @csrf
+
+            <input type="hidden" name="step" value="1">
             <div class="flex w-6/12 flex-col p-6 gap-6 border border-secondary-400 rounded-2xl m-auto mt-8 mb-20">
                 <div class="flex gap-2 flex-col"><label class="inpul-label" for="">Your name</label><input type="text" name="" id="" placeholder="e.g.  Jhon brgke" value=""></div>
                 <div class="flex gap-2 flex-col"><label class="inpul-label" for="">Your e-mail</label><input type="email" name="" id="" placeholder="e.g.  jhonbrgke@gmail.com" value=""></div>
@@ -22,7 +25,7 @@
                 </div>
                 <div class="flex gap-2 flex-col"><label class="inpul-label" for="">Upload your resume</label><input type="file" name="" id="" placeholder="" value=""></div>
                 <hr class="h-px  bg-secondary-400 border-0 ">
-                <button class="btn-outline-full">Save & Continue</button>
+                <button type="submit" class="btn-outline-full">Save & Continue</button>
             </div>
         </form>
 

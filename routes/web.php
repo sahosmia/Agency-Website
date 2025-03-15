@@ -5,6 +5,9 @@ use App\Http\Controllers\Admin\ServiceController;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\Frontend\ArticleFrontController;
 use App\Http\Controllers\Frontend\CareerFrontController;
+use App\Http\Controllers\Frontend\ProjectFrontController;
+use App\Http\Controllers\Frontend\ServiceFrontController;
+use App\Http\Controllers\Frontend\SoftwareFrontController;
 use App\Http\Controllers\FrontendController;
 use Illuminate\Support\Facades\Route;
 
@@ -17,7 +20,6 @@ Route::controller(FrontendController::class)->group(
         Route::get('/projects', 'projects')->name('projects');
         Route::get('/our-work', 'ourWork')->name('our-work');
 
-        Route::get('/job-apply', 'job_apply')->name('job-apply');
         Route::get('/job-apply-question', 'job_apply_question')->name('job-apply-question');
 
         Route::get('/congratulation-page', 'congratulationPage')->name('congratulation-page');
@@ -36,8 +38,14 @@ Route::name('front.')->group(function () {
             Route::get('/terms-conditions', 'terms_conditions')->name('terms-conditions');
         }
     );
+    Route::resource('projects', ProjectFrontController::class)->only(['index', 'show'])->scoped(['project' => 'slug']);
+    Route::resource('services', ServiceFrontController::class)->only(['index', 'show'])->scoped(['service' => 'slug']);
+    Route::resource('softwares', SoftwareFrontController::class)->only(['index', 'show'])->scoped(['software' => 'slug']);
     Route::resource('articles', ArticleFrontController::class)->only(['index', 'show'])->scoped(['article' => 'slug']);
+
     Route::resource('careers', CareerFrontController::class)->only(['index', 'show'])->scoped(['career' => 'slug']);
+    Route::get('/careers/apply/{slug}', [CareerFrontController::class, 'apply'])->name('careers.apply');
+    Route::post('/careers/apply/{slug}', [CareerFrontController::class, 'apply_submit'])->name('careers.apply.submit');
 });
 
 
