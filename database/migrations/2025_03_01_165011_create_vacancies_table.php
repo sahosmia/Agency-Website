@@ -18,10 +18,10 @@ return new class extends Migration
             $table->string('type');
             $table->string('location');
             $table->date('end_date');
-            $table->text('benefits');
-            $table->text('responsibilities');
-            $table->text('requirements');
-            $table->text('skills_required');
+            $table->json('benefits');
+            $table->json('responsibilities');
+            $table->json('requirements');
+            $table->json('skills_required');
             $table->string('weekly_holidays');
             $table->string('salary');
             $table->text('others')->nullable();

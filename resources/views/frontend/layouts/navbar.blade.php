@@ -8,9 +8,9 @@
         {{-- Menus  --}}
         <ul class="hidden lg:flex justify-center items-center gap-7 ">
             <li class="nav-item {{ request()->is('/') ? 'active' : '' }}"><a href="{{ route('front.home') }}">Home</a></li>
-            <li class="nav-item {{ request()->is('services') || request()->is('services/*') ? 'active' : '' }}"><a href="{{ route('services') }}">Services</a></li>
-            <li class="nav-item {{ request()->is('software') || request()->is('software/*') ? 'active' : '' }}"><a href="{{ route('software') }}">Software</a></li>
-            <li class="nav-item {{ request()->is('projects') || request()->is('projects/*') ? 'active' : '' }}"><a href="{{ route('projects') }}">Projects</a></li>
+            <li class="nav-item {{ request()->is('services') || request()->is('services/*') ? 'active' : '' }}"><a href="{{ route('front.services.index') }}">Services</a></li>
+            <li class="nav-item {{ request()->is('softwares') || request()->is('software/*') ? 'active' : '' }}"><a href="{{ route('front.softwares.index') }}">Software</a></li>
+            <li class="nav-item {{ request()->is('projects') || request()->is('projects/*') ? 'active' : '' }}"><a href="{{ route('front.projects.index') }}">Projects</a></li>
             <li class="nav-item {{ request()->is('contact') ? 'active' : '' }}"><a href="{{ route('front.contact') }}">Contact us</a></li>
         </ul>
 

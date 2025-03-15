@@ -3,19 +3,21 @@
 
 @section('content')
     <div class="container">
-        <div class="w-8/12 text-center m-auto pt-20">
+        <div class="w-full md:w-8/12 text-center m-auto pt-20 max-md:px-4">
             <h1 class="heading-text-bold-large text-secondary-950">Terms and Conditions</h1>
-            <p class="sub-title-medium-regular text-secondary-600 pt-8">These Terms and Conditions ("Terms") govern your access to and use of [Your Company Name]'s website, software, and services. By using our platform, you agree to follow these terms and abide by all applicable laws and regulations. If you do not agree with these terms, please do not use our services.
+            <p class="sub-title-medium-regular text-secondary-600 pt-8">These Terms and Conditions ("Terms") govern your access to and use of [Your Company Name]'s website, software, and services. By using our platform, you agree to follow these terms and
+                abide by all applicable laws and regulations. If you do not agree with these terms, please do not use our services.
             </p>
 
             <div class=" mt-14">
                 <p class="text-left body-text-regular-large  text-secondary-800 ">1.1 Introduction</p>
-                <p class="text-left body-text-regular-large  text-secondary-800 ">These Terms and Conditions ("Terms") govern your access to and use of [Your Company Name]'s website, software, and services. By using our platform, you agree to follow these terms and abide by all applicable laws and regulations. If you do not agree with these terms, please do not use our services.</p>
+                <p class="text-left body-text-regular-large  text-secondary-800 ">These Terms and Conditions ("Terms") govern your access to and use of [Your Company Name]'s website, software, and services. By using our platform, you agree to follow these
+                    terms and abide by all applicable laws and regulations. If you do not agree with these terms, please do not use our services.</p>
             </div>
             <div class=" mt-4  ">
                 <p class="text-left body-text-regular-large text-secondary-800 ">1.2 Eligibility</p>
                 <p class="text-left body-text-regular-large text-secondary-800 ">To use our services, you must: </p>
-                <ul class=" text-left list-disc list-outside  space-y-1 body-text-regular-large text-secondary-800  ">
+                <ul class=" text-left list-disc list-outside  space-y-1 body-text-regular-large text-secondary-800  ml-8">
                     <li class="text-left  ">Be at least 18 years old (or meet the minimum legal age in your jurisdiction).</li>
                     <li class="text-left ">Provide accurate and truthful information when registering an account..</li>
                     <li class="text-left ">Not use our services for any illegal or unauthorized activities.</li>

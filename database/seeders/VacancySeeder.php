@@ -23,16 +23,15 @@ class VacancySeeder extends Seeder
                 'type' => 'Full-time',
                 'location' => 'Remote',
                 'end_date' => Carbon::now()->addDays(30)->toDateString(),
-                'benefits' => 'Health insurance, Paid leave',
-                'responsibilities' => 'Develop and maintain Laravel applications.',
-                'requirements' => '5+ years experience with Laravel.',
-                'skills_required' => 'PHP, Laravel, MySQL, JavaScript',
+                'benefits' => json_encode(['Health insurance, Paid leave']),
+                'responsibilities' => json_encode(['Develop and maintain Laravel applications.']),
+                'requirements' => json_encode(['5+ years experience with Laravel.']),
+                'skills_required' => json_encode(['PHP', 'Laravel', 'MySQL', 'REST API']),
                 'weekly_holidays' => 'Saturday, Sunday',
-                'salary' => '80000',
+                'salary' => '25,000-30,000 BDT(Negotiable)',
                 'others' => 'Flexible work hours',
                 'vacancy_category_id' => 1, // Ensure this category exists in vacancy_categories
-                'created_at' => now(),
-                'updated_at' => now(),
+
             ],
             [
                 'title' => 'Junior Frontend Developer',
@@ -40,16 +39,15 @@ class VacancySeeder extends Seeder
                 'type' => 'Part-time',
                 'location' => 'On-site',
                 'end_date' => Carbon::now()->addDays(45)->toDateString(),
-                'benefits' => 'Yearly bonus',
-                'responsibilities' => 'Work on React and Vue.js projects.',
-                'requirements' => 'Basic experience with HTML, CSS, and JavaScript.',
-                'skills_required' => 'React, Vue.js, Tailwind CSS',
+                'benefits' => json_encode(['Yearly bonus']),
+                'responsibilities' => json_encode(['Work on React and Vue.js projects.']),
+                'requirements' => json_encode(['Basic experience with HTML, CSS, and JavaScript.']),
+                'skills_required' => json_encode(['React', 'Vue.js', 'Tailwind CSS']),
                 'weekly_holidays' => 'Friday',
                 'salary' => '40000',
                 'others' => 'Great learning opportunity',
                 'vacancy_category_id' => 2, // Ensure this category exists in vacancy_categories
-                'created_at' => now(),
-                'updated_at' => now(),
+
             ]
         ]);
     }

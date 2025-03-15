@@ -3,8 +3,11 @@
 namespace App\Http\Controllers;
 
 use App\Models\Article;
-use App\Models\ArticleCategory;
-use App\Models\Faq;
+use App\Models\ClientReview;
+use App\Models\Project;
+use App\Models\Service;
+use App\Models\Software;
+use App\Models\Team;
 use Illuminate\Http\Request;
 
 class FrontendController extends Controller
@@ -13,47 +16,32 @@ class FrontendController extends Controller
     public function home()
     {
         $articles = Article::with('article_category:id,title')->latest()->limit(8)->get();
-        // return ($articles);
-        return view('frontend.home', ['articles' => $articles]);
+        $projects = Project::with('category:id,title')->latest()->limit(8)->get();
+        $softwares = Software::with('software_category:id,title')->latest()->limit(8)->get();
+        $services = Service::with('service_category:id,title')->latest()->limit(8)->get();
+        $client_reviews = ClientReview::latest()->limit(8)->get();
+        return view('frontend.home', [
+            'projects' => $projects,
+            'softwares' => $softwares,
+            'services' => $services,
+            'articles' => $articles,
+            'client_reviews' => $client_reviews
+        ]);
     }
 
     // About Page
     public function about()
     {
-        return view('frontend.about');
+        $teams = Team::get();
+        return view('frontend.about', ['teams' => $teams]);
     }
-
-    // Services Page ===========================================================
-    public function services()
-    {
-        return view('frontend.service.services');
-    }
-
-    // Software Page
-    public function software()
-    {
-        return view('frontend.software');
-    }
-
-    // projects Page
-    public function projects()
-    {
-        return view('frontend.projects');
-    }
-
-    // Our Work Page
-    public function ourWork()
-    {
-        return view('frontend.our-work');
-    }
-
-
 
     // Contact Page
     public function contact()
     {
         return view('frontend.contact');
     }
+
     // terms-and-condition
     public function terms_conditions()
     {
@@ -70,10 +58,7 @@ class FrontendController extends Controller
 
 
     // Job Section ===============================================================================
-    public function job_apply()
-    {
-        return view('frontend.job.job-apply');
-    }
+
     // Job Section ==============================
     public function job_apply_question()
     {
