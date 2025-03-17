@@ -69,6 +69,17 @@ class FrontendController extends Controller
     {
         return view('frontend.job.career-page-no-jobs');
     }
+    // Career Page No Jobs ==============================
+    public function single_software_page()
+    {
+        return view('frontend.single-software-page');
+    }
+    public function single_software_plan_page()
+    {
+        return view('frontend.single-software-plan-page');
+    }
+
+
     // Congratulation page ==============================
     public function congratulationPage()
     {

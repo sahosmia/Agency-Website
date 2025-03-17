@@ -108,11 +108,8 @@
             <p class="sub-title-medium-regular text-secondary-600 pt-8">If you have any questions about our Terms and Conditions or Privacy Policy, please contact us.
             </p>
 
-
             <form action="">
                 <div class="flex w-[808px] flex-col p-6 gap-6 border border-secondary-400 rounded-2xl m-auto mt-8 mb-20">
-
-
                     <div class="flex gap-2 flex-col"><label class="inpul-label text-left" for="">Your name</label><input
                         type="text" name="" id="" placeholder="e.g Jhon brgke value="">
                    </div>
@@ -124,21 +121,12 @@
                         <textarea rows="3" name="" id="" placeholder="Write your answer here"></textarea>
                     </div>
 
-
-
                     <hr class="h-px  bg-secondary-400 border-0 ">
-                    <button class="btn-outline-full">Submit
-
-
-                    </button>
+                    <button class="btn-outline-full">Submit  </button>
 
                 </div>
             </form>
-
         </div>
-
-
-
     </div>
 
 @endsection

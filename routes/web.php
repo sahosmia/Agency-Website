@@ -21,6 +21,8 @@ Route::controller(FrontendController::class)->group(
         Route::get('/our-work', 'ourWork')->name('our-work');
 
         Route::get('/job-apply-question', 'job_apply_question')->name('job-apply-question');
+        Route::get('/single-software-page', 'single_software_page')->name('single-software-page');
+        Route::get('/single-software-plan-page', 'single_software_plan_page')->name('single-software-plan-page');
 
         Route::get('/congratulation-page', 'congratulationPage')->name('congratulation-page');
         Route::get('/thank-you-page', 'thankYouPage')->name('thank-you-page');
