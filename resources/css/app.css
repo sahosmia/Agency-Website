@@ -74,6 +74,9 @@ body {
 .title-text-regular-x-large {
     @apply text-[38px];
 }
+.title-text-bold-x-large {
+    @apply text-[38px]/12 font-bold;
+}
 
 /* Sub Title Text  */
 
@@ -165,6 +168,10 @@ body {
 .button-label {
     @apply flex   justify-center items-center gap-2 rounded-md border;
 }
+.button-g {
+    @apply px-4 py-2 border rounded-lg  transition  text-secondary-800 ;
+}
+
 
 /* form  */
 .input-label {

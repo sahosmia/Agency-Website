@@ -79,6 +79,19 @@ class FrontendController extends Controller
         return view('frontend.single-software-plan-page');
     }
 
+    public function all_softwares()
+    {
+        return view('frontend.all-softwares');
+    }
+    public function lets_discuss()
+    {
+        return view('frontend.lets-discuss');
+    }
+    public function confirmation()
+    {
+        return view('frontend.confirmation');
+    }
+
 
     // Congratulation page ==============================
     public function congratulationPage()

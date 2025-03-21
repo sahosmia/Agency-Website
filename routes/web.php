@@ -24,6 +24,12 @@ Route::controller(FrontendController::class)->group(
         Route::get('/single-software-page', 'single_software_page')->name('single-software-page');
         Route::get('/single-software-plan-page', 'single_software_plan_page')->name('single-software-plan-page');
 
+        Route::get('/all-softwares', 'all_softwares')->name('all-softwares');
+
+        Route::get('/custom-software', 'custom_software')->name('custom-software');
+        Route::get('/lets-discuss', 'lets_discuss')->name('lets-discuss');
+        Route::get('/confirmation', 'confirmation')->name('confirmation');
+
         Route::get('/congratulation-page', 'congratulationPage')->name('congratulation-page');
         Route::get('/thank-you-page', 'thankYouPage')->name('thank-you-page');
         Route::get('/maintenance-page', 'maintenancePage')->name('maintenance-page');
