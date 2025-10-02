@@ -3,7 +3,6 @@
 namespace App\Http\Controllers\Frontend;
 
 use App\Http\Controllers\Controller;
-
 use App\Models\Vacancy;
 use App\Models\VacancyCategory;
 use Illuminate\Http\Request;
@@ -11,19 +10,20 @@ use Illuminate\Support\Facades\Session;
 
 class CareerFrontController extends Controller
 {
-    //index
+    // index
     public function index(Request $request)
     {
         $vacancy_categories = VacancyCategory::get();
 
         $vacancies = Vacancy::with('vacancy_category:id,title')
             ->when($request->search, function ($query) use ($request) {
-                $query->where('title', 'like', '%' . $request->search . '%');
+                $query->where('title', 'like', '%'.$request->search.'%');
             })
             ->when($request->category, function ($query) use ($request) {
                 $query->where('vacancy_category_id', $request->category);
             })
             ->paginate(6);
+
         return view('frontend.careers.index', ['vacancies' => $vacancies, 'vacancy_categories' => $vacancy_categories]);
     }
 
@@ -32,13 +32,13 @@ class CareerFrontController extends Controller
     {
         $careerD = Vacancy::where('slug', $career)->first();
 
-        if (!$careerD) {
+        if (! $careerD) {
             return response()->view('errors.careers-not-found', [], 404);
         }
         $careerD->load('vacancy_category:id,title');
+
         return view('frontend.careers.show', ['vacancy' => $careerD]);
     }
-
 
     public function apply($slug)
     {
@@ -62,7 +62,8 @@ class CareerFrontController extends Controller
             $jobApplication = Session::get('job_application', []);
             $jobApplication['experience'] = $request->experience;
             $jobApplication['why_hire'] = $request->why_hire;
-            return ($jobApplication);
+
+            return $jobApplication;
             // Save to database (Example)
             // \DB::table('job_applications')->insert($jobApplication);
 

@@ -6,12 +6,11 @@ use App\Http\Controllers\Controller;
 use App\Models\Vacancy;
 use Illuminate\Http\Request;
 
-
 class CareerController extends Controller
 {
     public function index()
     {
-        return ("Dashboard");
+        return 'Dashboard';
     }
 
     public function create()

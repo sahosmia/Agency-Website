@@ -15,12 +15,13 @@ class ServiceFrontController extends Controller
 
         $services = Service::with('service_category:id,title')
             ->when($request->search, function ($query) use ($request) {
-                $query->where('title', 'like', '%' . $request->search . '%');
+                $query->where('title', 'like', '%'.$request->search.'%');
             })
             ->when($request->category, function ($query) use ($request) {
                 $query->where('service_category_id', $request->category);
             })
             ->paginate(6);
+
         return view('frontend.services.index', ['services' => $services, 'service_categories' => $service_categories]);
     }
 
@@ -28,6 +29,7 @@ class ServiceFrontController extends Controller
     {
         $service->load('service_category:id,title');
         $services = Service::with('service_category:id,title')->limit(5)->get();
+
         return view('frontend.services.show', ['services' => $services, 'service' => $service]);
     }
 }

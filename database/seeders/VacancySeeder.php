@@ -4,10 +4,8 @@ namespace Database\Seeders;
 
 use App\Models\Vacancy;
 use Carbon\Carbon;
-use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Str;
-
 
 class VacancySeeder extends Seeder
 {
@@ -48,7 +46,7 @@ class VacancySeeder extends Seeder
                 'others' => 'Great learning opportunity',
                 'vacancy_category_id' => 2, // Ensure this category exists in vacancy_categories
 
-            ]
+            ],
         ]);
     }
 }
