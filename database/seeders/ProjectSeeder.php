@@ -43,7 +43,7 @@ class ProjectSeeder extends Seeder
                 'images' => ['ecommerce_1.png', 'ecommerce_2.png', 'ecommerce_3.png', 'ecommerce_4.png'],
                 'thumbnails' => ['ecommerce_1.png', 'ecommerce_2.png', 'ecommerce_3.png', 'ecommerce_4.png'],
                 'project_category_id' => 1, // Assuming category ID 1 exists
-                'client_review_id' => 1 // Assuming review ID 1 exists
+                'client_review_id' => 1, // Assuming review ID 1 exists
             ],
             [
                 'title' => 'Portfolio Website',
@@ -75,7 +75,7 @@ class ProjectSeeder extends Seeder
                 'images' => ['portfolio_website_1.png', 'portfolio_website_2.png', 'portfolio_website_3.png', 'portfolio_website_4.png'],
                 'thumbnails' => ['portfolio_website_1.png', 'portfolio_website_2.png', 'portfolio_website_3.png', 'portfolio_website_4.png'],
                 'project_category_id' => 2, // Assuming category ID 2 exists
-                'client_review_id' => 2 // Assuming review ID 2 exists
+                'client_review_id' => 2, // Assuming review ID 2 exists
             ],
             [
                 'title' => 'SaaS Dashboard',
@@ -107,8 +107,8 @@ class ProjectSeeder extends Seeder
                 'images' => ['saas_dashboard_1.png', 'saas_dashboard_2.png', 'saas_dashboard_3.png', 'saas_dashboard_4.png'],
                 'thumbnails' => ['saas_dashboard_1.png', 'saas_dashboard_2.png', 'saas_dashboard_3.png', 'saas_dashboard_4.png'],
                 'project_category_id' => 3, // Assuming category ID 3 exists
-                'client_review_id' => 3 // Assuming review ID 3 exists
-            ]
+                'client_review_id' => 3, // Assuming review ID 3 exists
+            ],
         ];
 
         foreach ($datas as $data) {

@@ -2,11 +2,9 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Faq;
-use Illuminate\Http\Request;
-
 class AuthController extends Controller
-{ // Show login page
+{
+    // Show login page
     public function login()
     {
         return view('auth.login');
@@ -35,11 +33,13 @@ class AuthController extends Controller
     {
         return view('auth.forget-password');
     }
+
     // Show forget password page
     public function createNewPassword()
     {
         return view('auth.create-new-password');
     }
+
     // Show Account linked  page
     public function accountLinked()
     {

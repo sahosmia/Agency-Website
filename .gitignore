@@ -21,3 +21,6 @@ yarn-error.log
 /.nova
 /.vscode
 /.zed
+/composer.phar
+*.log
+jules-scratch/

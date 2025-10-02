@@ -11,7 +11,6 @@ use App\Http\Controllers\Frontend\SoftwareFrontController;
 use App\Http\Controllers\FrontendController;
 use Illuminate\Support\Facades\Route;
 
-
 // Frontend Routes =====================================================================
 Route::controller(FrontendController::class)->group(
     function () {
@@ -40,7 +39,7 @@ Route::name('front.')->group(function () {
     Route::controller(FrontendController::class)->group(
         function () {
             Route::get('/', 'home')->name('home');
-            Route::get('/about',  'about')->name('about');
+            Route::get('/about', 'about')->name('about');
             Route::get('/contact', 'contact')->name('contact');
             Route::get('/privacy-policy', 'privacy_policy')->name('privacy-policy');
             Route::get('/terms-conditions', 'terms_conditions')->name('terms-conditions');
@@ -56,25 +55,21 @@ Route::name('front.')->group(function () {
     Route::post('/careers/apply/{slug}', [CareerFrontController::class, 'apply_submit'])->name('careers.apply.submit');
 });
 
-
-
 // Dashboard Routes (Protected with Auth) ===========================================
 Route::name('admin.')->prefix('admin')->middleware(['auth'])->group(function () {
     Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard.index');
     Route::resource('/dashboard/services', ServiceController::class);
 });
 
-
-
 // Acount Create ====================================================================
 Route::controller(AuthController::class)->group(
     function () {
-        Route::get('/login', "login")->name('login');
-        Route::get('/register', "register")->name('register');
-        Route::get('/register-successfull', "register-successfull")->name('register-successfull');
-        Route::get('/otp-verification', "otpVerification")->name('otp-verification');
-        Route::get('/forget-password', "forgetPassword")->name('forget-password');
-        Route::get('/create-new-password', "createNewPassword")->name('create-new-password');
-        Route::get('/account-linked', "accountLinked")->name('account-linked');
+        Route::get('/login', 'login')->name('login');
+        Route::get('/register', 'register')->name('register');
+        Route::get('/register-successfull', 'register-successfull')->name('register-successfull');
+        Route::get('/otp-verification', 'otpVerification')->name('otp-verification');
+        Route::get('/forget-password', 'forgetPassword')->name('forget-password');
+        Route::get('/create-new-password', 'createNewPassword')->name('create-new-password');
+        Route::get('/account-linked', 'accountLinked')->name('account-linked');
     }
 );

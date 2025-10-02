@@ -8,7 +8,6 @@ use App\Models\Project;
 use App\Models\Service;
 use App\Models\Software;
 use App\Models\Team;
-use Illuminate\Http\Request;
 
 class FrontendController extends Controller
 {
@@ -20,12 +19,13 @@ class FrontendController extends Controller
         $softwares = Software::with('software_category:id,title')->latest()->limit(8)->get();
         $services = Service::with('service_category:id,title')->latest()->limit(8)->get();
         $client_reviews = ClientReview::latest()->limit(8)->get();
+
         return view('frontend.home', [
             'projects' => $projects,
             'softwares' => $softwares,
             'services' => $services,
             'articles' => $articles,
-            'client_reviews' => $client_reviews
+            'client_reviews' => $client_reviews,
         ]);
     }
 
@@ -33,6 +33,7 @@ class FrontendController extends Controller
     public function about()
     {
         $teams = Team::get();
+
         return view('frontend.about', ['teams' => $teams]);
     }
 
@@ -47,6 +48,7 @@ class FrontendController extends Controller
     {
         return view('frontend.terms-conditions');
     }
+
     // terms-and-condition
     public function privacy_policy()
     {
@@ -55,8 +57,6 @@ class FrontendController extends Controller
 
     // articles ==================================================================================
 
-
-
     // Job Section ===============================================================================
 
     // Job Section ==============================
@@ -64,16 +64,19 @@ class FrontendController extends Controller
     {
         return view('frontend.job.job-apply-question');
     }
+
     // Career Page No Jobs ==============================
     public function careerPageNoJobs()
     {
         return view('frontend.job.career-page-no-jobs');
     }
+
     // Career Page No Jobs ==============================
     public function single_software_page()
     {
         return view('frontend.single-software-page');
     }
+
     public function single_software_plan_page()
     {
         return view('frontend.single-software-plan-page');
@@ -83,22 +86,24 @@ class FrontendController extends Controller
     {
         return view('frontend.all-softwares');
     }
+
     public function lets_discuss()
     {
         return view('frontend.lets-discuss');
     }
+
     public function confirmation()
     {
         return view('frontend.confirmation');
     }
-
 
     // Congratulation page ==============================
     public function congratulationPage()
     {
         return view('frontend.job.congratulation-page');
     }
-    //Thank you page ==============================
+
+    // Thank you page ==============================
     public function thankYouPage()
     {
         return view('frontend.thank-you-page');

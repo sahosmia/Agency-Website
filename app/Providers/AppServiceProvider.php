@@ -3,11 +3,9 @@
 namespace App\Providers;
 
 use App\Models\Faq;
-use Illuminate\Support\ServiceProvider;
-use Illuminate\Support\Facades\View;
 use Illuminate\Support\Facades\Route;
-
-
+use Illuminate\Support\Facades\View;
+use Illuminate\Support\ServiceProvider;
 
 class AppServiceProvider extends ServiceProvider
 {
@@ -26,7 +24,6 @@ class AppServiceProvider extends ServiceProvider
     {
         $faqs = Faq::get();
         View::share('g_faqs', $faqs);
-
 
         Route::pattern('id', '[0-9]+');
     }
