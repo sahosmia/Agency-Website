@@ -20,6 +20,7 @@ class ServiceController extends Controller
     public function store(Request $request)
     {
         Service::create($request->all());
+
         return redirect()->route('dashboard')->with('success', 'Service added!');
     }
 
@@ -31,12 +32,14 @@ class ServiceController extends Controller
     public function update(Request $request, Service $service)
     {
         $service->update($request->all());
+
         return redirect()->route('dashboard')->with('success', 'Service updated!');
     }
 
     public function destroy(Service $service)
     {
         $service->delete();
+
         return redirect()->route('dashboard')->with('success', 'Service deleted!');
     }
 }

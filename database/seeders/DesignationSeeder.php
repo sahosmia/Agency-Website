@@ -3,7 +3,6 @@
 namespace Database\Seeders;
 
 use App\Models\Designation;
-use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 
 class DesignationSeeder extends Seeder
@@ -17,38 +16,38 @@ class DesignationSeeder extends Seeder
             [
                 'title' => 'Founder, CEO',
                 'slug' => 'founder-ceo',
-                'description' => 'We offer web development, SEO, branding, and digital marketing services.'
+                'description' => 'We offer web development, SEO, branding, and digital marketing services.',
             ],
             [
                 'title' => 'Co Founder Managing Director',
                 'slug' => 'co-founder-managing-director',
-                'description' => ''
+                'description' => '',
             ],
             [
                 'title' => 'Co Founder Coo',
                 'slug' => 'co-founder-coo',
-                'description' => 'Yes, we build custom software tailored to your business needs.'
+                'description' => 'Yes, we build custom software tailored to your business needs.',
             ],
             [
                 'title' => 'Creative director',
                 'slug' => 'creative-director',
-                'description' => 'Our pricing depends on project complexity. Contact us for a quote.'
+                'description' => 'Our pricing depends on project complexity. Contact us for a quote.',
             ],
 
             [
                 'title' => 'Brand Manager',
                 'slug' => 'brand-manager',
-                'description' => ''
+                'description' => '',
             ],
             [
                 'title' => 'Digital Marketing Specialist',
                 'slug' => 'digital-marketing-specialist',
-                'description' => ''
+                'description' => '',
             ],
             [
                 'title' => 'CMO',
                 'slug' => 'cmo',
-                'description' => ''
+                'description' => '',
             ],
         ];
 
