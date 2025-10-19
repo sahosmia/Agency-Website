@@ -43,6 +43,11 @@ class FrontendController extends Controller
         return view('frontend.contact');
     }
 
+    public function contact_submit(\Illuminate\Http\Request $request)
+    {
+        return redirect()->route('front.contact')->with('success', 'Your message has been sent successfully!');
+    }
+
     // terms-and-condition
     public function terms_conditions()
     {

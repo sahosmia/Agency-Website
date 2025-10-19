@@ -41,6 +41,7 @@ Route::name('front.')->group(function () {
             Route::get('/', 'home')->name('home');
             Route::get('/about', 'about')->name('about');
             Route::get('/contact', 'contact')->name('contact');
+            Route::post('/contact', 'contact_submit')->name('contact.submit');
             Route::get('/privacy-policy', 'privacy_policy')->name('privacy-policy');
             Route::get('/terms-conditions', 'terms_conditions')->name('terms-conditions');
         }
