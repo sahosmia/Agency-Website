@@ -497,7 +497,7 @@
                         <h2 class="title-text-bold-medium text-secondary-950">What services does your agency provide?</h2>
                         <i class="fa-solid" :class="open === 1 ? 'fa-minus' : 'fa-plus'"></i>
                     </div>
-                    <div x-show="open === 1" class="p-4 border-t border-secondary-400">
+                    <div x-show="open === 1" class="p-4 border-t border-secondary-400" x-transition:enter="transition ease-out duration-300" x-transition:enter-start="opacity-0 transform -translate-y-2" x-transition:enter-end="opacity-100 transform translate-y-0" x-transition:leave="transition ease-in duration-200" x-transition:leave-start="opacity-100 transform translate-y-0" x-transition:leave-end="opacity-0 transform -translate-y-2">
                         <p class="body-text-regular-medium text-secondary-600">We offer a comprehensive range of digital services, including web design and development, mobile app development, UX/UI design, digital marketing, SEO, and more. Our goal is to provide end-to-end solutions to help your business thrive in the digital landscape.</p>
                     </div>
                 </div>
@@ -506,7 +506,7 @@
                         <h2 class="title-text-bold-medium text-secondary-950">What industries do you specialize in?</h2>
                         <i class="fa-solid" :class="open === 2 ? 'fa-minus' : 'fa-plus'"></i>
                     </div>
-                    <div x-show="open === 2" class="p-4 border-t border-secondary-400">
+                    <div x-show="open === 2" class="p-4 border-t border-secondary-400" x-transition:enter="transition ease-out duration-300" x-transition:enter-start="opacity-0 transform -translate-y-2" x-transition:enter-end="opacity-100 transform translate-y-0" x-transition:leave="transition ease-in duration-200" x-transition:leave-start="opacity-100 transform translate-y-0" x-transition:leave-end="opacity-0 transform -translate-y-2">
                         <p class="body-text-regular-medium text-secondary-600">We have experience working with a diverse range of industries, including e-commerce, healthcare, education, and technology. Our team is adaptable and can tailor our services to meet the unique needs of your industry.</p>
                     </div>
                 </div>
@@ -515,7 +515,7 @@
                         <h2 class="title-text-bold-medium text-secondary-950">Do you provide support after project completion?</h2>
                         <i class="fa-solid" :class="open === 3 ? 'fa-minus' : 'fa-plus'"></i>
                     </div>
-                    <div x-show="open === 3" class="p-4 border-t border-secondary-400">
+                    <div x-show="open === 3" class="p-4 border-t border-secondary-400" x-transition:enter="transition ease-out duration-300" x-transition:enter-start="opacity-0 transform -translate-y-2" x-transition:enter-end="opacity-100 transform translate-y-0" x-transition:leave="transition ease-in duration-200" x-transition:leave-start="opacity-100 transform translate-y-0" x-transition:leave-end="opacity-0 transform -translate-y-2">
                         <p class="body-text-regular-medium text-secondary-600">Yes, we offer ongoing support and maintenance to ensure your website or application continues to run smoothly. We believe in building long-term partnerships with our clients and are always here to help with any future needs.</p>
                     </div>
                 </div>
