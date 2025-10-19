@@ -3,43 +3,83 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
+use App\Models\Service;
+use App\Models\ServiceCategory;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Storage;
 
 class ServiceController extends Controller
 {
     public function index()
     {
-        return view('dashboard.index');
+        $services = Service::with('category')->get();
+        return view('admin.services.index', compact('services'));
     }
 
     public function create()
     {
-        return view('dashboard.create-service');
+        $categories = ServiceCategory::all();
+        return view('admin.services.create', compact('categories'));
     }
 
     public function store(Request $request)
     {
-        Service::create($request->all());
+        $request->validate([
+            'name' => 'required|string|max:255',
+            'slug' => 'required|string|max:255|unique:services',
+            'service_category_id' => 'required|exists:service_categories,id',
+            'image' => 'nullable|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
+        ]);
 
-        return redirect()->route('dashboard')->with('success', 'Service added!');
+        $data = $request->except('image');
+
+        if ($request->hasFile('image')) {
+            $path = $request->file('image')->store('services', 'public');
+            $data['image'] = $path;
+        }
+
+        Service::create($data);
+
+        return redirect()->route('admin.services.index')->with('success', 'Service created successfully.');
     }
 
     public function edit(Service $service)
     {
-        return view('dashboard.edit-service', compact('service'));
+        $categories = ServiceCategory::all();
+        return view('admin.services.edit', compact('service', 'categories'));
     }
 
     public function update(Request $request, Service $service)
     {
-        $service->update($request->all());
+        $request->validate([
+            'name' => 'required|string|max:255',
+            'slug' => 'required|string|max:255|unique:services,slug,' . $service->id,
+            'service_category_id' => 'required|exists:service_categories,id',
+            'image' => 'nullable|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
+        ]);
 
-        return redirect()->route('dashboard')->with('success', 'Service updated!');
+        $data = $request->except('image');
+
+        if ($request->hasFile('image')) {
+            if ($service->image) {
+                Storage::disk('public')->delete($service->image);
+            }
+            $path = $request->file('image')->store('services', 'public');
+            $data['image'] = $path;
+        }
+
+        $service->update($data);
+
+        return redirect()->route('admin.services.index')->with('success', 'Service updated successfully.');
     }
 
     public function destroy(Service $service)
     {
+        if ($service->image) {
+            Storage::disk('public')->delete($service->image);
+        }
         $service->delete();
 
-        return redirect()->route('dashboard')->with('success', 'Service deleted!');
+        return redirect()->route('admin.services.index')->with('success', 'Service deleted successfully.');
     }
 }

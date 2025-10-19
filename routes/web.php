@@ -57,9 +57,27 @@ Route::name('front.')->group(function () {
 });
 
 // Dashboard Routes (Protected with Auth) ===========================================
+use App\Http\Controllers\Admin\ArticleController;
+use App\Http\Controllers\Admin\ArticleCategoryController;
+use App\Http\Controllers\Admin\ProjectController;
+use App\Http\Controllers\Admin\ProjectCategoryController;
+use App\Http\Controllers\Admin\ServiceController;
+use App\Http\Controllers\Admin\ServiceCategoryController;
+use App\Http\Controllers\Admin\SoftwareController;
+use App\Http\Controllers\Admin\SoftwareCategoryController;
+use App\Http\Controllers\Admin\VacancyCategoryController;
+
 Route::name('admin.')->prefix('admin')->middleware(['auth'])->group(function () {
     Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard.index');
     Route::resource('/dashboard/services', ServiceController::class);
+    Route::resource('/dashboard/project-categories', ProjectCategoryController::class);
+    Route::resource('/dashboard/service-categories', ServiceCategoryController::class);
+    Route::resource('/dashboard/software-categories', SoftwareCategoryController::class);
+    Route::resource('/dashboard/article-categories', ArticleCategoryController::class);
+    Route::resource('/dashboard/vacancy-categories', VacancyCategoryController::class);
+    Route::resource('/dashboard/projects', ProjectController::class);
+    Route::resource('/dashboard/softwares', SoftwareController::class);
+    Route::resource('/dashboard/articles', ArticleController::class);
 });
 
 // Acount Create ====================================================================
