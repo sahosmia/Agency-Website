@@ -13,6 +13,9 @@ return new class extends Migration
     {
         Schema::create('softwares', function (Blueprint $table) {
             $table->id();
+            $table->string('name');
+            $table->string('slug')->unique();
+            $table->foreignId('software_category_id')->constrained()->onDelete('cascade');
             $table->timestamps();
         });
     }
