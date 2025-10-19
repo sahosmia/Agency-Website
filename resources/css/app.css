@@ -166,10 +166,19 @@ body {
     @apply flex items-center gap-4;
 }
 .button-label {
-    @apply flex   justify-center items-center gap-2 rounded-md border;
+    @apply flex justify-center items-center gap-2 rounded-md border transition-all duration-300;
 }
+
+.button-label:hover {
+    @apply shadow-lg transform -translate-y-1;
+}
+
 .button-g {
-    @apply px-4 py-2 border rounded-lg  transition  text-secondary-800 ;
+    @apply px-4 py-2 border rounded-lg transition-all duration-300 text-secondary-800;
+}
+
+.button-g:hover {
+    @apply shadow-lg transform -translate-y-1;
 }
 
 

@@ -31,7 +31,7 @@
     </div>
 
     {{-- Mobile Menu --}}
-    <div x-show="open" class="lg:hidden">
+    <div x-show="open" class="lg:hidden" x-transition:enter="transition ease-out duration-300" x-transition:enter-start="opacity-0 transform -translate-y-2" x-transition:enter-end="opacity-100 transform translate-y-0" x-transition:leave="transition ease-in duration-200" x-transition:leave-start="opacity-100 transform translate-y-0" x-transition:leave-end="opacity-0 transform -translate-y-2">
         <ul class="flex flex-col items-center gap-4 py-4">
             <li class="nav-item {{ request()->is('/') ? 'active' : '' }}"><a href="{{ route('front.home') }}">Home</a></li>
             <li class="nav-item {{ request()->is('services') || request()->is('services/*') ? 'active' : '' }}"><a href="{{ route('front.services.index') }}">Services</a></li>
