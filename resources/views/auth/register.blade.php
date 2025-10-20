@@ -79,18 +79,18 @@
             {{-- Terms Agreement --}}
             <div class="flex items-start gap-2">
                 <input type="checkbox" name="terms" id="terms"
-                    class="h-4 w-4 mt-1 text-indigo-600 border-gray-300 rounded" required>
+                    class="h-4 w-4 mt-1 text-primary-600 border-gray-300 rounded" required>
                 <label for="terms" class="text-sm text-secondary-600 leading-relaxed">
                     I agree to the
-                    <a href="{{ route('privacy-policy') }}" class="text-[#230BFF] hover:underline">Privacy Policy</a>
+                    <a href="{{ route('privacy-policy') }}" class="text-primary-400 hover:underline">Privacy Policy</a>
                     and
-                    <a href="{{ route('terms-conditions') }}" class="text-[#230BFF] hover:underline">Terms of Use</a>.
+                    <a href="{{ route('terms-conditions') }}" class="text-primary-600 hover:underline">Terms of Use</a>.
                 </label>
             </div>
 
             {{-- Submit Button --}}
             <button type="submit"
-                class="btn-outline-full bg-indigo-600 text-white font-semibold py-3 rounded-lg hover:bg-indigo-700 transition">
+                class="btn-outline-full bg-primary-600 text-white font-semibold py-3 rounded-lg hover:bg-primary-700 transition">
                 Register
             </button>
 
@@ -98,7 +98,7 @@
             <div class="text-center">
                 <p class="label-text-regular-small text-secondary-600">
                     Already have an account?
-                    <a href="{{ route('login') }}" class="text-[#230BFF] font-semibold hover:underline">
+                    <a href="{{ route('login') }}" class="text-primary-600 font-semibold hover:underline">
                         Log in
                     </a>
                 </p>
