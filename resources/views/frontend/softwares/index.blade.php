@@ -3,64 +3,58 @@
 
 @section('content')
     <div class="container mx-auto">
-        <h1 class="text-[52px] font-medium leading-[68px] text-center mt-5">
-            Explore our least <span class=" text-primary-600"> Softwares</span>
+        <h1 class="text-3xl md:text-[52px] font-medium leading-tight md:leading-[68px] text-center mt-5">
+            Explore our least <span class="text-primary-600">Softwares</span>
         </h1>
-        <!-- search  -->
         <!-- Search Form -->
-        <form action="{{ route('front.softwares.index') }}" method="GET">
-
-            <div class="flex justify-center gap-6 mt-14">
-
+        <form action="{{ route('front.softwares.index') }}" method="GET" class="mt-8 md:mt-14">
+            <div class="flex flex-col md:flex-row justify-center items-center gap-4 md:gap-6">
                 <!-- Search Input -->
-                <div class="flex w-[496px] items-center p-4 pl-0 gap-2 border border-secondary-400 rounded-lg place-content-between">
+                <div class="flex w-full md:w-[496px] items-center p-3 md:p-4 border border-secondary-400 rounded-lg">
                     <input type="text" name="search" value="{{ request('search') }}" class="label-text-regular-large p-0 flex-1 border-none ring-0 outline-0" placeholder="Search by title">
                     <button type="submit" class="flex items-center justify-center text-white bg-primary-600 rounded-md px-3 py-2 gap-2">
                         <span><i class="fa-solid fa-magnifying-glass"></i></span>
-                        <span class="text-lg font-semibold"> Search</span>
+                        <span class="text-lg font-semibold">Search</span>
                     </button>
                 </div>
-
                 <!-- Category Filter Button -->
-                <div class="flex w-[288px] items-center p-4 gap-4 border border-secondary-400 rounded-lg place-content-between cursor-pointer" id="dropdownButton">
-                    <p class="hidden md:block label-text-regular-large w-auto mr-5 truncate">
+                <div class="flex w-full md:w-[288px] items-center p-3 md:p-4 gap-4 border border-secondary-400 rounded-lg justify-between cursor-pointer" id="dropdownButton">
+                    <p class="label-text-regular-large truncate">
                         {{ request('category') ? $software_categories->firstWhere('id', request('category'))->title : 'All Category' }}
                     </p>
                     <span><i class="fa-solid fa-arrow-down"></i></span>
                 </div>
             </div>
-
             <!-- Category Filter Dropdown -->
-            <div id="dropdownMenu" class="hidden flex-wrap w-full md:w-10/12 mt-4 items-center justify-center rounded-2xl border border-secondary-400 mx-auto">
-                <ul class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 px-4 py-8">
-                    <li class="flex gap-2 px-2 items-center shrink">
+            <div id="dropdownMenu" class="hidden w-full md:w-10/12 mt-4 mx-auto border border-secondary-400 rounded-2xl">
+                <ul class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4 p-4 md:p-8">
+                    <li class="flex items-center gap-2">
                         <input type="radio" id="category_all" name="category" value="" onchange="this.form.submit()" {{ request('category') == '' ? 'checked' : '' }} />
-                        <label for="category_all" class="text-lg font-normal leading-6">All Projects</label>
+                        <label for="category_all" class="text-base md:text-lg font-normal leading-6">All Projects</label>
                     </li>
                     @foreach ($software_categories as $item)
-                        <li class="flex gap-2 px-2 items-center shrink">
+                        <li class="flex items-center gap-2">
                             <input type="radio" id="category_{{ $item->id }}" name="category" value="{{ $item->id }}" onchange="this.form.submit()" {{ request('category') == $item->id ? 'checked' : '' }} />
-                            <label for="category_{{ $item->id }}" class="text-lg font-normal leading-6 ">{{ $item->title }}</label>
+                            <label for="category_{{ $item->id }}" class="text-base md:text-lg font-normal leading-6">{{ $item->title }}</label>
                         </li>
                     @endforeach
                 </ul>
             </div>
         </form>
 
-
         @if ($softwares->count() != 0)
-            <div class="w-full md:w-6/12 mt-20 md:mt-32 flex justify-center mx-auto">
-                <p class="sub-title-medium-regular  leading-8 text-secondary-800 text-center">
+            <div class="w-full md:w-8/12 lg:w-6/12 mt-16 md:mt-20 flex justify-center mx-auto">
+                <p class="sub-title-medium-regular leading-8 text-secondary-800 text-center">
                     where we share the latest trends, insights, and best practices in
                     technology, digital transformation, and business solutions.
                 </p>
             </div>
         @endif
 
-        <div class="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3    gap-y-[60px] gap-x-6 mt-14">
+        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-x-6 gap-y-10 md:gap-y-[60px] mt-14">
             @forelse ($softwares as $software)
                 <div>
-                    <img class=" max-h-72 w-full object-cover rounded-xl " src="{{ asset('upload/softwares/card img.png') }}" alt="{{ $software->title }}" />
+                    <img class="max-h-72 w-full object-cover rounded-xl" src="{{ asset('upload/softwares/card img.png') }}" alt="{{ $software->title }}" />
                     <div class="mt-4">
                         <button class="px-4 py-2   border rounded-full border-secondary-200 label-text-regular-small text-secondary-800"> {{ $software->software_category->title }} </button>
                         <h2 class="title-text-bold-medium text-secondary-950 pt-2"> {{ $software->title }} </h2>
