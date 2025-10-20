@@ -26,10 +26,10 @@
                 <div class="flex gap-2 justify-between items-center mt-6">
                     <div class="flex  gap-2 items-center">
                         <p class="label-text-regular-xsmall text-secondary-600">Didn't get it? </p>
-                        <button class="button-label px-2 ">Resend code</button>
+                        <button class="button-label px-2 resend-button" disabled>Resend code</button>
                     </div>
 
-                    <p class="text-secondary">Time: 0:00</p>
+                    <p class="text-secondary" id="timer">Time: 1:00</p>
                 </div>
 
                 <button class="btn-outline-full my-6">Verify OTP</button>
@@ -45,6 +45,51 @@
 
 @section('extra-js')
     <script>
-        // TODO: Time Start for otp time
+        let timer = 60;
+        const timerElement = document.getElementById('timer');
+        const resendButton = document.querySelector('.resend-button');
+        let interval;
+
+        function startTimer() {
+            timer = 60;
+            resendButton.disabled = true;
+
+            interval = setInterval(() => {
+                timer--;
+                const minutes = Math.floor(timer / 60);
+                const seconds = timer % 60;
+                timerElement.textContent = `Time: ${minutes}:${seconds < 10 ? '0' : ''}${seconds}`;
+
+                if (timer <= 0) {
+                    clearInterval(interval);
+                    timerElement.textContent = "Time's up!";
+                    resendButton.disabled = false;
+                }
+            }, 1000);
+        }
+
+        startTimer();
+
+        resendButton.addEventListener('click', (e) => {
+            e.preventDefault();
+            clearInterval(interval);
+            startTimer();
+        });
+
+        const otpInputs = document.querySelectorAll('.otp-code');
+
+        otpInputs.forEach((input, index) => {
+            input.addEventListener('input', (e) => {
+                if (e.target.value.length === 1 && index < otpInputs.length - 1) {
+                    otpInputs[index + 1].focus();
+                }
+            });
+
+            input.addEventListener('keydown', (e) => {
+                if (e.key === 'Backspace' && e.target.value.length === 0 && index > 0) {
+                    otpInputs[index - 1].focus();
+                }
+            });
+        });
     </script>
 @endsection
