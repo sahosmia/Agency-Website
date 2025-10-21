@@ -26,6 +26,12 @@
                     <a href="{{ route('admin.services.index') }}" class="block px-4 py-2 text-gray-300 hover:bg-gray-700">Services</a>
                     <a href="{{ route('admin.softwares.index') }}" class="block px-4 py-2 text-gray-300 hover:bg-gray-700">Softwares</a>
                     <a href="{{ route('admin.articles.index') }}" class="block px-4 py-2 text-gray-300 hover:bg-gray-700">Articles</a>
+                    <a href="{{ route('admin.trusted-companies.index') }}" class="block px-4 py-2 text-gray-300 hover:bg-gray-700">Trusted Companies</a>
+                    <a href="{{ route('admin.clients.index') }}" class="block px-4 py-2 text-gray-300 hover:bg-gray-700">Clients</a>
+                    <a href="{{ route('admin.faqs.index') }}" class="block px-4 py-2 text-gray-300 hover:bg-gray-700">FAQs</a>
+                    <a href="{{ route('admin.working-processes.index') }}" class="block px-4 py-2 text-gray-300 hover:bg-gray-700">Working Processes</a>
+                    <a href="{{ route('admin.values.index') }}" class="block px-4 py-2 text-gray-300 hover:bg-gray-700">Values</a>
+                    <a href="{{ route('admin.social-media-links.index') }}" class="block px-4 py-2 text-gray-300 hover:bg-gray-700">Social Media Links</a>
                 </div>
             </nav>
         </aside>

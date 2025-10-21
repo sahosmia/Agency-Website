@@ -91,6 +91,12 @@ Route::name('admin.')->prefix('admin')->middleware(['auth'])->group(function () 
     Route::resource('/dashboard/projects', ProjectController::class);
     Route::resource('/dashboard/softwares', SoftwareController::class);
     Route::resource('/dashboard/articles', ArticleController::class);
+    Route::resource('trusted-companies', \App\Http\Controllers\Admin\TrustedCompanyController::class);
+    Route::resource('clients', \App\Http\Controllers\Admin\ClientController::class);
+    Route::resource('faqs', \App\Http\Controllers\Admin\FaqController::class);
+    Route::resource('working-processes', \App\Http\Controllers\Admin\WorkingProcessController::class);
+    Route::resource('values', \App\Http\Controllers\Admin\ValueController::class);
+    Route::resource('social-media-links', \App\Http\Controllers\Admin\SocialMediaLinkController::class);
 });
 
 
