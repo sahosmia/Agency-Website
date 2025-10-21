@@ -21,18 +21,15 @@
                 </div>
                 <div class="hero-card">
                     <h1 class="title-text-bold-medium text-secondary-900">95%</h1>
-                    <h2 class="sub-title-large-regular text-secondary-900">Satisfied Customers</h2>
-                    <p class="body-text-regular-small text-secondary-800">We are committed to providing the best solutions to build happy relationships with our customers.</p>
+                    <h2 class="sub-title-large-regular text-secondary-900">Client Satisfaction</h2>
                 </div>
                 <div class="hero-card">
                     <h1 class="title-text-bold-medium text-secondary-900">80+</h1>
                     <h2 class="sub-title-large-regular text-secondary-900">Projects Completed</h2>
-                    <p class="body-text-regular-small text-secondary-800">Consistently innovating and delivering excellence.</p>
                 </div>
                 <div class="hero-card">
                     <h1 class="title-text-bold-medium text-secondary-900">17+</h1>
                     <h2 class="sub-title-large-regular text-secondary-900">Industries Served</h2>
-                    <p class="body-text-regular-small text-secondary-800">Expertise tailored to your unique needs—because we’ve done it all.</p>
                 </div>
             </div>
         </div>
@@ -42,8 +39,45 @@
         <div class="my-10 md:my-15 flex flex-col justify-center items-center gap-8">
             <h1 class="heading-text-regular-large text-secondary-950 text-center text-3xl md:text-5xl">Our Journey</h1>
             <p class="w-full md:w-10/12 sub-title-large-regular text-secondary-900 text-center">Our story is one of passion, innovation, and relentless dedication to delivering exceptional digital solutions. From humble beginnings to a global presence, we have grown into a trusted name in website development, custom software solutions, UI/UX design, digital marketing, and IT services.</p>
-            <div>
-                <p class="text-primary-600">ei part ta korte hobe.</p>
+            <div class="w-full md:w-10/12 lg:w-8/12 mt-8">
+                <div class="relative">
+                    <div class="border-l-2 border-primary-600 absolute h-full top-0 left-1/2 -translate-x-1/2"></div>
+                    <div class="space-y-12">
+                        <!-- Timeline Item -->
+                        <div class="flex items-center">
+                            <div class="w-1/2 pr-8">
+                                <div class="p-6 bg-white rounded-lg border border-secondary-400">
+                                    <h2 class="title-text-bold-medium text-secondary-950">2018</h2>
+                                    <p class="body-text-regular-medium text-secondary-800 mt-2">Founded with a vision to revolutionize the digital landscape, our agency started its journey with a small team of passionate innovators.</p>
+                                </div>
+                            </div>
+                            <div class="w-6 h-6 bg-primary-600 rounded-full absolute left-1/2 -translate-x-1/2"></div>
+                            <div class="w-1/2"></div>
+                        </div>
+                        <!-- Timeline Item -->
+                        <div class="flex items-center">
+                            <div class="w-1/2"></div>
+                            <div class="w-6 h-6 bg-primary-600 rounded-full absolute left-1/2 -translate-x-1/2"></div>
+                            <div class="w-1/2 pl-8">
+                                <div class="p-6 bg-white rounded-lg border border-secondary-400">
+                                    <h2 class="title-text-bold-medium text-secondary-950">2020</h2>
+                                    <p class="body-text-regular-medium text-secondary-800 mt-2">Expanded our services to include custom software development and UI/UX design, helping businesses create seamless digital experiences.</p>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- Timeline Item -->
+                        <div class="flex items-center">
+                            <div class="w-1/2 pr-8">
+                                <div class="p-6 bg-white rounded-lg border border-secondary-400">
+                                    <h2 class="title-text-bold-medium text-secondary-950">2022</h2>
+                                    <p class="body-text-regular-medium text-secondary-800 mt-2">Achieved a global presence by serving clients from over 17 countries, delivering innovative solutions that drive success worldwide.</p>
+                                </div>
+                            </div>
+                            <div class="w-6 h-6 bg-primary-600 rounded-full absolute left-1/2 -translate-x-1/2"></div>
+                            <div class="w-1/2"></div>
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
         {{-- Our Journey --}}
