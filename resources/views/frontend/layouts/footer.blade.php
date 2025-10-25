@@ -12,32 +12,16 @@
                     <div>
                         <h4 class="body-text-bold-large text-secondary-900 text-center lg:text-left">Follow us</h4>
                         <div class="pt-2 grid grid-cols-2 sm:grid-cols-4 lg:grid-cols-2 gap-4">
-                            <a class="flex justify-center items-center gap-2 rounded-sm border border-secondary-800 h-9 group"
-                                href="#">
-                                <img src="{{ asset('/frontend/images/social/Linkedin.svg') }}" alt="">
-                                <span
-                                    class="text-secondary-800 label-text-bold-small group-hover:text-secondary-950">Linkedin</span>
-                            </a>
-                            <a class="flex justify-center items-center gap-2 rounded-sm border border-secondary-800 h-9 group"
-                                href="#">
-                                <img src="{{ asset('/frontend/images/social/Instagram.svg') }}" alt="">
-                                <span
-                                    class="text-secondary-800 label-text-bold-small group-hover:text-secondary-950">Instagram</span>
-                            </a>
-                            <a class="flex justify-center items-center gap-2 rounded-sm border border-secondary-800 h-9 group"
-                                href="#">
-                                <img src="{{ asset('/frontend/images/social/Twitter X.svg') }}" alt="">
-                                <span
-                                    class="text-secondary-800 label-text-bold-small group-hover:text-secondary-950">Twitter
-                                    / X</span>
-                            </a>
-                            <a class="flex justify-center items-center gap-2 rounded-sm border border-secondary-800 h-9 group"
-                                href="#">
-                                <img src="{{ asset('/frontend/images/social/Twitter X.svg') }}" alt="">
-                                <span
-                                    class="text-secondary-800 label-text-bold-small group-hover:text-secondary-950">Twitter
-                                    / X</span>
-                            </a>
+                            @forelse ($socialMediaLinks as $link)
+                                <a class="flex justify-center items-center gap-2 rounded-sm border border-secondary-800 h-9 group"
+                                    href="{{ $link->url }}">
+                                    <img src="{{ asset($link->icon) }}" alt="{{ $link->name }}">
+                                    <span
+                                        class="text-secondary-800 label-text-bold-small group-hover:text-secondary-950">{{ $link->name }}</span>
+                                </a>
+                            @empty
+                                <p class="text-secondary-800 label-text-bold-small">No Social Media Links Found</p>
+                            @endforelse
                         </div>
                     </div>
                 </div>
@@ -65,29 +49,25 @@
                     <div class="flex-1">
                         <h4 class="body-text-bold-large text-secondary-900">Services solution</h4>
                         <ul class="flex flex-col gap-2 md:gap-3 pt-4">
-                            <li class="label-text-regular-small text-secondary-900"><a href="#">Log in dashboard</a>
-                            </li>
-                            <li class="label-text-regular-small text-secondary-900"><a href="#">About us</a></li>
-                            <li class="label-text-regular-small text-secondary-900"><a href="#">Contact us</a></li>
-                            <li class="label-text-regular-small text-secondary-900"><a href="#">Articles</a></li>
-                            <li class="label-text-regular-small text-secondary-900"><a href="#">Career</a></li>
-                            <li class="label-text-regular-small text-secondary-900"><a href="#">Privacy policy</a></li>
-                            <li class="label-text-regular-small text-secondary-900"><a href="#">Terms & conditions</a>
-                            </li>
+                            @forelse ($services as $service)
+                                <li class="label-text-regular-small text-secondary-900"><a
+                                        href="{{ route('front.services.show', $service->slug) }}">{{ $service->title }}</a>
+                                </li>
+                            @empty
+                                <li class="label-text-regular-small text-secondary-900">No Service Found</li>
+                            @endforelse
                         </ul>
                     </div>
                     <div class="flex-1">
                         <h4 class="body-text-bold-large text-secondary-900">Software's solution</h4>
                         <ul class="flex flex-col gap-2 md:gap-3 pt-4">
-                            <li class="label-text-regular-small text-secondary-900"><a href="#">Log in dashboard</a>
-                            </li>
-                            <li class="label-text-regular-small text-secondary-900"><a href="#">About us</a></li>
-                            <li class="label-text-regular-small text-secondary-900"><a href="#">Contact us</a></li>
-                            <li class="label-text-regular-small text-secondary-900"><a href="#">Articles</a></li>
-                            <li class="label-text-regular-small text-secondary-900"><a href="#">Career</a></li>
-                            <li class="label-text-regular-small text-secondary-900"><a href="#">Privacy policy</a></li>
-                            <li class="label-text-regular-small text-secondary-900"><a href="#">Terms & conditions</a>
-                            </li>
+                            @forelse ($softwares as $software)
+                                <li class="label-text-regular-small text-secondary-900"><a
+                                        href="{{ route('front.softwares.show', $software->slug) }}">{{ $software->title }}</a>
+                                </li>
+                            @empty
+                                <li class="label-text-regular-small text-secondary-900">No Software Found</li>
+                            @endforelse
                         </ul>
                     </div>
                 </div>
