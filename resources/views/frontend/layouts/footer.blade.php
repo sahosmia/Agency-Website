@@ -33,13 +33,13 @@
                             <li class="label-text-regular-small text-secondary-900"><a
                                     href="{{ route('admin.dashboard.index') }}">Log in dashboard</a></li>
                             <li class="label-text-regular-small text-secondary-900"><a
-                                    href="{{ route('front.about') }}">About us</a></li>
+                                    href="{{ route('about') }}">About us</a></li>
                             <li class="label-text-regular-small text-secondary-900"><a
-                                    href="{{ route('front.contact') }}">Contact us</a></li>
+                                    href="{{ route('contact') }}">Contact us</a></li>
                             <li class="label-text-regular-small text-secondary-900"><a
-                                    href="{{ route('front.articles.index') }}">Articles</a></li>
+                                    href="{{ route('articles.index') }}">Articles</a></li>
                             <li class="label-text-regular-small text-secondary-900"><a
-                                    href="{{ route('front.careers.index') }}">Career</a></li>
+                                    href="{{ route('careers.index') }}">Career</a></li>
                             <li class="label-text-regular-small text-secondary-900"><a
                                     href="{{ route('privacy-policy') }}">Privacy policy</a></li>
                             <li class="label-text-regular-small text-secondary-900"><a
@@ -51,7 +51,7 @@
                         <ul class="flex flex-col gap-2 md:gap-3 pt-4">
                             @forelse ($services as $service)
                                 <li class="label-text-regular-small text-secondary-900"><a
-                                        href="{{ route('front.services.show', $service->slug) }}">{{ $service->title }}</a>
+                                        href="{{ route('services.show', $service->slug) }}">{{ $service->title }}</a>
                                 </li>
                             @empty
                                 <li class="label-text-regular-small text-secondary-900">No Service Found</li>
@@ -63,7 +63,7 @@
                         <ul class="flex flex-col gap-2 md:gap-3 pt-4">
                             @forelse ($softwares as $software)
                                 <li class="label-text-regular-small text-secondary-900"><a
-                                        href="{{ route('front.softwares.show', $software->slug) }}">{{ $software->title }}</a>
+                                        href="{{ route('softwares.show', $software->slug) }}">{{ $software->title }}</a>
                                 </li>
                             @empty
                                 <li class="label-text-regular-small text-secondary-900">No Software Found</li>

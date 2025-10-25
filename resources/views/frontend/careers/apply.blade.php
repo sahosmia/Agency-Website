@@ -9,7 +9,7 @@
                 details on file and reach out when a suitable opportunity arises. </p>
         </div>
 
-        <form action="{{ route('front.careers.apply.submit', $slug) }}" method="POST">
+        <form action="{{ route('careers.apply.submit', $slug) }}" method="POST">
             @csrf
 
             <input type="hidden" name="step" value="1">

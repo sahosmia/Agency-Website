@@ -11,7 +11,7 @@
             </p>
         </div>
 
-        <form action="{{ route('front.careers.apply.submit', $slug) }}" method="POST">
+        <form action="{{ route('careers.apply.submit', $slug) }}" method="POST">
             @csrf
 
             <div class="flex w-[808px] flex-col p-6 gap-6 border border-secondary-400 rounded-2xl m-auto mt-8 mb-20">

@@ -45,7 +45,7 @@ class FrontendController extends Controller
 
     public function contact_submit(\Illuminate\Http\Request $request)
     {
-        return redirect()->route('front.contact')->with('success', 'Your message has been sent successfully!');
+        return redirect()->route('contact')->with('success', 'Your message has been sent successfully!');
     }
 
 
