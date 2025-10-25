@@ -14,6 +14,7 @@ class PricePlan extends Model
         'planable_type',
         'name',
         'price',
+        'type',
         'features',
     ];
 

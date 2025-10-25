@@ -25,7 +25,8 @@ class PricePlanController extends Controller
     {
         $request->validate([
             'name' => 'required|string|max:255',
-            'price' => 'required|numeric',
+            'price' => 'required_if:type,fixed|nullable|numeric',
+            'type' => 'required|string|in:fixed,free,custom',
             'features' => 'required|string',
             'planable_id' => 'required',
             'planable_type' => 'required|string',
@@ -33,6 +34,10 @@ class PricePlanController extends Controller
 
         $data = $request->all();
         $data['features'] = explode(',', $request->features);
+
+        if ($request->type === 'free' || $request->type === 'custom') {
+            $data['price'] = null;
+        }
 
         PricePlan::create($data);
 
@@ -49,7 +54,8 @@ class PricePlanController extends Controller
     {
         $request->validate([
             'name' => 'required|string|max:255',
-            'price' => 'required|numeric',
+            'price' => 'required_if:type,fixed|nullable|numeric',
+            'type' => 'required|string|in:fixed,free,custom',
             'features' => 'required|string',
             'planable_id' => 'required',
             'planable_type' => 'required|string',
@@ -57,6 +63,10 @@ class PricePlanController extends Controller
 
         $data = $request->all();
         $data['features'] = explode(',', $request->features);
+
+        if ($request->type === 'free' || $request->type === 'custom') {
+            $data['price'] = null;
+        }
 
         $pricePlan->update($data);
 
