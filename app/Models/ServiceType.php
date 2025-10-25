@@ -5,22 +5,18 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Software extends Model
+class ServiceType extends Model
 {
     use HasFactory;
 
-    protected $table = 'softwares';
-
     protected $fillable = [
+        'service_id',
         'name',
-        'slug',
-        'software_category_id',
-        'image',
     ];
 
-    public function category()
+    public function service()
     {
-        return $this->belongsTo(SoftwareCategory::class, 'software_category_id');
+        return $this->belongsTo(Service::class);
     }
 
     public function pricePlans()
