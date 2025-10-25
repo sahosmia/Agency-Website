@@ -315,7 +315,7 @@
             @endforelse
         </div>
         <div class="flex justify-center items-center mt-14">
-            <a href="{{ route('front.projects.index') }}" class="button-label px-7 py-3 label-text-bold-large">Explore
+            <a href="{{ route('projects.index') }}" class="button-label px-7 py-3 label-text-bold-large">Explore
                 More</a>
         </div>
     </div>
@@ -357,7 +357,7 @@
         @endfor
     </div>
     <div class="flex justify-center items-center mt-14">
-        <a href="{{ route('front.services.index') }}" class="button-label px-7 py-3 label-text-bold-large">See all
+        <a href="{{ route('services.index') }}" class="button-label px-7 py-3 label-text-bold-large">See all
             service</a>
     </div>
 </div>
@@ -400,7 +400,7 @@
     @endfor
 </div>
 <div class="flex justify-center items-center mt-14">
-    <a href="{{ route('front.softwares.index') }}" class="button-label px-7 py-3 label-text-bold-large">See details</a>
+    <a href="{{ route('softwares.index') }}" class="button-label px-7 py-3 label-text-bold-large">See details</a>
 </div>
 </div>
 {{-- Software's Solution --}}
@@ -658,7 +658,7 @@
                 <h2 class="title-text-bold-medium text-secondary-950 pt-2">{{ $article_data->title }}</h2>
                 <p class="body-text-regular-medium text-secondary-600 pt-1">{{ $article_data->short_text }}</p>
             </div>
-            <a href="{{ route('front.articles.show', $article_data->slug) }}"
+            <a href="{{ route('articles.show', $article_data->slug) }}"
                 class="inline-block px-3 py-2 rounded-sm border border-secondary-800 label-text-bold-small text-secondary-800 mt-4">Read
                 more</a>
         </div>

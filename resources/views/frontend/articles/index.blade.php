@@ -7,7 +7,7 @@
             Explore our least <span class="text-primary-600">Ariticles</span>
         </h1>
         <!-- Search Form -->
-        <form action="{{ route('front.articles.index') }}" method="GET" class="mt-8 md:mt-14">
+        <form action="{{ route('articles.index') }}" method="GET" class="mt-8 md:mt-14">
             <div class="flex flex-col md:flex-row justify-center items-center gap-4 md:gap-6">
                 <!-- Search Input -->
                 <div class="flex w-full md:w-[496px] items-center p-3 md:p-4 border border-secondary-400 rounded-lg">
@@ -61,7 +61,7 @@
                         <p class="body-text-regular-medium text-secondary-600 pt-1"> {{ $article->short_text }} </p>
                     </div>
 
-                    <a href="{{ route('front.articles.show', $article->slug) }}" class="inline-block px-3 py-2 rounded-sm border border-secondary-800 label-text-bold-small text-secondary-800 mt-4"> Read more </a>
+                    <a href="{{ route('articles.show', $article->slug) }}" class="inline-block px-3 py-2 rounded-sm border border-secondary-800 label-text-bold-small text-secondary-800 mt-4"> Read more </a>
                 </div>
             @empty
                 <h3 class="heading-text-regular-large text-secondary-800 m-auto">No Article available this area!</h3>

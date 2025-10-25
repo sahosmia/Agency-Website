@@ -7,7 +7,7 @@
 
         <!-- search  -->
         <!-- Search Form -->
-        <form action="{{ route('front.careers.index') }}" method="GET">
+        <form action="{{ route('careers.index') }}" method="GET">
 
             <div class="flex justify-center gap-6 mt-14">
 
@@ -74,8 +74,8 @@
                     </div>
 
                     <div class="flex  items-center justify-between gap-4">
-                        <a href="{{ route('front.careers.show', $vacancy->slug) }}" class="flex-1 label-text-bold-medium text-secondary-600 text-center">Learn More</a>
-                        <a class=" px-3 py-2 rounded-sm border border-secondary-800 label-text-bold-small text-secondary-800 flex-1 flex justify-center" href="{{ route('front.careers.apply', $vacancy->slug) }}"> Apply Now </a>
+                        <a href="{{ route('careers.show', $vacancy->slug) }}" class="flex-1 label-text-bold-medium text-secondary-600 text-center">Learn More</a>
+                        <a class=" px-3 py-2 rounded-sm border border-secondary-800 label-text-bold-small text-secondary-800 flex-1 flex justify-center" href="{{ route('careers.apply', $vacancy->slug) }}"> Apply Now </a>
                     </div>
                 </div>
             @endforeach

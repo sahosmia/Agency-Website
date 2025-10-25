@@ -1,9 +1,9 @@
  <div class=" flex flex-col gap-4 ">
-     <a href="{{ route('front.projects.show', $project->slug) }}">
+     <a href="{{ route('projects.show', $project->slug) }}">
          <img class="rounded-md w-full h-[340px] object-cover" src="{{ asset('upload/projects/') }}/{{ $project->thumbnail }}" alt="{{ $project->thumbnail }}">
      </a>
      <div>
-         <a href="{{ route('front.projects.show', $project->slug) }}">
+         <a href="{{ route('projects.show', $project->slug) }}">
              <h1 class="title-text-bold-medium text-secondary-950 line-clamp-1">{{ $project->title }}</h1>
          </a>
          <div class="flex gap-2 justify-between items-center mt-2">
