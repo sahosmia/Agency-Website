@@ -6,10 +6,12 @@ use App\Http\Controllers\Controller;
 use App\Http\Requests\StoreClientRequest;
 use App\Http\Requests\UpdateClientRequest;
 use App\Models\Client;
-use Illuminate\Support\Facades\Storage;
+use App\Http\Controllers\Traits\FileUploadTrait;
 
 class ClientController extends Controller
 {
+    use FileUploadTrait;
+
     public function index()
     {
         $clients = Client::all();
@@ -24,10 +26,7 @@ class ClientController extends Controller
     public function store(StoreClientRequest $request)
     {
         $data = $request->validated();
-        if ($request->hasFile('image')) {
-            $path = $request->file('image')->store('clients', 'public');
-            $data['image'] = $path;
-        }
+        $data['image'] = $this->uploadFile($request, 'image', 'clients');
         Client::create($data);
         return redirect()->route('admin.clients.index')->with('success', 'Client created successfully.');
     }
@@ -40,22 +39,14 @@ class ClientController extends Controller
     public function update(UpdateClientRequest $request, Client $client)
     {
         $data = $request->validated();
-        if ($request->hasFile('image')) {
-            if ($client->image) {
-                Storage::disk('public')->delete($client->image);
-            }
-            $path = $request->file('image')->store('clients', 'public');
-            $data['image'] = $path;
-        }
+        $data['image'] = $this->updateFile($request, 'image', 'clients', $client);
         $client->update($data);
         return redirect()->route('admin.clients.index')->with('success', 'Client updated successfully.');
     }
 
     public function destroy(Client $client)
     {
-        if ($client->image) {
-            Storage::disk('public')->delete($client->image);
-        }
+        $this->deleteFile($client, 'image');
         $client->delete();
         return redirect()->route('admin.clients.index')->with('success', 'Client deleted successfully.');
     }
