@@ -24,6 +24,8 @@
                     <hr class="my-2 border-gray-600">
                     <a href="{{ route('admin.projects.index') }}" class="block px-4 py-2 text-gray-300 hover:bg-gray-700">Projects</a>
                     <a href="{{ route('admin.services.index') }}" class="block px-4 py-2 text-gray-300 hover:bg-gray-700">Services</a>
+                    <a href="{{ route('admin.service-types.index') }}" class="block px-4 py-2 text-gray-300 hover:bg-gray-700">Service Types</a>
+                    <a href="{{ route('admin.price-plans.index') }}" class="block px-4 py-2 text-gray-300 hover:bg-gray-700">Price Plans</a>
                     <a href="{{ route('admin.softwares.index') }}" class="block px-4 py-2 text-gray-300 hover:bg-gray-700">Softwares</a>
                     <a href="{{ route('admin.articles.index') }}" class="block px-4 py-2 text-gray-300 hover:bg-gray-700">Articles</a>
                     <a href="{{ route('admin.trusted-companies.index') }}" class="block px-4 py-2 text-gray-300 hover:bg-gray-700">Trusted Companies</a>

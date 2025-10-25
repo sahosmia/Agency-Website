@@ -45,4 +45,23 @@
         </div>
         <button type="submit" class="px-4 py-2 bg-blue-500 text-white rounded-md">Update</button>
     </form>
+
+    <div class="mt-8">
+        <h2 class="text-xl font-bold mb-4">Service Types</h2>
+        @foreach ($service->serviceTypes as $serviceType)
+            <div class="mb-4 p-4 border rounded-md">
+                <h3 class="text-lg font-semibold">{{ $serviceType->name }}</h3>
+                <h4 class="text-md font-bold mt-2">Price Plans</h4>
+                @if ($serviceType->pricePlans->count() > 0)
+                    <ul>
+                        @foreach ($serviceType->pricePlans as $pricePlan)
+                            <li>{{ $pricePlan->name }} - ${{ $pricePlan->price }}</li>
+                        @endforeach
+                    </ul>
+                @else
+                    <p>No price plans for this service type.</p>
+                @endif
+            </div>
+        @endforeach
+    </div>
 @endsection
