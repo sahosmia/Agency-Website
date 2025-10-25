@@ -18,6 +18,7 @@
         <thead>
             <tr class="bg-gray-200">
                 <th class="px-4 py-2">Name</th>
+                <th class="px-4 py-2">Type</th>
                 <th class="px-4 py-2">Price</th>
                 <th class="px-4 py-2">Planable Type</th>
                 <th class="px-4 py-2">Planable Name</th>
@@ -28,7 +29,8 @@
             @foreach ($pricePlans as $pricePlan)
                 <tr>
                     <td class="border px-4 py-2">{{ $pricePlan->name }}</td>
-                    <td class="border px-4 py-2">{{ $pricePlan->price }}</td>
+                    <td class="border px-4 py-2">{{ ucfirst($pricePlan->type) }}</td>
+                    <td class="border px-4 py-2">{{ $pricePlan->price ? $pricePlan->price : '-' }}</td>
                     <td class="border px-4 py-2">{{ $pricePlan->planable_type }}</td>
                     <td class="border px-4 py-2">{{ $pricePlan->planable->name }}</td>
                     <td class="border px-4 py-2">
