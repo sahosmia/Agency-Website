@@ -16,4 +16,9 @@ class ClientReview extends Model
         'rating',
         'review',
     ];
+
+    public function projects()
+    {
+        return $this->hasMany(Project::class);
+    }
 }
