@@ -43,9 +43,12 @@ class ServiceSeeder extends Seeder
         ];
 
         foreach ($datas as $data) {
-            Service::create(array_merge($data, [
-                'service_category_id' => $categories->random(),
-            ]));
+            Service::firstOrCreate(
+                ['slug' => $data['slug']],
+                array_merge($data, [
+                    'service_category_id' => $categories->random(),
+                ])
+            );
         }
     }
 }

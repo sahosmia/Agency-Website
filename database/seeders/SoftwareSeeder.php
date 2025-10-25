@@ -43,9 +43,12 @@ class SoftwareSeeder extends Seeder
         ];
 
         foreach ($datas as $data) {
-            Software::create(array_merge($data, [
-                'software_category_id' => $categories->random(),
-            ]));
+            Software::firstOrCreate(
+                ['slug' => $data['slug']],
+                array_merge($data, [
+                    'software_category_id' => $categories->random(),
+                ])
+            );
         }
     }
 }

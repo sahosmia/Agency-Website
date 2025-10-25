@@ -13,10 +13,17 @@ class ServiceTypeSeeder extends Seeder
      */
     public function run(): void
     {
+        // ১. সার্ভিস ডিপেন্ডেন্সি চেক
         $services = Service::pluck('id');
         if ($services->isEmpty()) {
             $this->call(ServiceSeeder::class);
             $services = Service::pluck('id');
+        }
+
+        // চূড়ান্ত সুরক্ষা: যদি সার্ভিস না পাওয়া যায়
+        if ($services->isEmpty()) {
+            echo "Warning: Service IDs are still missing. Aborting ServiceType seeding.\n";
+            return;
         }
 
         $datas = [
@@ -34,11 +41,18 @@ class ServiceTypeSeeder extends Seeder
             'Security Monitoring',
         ];
 
+        // ২. ডুপ্লিকেট এড়াতে firstOrCreate ব্যবহার
         foreach ($datas as $data) {
-            ServiceType::create([
-                'service_id' => $services->random(),
-                'name' => $data,
-            ]);
+            ServiceType::firstOrCreate(
+                [
+                    // চেক করার জন্য কন্ডিশন: যদি 'name' কলামের ভ্যালু $data হয়
+                    'name' => $data,
+                ],
+                [
+                    // তৈরি করার জন্য ডেটা: যদি উপরে না পাওয়া যায়, তবে এই ডেটা দিয়ে নতুন তৈরি করো
+                    'service_id' => $services->random(),
+                ]
+            );
         }
     }
 }

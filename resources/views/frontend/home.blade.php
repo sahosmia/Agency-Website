@@ -315,7 +315,7 @@
             @endforelse
         </div>
         <div class="flex justify-center items-center mt-14">
-            <a href="{{ route('projects.index') }}" class="button-label px-7 py-3 label-text-bold-large">Explore
+            <a href="{{ route('projects') }}" class="button-label px-7 py-3 label-text-bold-large">Explore
                 More</a>
         </div>
     </div>
@@ -357,7 +357,7 @@
         @endfor
     </div>
     <div class="flex justify-center items-center mt-14">
-        <a href="{{ route('services.index') }}" class="button-label px-7 py-3 label-text-bold-large">See all
+        <a href="{{ route('services') }}" class="button-label px-7 py-3 label-text-bold-large">See all
             service</a>
     </div>
 </div>
@@ -400,7 +400,7 @@
     @endfor
 </div>
 <div class="flex justify-center items-center mt-14">
-    <a href="{{ route('softwares.index') }}" class="button-label px-7 py-3 label-text-bold-large">See details</a>
+    <a href="{{ route('softwares') }}" class="button-label px-7 py-3 label-text-bold-large">See details</a>
 </div>
 </div>
 {{-- Software's Solution --}}

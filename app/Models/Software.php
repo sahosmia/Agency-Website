@@ -18,7 +18,7 @@ class Software extends Model
         'image',
     ];
 
-    public function category()
+    public function software_category()
     {
         return $this->belongsTo(SoftwareCategory::class, 'software_category_id');
     }

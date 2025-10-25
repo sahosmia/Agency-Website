@@ -53,9 +53,12 @@ class VacancySeeder extends Seeder
         ];
 
         foreach($datas as $data) {
-            Vacancy::create(array_merge($data, [
-                'vacancy_category_id' => $categories->random(),
-            ]));
+            Vacancy::firstOrCreate(
+                ['slug' => $data['slug']],
+                array_merge($data, [
+                    'vacancy_category_id' => $categories->random(),
+                ])
+            );
         }
     }
 }

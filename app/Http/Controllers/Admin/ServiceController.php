@@ -13,7 +13,7 @@ class ServiceController extends Controller
 {
     public function index()
     {
-        $services = Service::with('category')->get();
+        $services = Service::with('service_category')->get();
         return view('admin.services.index', compact('services'));
     }
 
