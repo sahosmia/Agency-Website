@@ -15,8 +15,19 @@
             @enderror
         </div>
         <div class="mb-4">
+            <label for="type" class="block text-gray-700">Type</label>
+            <select name="type" id="type" class="w-full px-3 py-2 border rounded-md" required>
+                <option value="fixed" {{ old('type') === 'fixed' ? 'selected' : '' }}>Fixed</option>
+                <option value="free" {{ old('type') === 'free' ? 'selected' : '' }}>Free</option>
+                <option value="custom" {{ old('type') === 'custom' ? 'selected' : '' }}>Custom</option>
+            </select>
+            @error('type')
+                <p class="text-red-500 text-xs mt-1">{{ $message }}</p>
+            @enderror
+        </div>
+        <div class="mb-4" id="price-container">
             <label for="price" class="block text-gray-700">Price</label>
-            <input type="number" name="price" id="price" class="w-full px-3 py-2 border rounded-md" value="{{ old('price') }}" required>
+            <input type="number" name="price" id="price" class="w-full px-3 py-2 border rounded-md" value="{{ old('price') }}">
             @error('price')
                 <p class="text-red-500 text-xs mt-1">{{ $message }}</p>
             @enderror
@@ -50,4 +61,23 @@
         </div>
         <button type="submit" class="px-4 py-2 bg-blue-500 text-white rounded-md">Create</button>
     </form>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const typeElement = document.getElementById('type');
+            const priceContainer = document.getElementById('price-container');
+
+            function togglePriceContainer() {
+                if (typeElement.value === 'fixed') {
+                    priceContainer.style.display = 'block';
+                } else {
+                    priceContainer.style.display = 'none';
+                }
+            }
+
+            togglePriceContainer();
+
+            typeElement.addEventListener('change', togglePriceContainer);
+        });
+    </script>
 @endsection
