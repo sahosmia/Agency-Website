@@ -3,8 +3,9 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
+use App\Http\Requests\StoreSoftwareCategoryRequest;
+use App\Http\Requests\UpdateSoftwareCategoryRequest;
 use App\Models\SoftwareCategory;
-use Illuminate\Http\Request;
 
 class SoftwareCategoryController extends Controller
 {
@@ -19,15 +20,9 @@ class SoftwareCategoryController extends Controller
         return view('admin.software-categories.create');
     }
 
-    public function store(Request $request)
+    public function store(StoreSoftwareCategoryRequest $request)
     {
-        $request->validate([
-            'name' => 'required|string|max:255',
-            'slug' => 'required|string|max:255|unique:software_categories',
-        ]);
-
-        SoftwareCategory::create($request->all());
-
+        SoftwareCategory::create($request->validated());
         return redirect()->route('admin.software-categories.index')->with('success', 'Software category created successfully.');
     }
 
@@ -36,22 +31,15 @@ class SoftwareCategoryController extends Controller
         return view('admin.software-categories.edit', compact('softwareCategory'));
     }
 
-    public function update(Request $request, SoftwareCategory $softwareCategory)
+    public function update(UpdateSoftwareCategoryRequest $request, SoftwareCategory $softwareCategory)
     {
-        $request->validate([
-            'name' => 'required|string|max:255',
-            'slug' => 'required|string|max:255|unique:software_categories,slug,' . $softwareCategory->id,
-        ]);
-
-        $softwareCategory->update($request->all());
-
+        $softwareCategory->update($request->validated());
         return redirect()->route('admin.software-categories.index')->with('success', 'Software category updated successfully.');
     }
 
     public function destroy(SoftwareCategory $softwareCategory)
     {
         $softwareCategory->delete();
-
         return redirect()->route('admin.software-categories.index')->with('success', 'Software category deleted successfully.');
     }
 }

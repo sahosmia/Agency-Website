@@ -3,8 +3,9 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
+use App\Http\Requests\StoreTrustedCompanyRequest;
+use App\Http\Requests\UpdateTrustedCompanyRequest;
 use App\Models\TrustedCompany;
-use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
 
 class TrustedCompanyController extends Controller
@@ -20,22 +21,14 @@ class TrustedCompanyController extends Controller
         return view('admin.trusted_companies.create');
     }
 
-    public function store(Request $request)
+    public function store(StoreTrustedCompanyRequest $request)
     {
-        $request->validate([
-            'name' => 'required|string|max:255',
-            'logo' => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
-        ]);
-
-        $data = $request->except('logo');
-
+        $data = $request->validated();
         if ($request->hasFile('logo')) {
             $path = $request->file('logo')->store('trusted_companies', 'public');
             $data['logo'] = $path;
         }
-
         TrustedCompany::create($data);
-
         return redirect()->route('admin.trusted-companies.index')->with('success', 'Trusted Company created successfully.');
     }
 
@@ -44,15 +37,9 @@ class TrustedCompanyController extends Controller
         return view('admin.trusted_companies.edit', compact('trustedCompany'));
     }
 
-    public function update(Request $request, TrustedCompany $trustedCompany)
+    public function update(UpdateTrustedCompanyRequest $request, TrustedCompany $trustedCompany)
     {
-        $request->validate([
-            'name' => 'required|string|max:255',
-            'logo' => 'nullable|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
-        ]);
-
-        $data = $request->except('logo');
-
+        $data = $request->validated();
         if ($request->hasFile('logo')) {
             if ($trustedCompany->logo) {
                 Storage::disk('public')->delete($trustedCompany->logo);
@@ -60,9 +47,7 @@ class TrustedCompanyController extends Controller
             $path = $request->file('logo')->store('trusted_companies', 'public');
             $data['logo'] = $path;
         }
-
         $trustedCompany->update($data);
-
         return redirect()->route('admin.trusted-companies.index')->with('success', 'Trusted Company updated successfully.');
     }
 
@@ -72,7 +57,6 @@ class TrustedCompanyController extends Controller
             Storage::disk('public')->delete($trustedCompany->logo);
         }
         $trustedCompany->delete();
-
         return redirect()->route('admin.trusted-companies.index')->with('success', 'Trusted Company deleted successfully.');
     }
 }

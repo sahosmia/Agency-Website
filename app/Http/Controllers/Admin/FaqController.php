@@ -3,8 +3,9 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
+use App\Http\Requests\StoreFaqRequest;
+use App\Http\Requests\UpdateFaqRequest;
 use App\Models\Faq;
-use Illuminate\Http\Request;
 
 class FaqController extends Controller
 {
@@ -19,15 +20,9 @@ class FaqController extends Controller
         return view('admin.faqs.create');
     }
 
-    public function store(Request $request)
+    public function store(StoreFaqRequest $request)
     {
-        $request->validate([
-            'question' => 'required|string|max:255',
-            'answer' => 'required|string',
-        ]);
-
-        Faq::create($request->all());
-
+        Faq::create($request->validated());
         return redirect()->route('admin.faqs.index')->with('success', 'FAQ created successfully.');
     }
 
@@ -36,22 +31,15 @@ class FaqController extends Controller
         return view('admin.faqs.edit', compact('faq'));
     }
 
-    public function update(Request $request, Faq $faq)
+    public function update(UpdateFaqRequest $request, Faq $faq)
     {
-        $request->validate([
-            'question' => 'required|string|max:255',
-            'answer' => 'required|string',
-        ]);
-
-        $faq->update($request->all());
-
+        $faq->update($request->validated());
         return redirect()->route('admin.faqs.index')->with('success', 'FAQ updated successfully.');
     }
 
     public function destroy(Faq $faq)
     {
         $faq->delete();
-
         return redirect()->route('admin.faqs.index')->with('success', 'FAQ deleted successfully.');
     }
 }

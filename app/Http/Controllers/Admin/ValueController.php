@@ -3,8 +3,9 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
+use App\Http\Requests\StoreValueRequest;
+use App\Http\Requests\UpdateValueRequest;
 use App\Models\Value;
-use Illuminate\Http\Request;
 
 class ValueController extends Controller
 {
@@ -19,16 +20,9 @@ class ValueController extends Controller
         return view('admin.values.create');
     }
 
-    public function store(Request $request)
+    public function store(StoreValueRequest $request)
     {
-        $request->validate([
-            'title' => 'required|string|max:255',
-            'description' => 'required|string',
-            'icon' => 'required|string|max:255',
-        ]);
-
-        Value::create($request->all());
-
+        Value::create($request->validated());
         return redirect()->route('admin.values.index')->with('success', 'Value created successfully.');
     }
 
@@ -37,23 +31,15 @@ class ValueController extends Controller
         return view('admin.values.edit', compact('value'));
     }
 
-    public function update(Request $request, Value $value)
+    public function update(UpdateValueRequest $request, Value $value)
     {
-        $request->validate([
-            'title' => 'required|string|max:255',
-            'description' => 'required|string',
-            'icon' => 'required|string|max:255',
-        ]);
-
-        $value->update($request->all());
-
+        $value->update($request->validated());
         return redirect()->route('admin.values.index')->with('success', 'Value updated successfully.');
     }
 
     public function destroy(Value $value)
     {
         $value->delete();
-
         return redirect()->route('admin.values.index')->with('success', 'Value deleted successfully.');
     }
 }

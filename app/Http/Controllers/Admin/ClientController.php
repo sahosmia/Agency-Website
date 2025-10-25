@@ -3,8 +3,9 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
+use App\Http\Requests\StoreClientRequest;
+use App\Http\Requests\UpdateClientRequest;
 use App\Models\Client;
-use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
 
 class ClientController extends Controller
@@ -20,23 +21,14 @@ class ClientController extends Controller
         return view('admin.clients.create');
     }
 
-    public function store(Request $request)
+    public function store(StoreClientRequest $request)
     {
-        $request->validate([
-            'name' => 'required|string|max:255',
-            'location' => 'required|string|max:255',
-            'image' => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
-        ]);
-
-        $data = $request->except('image');
-
+        $data = $request->validated();
         if ($request->hasFile('image')) {
             $path = $request->file('image')->store('clients', 'public');
             $data['image'] = $path;
         }
-
         Client::create($data);
-
         return redirect()->route('admin.clients.index')->with('success', 'Client created successfully.');
     }
 
@@ -45,16 +37,9 @@ class ClientController extends Controller
         return view('admin.clients.edit', compact('client'));
     }
 
-    public function update(Request $request, Client $client)
+    public function update(UpdateClientRequest $request, Client $client)
     {
-        $request->validate([
-            'name' => 'required|string|max:255',
-            'location' => 'required|string|max:255',
-            'image' => 'nullable|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
-        ]);
-
-        $data = $request->except('image');
-
+        $data = $request->validated();
         if ($request->hasFile('image')) {
             if ($client->image) {
                 Storage::disk('public')->delete($client->image);
@@ -62,9 +47,7 @@ class ClientController extends Controller
             $path = $request->file('image')->store('clients', 'public');
             $data['image'] = $path;
         }
-
         $client->update($data);
-
         return redirect()->route('admin.clients.index')->with('success', 'Client updated successfully.');
     }
 
@@ -74,7 +57,6 @@ class ClientController extends Controller
             Storage::disk('public')->delete($client->image);
         }
         $client->delete();
-
         return redirect()->route('admin.clients.index')->with('success', 'Client deleted successfully.');
     }
 }
