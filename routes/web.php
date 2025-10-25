@@ -79,22 +79,24 @@ Route::post('/careers/apply/{slug}', [CareerFrontController::class, 'apply_submi
 
 Route::name('admin.')->prefix('admin')->middleware(['auth'])->group(function () {
     Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard.index');
-    Route::resource('/dashboard/services', ServiceController::class);
-    Route::resource('/dashboard/project-categories', ProjectCategoryController::class);
-    Route::resource('/dashboard/service-categories', ServiceCategoryController::class);
-    Route::resource('/dashboard/software-categories', SoftwareCategoryController::class);
-    Route::resource('/dashboard/article-categories', ArticleCategoryController::class);
-    Route::resource('/dashboard/vacancy-categories', VacancyCategoryController::class);
-    Route::resource('/dashboard/projects', ProjectController::class);
-    Route::resource('/dashboard/softwares', SoftwareController::class);
-    Route::resource('/dashboard/articles', ArticleController::class);
-    Route::resource('/dashboard/vacancies', VacancyController::class);
+    Route::resource('services', ServiceController::class);
+    Route::resource('project-categories', ProjectCategoryController::class);
+    Route::resource('service-categories', ServiceCategoryController::class);
+    Route::resource('software-categories', SoftwareCategoryController::class);
+    Route::resource('article-categories', ArticleCategoryController::class);
+    Route::resource('vacancy-categories', VacancyCategoryController::class);
+    Route::resource('projects', ProjectController::class);
+    Route::resource('softwares', SoftwareController::class);
+    Route::resource('articles', ArticleController::class);
+    Route::resource('vacancies', VacancyController::class);
     Route::resource('trusted-companies', \App\Http\Controllers\Admin\TrustedCompanyController::class);
     Route::resource('clients', \App\Http\Controllers\Admin\ClientController::class);
     Route::resource('faqs', \App\Http\Controllers\Admin\FaqController::class);
     Route::resource('working-processes', \App\Http\Controllers\Admin\WorkingProcessController::class);
     Route::resource('values', \App\Http\Controllers\Admin\ValueController::class);
     Route::resource('social-media-links', \App\Http\Controllers\Admin\SocialMediaLinkController::class);
+    Route::resource('service-types', \App\Http\Controllers\Admin\ServiceTypeController::class);
+    Route::resource('price-plans', \App\Http\Controllers\Admin\PricePlanController::class);
 });
 
 
