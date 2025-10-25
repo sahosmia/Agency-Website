@@ -146,10 +146,10 @@ body {
 
 /* Button  */
 .btn-outline-full {
-    @apply flex justify-center items-center gap-2 w-full py-3 rounded-lg border border-secondary-800 text-secondary-800 text-[22px]/7 font-karla font-semibold;
+    @apply flex justify-center items-center gap-2 w-full py-3 rounded-lg border border-secondary-800 text-secondary-800 text-[22px]/7 font-karla font-semibold cursor-pointer;
 }
 .btn-primary-full {
-    @apply flex justify-center items-center gap-2 w-full py-3 rounded-lg bg-primary-600 text-white text-[22px]/7 font-karla font-semibold;
+    @apply flex justify-center items-center gap-2 w-full py-3 rounded-lg bg-primary-600 text-white text-[22px]/7 font-karla font-semibold cursor-pointer;
 }
 
 .hero-badge-desktop {
@@ -166,7 +166,7 @@ body {
     @apply flex items-center gap-4;
 }
 .button-label {
-    @apply flex justify-center items-center gap-2 rounded-md border transition-all duration-300;
+    @apply flex justify-center items-center gap-2 rounded-md border transition-all duration-300 cursor-pointer;
 }
 
 .button-label:hover {
@@ -174,7 +174,7 @@ body {
 }
 
 .button-g {
-    @apply px-4 py-2 border rounded-lg transition-all duration-300 text-secondary-800;
+    @apply px-4 py-2 border rounded-lg transition-all duration-300 text-secondary-800 cursor-pointer;
 }
 
 .button-g:hover {

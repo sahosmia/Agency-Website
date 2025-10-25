@@ -13,27 +13,30 @@ class DatabaseSeeder extends Seeder
      */
     public function run(): void
     {
-        // User::factory(10)->create();
-
-        // User::factory()->create([
-        //     'name' => 'Test User',
-        //     'email' => 'test@example.com',
-        // ]);
-
-        $this->call(FaqSeeder::class);
-        $this->call(ProjectCategorySeeder::class);
-        $this->call(ServiceCategorySeeder::class);
-        $this->call(ServiceSeeder::class);
-        $this->call(ServiceTypeSeeder::class);
-        $this->call(PricePlanSeeder::class);
-        $this->call(SoftwareCategorySeeder::class);
-        $this->call(ArticleCategorySeeder::class);
-        $this->call(ArticleSeeder::class);
-        $this->call(VacancyCategorySeeder::class);
-        $this->call(VacancySeeder::class);
-        $this->call(DesignationSeeder::class);
-        $this->call(TeamSeeder::class);
-        $this->call(ClientReviewSeeder::class);
-        $this->call(ProjectSeeder::class);
+        $this->call([
+            AchievementSeeder::class,
+            ArticleCategorySeeder::class,
+            ArticleSeeder::class,
+            ClientReviewSeeder::class,
+            ClientSeeder::class,
+            DesignationSeeder::class,
+            FaqSeeder::class,
+            PricePlanSeeder::class,
+            ProjectCategorySeeder::class,
+            ProjectSeeder::class,
+            ServiceCategorySeeder::class,
+            ServiceSeeder::class,
+            ServiceTypeSeeder::class,
+            SoftwareCategorySeeder::class,
+            SoftwareSeeder::class,
+            TeamSeeder::class,
+            TrustedCompanySeeder::class,
+            UserSeeder::class,
+            VacancyCategorySeeder::class,
+            VacancySeeder::class,
+            ValueSeeder::class,
+            WorkingProcessSeeder::class,
+            SocialMediaLinkSeeder::class,
+        ]);
     }
 }

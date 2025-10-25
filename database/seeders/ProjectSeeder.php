@@ -2,7 +2,9 @@
 
 namespace Database\Seeders;
 
+use App\Models\ClientReview;
 use App\Models\Project;
+use App\Models\ProjectCategory;
 use Illuminate\Database\Seeder;
 
 class ProjectSeeder extends Seeder
@@ -12,6 +14,18 @@ class ProjectSeeder extends Seeder
      */
     public function run(): void
     {
+        $categories = ProjectCategory::pluck('id');
+        if ($categories->isEmpty()) {
+            $this->call(ProjectCategorySeeder::class);
+            $categories = ProjectCategory::pluck('id');
+        }
+
+        $reviews = ClientReview::pluck('id');
+        if ($reviews->isEmpty()) {
+            $this->call(ClientReviewSeeder::class);
+            $reviews = ClientReview::pluck('id');
+        }
+
         $datas = [
             [
                 'title' => 'E-Commerce Website',
@@ -42,8 +56,6 @@ class ProjectSeeder extends Seeder
                 'screenshots' => ['ecommerce_1.png', 'ecommerce_2.png', 'ecommerce_3.png'],
                 'images' => ['ecommerce_1.png', 'ecommerce_2.png', 'ecommerce_3.png', 'ecommerce_4.png'],
                 'thumbnails' => ['ecommerce_1.png', 'ecommerce_2.png', 'ecommerce_3.png', 'ecommerce_4.png'],
-                'project_category_id' => 1, // Assuming category ID 1 exists
-                'client_review_id' => 1, // Assuming review ID 1 exists
             ],
             [
                 'title' => 'Portfolio Website',
@@ -74,8 +86,6 @@ class ProjectSeeder extends Seeder
                 'screenshots' => ['portfolio_website_1.png', 'portfolio_website_2.png', 'portfolio_website_3.png'],
                 'images' => ['portfolio_website_1.png', 'portfolio_website_2.png', 'portfolio_website_3.png', 'portfolio_website_4.png'],
                 'thumbnails' => ['portfolio_website_1.png', 'portfolio_website_2.png', 'portfolio_website_3.png', 'portfolio_website_4.png'],
-                'project_category_id' => 2, // Assuming category ID 2 exists
-                'client_review_id' => 2, // Assuming review ID 2 exists
             ],
             [
                 'title' => 'SaaS Dashboard',
@@ -106,13 +116,14 @@ class ProjectSeeder extends Seeder
                 'screenshots' => ['saas_dashboard_1.png', 'saas_dashboard_2.png', 'saas_dashboard_3.png'],
                 'images' => ['saas_dashboard_1.png', 'saas_dashboard_2.png', 'saas_dashboard_3.png', 'saas_dashboard_4.png'],
                 'thumbnails' => ['saas_dashboard_1.png', 'saas_dashboard_2.png', 'saas_dashboard_3.png', 'saas_dashboard_4.png'],
-                'project_category_id' => 3, // Assuming category ID 3 exists
-                'client_review_id' => 3, // Assuming review ID 3 exists
             ],
         ];
 
         foreach ($datas as $data) {
-            Project::create($data);
+            Project::create(array_merge($data, [
+                'project_category_id' => $categories->random(),
+                'client_review_id' => $reviews->random(),
+            ]));
         }
     }
 }
