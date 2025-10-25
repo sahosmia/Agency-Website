@@ -8,7 +8,9 @@ use App\Http\Controllers\Frontend\CareerFrontController;
 use App\Http\Controllers\Frontend\ProjectFrontController;
 use App\Http\Controllers\Frontend\ServiceFrontController;
 use App\Http\Controllers\Frontend\SoftwareFrontController;
-use App\Http\Controllers\FrontendController;
+use App\Http\Controllers\Frontend\HomeController;
+use App\Http\Controllers\Frontend\PageController;
+use App\Http\Controllers\Frontend\ContactController;
 use Illuminate\Support\Facades\Route;
 
 use App\Http\Controllers\Admin\ArticleController;
@@ -37,38 +39,37 @@ Route::middleware('auth')->group(function () {
 });
 
 // Frontend Routes =====================================================================
-Route::controller(FrontendController::class)->group(
-    function () {
-        Route::get('/', 'home')->name('home');
-        Route::get('/about', 'about')->name('about');
-        Route::get('/contact', 'contact')->name('contact');
-        Route::post('/contact', 'contact_submit')->name('contact.submit');
-        Route::get('/services', 'services')->name('services');
-        Route::get('/software', 'software')->name('software');
-        Route::get('/projects', 'projects')->name('projects');
-        Route::get('/our-work', 'ourWork')->name('our-work');
+Route::get('/', [HomeController::class, 'index'])->name('home');
 
-        Route::get('/job-apply-question', 'job_apply_question')->name('job-apply-question');
-        Route::get('/single-software-page', 'single_software_page')->name('single-software-page');
-        Route::get('/single-software-plan-page', 'single_software_plan_page')->name('single-software-plan-page');
+Route::controller(ContactController::class)->group(function () {
+    Route::get('/contact', 'contact')->name('contact');
+    Route::post('/contact', 'contact_submit')->name('contact.submit');
+});
 
-        Route::get('/all-softwares', 'all_softwares')->name('all-softwares');
+Route::controller(PageController::class)->group(function () {
+    Route::get('/about', 'about')->name('about');
+    Route::get('/our-work', 'ourWork')->name('our-work');
 
-        Route::get('/custom-software', 'custom_software')->name('custom-software');
-        Route::get('/lets-discuss', 'lets_discuss')->name('lets-discuss');
-        Route::get('/confirmation', 'confirmation')->name('confirmation');
+    Route::get('/job-apply-question', 'job_apply_question')->name('job-apply-question');
+    Route::get('/single-software-page', 'single_software_page')->name('single-software-page');
+    Route::get('/single-software-plan-page', 'single_software_plan_page')->name('single-software-plan-page');
 
-        Route::get('/congratulation-page', 'congratulationPage')->name('congratulation-page');
-        Route::get('/thank-you-page', 'thankYouPage')->name('thank-you-page');
-        Route::get('/maintenance-page', 'maintenancePage')->name('maintenance-page');
-        Route::get('/privacy-policy', 'privacy_policy')->name('privacy-policy');
-        Route::get('/terms-conditions', 'terms_conditions')->name('terms-conditions');
-    }
-);
+    Route::get('/all-softwares', 'all_softwares')->name('all-softwares');
 
-Route::resource('projects', ProjectFrontController::class)->only(['index', 'show'])->scoped(['project' => 'slug']);
-Route::resource('services', ServiceFrontController::class)->only(['index', 'show'])->scoped(['service' => 'slug']);
-Route::resource('softwares', SoftwareFrontController::class)->only(['index', 'show'])->scoped(['software' => 'slug']);
+    Route::get('/custom-software', 'custom_software')->name('custom-software');
+    Route::get('/lets-discuss', 'lets_discuss')->name('lets-discuss');
+    Route::get('/confirmation', 'confirmation')->name('confirmation');
+
+    Route::get('/congratulation-page', 'congratulationPage')->name('congratulation-page');
+    Route::get('/thank-you-page', 'thankYouPage')->name('thank-you-page');
+    Route::get('/maintenance-page', 'maintenancePage')->name('maintenance-page');
+    Route::get('/privacy-policy', 'privacy_policy')->name('privacy-policy');
+    Route::get('/terms-conditions', 'terms_conditions')->name('terms-conditions');
+});
+
+Route::resource('projects', ProjectFrontController::class)->only(['index', 'show'])->scoped(['project' => 'slug'])->names(['index' => 'projects']);
+Route::resource('services', ServiceFrontController::class)->only(['index', 'show'])->scoped(['service' => 'slug'])->names(['index' => 'services']);
+Route::resource('softwares', SoftwareFrontController::class)->only(['index', 'show'])->scoped(['software' => 'slug'])->names(['index' => 'softwares']);
 Route::resource('articles', ArticleFrontController::class)->only(['index', 'show'])->scoped(['article' => 'slug']);
 
 Route::resource('careers', CareerFrontController::class)->only(['index', 'show'])->scoped(['career' => 'slug']);
