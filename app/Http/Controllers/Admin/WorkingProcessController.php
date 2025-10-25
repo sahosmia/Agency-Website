@@ -3,8 +3,9 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
+use App\Http\Requests\StoreWorkingProcessRequest;
+use App\Http\Requests\UpdateWorkingProcessRequest;
 use App\Models\WorkingProcess;
-use Illuminate\Http\Request;
 
 class WorkingProcessController extends Controller
 {
@@ -19,16 +20,9 @@ class WorkingProcessController extends Controller
         return view('admin.working_processes.create');
     }
 
-    public function store(Request $request)
+    public function store(StoreWorkingProcessRequest $request)
     {
-        $request->validate([
-            'title' => 'required|string|max:255',
-            'description' => 'required|string',
-            'icon' => 'required|string|max:255',
-        ]);
-
-        WorkingProcess::create($request->all());
-
+        WorkingProcess::create($request->validated());
         return redirect()->route('admin.working-processes.index')->with('success', 'Working Process created successfully.');
     }
 
@@ -37,23 +31,15 @@ class WorkingProcessController extends Controller
         return view('admin.working_processes.edit', compact('workingProcess'));
     }
 
-    public function update(Request $request, WorkingProcess $workingProcess)
+    public function update(UpdateWorkingProcessRequest $request, WorkingProcess $workingProcess)
     {
-        $request->validate([
-            'title' => 'required|string|max:255',
-            'description' => 'required|string',
-            'icon' => 'required|string|max:255',
-        ]);
-
-        $workingProcess->update($request->all());
-
+        $workingProcess->update($request->validated());
         return redirect()->route('admin.working-processes.index')->with('success', 'Working Process updated successfully.');
     }
 
     public function destroy(WorkingProcess $workingProcess)
     {
         $workingProcess->delete();
-
         return redirect()->route('admin.working-processes.index')->with('success', 'Working Process deleted successfully.');
     }
 }

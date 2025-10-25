@@ -3,8 +3,9 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
+use App\Http\Requests\StoreServiceCategoryRequest;
+use App\Http\Requests\UpdateServiceCategoryRequest;
 use App\Models\ServiceCategory;
-use Illuminate\Http\Request;
 
 class ServiceCategoryController extends Controller
 {
@@ -19,15 +20,9 @@ class ServiceCategoryController extends Controller
         return view('admin.service-categories.create');
     }
 
-    public function store(Request $request)
+    public function store(StoreServiceCategoryRequest $request)
     {
-        $request->validate([
-            'name' => 'required|string|max:255',
-            'slug' => 'required|string|max:255|unique:service_categories',
-        ]);
-
-        ServiceCategory::create($request->all());
-
+        ServiceCategory::create($request->validated());
         return redirect()->route('admin.service-categories.index')->with('success', 'Service category created successfully.');
     }
 
@@ -36,22 +31,15 @@ class ServiceCategoryController extends Controller
         return view('admin.service-categories.edit', compact('serviceCategory'));
     }
 
-    public function update(Request $request, ServiceCategory $serviceCategory)
+    public function update(UpdateServiceCategoryRequest $request, ServiceCategory $serviceCategory)
     {
-        $request->validate([
-            'name' => 'required|string|max:255',
-            'slug' => 'required|string|max:255|unique:service_categories,slug,' . $serviceCategory->id,
-        ]);
-
-        $serviceCategory->update($request->all());
-
+        $serviceCategory->update($request->validated());
         return redirect()->route('admin.service-categories.index')->with('success', 'Service category updated successfully.');
     }
 
     public function destroy(ServiceCategory $serviceCategory)
     {
         $serviceCategory->delete();
-
         return redirect()->route('admin.service-categories.index')->with('success', 'Service category deleted successfully.');
     }
 }

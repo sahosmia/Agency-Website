@@ -3,8 +3,9 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
+use App\Http\Requests\StoreVacancyCategoryRequest;
+use App\Http\Requests\UpdateVacancyCategoryRequest;
 use App\Models\VacancyCategory;
-use Illuminate\Http\Request;
 
 class VacancyCategoryController extends Controller
 {
@@ -19,15 +20,9 @@ class VacancyCategoryController extends Controller
         return view('admin.vacancy-categories.create');
     }
 
-    public function store(Request $request)
+    public function store(StoreVacancyCategoryRequest $request)
     {
-        $request->validate([
-            'name' => 'required|string|max:255',
-            'slug' => 'required|string|max:255|unique:vacancy_categories',
-        ]);
-
-        VacancyCategory::create($request->all());
-
+        VacancyCategory::create($request->validated());
         return redirect()->route('admin.vacancy-categories.index')->with('success', 'Vacancy category created successfully.');
     }
 
@@ -36,22 +31,15 @@ class VacancyCategoryController extends Controller
         return view('admin.vacancy-categories.edit', compact('vacancyCategory'));
     }
 
-    public function update(Request $request, VacancyCategory $vacancyCategory)
+    public function update(UpdateVacancyCategoryRequest $request, VacancyCategory $vacancyCategory)
     {
-        $request->validate([
-            'name' => 'required|string|max:255',
-            'slug' => 'required|string|max:255|unique:vacancy_categories,slug,' . $vacancyCategory->id,
-        ]);
-
-        $vacancyCategory->update($request->all());
-
+        $vacancyCategory->update($request->validated());
         return redirect()->route('admin.vacancy-categories.index')->with('success', 'Vacancy category updated successfully.');
     }
 
     public function destroy(VacancyCategory $vacancyCategory)
     {
         $vacancyCategory->delete();
-
         return redirect()->route('admin.vacancy-categories.index')->with('success', 'Vacancy category deleted successfully.');
     }
 }

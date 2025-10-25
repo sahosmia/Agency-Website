@@ -3,8 +3,9 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
+use App\Http\Requests\StoreSocialMediaLinkRequest;
+use App\Http\Requests\UpdateSocialMediaLinkRequest;
 use App\Models\SocialMediaLink;
-use Illuminate\Http\Request;
 
 class SocialMediaLinkController extends Controller
 {
@@ -19,16 +20,9 @@ class SocialMediaLinkController extends Controller
         return view('admin.social_media_links.create');
     }
 
-    public function store(Request $request)
+    public function store(StoreSocialMediaLinkRequest $request)
     {
-        $request->validate([
-            'name' => 'required|string|max:255',
-            'url' => 'required|url',
-            'icon' => 'required|string|max:255',
-        ]);
-
-        SocialMediaLink::create($request->all());
-
+        SocialMediaLink::create($request->validated());
         return redirect()->route('admin.social-media-links.index')->with('success', 'Social Media Link created successfully.');
     }
 
@@ -37,23 +31,15 @@ class SocialMediaLinkController extends Controller
         return view('admin.social_media_links.edit', compact('socialMediaLink'));
     }
 
-    public function update(Request $request, SocialMediaLink $socialMediaLink)
+    public function update(UpdateSocialMediaLinkRequest $request, SocialMediaLink $socialMediaLink)
     {
-        $request->validate([
-            'name' => 'required|string|max:255',
-            'url' => 'required|url',
-            'icon' => 'required|string|max:255',
-        ]);
-
-        $socialMediaLink->update($request->all());
-
+        $socialMediaLink->update($request->validated());
         return redirect()->route('admin.social-media-links.index')->with('success', 'Social Media Link updated successfully.');
     }
 
     public function destroy(SocialMediaLink $socialMediaLink)
     {
         $socialMediaLink->delete();
-
         return redirect()->route('admin.social-media-links.index')->with('success', 'Social Media Link deleted successfully.');
     }
 }

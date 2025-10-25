@@ -3,8 +3,9 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
+use App\Http\Requests\StoreProjectCategoryRequest;
+use App\Http\Requests\UpdateProjectCategoryRequest;
 use App\Models\ProjectCategory;
-use Illuminate\Http\Request;
 
 class ProjectCategoryController extends Controller
 {
@@ -19,15 +20,9 @@ class ProjectCategoryController extends Controller
         return view('admin.project-categories.create');
     }
 
-    public function store(Request $request)
+    public function store(StoreProjectCategoryRequest $request)
     {
-        $request->validate([
-            'name' => 'required|string|max:255',
-            'slug' => 'required|string|max:255|unique:project_categories',
-        ]);
-
-        ProjectCategory::create($request->all());
-
+        ProjectCategory::create($request->validated());
         return redirect()->route('admin.project-categories.index')->with('success', 'Project category created successfully.');
     }
 
@@ -36,22 +31,15 @@ class ProjectCategoryController extends Controller
         return view('admin.project-categories.edit', compact('projectCategory'));
     }
 
-    public function update(Request $request, ProjectCategory $projectCategory)
+    public function update(UpdateProjectCategoryRequest $request, ProjectCategory $projectCategory)
     {
-        $request->validate([
-            'name' => 'required|string|max:255',
-            'slug' => 'required|string|max:255|unique:project_categories,slug,' . $projectCategory->id,
-        ]);
-
-        $projectCategory->update($request->all());
-
+        $projectCategory->update($request->validated());
         return redirect()->route('admin.project-categories.index')->with('success', 'Project category updated successfully.');
     }
 
     public function destroy(ProjectCategory $projectCategory)
     {
         $projectCategory->delete();
-
         return redirect()->route('admin.project-categories.index')->with('success', 'Project category deleted successfully.');
     }
 }

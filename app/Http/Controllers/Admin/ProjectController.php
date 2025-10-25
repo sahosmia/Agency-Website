@@ -3,9 +3,10 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
+use App\Http\Requests\StoreProjectRequest;
+use App\Http\Requests\UpdateProjectRequest;
 use App\Models\Project;
 use App\Models\ProjectCategory;
-use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
 
 class ProjectController extends Controller
@@ -22,24 +23,14 @@ class ProjectController extends Controller
         return view('admin.projects.create', compact('categories'));
     }
 
-    public function store(Request $request)
+    public function store(StoreProjectRequest $request)
     {
-        $request->validate([
-            'title' => 'required|string|max:255',
-            'slug' => 'required|string|max:255|unique:projects',
-            'project_category_id' => 'required|exists:project_categories,id',
-            'thumbnail' => 'nullable|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
-        ]);
-
-        $data = $request->except('thumbnail');
-
+        $data = $request->validated();
         if ($request->hasFile('thumbnail')) {
             $path = $request->file('thumbnail')->store('projects', 'public');
             $data['thumbnail'] = $path;
         }
-
         Project::create($data);
-
         return redirect()->route('admin.projects.index')->with('success', 'Project created successfully.');
     }
 
@@ -49,17 +40,9 @@ class ProjectController extends Controller
         return view('admin.projects.edit', compact('project', 'categories'));
     }
 
-    public function update(Request $request, Project $project)
+    public function update(UpdateProjectRequest $request, Project $project)
     {
-        $request->validate([
-            'title' => 'required|string|max:255',
-            'slug' => 'required|string|max:255|unique:projects,slug,' . $project->id,
-            'project_category_id' => 'required|exists:project_categories,id',
-            'thumbnail' => 'nullable|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
-        ]);
-
-        $data = $request->except('thumbnail');
-
+        $data = $request->validated();
         if ($request->hasFile('thumbnail')) {
             if ($project->thumbnail) {
                 Storage::disk('public')->delete($project->thumbnail);
@@ -67,9 +50,7 @@ class ProjectController extends Controller
             $path = $request->file('thumbnail')->store('projects', 'public');
             $data['thumbnail'] = $path;
         }
-
         $project->update($data);
-
         return redirect()->route('admin.projects.index')->with('success', 'Project updated successfully.');
     }
 
@@ -79,7 +60,6 @@ class ProjectController extends Controller
             Storage::disk('public')->delete($project->thumbnail);
         }
         $project->delete();
-
         return redirect()->route('admin.projects.index')->with('success', 'Project deleted successfully.');
     }
 }

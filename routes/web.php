@@ -20,6 +20,7 @@ use App\Http\Controllers\Admin\ServiceCategoryController;
 use App\Http\Controllers\Admin\SoftwareController;
 use App\Http\Controllers\Admin\SoftwareCategoryController;
 use App\Http\Controllers\Admin\VacancyCategoryController;
+use App\Http\Controllers\Admin\VacancyController;
 
 Route::get('/', function () {
     return view('welcome');
@@ -91,6 +92,7 @@ Route::name('admin.')->prefix('admin')->middleware(['auth'])->group(function () 
     Route::resource('/dashboard/projects', ProjectController::class);
     Route::resource('/dashboard/softwares', SoftwareController::class);
     Route::resource('/dashboard/articles', ArticleController::class);
+    Route::resource('/dashboard/vacancies', VacancyController::class);
     Route::resource('trusted-companies', \App\Http\Controllers\Admin\TrustedCompanyController::class);
     Route::resource('clients', \App\Http\Controllers\Admin\ClientController::class);
     Route::resource('faqs', \App\Http\Controllers\Admin\FaqController::class);
