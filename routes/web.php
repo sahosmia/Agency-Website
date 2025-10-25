@@ -39,6 +39,10 @@ Route::middleware('auth')->group(function () {
 // Frontend Routes =====================================================================
 Route::controller(FrontendController::class)->group(
     function () {
+        Route::get('/', 'home')->name('home');
+        Route::get('/about', 'about')->name('about');
+        Route::get('/contact', 'contact')->name('contact');
+        Route::post('/contact', 'contact_submit')->name('contact.submit');
         Route::get('/services', 'services')->name('services');
         Route::get('/software', 'software')->name('software');
         Route::get('/projects', 'projects')->name('projects');
@@ -62,24 +66,15 @@ Route::controller(FrontendController::class)->group(
     }
 );
 
-Route::name('front.')->group(function () {
-    Route::controller(FrontendController::class)->group(
-        function () {
-            Route::get('/', 'home')->name('home');
-            Route::get('/about', 'about')->name('about');
-            Route::get('/contact', 'contact')->name('contact');
-            Route::post('/contact', 'contact_submit')->name('contact.submit');
-        }
-    );
-    Route::resource('projects', ProjectFrontController::class)->only(['index', 'show'])->scoped(['project' => 'slug']);
-    Route::resource('services', ServiceFrontController::class)->only(['index', 'show'])->scoped(['service' => 'slug']);
-    Route::resource('softwares', SoftwareFrontController::class)->only(['index', 'show'])->scoped(['software' => 'slug']);
-    Route::resource('articles', ArticleFrontController::class)->only(['index', 'show'])->scoped(['article' => 'slug']);
+Route::resource('projects', ProjectFrontController::class)->only(['index', 'show'])->scoped(['project' => 'slug']);
+Route::resource('services', ServiceFrontController::class)->only(['index', 'show'])->scoped(['service' => 'slug']);
+Route::resource('softwares', SoftwareFrontController::class)->only(['index', 'show'])->scoped(['software' => 'slug']);
+Route::resource('articles', ArticleFrontController::class)->only(['index', 'show'])->scoped(['article' => 'slug']);
 
-    Route::resource('careers', CareerFrontController::class)->only(['index', 'show'])->scoped(['career' => 'slug']);
-    Route::get('/careers/apply/{slug}', [CareerFrontController::class, 'apply'])->name('careers.apply');
-    Route::post('/careers/apply/{slug}', [CareerFrontController::class, 'apply_submit'])->name('careers.apply.submit');
-});
+Route::resource('careers', CareerFrontController::class)->only(['index', 'show'])->scoped(['career' => 'slug']);
+Route::get('/careers/apply/{slug}', [CareerFrontController::class, 'apply'])->name('careers.apply');
+Route::post('/careers/apply/{slug}', [CareerFrontController::class, 'apply_submit'])->name('careers.apply.submit');
+
 
 Route::name('admin.')->prefix('admin')->middleware(['auth'])->group(function () {
     Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard.index');

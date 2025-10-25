@@ -125,7 +125,7 @@
                             <p class="body-text-regular-medium text-secondary-600 pt-1"> {{ $item->short_text }} </p>
                         </div>
 
-                        <a href="{{ route('front.articles.show', $item->slug) }}" class="inline-block px-3 py-2 rounded-sm border border-secondary-800 label-text-bold-small text-secondary-800 mt-4"> Read more </a>
+                        <a href="{{ route('articles.show', $item->slug) }}" class="inline-block px-3 py-2 rounded-sm border border-secondary-800 label-text-bold-small text-secondary-800 mt-4"> Read more </a>
                     </div>
                 @endforeach
             </div>

@@ -37,7 +37,7 @@
                 </div>
                 <div class="w-full md:w-1/2 px-4">
                     <div class="bg-white rounded-lg shadow-md p-8">
-                        <form action="{{ route('front.contact') }}" method="POST">
+                        <form action="{{ route('contact') }}" method="POST">
                             @csrf
                             <div class="mb-4">
                                 <label for="name" class="block text-gray-700 font-bold mb-2">Name</label>

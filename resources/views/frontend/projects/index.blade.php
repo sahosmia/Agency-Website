@@ -7,7 +7,7 @@
             Explore our least <span class="text-primary-600">Projects</span>
         </h1>
         <!-- Search Form -->
-        <form action="{{ route('front.projects.index') }}" method="GET" class="mt-8 md:mt-14">
+        <form action="{{ route('projects.index') }}" method="GET" class="mt-8 md:mt-14">
             <div class="flex flex-col md:flex-row justify-center items-center gap-4 md:gap-6">
                 <!-- Search Input -->
                 <div class="flex w-full md:w-[496px] items-center p-3 md:p-4 border border-secondary-400 rounded-lg">

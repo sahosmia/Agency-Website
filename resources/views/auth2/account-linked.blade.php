@@ -22,7 +22,7 @@
 
                 <div class="flex  gap-2">
 
-                    <a href="{{ route('front.home') }}" class="btn-outline-full">Back home</a>
+                    <a href="{{ route('home') }}" class="btn-outline-full">Back home</a>
 
                     <a href="{{ route('admin.dashboard.index') }}" class="btn-primary-full  ">Go to dashboard</a>
                 </div>
