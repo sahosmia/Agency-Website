@@ -48,17 +48,7 @@ class FrontendController extends Controller
         return redirect()->route('front.contact')->with('success', 'Your message has been sent successfully!');
     }
 
-    // terms-and-condition
-    public function terms_conditions()
-    {
-        return view('frontend.terms-conditions');
-    }
 
-    // terms-and-condition
-    public function privacy_policy()
-    {
-        return view('frontend.privacy-policy');
-    }
 
     // articles ==================================================================================
 
@@ -108,6 +98,19 @@ class FrontendController extends Controller
         return view('frontend.job.congratulation-page');
     }
 
+
+        // terms-and-condition
+    public function terms_conditions()
+    {
+        return view('frontend.terms-conditions');
+    }
+
+    // terms-and-condition
+    public function privacy_policy()
+    {
+        return view('frontend.privacy-policy');
+    }
+
     // Thank you page ==============================
     public function thankYouPage()
     {
@@ -119,18 +122,12 @@ class FrontendController extends Controller
     {
         return view('frontend.maintenance-page');
     }
-    // // Login page ==============================
-    // public function logIn() {
-    //     return view('auth.login.log-in');
-    // }
+
     // // Forget password page ==============================
     // public function forgetPassword() {
     //     return view('auth.forget-password');
     // }
-    // // Otp Verification  page ==============================
-    // public function otpVerification() {
-    //     return view('auth.otp-verification');
-    // }
+
     // // Create new password page ==============================
     // public function createNewPassword() {
     //     return view('auth.create-new-password');
