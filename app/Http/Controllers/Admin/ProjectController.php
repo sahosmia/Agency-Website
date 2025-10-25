@@ -7,10 +7,12 @@ use App\Http\Requests\StoreProjectRequest;
 use App\Http\Requests\UpdateProjectRequest;
 use App\Models\Project;
 use App\Models\ProjectCategory;
-use Illuminate\Support\Facades\Storage;
+use App\Http\Controllers\Traits\FileUploadTrait;
 
 class ProjectController extends Controller
 {
+    use FileUploadTrait;
+
     public function index()
     {
         $projects = Project::with('category')->get();
@@ -26,10 +28,7 @@ class ProjectController extends Controller
     public function store(StoreProjectRequest $request)
     {
         $data = $request->validated();
-        if ($request->hasFile('thumbnail')) {
-            $path = $request->file('thumbnail')->store('projects', 'public');
-            $data['thumbnail'] = $path;
-        }
+        $data['thumbnail'] = $this->uploadFile($request, 'thumbnail', 'projects');
         Project::create($data);
         return redirect()->route('admin.projects.index')->with('success', 'Project created successfully.');
     }
@@ -43,22 +42,14 @@ class ProjectController extends Controller
     public function update(UpdateProjectRequest $request, Project $project)
     {
         $data = $request->validated();
-        if ($request->hasFile('thumbnail')) {
-            if ($project->thumbnail) {
-                Storage::disk('public')->delete($project->thumbnail);
-            }
-            $path = $request->file('thumbnail')->store('projects', 'public');
-            $data['thumbnail'] = $path;
-        }
+        $data['thumbnail'] = $this->updateFile($request, 'thumbnail', 'projects', $project);
         $project->update($data);
         return redirect()->route('admin.projects.index')->with('success', 'Project updated successfully.');
     }
 
     public function destroy(Project $project)
     {
-        if ($project->thumbnail) {
-            Storage::disk('public')->delete($project->thumbnail);
-        }
+        $this->deleteFile($project, 'thumbnail');
         $project->delete();
         return redirect()->route('admin.projects.index')->with('success', 'Project deleted successfully.');
     }
