@@ -3,6 +3,7 @@
 namespace Database\Seeders;
 
 use App\Models\Service;
+use App\Models\ServiceCategory;
 use Illuminate\Database\Seeder;
 
 class ServiceSeeder extends Seeder
@@ -12,35 +13,39 @@ class ServiceSeeder extends Seeder
      */
     public function run(): void
     {
+        $categories = ServiceCategory::pluck('id');
+        if ($categories->isEmpty()) {
+            $this->call(ServiceCategorySeeder::class);
+            $categories = ServiceCategory::pluck('id');
+        }
+
         $datas = [
             [
                 'name' => 'Custom Website Design',
                 'slug' => 'custom-website-design',
-                'service_category_id' => 1,
                 'image' => 'service/service-1.jpg',
             ],
             [
                 'name' => 'Custom Website Development',
                 'slug' => 'custom-website-development',
-                'service_category_id' => 1,
                 'image' => 'service/service-2.jpg',
             ],
             [
                 'name' => 'Landing Page Design',
                 'slug' => 'landing-page-design',
-                'service_category_id' => 1,
                 'image' => 'service/service-3.jpg',
             ],
             [
                 'name' => 'Website Maintenance and Support',
                 'slug' => 'website-maintenance-and-support',
-                'service_category_id' => 1,
                 'image' => 'service/service-4.jpg',
             ],
         ];
 
         foreach ($datas as $data) {
-            Service::create($data);
+            Service::create(array_merge($data, [
+                'service_category_id' => $categories->random(),
+            ]));
         }
     }
 }
