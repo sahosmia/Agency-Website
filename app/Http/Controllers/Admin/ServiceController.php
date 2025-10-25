@@ -37,6 +37,7 @@ class ServiceController extends Controller
     public function edit(Service $service)
     {
         $categories = ServiceCategory::all();
+        $service->load('serviceTypes.pricePlans');
         return view('admin.services.edit', compact('service', 'categories'));
     }
 
