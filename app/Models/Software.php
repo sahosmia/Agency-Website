@@ -27,4 +27,14 @@ class Software extends Model
     {
         return $this->morphMany(PricePlan::class, 'planable');
     }
+
+    public function technologies()
+    {
+        return $this->morphToMany(Technology::class, 'technologable');
+    }
+
+    public function keyFeatures()
+    {
+        return $this->morphToMany(KeyFeature::class, 'key_featureable');
+    }
 }

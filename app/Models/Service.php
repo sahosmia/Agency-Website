@@ -25,4 +25,14 @@ class Service extends Model
     {
         return $this->hasMany(ServiceType::class);
     }
+
+    public function technologies()
+    {
+        return $this->morphToMany(Technology::class, 'technologable');
+    }
+
+    public function keyFeatures()
+    {
+        return $this->morphToMany(KeyFeature::class, 'key_featureable');
+    }
 }
