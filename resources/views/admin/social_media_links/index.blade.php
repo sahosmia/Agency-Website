@@ -28,7 +28,9 @@
                 <tr>
                     <td class="border px-4 py-2">{{ $socialMediaLink->name }}</td>
                     <td class="border px-4 py-2">{{ $socialMediaLink->url }}</td>
-                    <td class="border px-4 py-2">{{ $socialMediaLink->icon }}</td>
+                    <td class="border px-4 py-2">
+                        <img src="{{ asset('storage/' . $socialMediaLink->icon) }}" alt="{{ $socialMediaLink->name }}" class="h-16">
+                    </td>
                     <td class="border px-4 py-2">
                         <a href="{{ route('admin.social-media-links.edit', $socialMediaLink) }}" class="text-blue-500 hover:underline">Edit</a>
                         <form action="{{ route('admin.social-media-links.destroy', $socialMediaLink) }}" method="POST" class="inline-block ml-2">

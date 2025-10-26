@@ -26,7 +26,7 @@
             <label for="article_category_id" class="block text-gray-700">Category</label>
             <select name="article_category_id" id="article_category_id" class="w-full px-3 py-2 border rounded-md" required>
                 @foreach ($categories as $category)
-                    <option value="{{ $category->id }}" @selected($article->article_category->id == $category->id)>{{ $category->name }}</option>
+                    <option value="{{ $category->id }}" @selected($article->article_category->id == $category->id)>{{ $category->title }}</option>
                 @endforeach
             </select>
             @error('article_category_id')

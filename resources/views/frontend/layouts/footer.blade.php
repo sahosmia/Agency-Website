@@ -51,7 +51,7 @@
                         <ul class="flex flex-col gap-2 md:gap-3 pt-4">
                             @forelse ($services as $service)
                                 <li class="label-text-regular-small text-secondary-900"><a
-                                        href="{{ route('services.show', $service->slug) }}">{{ $service->title }}</a>
+                                        href="{{ route('services.show', $service->slug) }}">{{ $service->name }}</a>
                                 </li>
                             @empty
                                 <li class="label-text-regular-small text-secondary-900">No Service Found</li>
@@ -63,7 +63,7 @@
                         <ul class="flex flex-col gap-2 md:gap-3 pt-4">
                             @forelse ($softwares as $software)
                                 <li class="label-text-regular-small text-secondary-900"><a
-                                        href="{{ route('softwares.show', $software->slug) }}">{{ $software->title }}</a>
+                                        href="{{ route('softwares.show', $software->slug) }}">{{ $software->name }}</a>
                                 </li>
                             @empty
                                 <li class="label-text-regular-small text-secondary-900">No Software Found</li>

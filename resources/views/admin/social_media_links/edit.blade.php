@@ -17,7 +17,7 @@
         </div>
     @endif
 
-    <form action="{{ route('admin.social-media-links.update', $socialMediaLink) }}" method="POST">
+    <form action="{{ route('admin.social-media-links.update', $socialMediaLink) }}" method="POST" enctype="multipart/form-data">
         @csrf
         @method('PUT')
         <div class="mb-4">
@@ -30,7 +30,12 @@
         </div>
         <div class="mb-4">
             <label for="icon" class="block text-gray-700">Icon</label>
-            <input type="text" name="icon" id="icon" class="w-full border-gray-300 rounded-md shadow-sm" value="{{ old('icon', $socialMediaLink->icon) }}" required>
+            <input type="file" name="icon" id="icon" class="w-full border-gray-300 rounded-md shadow-sm">
+            @if ($socialMediaLink->icon)
+                <div class="mt-2">
+                    <img src="{{ asset('storage/' . $socialMediaLink->icon) }}" alt="{{ $socialMediaLink->name }}" class="h-16">
+                </div>
+            @endif
         </div>
         <button type="submit" class="px-4 py-2 bg-blue-500 text-white rounded-md">Update</button>
     </form>

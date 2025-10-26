@@ -24,7 +24,7 @@ class UpdateSocialMediaLinkRequest extends FormRequest
         return [
             'name' => 'required|string|max:255',
             'url' => 'required|url',
-            'icon' => 'required|string|max:255',
+            'icon' => 'nullable|mimes:jpeg,png,jpg,gif,svg|max:2048',
         ];
     }
 }

@@ -3,6 +3,8 @@
 
 @section('content')
 
+{{$article}}
+
     <div class="container ">
 
         <h2 class="w-full lg:w-8/12 heading-text-regular-large  text-secondary-950 mt-20">{{ $article->title }}</h2>
