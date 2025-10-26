@@ -15,15 +15,15 @@ class PricePlan extends Model
         'name',
         'price',
         'type',
-        'features',
-    ];
-
-    protected $casts = [
-        'features' => 'array',
     ];
 
     public function planable()
     {
         return $this->morphTo();
+    }
+
+    public function features()
+    {
+        return $this->belongsToMany(Feature::class)->withPivot('is_active');
     }
 }
