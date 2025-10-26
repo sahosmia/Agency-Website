@@ -26,7 +26,7 @@ class SocialMediaLinkController extends Controller
     {
         $data = $request->validated();
         if ($request->hasFile('icon')) {
-            $data['icon'] = $this->uploadFile($request->file('icon'), 'social_media_links');
+            $data['icon'] = $this->uploadFile($request, 'icon', 'social_media_links');
         }
         SocialMediaLink::create($data);
         return redirect()->route('admin.social-media-links.index')->with('success', 'Social Media Link created successfully.');
@@ -42,9 +42,9 @@ class SocialMediaLinkController extends Controller
         $data = $request->validated();
         if ($request->hasFile('icon')) {
             if ($socialMediaLink->icon) {
-                $this->deleteFile($socialMediaLink->icon);
+                $this->deleteFile($socialMediaLink, 'icon');
             }
-            $data['icon'] = $this->uploadFile($request->file('icon'), 'social_media_links');
+            $data['icon'] = $this->uploadFile($request, 'icon', 'social_media_links');
         }
         $socialMediaLink->update($data);
         return redirect()->route('admin.social-media-links.index')->with('success', 'Social Media Link updated successfully.');

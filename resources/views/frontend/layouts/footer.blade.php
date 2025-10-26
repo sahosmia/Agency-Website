@@ -15,7 +15,7 @@
                             @forelse ($socialMediaLinks as $link)
                                 <a class="flex justify-center items-center gap-2 rounded-sm border border-secondary-800 h-9 group"
                                     href="{{ $link->url }}">
-                                    <img src="{{ asset($link->icon) }}" alt="{{ $link->name }}">
+                                    <img src="{{ asset('storage/' . $link->icon) }}" alt="{{ $link->name }}">
                                     <span
                                         class="text-secondary-800 label-text-bold-small group-hover:text-secondary-950">{{ $link->name }}</span>
                                 </a>
