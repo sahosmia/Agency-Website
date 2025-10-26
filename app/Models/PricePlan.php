@@ -15,6 +15,11 @@ class PricePlan extends Model
         'name',
         'price',
         'type',
+        'features',
+    ];
+
+    protected $casts = [
+        'features' => 'array',
     ];
 
     public function planable()

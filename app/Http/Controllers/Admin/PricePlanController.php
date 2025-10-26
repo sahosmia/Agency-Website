@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use App\Models\PricePlan;
 use App\Models\ServiceType;
+use App\Models\Software;
 use App\Models\Feature;
 use Illuminate\Http\Request;
 
@@ -19,8 +20,9 @@ class PricePlanController extends Controller
     public function create()
     {
         $serviceTypes = ServiceType::all();
+        $softwares = Software::all();
         $features = Feature::all();
-        return view('admin.price-plans.create', compact('serviceTypes', 'features'));
+        return view('admin.price-plans.create', compact('serviceTypes', 'softwares', 'features'));
     }
 
     public function store(Request $request)
@@ -57,8 +59,9 @@ class PricePlanController extends Controller
     public function edit(PricePlan $pricePlan)
     {
         $serviceTypes = ServiceType::all();
+        $softwares = Software::all();
         $features = Feature::all();
-        return view('admin.price-plans.edit', compact('pricePlan', 'serviceTypes', 'features'));
+        return view('admin.price-plans.edit', compact('pricePlan', 'serviceTypes', 'softwares', 'features'));
     }
 
     public function update(Request $request, PricePlan $pricePlan)
