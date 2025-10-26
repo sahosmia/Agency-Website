@@ -57,6 +57,7 @@ Route::controller(PageController::class)->group(function () {
     Route::get('/single-software-page', 'single_software_page')->name('single-software-page');
     Route::get('/single-software-plan-page', 'single_software_plan_page')->name('single-software-plan-page');
     Route::get('/service-plans', 'service_plans')->name('service-plans');
+    Route::get('/software-plans', 'software_plans')->name('software-plans');
 
     Route::get('/all-softwares', 'all_softwares')->name('all-softwares');
 

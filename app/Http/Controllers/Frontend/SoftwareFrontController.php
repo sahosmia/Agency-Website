@@ -27,8 +27,8 @@ class SoftwareFrontController extends Controller
 
     public function show(Software $software)
     {
-        $software->load('software_category:id,title', 'keyFeatures', 'technologies', 'pricePlans');
-        $softwares = Software::with('software_category:id,title')->limit(5)->get();
+        $software->load('category', 'keyFeatures', 'technologies', 'pricePlans.features');
+        $softwares = Software::with('category')->limit(5)->get();
         $groupedPricePlans = $software->pricePlans->groupBy('type');
 
         return view('frontend.softwares.show', ['softwares' => $softwares, 'software' => $software, 'groupedPricePlans' => $groupedPricePlans]);
