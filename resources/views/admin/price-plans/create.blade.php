@@ -33,11 +33,23 @@
             @enderror
         </div>
         <div class="mb-4">
-            <label for="features" class="block text-gray-700">Features (comma-separated)</label>
-            <input type="text" name="features" id="features" class="w-full px-3 py-2 border rounded-md" value="{{ old('features') }}" required>
-            @error('features')
-                <p class="text-red-500 text-xs mt-1">{{ $message }}</p>
-            @enderror
+            <label class="block text-gray-700">Features</label>
+            @foreach ($features as $feature)
+                <div class="flex items-center">
+                    <input type="checkbox" name="features[{{ $feature->id }}][id]" value="{{ $feature->id }}" class="mr-2">
+                    <label>{{ $feature->name }}</label>
+                    <div class="ml-4">
+                        <label class="mr-2">
+                            <input type="radio" name="features[{{ $feature->id }}][is_active]" value="1" class="mr-1">
+                            Active
+                        </label>
+                        <label>
+                            <input type="radio" name="features[{{ $feature->id }}][is_active]" value="0" class="mr-1" checked>
+                            Inactive
+                        </label>
+                    </div>
+                </div>
+            @endforeach
         </div>
         <div class="mb-4">
             <label for="planable_type" class="block text-gray-700">Planable Type</label>
