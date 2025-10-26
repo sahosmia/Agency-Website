@@ -21,6 +21,7 @@ class DatabaseSeeder extends Seeder
             ClientSeeder::class,
             DesignationSeeder::class,
             FaqSeeder::class,
+            FeatureSeeder::class,
             PricePlanSeeder::class,
             ProjectCategorySeeder::class,
             ProjectSeeder::class,
