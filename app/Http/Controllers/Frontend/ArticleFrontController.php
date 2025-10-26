@@ -28,7 +28,7 @@ class ArticleFrontController extends Controller
     // Show
     public function show(Article $article)
     {
-        $article->load('article_category:id,title');
+        $article->load('article_category:id,title', 'tags');
         $articles = Article::with('article_category:id,title')->limit(5)->get();
 
         return view('frontend.articles.show', ['articles' => $articles, 'article' => $article]);

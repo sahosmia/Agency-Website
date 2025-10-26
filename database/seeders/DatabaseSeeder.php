@@ -32,6 +32,7 @@ class DatabaseSeeder extends Seeder
             TechnologySeeder::class,
             KeyFeatureSeeder::class,
             // SoftwareSeeder::class,
+            TagSeeder::class,
             TeamSeeder::class,
             TrustedCompanySeeder::class,
             UserSeeder::class,
