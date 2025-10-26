@@ -23,6 +23,8 @@ use App\Http\Controllers\Admin\SoftwareController;
 use App\Http\Controllers\Admin\SoftwareCategoryController;
 use App\Http\Controllers\Admin\VacancyCategoryController;
 use App\Http\Controllers\Admin\VacancyController;
+use App\Http\Controllers\Admin\TechnologyController;
+use App\Http\Controllers\Admin\KeyFeatureController;
 
 Route::get('/', function () {
     return view('welcome');
@@ -89,6 +91,8 @@ Route::name('admin.')->prefix('admin')->middleware(['auth'])->group(function () 
     Route::resource('softwares', SoftwareController::class);
     Route::resource('articles', ArticleController::class);
     Route::resource('vacancies', VacancyController::class);
+    Route::resource('technologies', TechnologyController::class);
+    Route::resource('key-features', KeyFeatureController::class);
     Route::resource('trusted-companies', \App\Http\Controllers\Admin\TrustedCompanyController::class);
     Route::resource('clients', \App\Http\Controllers\Admin\ClientController::class);
     Route::resource('faqs', \App\Http\Controllers\Admin\FaqController::class);

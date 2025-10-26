@@ -28,6 +28,8 @@ class DatabaseSeeder extends Seeder
             ServiceSeeder::class,
             ServiceTypeSeeder::class,
             SoftwareCategorySeeder::class,
+            TechnologySeeder::class,
+            KeyFeatureSeeder::class,
             SoftwareSeeder::class,
             TeamSeeder::class,
             TrustedCompanySeeder::class,

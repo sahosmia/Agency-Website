@@ -27,7 +27,7 @@ class ServiceFrontController extends Controller
 
     public function show(Service $service)
     {
-        $service->load('service_category:id,title');
+        $service->load('service_category:id,title', 'keyFeatures', 'technologies', 'serviceTypes.pricePlans');
         $services = Service::with('service_category:id,title')->limit(5)->get();
 
         return view('frontend.services.show', ['services' => $services, 'service' => $service]);
