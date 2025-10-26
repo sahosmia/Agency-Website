@@ -89,6 +89,7 @@ Route::name('admin.')->prefix('admin')->middleware(['auth'])->group(function () 
     Route::resource('service-categories', ServiceCategoryController::class);
     Route::resource('software-categories', SoftwareCategoryController::class);
     Route::resource('article-categories', ArticleCategoryController::class);
+    Route::resource('tags', \App\Http\Controllers\Admin\TagController::class);
     Route::resource('vacancy-categories', VacancyCategoryController::class);
     Route::resource('projects', ProjectController::class);
     Route::resource('softwares', SoftwareController::class);
