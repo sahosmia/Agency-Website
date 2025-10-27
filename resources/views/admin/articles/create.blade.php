@@ -1,6 +1,14 @@
 @extends('admin.layouts.app')
 
-@section('title', 'Create Article')
+@section('title', 'Create Articles')
+@section('header-title', 'Create Articles')
+
+@section('breadcrumbs')
+    <span class="text-gray-500">/</span>
+    <a href="{{ route('admin.articles.index') }}" class="hover:underline">Articles</a>
+    <span class="text-gray-500">/</span>
+    <a href="#" class="hover:underline">Create</a>
+@endsection
 
 @section('content')
     <h1 class="text-2xl font-bold mb-4">Create Article</h1>

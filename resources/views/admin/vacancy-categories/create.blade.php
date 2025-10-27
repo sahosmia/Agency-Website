@@ -1,6 +1,11 @@
 @extends('admin.layouts.app')
 
-@section('title', 'Create Vacancy Category')
+@section('title', 'Create Vacancy Categories')
+@section('header-title', 'Create Vacancy Categories')
+
+
+
+
 
 @section('content')
     <h1 class="text-2xl font-bold mb-4">Create Vacancy Category</h1>

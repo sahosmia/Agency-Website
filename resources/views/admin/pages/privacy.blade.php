@@ -1,5 +1,12 @@
 @extends('admin.layouts.app')
 
+@section('title', 'Privacy')
+@section('header-title', 'Privacy')
+
+
+
+
+
 @section('content')
     <div class="container-fluid">
         <div class="row">

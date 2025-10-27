@@ -1,6 +1,11 @@
 @extends('admin.layouts.app')
 
-@section('title', 'Edit Project')
+@section('title', 'Edit Projects')
+@section('header-title', 'Edit Projects')
+
+
+
+
 
 @section('content')
     <h1 class="text-2xl font-bold mb-4">Edit Project</h1>
