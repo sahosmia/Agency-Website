@@ -5,7 +5,7 @@
 
     <div class="container ">
 
-        <h2 class="w-full lg:w-8/12 heading-text-regular-large  text-secondary-950 mt-20">{{ $vacancy->title }}</h2>
+        <h1 class="w-full lg:w-8/12 heading-text-regular-large  text-secondary-950 mt-20">{{ $vacancy->title }}</h1>
 
 
         <div class="flex flex-col mx-auto items-center justify-center mt-20">
@@ -19,15 +19,15 @@
         {{-- card section  --}}
         <div class="my-20">
             <div class="card">
-                <h1 class="heading-text-regular-medium  text-secondary-950 tracking-[0.88px]">Understanding
-                    the Importance of Email Marketing</h1>
+                <h2 class="heading-text-regular-medium  text-secondary-950 tracking-[0.88px]">Understanding
+                    the Importance of Email Marketing</h2>
                 <hr class="h-px bg-secondary-400 border-none">
                 <div class="flex flex-col justify-center gap-4 text-secondary-800">
                     <p class="label-text-regular-large ">Email marketing is a cost-effective and direct
                         way to communicate with potential and existing customers. Unlike social media, where algorithms
                         control visibility, email allows businesses to directly reach their audience’s inbox.</p>
 
-                    <h5 class="sub-title-medium-bold ">Key Benefits of Email Marketing:</h5>
+                    <h3 class="sub-title-medium-bold ">Key Benefits of Email Marketing:</h3>
                     <ul class="list-disc ml-6 sub-title-medium-regular">
                         <li>High ROI – Email campaigns generate an average return of $42 for every $1 spent (Source: DMA).</li>
                         <li>Personalized Engagement – Tailored messages improve customer relationships.</li>
