@@ -26,4 +26,9 @@ class PricePlan extends Model
     {
         return $this->morphTo();
     }
+
+    public function features()
+    {
+        return $this->belongsToMany(Feature::class)->withPivot('is_active');
+    }
 }

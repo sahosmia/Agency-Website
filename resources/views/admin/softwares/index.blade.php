@@ -27,7 +27,7 @@
             @foreach ($softwares as $software)
                 <tr>
                     <td class="border px-4 py-2">{{ $software->name }}</td>
-                    <td class="border px-4 py-2">{{ $software->category->name }}</td>
+                    <td class="border px-4 py-2">{{ $software->software_category->name }}</td>
                     <td class="border px-4 py-2">
                         @if ($software->image)
                             <img src="{{ asset('storage/' . $software->image) }}" alt="{{ $software->name }}" class="h-16 w-16 object-cover">

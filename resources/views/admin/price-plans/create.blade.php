@@ -33,16 +33,29 @@
             @enderror
         </div>
         <div class="mb-4">
-            <label for="features" class="block text-gray-700">Features (comma-separated)</label>
-            <input type="text" name="features" id="features" class="w-full px-3 py-2 border rounded-md" value="{{ old('features') }}" required>
-            @error('features')
-                <p class="text-red-500 text-xs mt-1">{{ $message }}</p>
-            @enderror
+            <label class="block text-gray-700">Features</label>
+            @foreach ($features as $feature)
+                <div class="flex items-center">
+                    <input type="checkbox" name="features[{{ $feature->id }}][id]" value="{{ $feature->id }}" class="mr-2">
+                    <label>{{ $feature->name }}</label>
+                    <div class="ml-4">
+                        <label class="mr-2">
+                            <input type="radio" name="features[{{ $feature->id }}][is_active]" value="1" class="mr-1">
+                            Active
+                        </label>
+                        <label>
+                            <input type="radio" name="features[{{ $feature->id }}][is_active]" value="0" class="mr-1" checked>
+                            Inactive
+                        </label>
+                    </div>
+                </div>
+            @endforeach
         </div>
         <div class="mb-4">
             <label for="planable_type" class="block text-gray-700">Planable Type</label>
             <select name="planable_type" id="planable_type" class="w-full px-3 py-2 border rounded-md" required>
                 <option value="App\Models\ServiceType">Service Type</option>
+                <option value="App\Models\Software">Software</option>
             </select>
             @error('planable_type')
                 <p class="text-red-500 text-xs mt-1">{{ $message }}</p>
@@ -51,9 +64,7 @@
         <div class="mb-4">
             <label for="planable_id" class="block text-gray-700">Planable</label>
             <select name="planable_id" id="planable_id" class="w-full px-3 py-2 border rounded-md" required>
-                @foreach ($serviceTypes as $serviceType)
-                    <option value="{{ $serviceType->id }}">{{ $serviceType->name }}</option>
-                @endforeach
+                <!-- Options will be populated by script -->
             </select>
             @error('planable_id')
                 <p class="text-red-500 text-xs mt-1">{{ $message }}</p>
@@ -66,6 +77,11 @@
         document.addEventListener('DOMContentLoaded', function() {
             const typeElement = document.getElementById('type');
             const priceContainer = document.getElementById('price-container');
+            const planableTypeElement = document.getElementById('planable_type');
+            const planableIdElement = document.getElementById('planable_id');
+
+            const serviceTypes = @json($serviceTypes);
+            const softwares = @json($softwares);
 
             function togglePriceContainer() {
                 if (typeElement.value === 'fixed') {
@@ -75,9 +91,30 @@
                 }
             }
 
+            function updatePlanableOptions() {
+                planableIdElement.innerHTML = '';
+                if (planableTypeElement.value === 'App\\Models\\ServiceType') {
+                    serviceTypes.forEach(function(serviceType) {
+                        const option = document.createElement('option');
+                        option.value = serviceType.id;
+                        option.textContent = serviceType.name;
+                        planableIdElement.appendChild(option);
+                    });
+                } else if (planableTypeElement.value === 'App\\Models\\Software') {
+                    softwares.forEach(function(software) {
+                        const option = document.createElement('option');
+                        option.value = software.id;
+                        option.textContent = software.name;
+                        planableIdElement.appendChild(option);
+                    });
+                }
+            }
+
             togglePriceContainer();
+            updatePlanableOptions();
 
             typeElement.addEventListener('change', togglePriceContainer);
+            planableTypeElement.addEventListener('change', updatePlanableOptions);
         });
     </script>
 @endsection

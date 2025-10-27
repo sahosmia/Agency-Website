@@ -27,7 +27,6 @@ class PricePlanSeeder extends Seeder
                 'planable_type' => ServiceType::class,
                 'name' => 'Basic',
                 'price' => 499.00,
-                'features' => ['Up to 5 pages', 'Responsive design', 'Contact form'],
             ]);
 
             PricePlan::create([
@@ -35,7 +34,6 @@ class PricePlanSeeder extends Seeder
                 'planable_type' => ServiceType::class,
                 'name' => 'Standard',
                 'price' => 999.00,
-                'features' => ['Up to 10 pages', 'CMS integration', 'Basic SEO'],
             ]);
 
             PricePlan::create([
@@ -43,7 +41,6 @@ class PricePlanSeeder extends Seeder
                 'planable_type' => ServiceType::class,
                 'name' => 'Advanced',
                 'price' => 1999.00,
-                'features' => ['Unlimited pages', 'E-commerce functionality', 'Advanced SEO'],
             ]);
         }
 
@@ -60,7 +57,6 @@ class PricePlanSeeder extends Seeder
                 'planable_type' => Software::class,
                 'name' => 'Basic',
                 'price' => 29.00,
-                'features' => ['Up to 10 users', 'Basic features', 'Email support'],
             ]);
 
             PricePlan::create([
@@ -68,7 +64,6 @@ class PricePlanSeeder extends Seeder
                 'planable_type' => Software::class,
                 'name' => 'Standard',
                 'price' => 59.00,
-                'features' => ['Up to 50 users', 'Advanced features', 'Priority email support'],
             ]);
 
             PricePlan::create([
@@ -76,7 +71,6 @@ class PricePlanSeeder extends Seeder
                 'planable_type' => Software::class,
                 'name' => 'Advanced',
                 'price' => 99.00,
-                'features' => ['Unlimited users', 'All features', '24/7 phone support'],
             ]);
         }
     }

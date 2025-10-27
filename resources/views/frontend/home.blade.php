@@ -3,16 +3,40 @@
 
 @section('content')
 
-<div class="container">
+<div class="container"
+    x-data="{ videoOpen: false, closeVideo() { this.videoOpen = false; this.$refs.videoFrame.src = '' } }">
     <div class="text-center py-10 md:py-20">
         <h1 class="heading-text-regular-large text-secondary-950 text-2xl md:text-4xl lg:text-5xl">Your idea make in
             Realty</h1>
         <h1 class="heading-text-regular-large text-secondary-950 text-2xl md:text-4xl lg:text-5xl">We provide <span
                 class="text-primary-600">Digital Marketing</span></h1>
 
-        <div class="flex justify-center items-center mt-8 md:mt-14">
+        <div class="flex justify-center items-center mt-8 md:mt-14 gap-4">
             <button class="button-label px-5 py-2 md:px-7 md:py-3 bg-primary-600 text-white label-text-bold-large">Get
                 started <span><i class="fa-solid fa-arrow-right"></i></span></button>
+            <button @click="videoOpen = true; $refs.videoFrame.src = 'https://www.youtube.com/embed/dQw4w9WgXcQ'"
+                class="flex items-center gap-2 text-secondary-800 label-text-bold-large">
+                <i class="fa-solid fa-play-circle text-2xl"></i>
+                <span>Play this video</span>
+            </button>
+        </div>
+
+        <div class="mt-8 md:mt-14">
+            <p class="text-center text-secondary-800 body-text-regular-medium">Our business partner</p>
+            <div class="flex justify-center items-center gap-4 mt-4">
+                <img src="{{ asset('frontend/images/partner-1.png') }}" alt="">
+                <img src="{{ asset('frontend/images/partner-2.png') }}" alt="">
+                <img src="{{ asset('frontend/images/partner-3.png') }}" alt="">
+            </div>
+        </div>
+
+        <div class="mt-8 md:mt-14">
+            <p class="text-center text-secondary-800 body-text-regular-medium">Our tech partner</p>
+            <div class="flex justify-center items-center gap-4 mt-4">
+                <img src="{{ asset('frontend/images/tech-partner-1.png') }}" alt="">
+                <img src="{{ asset('frontend/images/tech-partner-2.png') }}" alt="">
+                <img src="{{ asset('frontend/images/tech-partner-3.png') }}" alt="">
+            </div>
         </div>
     </div>
 
@@ -666,6 +690,27 @@
     </div>
 </div>
 {{-- Articles end --}}
+
+{{-- Video Modal --}}
+<div x-show="videoOpen" x-cloak class="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50"
+    @click.away="closeVideo()">
+    <div class="bg-white rounded-lg p-8 max-w-2xl w-full relative">
+        <div class="flex justify-between items-center mb-4">
+            <h2 class="text-2xl font-bold">Video title</h2>
+            <button @click="closeVideo()" class="text-gray-500 hover:text-gray-700">
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24"
+                    stroke="currentColor">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
+                </svg>
+            </button>
+        </div>
+        <div class="relative" style="padding-top: 56.25%;">
+            <iframe x-ref="videoFrame" class="absolute top-0 left-0 w-full h-full" src="" frameborder="0"
+                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                allowfullscreen></iframe>
+        </div>
+    </div>
+</div>
 </div>
 
 

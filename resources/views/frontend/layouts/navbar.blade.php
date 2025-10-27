@@ -20,9 +20,14 @@
 
         {{-- Login Btn --}}
         <div class="hidden lg:flex justify-center items-center gap-4">
+            @auth
+            <a href="{{ route('dashboard') }}"
+                class="label-text-bold-medium text-white bg-primary-600 rounded-[6px] px-4 py-2">Dashboard</a>
+            @else
             <a href="{{ route('login') }}"
                 class="label-text-bold-medium text-secondary-800 border border-secondary-800 rounded-[6px] px-4 py-2">Login</a>
             <a href="#" class="label-text-bold-medium text-white bg-primary-600 rounded-[6px] px-4 py-2">Whatsapp us</a>
+            @endauth
         </div>
 
         {{-- Hamburger Menu --}}
@@ -54,11 +59,16 @@
                     href="{{ route('projects') }}">Projects</a></li>
             <li class="nav-item {{ request()->is('contact') ? 'active' : '' }}"><a href="{{ route('contact') }}">Contact
                     us</a></li>
+            @auth
+            <li><a href="{{ route('dashboard') }}"
+                    class="label-text-bold-medium text-white bg-primary-600 rounded-[6px] px-4 py-2">Dashboard</a></li>
+            @else
             <li><a href="{{ route('login') }}"
                     class="label-text-bold-medium text-secondary-800 border border-secondary-800 rounded-[6px] px-4 py-2">Login</a>
             </li>
             <li><a href="#" class="label-text-bold-medium text-white bg-primary-600 rounded-[6px] px-4 py-2">Whatsapp
                     us</a></li>
+            @endauth
         </ul>
     </div>
 </nav>

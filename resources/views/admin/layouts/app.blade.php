@@ -5,6 +5,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>@yield('title', 'Admin Panel')</title>
     @vite('resources/css/app.css')
+    <link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet" />
+    <script src="https://cdn.ckeditor.com/ckeditor5/35.1.0/classic/ckeditor.js"></script>
 </head>
 <body class="bg-gray-100">
     <div class="flex h-screen">
@@ -20,6 +22,7 @@
                     <a href="{{ route('admin.service-categories.index') }}" class="block px-4 py-2 text-gray-300 hover:bg-gray-700">Service Categories</a>
                     <a href="{{ route('admin.software-categories.index') }}" class="block px-4 py-2 text-gray-300 hover:bg-gray-700">Software Categories</a>
                     <a href="{{ route('admin.article-categories.index') }}" class="block px-4 py-2 text-gray-300 hover:bg-gray-700">Article Categories</a>
+                    <a href="{{ route('admin.tags.index') }}" class="block px-4 py-2 text-gray-300 hover:bg-gray-700">Tags</a>
                     <a href="{{ route('admin.vacancy-categories.index') }}" class="block px-4 py-2 text-gray-300 hover:bg-gray-700">Vacancy Categories</a>
                     <hr class="my-2 border-gray-600">
                     <a href="{{ route('admin.projects.index') }}" class="block px-4 py-2 text-gray-300 hover:bg-gray-700">Projects</a>
@@ -27,6 +30,9 @@
                     <a href="{{ route('admin.service-types.index') }}" class="block px-4 py-2 text-gray-300 hover:bg-gray-700">Service Types</a>
                     <a href="{{ route('admin.price-plans.index') }}" class="block px-4 py-2 text-gray-300 hover:bg-gray-700">Price Plans</a>
                     <a href="{{ route('admin.softwares.index') }}" class="block px-4 py-2 text-gray-300 hover:bg-gray-700">Softwares</a>
+                    <a href="{{ route('admin.technologies.index') }}" class="block px-4 py-2 text-gray-300 hover:bg-gray-700">Technologies</a>
+                    <a href="{{ route('admin.key-features.index') }}" class="block px-4 py-2 text-gray-300 hover:bg-gray-700">Key Features</a>
+                    <a href="{{ route('admin.features.index') }}" class="block px-4 py-2 text-gray-300 hover:bg-gray-700">Features</a>
                     <a href="{{ route('admin.articles.index') }}" class="block px-4 py-2 text-gray-300 hover:bg-gray-700">Articles</a>
                     <a href="{{ route('admin.trusted-companies.index') }}" class="block px-4 py-2 text-gray-300 hover:bg-gray-700">Trusted Companies</a>
                     <a href="{{ route('admin.clients.index') }}" class="block px-4 py-2 text-gray-300 hover:bg-gray-700">Clients</a>
@@ -43,5 +49,8 @@
             @yield('content')
         </main>
     </div>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
+    @stack('scripts')
 </body>
 </html>

@@ -5,6 +5,9 @@ namespace App\Http\Controllers\Frontend;
 use App\Http\Controllers\Controller;
 use App\Models\Team;
 use Illuminate\Http\Request;
+use App\Models\ServiceCategory;
+use App\Models\SoftwareCategory;
+use App\Models\Feature;
 
 class PageController extends Controller
 {
@@ -78,5 +81,19 @@ class PageController extends Controller
     public function custom_software()
     {
         return view('frontend.custom-software');
+    }
+
+    public function service_plans()
+    {
+        $serviceCategories = ServiceCategory::with('services.serviceTypes.pricePlans.features')->get();
+        $features = Feature::all();
+        return view('frontend.service-plans', compact('serviceCategories', 'features'));
+    }
+
+    public function software_plans()
+    {
+        $softwareCategories = SoftwareCategory::with('softwares.pricePlans.features')->get();
+        $features = Feature::all();
+        return view('frontend.software-plans', compact('softwareCategories', 'features'));
     }
 }

@@ -23,6 +23,9 @@ use App\Http\Controllers\Admin\SoftwareController;
 use App\Http\Controllers\Admin\SoftwareCategoryController;
 use App\Http\Controllers\Admin\VacancyCategoryController;
 use App\Http\Controllers\Admin\VacancyController;
+use App\Http\Controllers\Admin\TechnologyController;
+use App\Http\Controllers\Admin\KeyFeatureController;
+use App\Http\Controllers\Admin\FeatureController;
 
 Route::get('/', function () {
     return view('welcome');
@@ -53,6 +56,8 @@ Route::controller(PageController::class)->group(function () {
     Route::get('/job-apply-question', 'job_apply_question')->name('job-apply-question');
     Route::get('/single-software-page', 'single_software_page')->name('single-software-page');
     Route::get('/single-software-plan-page', 'single_software_plan_page')->name('single-software-plan-page');
+    Route::get('/service-plans', 'service_plans')->name('service-plans');
+    Route::get('/software-plans', 'software_plans')->name('software-plans');
 
     Route::get('/all-softwares', 'all_softwares')->name('all-softwares');
 
@@ -84,11 +89,15 @@ Route::name('admin.')->prefix('admin')->middleware(['auth'])->group(function () 
     Route::resource('service-categories', ServiceCategoryController::class);
     Route::resource('software-categories', SoftwareCategoryController::class);
     Route::resource('article-categories', ArticleCategoryController::class);
+    Route::resource('tags', \App\Http\Controllers\Admin\TagController::class);
     Route::resource('vacancy-categories', VacancyCategoryController::class);
     Route::resource('projects', ProjectController::class);
     Route::resource('softwares', SoftwareController::class);
     Route::resource('articles', ArticleController::class);
     Route::resource('vacancies', VacancyController::class);
+    Route::resource('technologies', TechnologyController::class);
+    Route::resource('key-features', KeyFeatureController::class);
+    Route::resource('features', FeatureController::class);
     Route::resource('trusted-companies', \App\Http\Controllers\Admin\TrustedCompanyController::class);
     Route::resource('clients', \App\Http\Controllers\Admin\ClientController::class);
     Route::resource('faqs', \App\Http\Controllers\Admin\FaqController::class);

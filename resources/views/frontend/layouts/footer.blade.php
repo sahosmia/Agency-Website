@@ -1,7 +1,7 @@
 <footer>
     <div class="container relative">
-        <div class="border-b-1 border-secondary-400">
-            <div class="py-10 md:py-[60px] flex flex-col lg:flex-row gap-10 lg:gap-[128px]">
+        <div class="border-b border-secondary-400">
+            <div class="py-10 md:py-[60px] flex flex-col lg:flex-row gap-10 lg:gap-32">
                 <div class="flex flex-col gap-5 w-full lg:w-4/12">
                     <div class="flex flex-col items-center text-center lg:items-start lg:text-left">
                         <img class="block w-[103px] h-10" src="{{ asset('frontend/images/logo.png') }}" alt="">
@@ -13,12 +13,12 @@
                         <h4 class="body-text-bold-large text-secondary-900 text-center lg:text-left">Follow us</h4>
                         <div class="pt-2 grid grid-cols-2 sm:grid-cols-4 lg:grid-cols-2 gap-4">
                             @forelse ($socialMediaLinks as $link)
-                            <a class="flex justify-center items-center gap-2 rounded-sm border border-secondary-800 h-9 group"
-                                href="{{ $link->url }}">
-                                <img src="{{ asset($link->icon) }}" alt="{{ $link->name }}">
-                                <span class="text-secondary-800 label-text-bold-small group-hover:text-secondary-950">{{
-                                    $link->name }}</span>
-                            </a>
+                                <a class="flex justify-center items-center gap-2 rounded-sm border border-secondary-800 h-9 group"
+                                    href="{{ $link->url }}">
+                                    <img src="{{ asset('storage/' . $link->icon) }}" alt="{{ $link->name }}">
+                                    <span
+                                        class="text-secondary-800 label-text-bold-small group-hover:text-secondary-950">{{ $link->name }}</span>
+                                </a>
                             @empty
                             <p class="text-secondary-800 label-text-bold-small">No Social Media Links Found</p>
                             @endforelse
@@ -50,9 +50,9 @@
                         <h4 class="body-text-bold-large text-secondary-900">Services solution</h4>
                         <ul class="flex flex-col gap-2 md:gap-3 pt-4">
                             @forelse ($services as $service)
-                            <li class="label-text-regular-small text-secondary-900"><a
-                                    href="{{ route('services.show', $service->slug) }}">{{ $service->name }}</a>
-                            </li>
+                                <li class="label-text-regular-small text-secondary-900"><a
+                                        href="{{ route('services.show', $service->slug) }}">{{ $service->name }}</a>
+                                </li>
                             @empty
                             <li class="label-text-regular-small text-secondary-900">No Service Found</li>
                             @endforelse
@@ -62,9 +62,9 @@
                         <h4 class="body-text-bold-large text-secondary-900">Software's solution</h4>
                         <ul class="flex flex-col gap-2 md:gap-3 pt-4">
                             @forelse ($softwares as $software)
-                            <li class="label-text-regular-small text-secondary-900"><a
-                                    href="{{ route('softwares.show', $software->slug) }}">{{ $software->name }}</a>
-                            </li>
+                                <li class="label-text-regular-small text-secondary-900"><a
+                                        href="{{ route('softwares.show', $software->slug) }}">{{ $software->name }}</a>
+                                </li>
                             @empty
                             <li class="label-text-regular-small text-secondary-900">No Software Found</li>
                             @endforelse

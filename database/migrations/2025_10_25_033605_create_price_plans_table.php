@@ -15,8 +15,10 @@ return new class extends Migration
             $table->id();
             $table->morphs('planable');
             $table->string('name');
-            $table->decimal('price', 8, 2);
-            $table->json('features');
+            $table->json('features')->nullable();
+            $table->string('type')->default('fixed');
+            $table->decimal('price', 8, 2)->nullable();
+
             $table->timestamps();
         });
     }

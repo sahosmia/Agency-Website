@@ -14,6 +14,7 @@
 </div>
 @endif
 
+<<<<<<< HEAD
 <table class="w-full bg-white shadow-md rounded-lg">
     <thead>
         <tr class="bg-gray-200">
@@ -48,3 +49,37 @@
     </tbody>
 </table>
 @endsection
+=======
+    <table class="w-full bg-white shadow-md rounded-lg">
+        <thead>
+            <tr class="bg-gray-200">
+                <th class="px-4 py-2">Name</th>
+                <th class="px-4 py-2">Category</th>
+                <th class="px-4 py-2">Image</th>
+                <th class="px-4 py-2">Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach ($services as $service)
+                <tr>
+                    <td class="border px-4 py-2">{{ $service->name }}</td>
+                    <td class="border px-4 py-2">{{ $service->service_category->name }}</td>
+                    <td class="border px-4 py-2">
+                        @if ($service->image)
+                            <img src="{{ asset('storage/' . $service->image) }}" alt="{{ $service->name }}" class="h-16 w-16 object-cover">
+                        @endif
+                    </td>
+                    <td class="border px-4 py-2">
+                        <a href="{{ route('admin.services.edit', $service) }}" class="text-blue-500 hover:underline">Edit</a>
+                        <form action="{{ route('admin.services.destroy', $service) }}" method="POST" class="inline-block ml-2">
+                            @csrf
+                            @method('DELETE')
+                            <button type="submit" class="text-red-500 hover:underline" onclick="return confirm('Are you sure?')">Delete</button>
+                        </form>
+                    </td>
+                </tr>
+            @endforeach
+        </tbody>
+    </table>
+@endsection
+>>>>>>> 0663a064afa90305657742c6925db2c1b059ad95

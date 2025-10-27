@@ -26,10 +26,21 @@
             <label for="article_category_id" class="block text-gray-700">Category</label>
             <select name="article_category_id" id="article_category_id" class="w-full px-3 py-2 border rounded-md" required>
                 @foreach ($categories as $category)
-                    <option value="{{ $category->id }}" @selected($article->article_category->id == $category->id)>{{ $category->name }}</option>
+                    <option value="{{ $category->id }}" @selected($article->article_category->id == $category->id)>{{ $category->title }}</option>
                 @endforeach
             </select>
             @error('article_category_id')
+                <p class="text-red-500 text-xs mt-1">{{ $message }}</p>
+            @enderror
+        </div>
+        <div class="mb-4">
+            <label for="tags" class="block text-gray-700">Tags</label>
+            <select name="tags[]" id="tags" class="w-full px-3 py-2 border rounded-md" multiple>
+                @foreach ($tags as $tag)
+                    <option value="{{ $tag->id }}" @selected($article->tags->contains($tag->id))>{{ $tag->name }}</option>
+                @endforeach
+            </select>
+            @error('tags')
                 <p class="text-red-500 text-xs mt-1">{{ $message }}</p>
             @enderror
         </div>
@@ -60,3 +71,16 @@
         <button type="submit" class="px-4 py-2 bg-blue-500 text-white rounded-md">Update</button>
     </form>
 @endsection
+
+@push('scripts')
+    <script>
+        $(document).ready(function() {
+            $('#tags').select2();
+        });
+        ClassicEditor
+            .create(document.querySelector('#long_text'))
+            .catch(error => {
+                console.error(error);
+            });
+    </script>
+@endpush
