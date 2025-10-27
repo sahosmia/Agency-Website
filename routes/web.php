@@ -26,6 +26,7 @@ use App\Http\Controllers\Admin\VacancyController;
 use App\Http\Controllers\Admin\TechnologyController;
 use App\Http\Controllers\Admin\KeyFeatureController;
 use App\Http\Controllers\Admin\FeatureController;
+use App\Http\Controllers\Admin\PageSettingController;
 
 Route::get('/', function () {
     return view('welcome');
@@ -81,6 +82,11 @@ Route::resource('careers', CareerFrontController::class)->only(['index', 'show']
 Route::get('/careers/apply/{slug}', [CareerFrontController::class, 'apply'])->name('careers.apply');
 Route::post('/careers/apply/{slug}', [CareerFrontController::class, 'apply_submit'])->name('careers.apply.submit');
 
+Route::fallback(function () {
+    $notFoundPage = \App\Models\PageSetting::where('page_name', '404')->first();
+    $notFoundSettings = $notFoundPage ? $notFoundPage->settings : [];
+    return response()->view('errors.404', compact('notFoundSettings'), 404);
+});
 
 Route::name('admin.')->prefix('admin')->middleware(['auth'])->group(function () {
     Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard.index');
@@ -106,6 +112,49 @@ Route::name('admin.')->prefix('admin')->middleware(['auth'])->group(function () 
     Route::resource('social-media-links', \App\Http\Controllers\Admin\SocialMediaLinkController::class);
     Route::resource('service-types', \App\Http\Controllers\Admin\ServiceTypeController::class);
     Route::resource('price-plans', \App\Http\Controllers\Admin\PricePlanController::class);
+
+    Route::get('pages/about', [PageSettingController::class, 'about'])->name('pages.about');
+    Route::post('pages/about', [PageSettingController::class, 'aboutUpdate'])->name('pages.about.update');
+    Route::get('pages/home', [PageSettingController::class, 'home'])->name('pages.home');
+    Route::post('pages/home', [PageSettingController::class, 'homeUpdate'])->name('pages.home.update');
+    Route::get('pages/contact', [PageSettingController::class, 'contact'])->name('pages.contact');
+    Route::post('pages/contact', [PageSettingController::class, 'contactUpdate'])->name('pages.contact.update');
+    Route::get('pages/404', [PageSettingController::class, 'notFound'])->name('pages.404');
+    Route::post('pages/404', [PageSettingController::class, 'notFoundUpdate'])->name('pages.404.update');
+    Route::get('pages/terms', [PageSettingController::class, 'terms'])->name('pages.terms');
+    Route::post('pages/terms', [PageSettingController::class, 'termsUpdate'])->name('pages.terms.update');
+    Route::get('pages/privacy', [PageSettingController::class, 'privacy'])->name('pages.privacy');
+    Route::post('pages/privacy', [PageSettingController::class, 'privacyUpdate'])->name('pages.privacy.update');
+    Route::get('pages/services', [PageSettingController::class, 'services'])->name('pages.services');
+    Route::post('pages/services', [PageSettingController::class, 'servicesUpdate'])->name('pages.services.update');
+    Route::get('pages/articles', [PageSettingController::class, 'articles'])->name('pages.articles');
+    Route::post('pages/articles', [PageSettingController::class, 'articlesUpdate'])->name('pages.articles.update');
+    Route::get('pages/softwares', [PageSettingController::class, 'softwares'])->name('pages.softwares');
+    Route::post('pages/softwares', [PageSettingController::class, 'softwaresUpdate'])->name('pages.softwares.update');
+    Route::get('pages/projects', [PageSettingController::class, 'projects'])->name('pages.projects');
+    Route::post('pages/projects', [PageSettingController::class, 'projectsUpdate'])->name('pages.projects.update');
+    Route::get('pages/all-softwares', [PageSettingController::class, 'allSoftwares'])->name('pages.all-softwares');
+    Route::post('pages/all-softwares', [PageSettingController::class, 'allSoftwaresUpdate'])->name('pages.all-softwares.update');
+    Route::get('pages/custom-software', [PageSettingController::class, 'customSoftware'])->name('pages.custom-software');
+    Route::post('pages/custom-software', [PageSettingController::class, 'customSoftwareUpdate'])->name('pages.custom-software.update');
+    Route::get('pages/lets-discuss', [PageSettingController::class, 'letsDiscuss'])->name('pages.lets-discuss');
+    Route::post('pages/lets-discuss', [PageSettingController::class, 'letsDiscussUpdate'])->name('pages.lets-discuss.update');
+    Route::get('pages/thank-you', [PageSettingController::class, 'thankYou'])->name('pages.thank-you');
+    Route::post('pages/thank-you', [PageSettingController::class, 'thankYouUpdate'])->name('pages.thank-you.update');
+    Route::get('pages/service-plans', [PageSettingController::class, 'servicePlans'])->name('pages.service-plans');
+    Route::post('pages/service-plans', [PageSettingController::class, 'servicePlansUpdate'])->name('pages.service-plans.update');
+    Route::get('pages/software-plans', [PageSettingController::class, 'softwarePlans'])->name('pages.software-plans');
+    Route::post('pages/software-plans', [PageSettingController::class, 'softwarePlansUpdate'])->name('pages.software-plans.update');
+    Route::get('pages/careers', [PageSettingController::class, 'careers'])->name('pages.careers');
+    Route::post('pages/careers', [PageSettingController::class, 'careersUpdate'])->name('pages.careers.update');
+    Route::get('pages/service-detail', [PageSettingController::class, 'serviceDetail'])->name('pages.service-detail');
+    Route::post('pages/service-detail', [PageSettingController::class, 'serviceDetailUpdate'])->name('pages.service-detail.update');
+    Route::get('pages/article-detail', [PageSettingController::class, 'articleDetail'])->name('pages.article-detail');
+    Route::post('pages/article-detail', [PageSettingController::class, 'articleDetailUpdate'])->name('pages.article-detail.update');
+    Route::get('pages/software-detail', [PageSettingController::class, 'softwareDetail'])->name('pages.software-detail');
+    Route::post('pages/software-detail', [PageSettingController::class, 'softwareDetailUpdate'])->name('pages.software-detail.update');
+    Route::get('pages/project-detail', [PageSettingController::class, 'projectDetail'])->name('pages.project-detail');
+    Route::post('pages/project-detail', [PageSettingController::class, 'projectDetailUpdate'])->name('pages.project-detail.update');
 });
 
 

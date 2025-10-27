@@ -1,10 +1,10 @@
 @extends('frontend.layouts.app')
-@section('title', 'Articles')
+@section('title', $articlesSettings['page_title'] ?? 'Articles')
 
 @section('content')
     <div class="container mx-auto">
         <h1 class="text-3xl md:text-[52px] font-medium leading-tight md:leading-[68px] text-center mt-5">
-            Explore our least <span class="text-primary-600">Ariticles</span>
+            {{ $articlesSettings['title'] ?? '' }}
         </h1>
         <!-- Search Form -->
         <form action="{{ route('articles.index') }}" method="GET" class="mt-8 md:mt-14">
@@ -45,8 +45,7 @@
         @if ($articles->count() != 0)
             <div class="w-full md:w-8/12 lg:w-6/12 mt-16 md:mt-20 flex justify-center mx-auto">
                 <p class="sub-title-medium-regular leading-8 text-secondary-800 text-center">
-                    where we share the latest trends, insights, and best practices in
-                    technology, digital transformation, and business solutions.
+                    {{ $articlesSettings['description'] ?? '' }}
                 </p>
             </div>
         @endif

@@ -1,5 +1,5 @@
 @extends('frontend.layouts.app')
-@section('title', 'project - ' . $project->title)
+@section('title', $projectDetailSettings['page_title'] ?? 'Project Details')
 
 @section('content')
 
@@ -53,7 +53,7 @@
 
 
         <div class="mt-20 xl:mb-20 overflow-hidden">
-            <h1 class="heading-text-regular-medium text-center text-secondary-900">Client Reviews</h1>
+            <h1 class="heading-text-regular-medium text-center text-secondary-900">{{ $projectDetailSettings['client_reviews_title'] ?? '' }}</h1>
             <div class="w-1/2 mt-8 mx-auto">
                 <x-frontend.client-review :review="$project->clientReview" />
             </div>
@@ -66,9 +66,9 @@
         {{-- project Slider Section start ================================================== --}}
         <div class="slider-container mt-20 xl:mb-20 overflow-hidden">
             <div>
-                <h1 class="heading-text-regular-medium text-center text-secondary-900">Other projects</h1>
+                <h1 class="heading-text-regular-medium text-center text-secondary-900">{{ $projectDetailSettings['other_projects_title'] ?? '' }}</h1>
                 <div class="flex justify-between my-8 gap-5">
-                    <p class="body-text-regular-medium text-secondary-800 w-full  md:w-1/2"> Stay informed with our expert insights! Explore projects on the latest trends, tips, and strategies in web design, digital marketing, and more. </p>
+                    <p class="body-text-regular-medium text-secondary-800 w-full  md:w-1/2"> {{ $projectDetailSettings['other_projects_description'] ?? '' }} </p>
                     <div class="button-group border-secondary-600">
                         <button class="prev-btn button-label w-9 px-3 py-2 border-secondary-600 text-secondary-600"> <i class="w-5 h-5 fa-solid fa-circle-chevron-left"></i> </button>
                         <button class="next-btn button-label w-9 px-3 py-2 border-secondary-600 text-secondary-600"> <i class="w-5 h-5 fa-solid fa-circle-chevron-right"></i> </button>

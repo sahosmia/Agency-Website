@@ -1,9 +1,9 @@
 @extends('frontend.layouts.app')
-@section('title', 'Career')
+@section('title', $careersSettings['page_title'] ?? 'Careers')
 
 @section('content')
     <div class="container mx-auto">
-        <h1 class="heading-text-regular-large text-center mt-20">Join our team best Opportunity <span class=" text-primary-600"> Opportunity</span> </h1>
+        <h1 class="heading-text-regular-large text-center mt-20">{{ $careersSettings['title'] ?? '' }}</h1>
 
         <!-- search  -->
         <!-- Search Form -->

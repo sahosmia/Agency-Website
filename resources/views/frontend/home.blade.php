@@ -1,44 +1,38 @@
 @extends('frontend.layouts.app')
-@section('title', 'Home')
+@section('title', $homeSettings['page_title'] ?? 'Home')
 
 @section('content')
 
 <div class="container">
     <div class="text-center py-10 md:py-20">
-        <h1 class="heading-text-regular-large text-secondary-950 text-2xl md:text-4xl lg:text-5xl">Your idea make in
-            Realty</h1>
-        <h1 class="heading-text-regular-large text-secondary-950 text-2xl md:text-4xl lg:text-5xl">We provide <span
-                class="text-primary-600">Digital Marketing</span></h1>
+        <h1 class="heading-text-regular-large text-secondary-950 text-2xl md:text-4xl lg:text-5xl">{{ $homeSettings['hero_title'] ?? '' }}</h1>
+        <h1 class="heading-text-regular-large text-secondary-950 text-2xl md:text-4xl lg:text-5xl">{{ $homeSettings['hero_subtitle'] ?? '' }}</h1>
 
         <div class="flex justify-center items-center mt-8 md:mt-14">
-            <button class="button-label px-5 py-2 md:px-7 md:py-3 bg-primary-600 text-white label-text-bold-large">Get
-                started <span><i class="fa-solid fa-arrow-right"></i></span></button>
+            <button class="button-label px-5 py-2 md:px-7 md:py-3 bg-primary-600 text-white label-text-bold-large">{{ $homeSettings['hero_button_text'] ?? '' }}
+                <span><i class="fa-solid fa-arrow-right"></i></span></button>
         </div>
     </div>
 
     {{-- hero card --}}
     <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 justify-center gap-6 py-10 md:py-15">
         <div class="flex items-center">
-            <p class="body-text-regular-medium text-secondary-800">We specialize in digital solutions to help your
-                business grow and thrive in the digital landscape.</p>
+            <p class="body-text-regular-medium text-secondary-800">{{ $homeSettings['hero_card_description'] ?? '' }}</p>
         </div>
         <div class="hero-card">
-            <h1 class="title-text-bold-medium text-secondary-900">95%</h1>
-            <h2 class="sub-title-large-regular text-secondary-900">Satisfied Customers</h2>
-            <p class="body-text-regular-small text-secondary-800">We are committed to providing the best solutions to
-                build happy relationships with our customers.</p>
+            <h1 class="title-text-bold-medium text-secondary-900">{{ $homeSettings['hero_card_one_value'] ?? '' }}</h1>
+            <h2 class="sub-title-large-regular text-secondary-900">{{ $homeSettings['hero_card_one_title'] ?? '' }}</h2>
+            <p class="body-text-regular-small text-secondary-800">{{ $homeSettings['hero_card_one_description'] ?? '' }}</p>
         </div>
         <div class="hero-card">
-            <h1 class="title-text-bold-medium text-secondary-900">80+</h1>
-            <h2 class="sub-title-large-regular text-secondary-900">Projects Completed</h2>
-            <p class="body-text-regular-small text-secondary-800">We are committed to providing the best solutions to
-                build happy relationships with our customers.</p>
+            <h1 class="title-text-bold-medium text-secondary-900">{{ $homeSettings['hero_card_two_value'] ?? '' }}</h1>
+            <h2 class="sub-title-large-regular text-secondary-900">{{ $homeSettings['hero_card_two_title'] ?? '' }}</h2>
+            <p class="body-text-regular-small text-secondary-800">{{ $homeSettings['hero_card_two_description'] ?? '' }}</p>
         </div>
         <div class="hero-card">
-            <h1 class="title-text-bold-medium text-secondary-900">12+</h1>
-            <h2 class="sub-title-large-regular text-secondary-900">Services served</h2>
-            <p class="body-text-regular-small text-secondary-800">We are committed to providing the best solutions to
-                build happy relationships with our customers.</p>
+            <h1 class="title-text-bold-medium text-secondary-900">{{ $homeSettings['hero_card_three_value'] ?? '' }}</h1>
+            <h2 class="sub-title-large-regular text-secondary-900">{{ $homeSettings['hero_card_three_title'] ?? '' }}</h2>
+            <p class="body-text-regular-small text-secondary-800">{{ $homeSettings['hero_card_three_description'] ?? '' }}</p>
         </div>
     </div>
     {{-- hero card --}}
@@ -102,8 +96,7 @@
 
     {{-- Searching section start --}}
     <div class="pt-10 md:pt-15 pb-10 md:pb-20">
-        <h1 class="text-center heading-text-regular-medium text-secondary-900 text-2xl md:text-3xl">Find the Perfect
-            Service for Your Needs</h1>
+        <h1 class="text-center heading-text-regular-medium text-secondary-900 text-2xl md:text-3xl">{{ $homeSettings['search_title'] ?? '' }}</h1>
         <div
             class="flex flex-col sm:flex-row w-full sm:w-8/12 md:w-6/12 m-auto items-center mt-8 p-2 sm:p-4 gap-2 border border-secondary-400 rounded-lg">
             <input type="text" name="search" value="{{ request('search') }}"
@@ -120,41 +113,18 @@
 
     {{-- values we live by start --}}
     <div class="pt-10 md:pt-15 pb-10 md:pb-20">
-        <h1 class="text-center heading-text-regular-medium text-secondary-900 text-2xl md:text-3xl">Values we live by
+        <h1 class="text-center heading-text-regular-medium text-secondary-900 text-2xl md:text-3xl">{{ $homeSettings['values_title'] ?? '' }}
         </h1>
         <div class="grid grid-cols-1 sm:grid-cols-2 justify-center items-center flex-wrap gap-6 mt-8">
-            <div class="viewer-card">
-                <h1 class="title-text-bold-medium text-secondary-950">Building Trust</h1>
-                <hr class="w-full h-px bg-secondary-400 border-0">
-                <p class="body-text-regular-large text-secondary-800 text-justify">
-                    By embodying ethical business practices, we weave trustworthiness and integrity into every
-                    connection we forge. This commitment paves the way for enduring and rewarding partnerships.
-                </p>
-            </div>
-            <div class="viewer-card">
-                <h1 class="title-text-bold-medium text-secondary-950">Future-Forward Thinking</h1>
-                <hr class="w-full h-px bg-secondary-400 border-0">
-                <p class="body-text-regular-large text-secondary-800 text-justify">
-                    We embrace innovation and stay ahead of industry trends to deliver cutting-edge solutions that drive
-                    growth and secure a competitive edge for our clients.
-                </p>
-            </div>
-            <div class="viewer-card">
-                <h1 class="title-text-bold-medium text-secondary-950">Key to Client Success Matters</h1>
-                <hr class="w-full h-px bg-secondary-400 border-0">
-                <p class="body-text-regular-large text-secondary-800 text-justify">
-                    We are dedicated to our clients' success, working collaboratively to understand their unique needs
-                    and deliver tailored solutions that produce measurable results.
-                </p>
-            </div>
-            <div class="viewer-card">
-                <h1 class="title-text-bold-medium text-secondary-950">Sustainable Business</h1>
-                <hr class="w-full h-px bg-secondary-400 border-0">
-                <p class="body-text-regular-large text-secondary-800 text-justify">
-                    We are committed to sustainable practices that benefit our clients, our team, and the planet,
-                    ensuring long-term success and a positive impact on the world.
-                </p>
-            </div>
+            @foreach ($values as $value)
+                <div class="viewer-card">
+                    <h1 class="title-text-bold-medium text-secondary-950">{{ $value->title }}</h1>
+                    <hr class="w-full h-px bg-secondary-400 border-0">
+                    <p class="body-text-regular-large text-secondary-800 text-justify">
+                        {{ $value->description }}
+                    </p>
+                </div>
+            @endforeach
         </div>
         <div class="flex justify-center items-center mt-14">
             <button class="button-label px-7 py-3 bg-primary-600 text-white label-text-bold-large">Get started <span><i
@@ -290,11 +260,9 @@
 
     {{-- Our least projects start --}}
     <div class="slider-container mt-10 md:mt-15 mb-10 md:mb-20 overflow-hidden">
-        <h1 class="text-center heading-text-regular-medium text-2xl md:text-3xl">Our Least Projects</h1>
+        <h1 class="text-center heading-text-regular-medium text-2xl md:text-3xl">{{ $homeSettings['projects_title'] ?? '' }}</h1>
         <div class="flex flex-col md:flex-row justify-between my-8 gap-5">
-            <p class="body-text-regular-medium text-secondary-800 w-full md:w-1/2">Explore how we’ve helped businesses
-                achieve their goals with tailored digital solutions. Our latest projects highlight creativity, strategy,
-                and measurable success in action.</p>
+            <p class="body-text-regular-medium text-secondary-800 w-full md:w-1/2">{{ $homeSettings['projects_description'] ?? '' }}</p>
             <div class="button-group flex justify-center md:justify-end gap-4">
                 <button class="prev-btn-project button-label w-9 px-3 py-2 border-secondary-600 text-secondary-600"><i
                         class="w-5 h-5 fa-solid fa-circle-chevron-left"></i></button>
@@ -323,11 +291,9 @@
 
     {{-- our services --}}
     <div class="slider-container mt-10 md:mt-15 mb-10 md:mb-20 overflow-hidden">
-        <h1 class="text-center heading-text-regular-medium text-2xl md:text-3xl">Our Services</h1>
+        <h1 class="text-center heading-text-regular-medium text-2xl md:text-3xl">{{ $homeSettings['services_title'] ?? '' }}</h1>
         <div class="flex flex-col md:flex-row justify-between my-8 gap-5">
-            <p class="body-text-regular-medium text-secondary-800 w-full md:w-1/2">We offer a wide range of digital
-                solutions tailored to meet your business needs. We provide innovative and impactful services to help you
-                succeed in the digital age.</p>
+            <p class="body-text-regular-medium text-secondary-800 w-full md:w-1/2">{{ $homeSettings['services_description'] ?? '' }}</p>
             <div class="button-group flex justify-center md:justify-end gap-4">
                 <button class="prev-btn-service button-label w-9 px-3 py-2 border-secondary-600 text-secondary-600"><i
                         class="w-5 h-5 fa-solid fa-circle-chevron-left"></i></button>
@@ -365,11 +331,9 @@
 
 {{-- Software's Solution --}}
 <div class="slider-container mt-10 md:mt-15 mb-10 md:mb-20 overflow-hidden">
-    <h1 class="text-center heading-text-regular-medium text-2xl md:text-3xl">Software's Solution</h1>
+    <h1 class="text-center heading-text-regular-medium text-2xl md:text-3xl">{{ $homeSettings['software_title'] ?? '' }}</h1>
     <div class="flex flex-col md:flex-row justify-between my-8 gap-5">
-        <p class="body-text-regular-medium text-secondary-800 w-full md:w-1/2">Simplify your operations with our
-            ready-made software solutions designed to streamline workflows and improve efficiency. Each system is built
-            with cutting-edge technology.</p>
+        <p class="body-text-regular-medium text-secondary-800 w-full md:w-1/2">{{ $homeSettings['software_description'] ?? '' }}</p>
         <div class="button-group flex justify-center md:justify-end gap-4">
             <button class="prev-btn-software button-label w-9 px-3 py-2 border-secondary-600 text-secondary-600"><i
                     class="w-5 h-5 fa-solid fa-circle-chevron-left"></i></button>
@@ -407,56 +371,37 @@
 
 {{-- Working process start --}}
 <div class="mt-10 md:mt-15 mb-10 md:mb-20">
-    <h1 class="heading-text-regular-medium text-center text-secondary-900 text-2xl md:text-3xl">Working Process</h1>
+    <h1 class="heading-text-regular-medium text-center text-secondary-900 text-2xl md:text-3xl">{{ $homeSettings['working_process_title'] ?? '' }}</h1>
     <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8 mt-8">
-        <div class="working-process-card">
-            <div class="w-12 h-12 bg-primary-100 rounded-full flex justify-center items-center">
-                <span class="title-text-bold-medium text-primary-600">1</span>
+        @foreach ($working_processes as $process)
+            <div class="working-process-card">
+                <div class="w-12 h-12 bg-primary-100 rounded-full flex justify-center items-center">
+                    <span class="title-text-bold-medium text-primary-600">{{ $loop->iteration }}</span>
+                </div>
+                <h2 class="title-text-bold-medium text-secondary-950 mt-4">{{ $process->title }}</h2>
+                <p class="body-text-regular-medium text-secondary-600 mt-2">{{ $process->description }}</p>
             </div>
-            <h2 class="title-text-bold-medium text-secondary-950 mt-4">[Step 1]</h2>
-            <p class="body-text-regular-medium text-secondary-600 mt-2">Initial consult or project brief</p>
-        </div>
-        <div class="working-process-card">
-            <div class="w-12 h-12 bg-primary-100 rounded-full flex justify-center items-center">
-                <span class="title-text-bold-medium text-primary-600">2</span>
-            </div>
-            <h2 class="title-text-bold-medium text-secondary-950 mt-4">[Step 2]</h2>
-            <p class="body-text-regular-medium text-secondary-600 mt-2">Price estimation</p>
-        </div>
-        <div class="working-process-card">
-            <div class="w-12 h-12 bg-primary-100 rounded-full flex justify-center items-center">
-                <span class="title-text-bold-medium text-primary-600">3</span>
-            </div>
-            <h2 class="title-text-bold-medium text-secondary-950 mt-4">[Step 3]</h2>
-            <p class="body-text-regular-medium text-secondary-600 mt-2">Start online</p>
-        </div>
-        <div class="working-process-card">
-            <div class="w-12 h-12 bg-primary-100 rounded-full flex justify-center items-center">
-                <span class="title-text-bold-medium text-primary-600">4</span>
-            </div>
-            <h2 class="title-text-bold-medium text-secondary-950 mt-4">[Step 4]</h2>
-            <p class="body-text-regular-medium text-secondary-600 mt-2">Work together</p>
-        </div>
+        @endforeach
     </div>
 </div>
 {{-- Working process end --}}
 
 {{-- Contact us start --}}
 <div class="mt-10 md:mt-15 mb-10 md:mb-20">
-    <h1 class="heading-text-regular-medium text-center text-secondary-900 mb-8 text-2xl md:text-3xl">Contact Us</h1>
+    <h1 class="heading-text-regular-medium text-center text-secondary-900 mb-8 text-2xl md:text-3xl">{{ $homeSettings['contact_title'] ?? '' }}</h1>
     <div class="grid grid-cols-1 lg:grid-cols-2 gap-8">
         <div class="flex flex-col gap-6">
             <div>
                 <p class="body-text-regular-medium text-secondary-600">Email</p>
-                <p class="body-text-bold-large text-secondary-900">info@yeasin-arena.com</p>
+                <p class="body-text-bold-large text-secondary-900">{{ $contactSettings['contact_email'] ?? '' }}</p>
             </div>
             <div>
                 <p class="body-text-regular-medium text-secondary-600">Phone</p>
-                <p class="body-text-bold-large text-secondary-900">BD (880) 01961007253</p>
+                <p class="body-text-bold-large text-secondary-900">{{ $contactSettings['contact_phone'] ?? '' }}</p>
             </div>
             <div>
                 <p class="body-text-regular-medium text-secondary-600">Office location</p>
-                <p class="body-text-bold-large text-secondary-900">Ground Floor, Rupchaniane, Dhaka</p>
+                <p class="body-text-bold-large text-secondary-900">{{ $contactSettings['contact_address'] ?? '' }}</p>
             </div>
         </div>
         <div>
@@ -546,11 +491,9 @@
 
 {{-- Client Reviews start --}}
 <div class="slider-container mt-10 md:mt-20 mb-10 md:mb-20 overflow-hidden">
-    <h1 class="heading-text-regular-medium text-center text-secondary-900 text-2xl md:text-3xl">Client Reviews</h1>
+    <h1 class="heading-text-regular-medium text-center text-secondary-900 text-2xl md:text-3xl">{{ $homeSettings['client_reviews_title'] ?? '' }}</h1>
     <div class="flex flex-col md:flex-row justify-between my-8 gap-5">
-        <p class="body-text-regular-medium text-secondary-800 w-full md:w-1/2">Hear from our satisfied clients! Their
-            feedback highlights our commitment to delivering exceptional digital solutions that drive results and build
-            trust.</p>
+        <p class="body-text-regular-medium text-secondary-800 w-full md:w-1/2">{{ $homeSettings['client_reviews_description'] ?? '' }}</p>
         <div class="button-group flex justify-center md:justify-end gap-4">
             <button
                 class="prev-btn-client-reviews button-label w-9 px-3 py-2 border-secondary-600 text-secondary-600"><i
@@ -573,71 +516,34 @@
 
 {{-- FAQ start --}}
 <div class="mt-10 md:mt-15 mb-10 md:mb-20" x-data="{ open: 0 }">
-    <h1 class="heading-text-regular-medium text-center text-secondary-900 text-2xl md:text-3xl">FAQ's</h1>
+    <h1 class="heading-text-regular-medium text-center text-secondary-900 text-2xl md:text-3xl">{{ $homeSettings['faq_title'] ?? '' }}</h1>
     <div class="mt-8 space-y-4">
-        <div class="border border-secondary-400 rounded-lg">
-            <div class="flex justify-between items-center p-4 cursor-pointer" @click="open = (open === 1 ? 0 : 1)">
-                <h2 class="title-text-bold-medium text-secondary-950">What services does your agency provide?</h2>
-                <i class="fa-solid" :class="open === 1 ? 'fa-minus' : 'fa-plus'"></i>
+        @foreach ($faqs as $faq)
+            <div class="border border-secondary-400 rounded-lg">
+                <div class="flex justify-between items-center p-4 cursor-pointer" @click="open = (open === {{ $loop->iteration }} ? 0 : {{ $loop->iteration }})">
+                    <h2 class="title-text-bold-medium text-secondary-950">{{ $faq->question }}</h2>
+                    <i class="fa-solid" :class="open === {{ $loop->iteration }} ? 'fa-minus' : 'fa-plus'"></i>
+                </div>
+                <div x-show="open === {{ $loop->iteration }}" class="p-4 border-t border-secondary-400"
+                    x-transition:enter="transition ease-out duration-300"
+                    x-transition:enter-start="opacity-0 transform -translate-y-2"
+                    x-transition:enter-end="opacity-100 transform translate-y-0"
+                    x-transition:leave="transition ease-in duration-200"
+                    x-transition:leave-start="opacity-100 transform translate-y-0"
+                    x-transition:leave-end="opacity-0 transform -translate-y-2">
+                    <p class="body-text-regular-medium text-secondary-600">{{ $faq->answer }}</p>
+                </div>
             </div>
-            <div x-show="open === 1" class="p-4 border-t border-secondary-400"
-                x-transition:enter="transition ease-out duration-300"
-                x-transition:enter-start="opacity-0 transform -translate-y-2"
-                x-transition:enter-end="opacity-100 transform translate-y-0"
-                x-transition:leave="transition ease-in duration-200"
-                x-transition:leave-start="opacity-100 transform translate-y-0"
-                x-transition:leave-end="opacity-0 transform -translate-y-2">
-                <p class="body-text-regular-medium text-secondary-600">We offer a comprehensive range of digital
-                    services, including web design and development, mobile app development, UX/UI design, digital
-                    marketing, SEO, and more. Our goal is to provide end-to-end solutions to help your business thrive
-                    in the digital landscape.</p>
-            </div>
-        </div>
-        <div class="border border-secondary-400 rounded-lg">
-            <div class="flex justify-between items-center p-4 cursor-pointer" @click="open = (open === 2 ? 0 : 2)">
-                <h2 class="title-text-bold-medium text-secondary-950">What industries do you specialize in?</h2>
-                <i class="fa-solid" :class="open === 2 ? 'fa-minus' : 'fa-plus'"></i>
-            </div>
-            <div x-show="open === 2" class="p-4 border-t border-secondary-400"
-                x-transition:enter="transition ease-out duration-300"
-                x-transition:enter-start="opacity-0 transform -translate-y-2"
-                x-transition:enter-end="opacity-100 transform translate-y-0"
-                x-transition:leave="transition ease-in duration-200"
-                x-transition:leave-start="opacity-100 transform translate-y-0"
-                x-transition:leave-end="opacity-0 transform -translate-y-2">
-                <p class="body-text-regular-medium text-secondary-600">We have experience working with a diverse range
-                    of industries, including e-commerce, healthcare, education, and technology. Our team is adaptable
-                    and can tailor our services to meet the unique needs of your industry.</p>
-            </div>
-        </div>
-        <div class="border border-secondary-400 rounded-lg">
-            <div class="flex justify-between items-center p-4 cursor-pointer" @click="open = (open === 3 ? 0 : 3)">
-                <h2 class="title-text-bold-medium text-secondary-950">Do you provide support after project completion?
-                </h2>
-                <i class="fa-solid" :class="open === 3 ? 'fa-minus' : 'fa-plus'"></i>
-            </div>
-            <div x-show="open === 3" class="p-4 border-t border-secondary-400"
-                x-transition:enter="transition ease-out duration-300"
-                x-transition:enter-start="opacity-0 transform -translate-y-2"
-                x-transition:enter-end="opacity-100 transform translate-y-0"
-                x-transition:leave="transition ease-in duration-200"
-                x-transition:leave-start="opacity-100 transform translate-y-0"
-                x-transition:leave-end="opacity-0 transform -translate-y-2">
-                <p class="body-text-regular-medium text-secondary-600">Yes, we offer ongoing support and maintenance to
-                    ensure your website or application continues to run smoothly. We believe in building long-term
-                    partnerships with our clients and are always here to help with any future needs.</p>
-            </div>
-        </div>
+        @endforeach
     </div>
 </div>
 {{-- FAQ end --}}
 
 {{-- Articles start --}}
 <div class="slider-container mt-10 md:mt-15 mb-10 md:mb-20 overflow-hidden">
-    <h1 class="heading-text-regular-medium text-center text-secondary-900 text-2xl md:text-3xl">Articles</h1>
+    <h1 class="heading-text-regular-medium text-center text-secondary-900 text-2xl md:text-3xl">{{ $homeSettings['articles_title'] ?? '' }}</h1>
     <div class="flex flex-col md:flex-row justify-between my-8 gap-5">
-        <p class="body-text-regular-medium text-secondary-800 w-full md:w-1/2">Stay informed with our expert insights!
-            Explore articles on the latest trends, tips, and strategies in web design, digital marketing, and more.</p>
+        <p class="body-text-regular-medium text-secondary-800 w-full md:w-1/2">{{ $homeSettings['articles_description'] ?? '' }}</p>
         <div class="button-group flex justify-center md:justify-end gap-4">
             <button class="prev-btn-article button-label w-9 px-3 py-2 border-secondary-600 text-secondary-600"><i
                     class="w-5 h-5 fa-solid fa-circle-chevron-left"></i></button>

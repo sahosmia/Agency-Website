@@ -1,15 +1,16 @@
 @extends('frontend.layouts.app')
-@section('title', 'All-Softwares')
+@section('title', $allSoftwaresSettings['page_title'] ?? 'All Softwares')
 
 @section('content')
     <div class="container mx-auto">
 
         <h1 class="heading-text-regular-large text-center mt-20">
-            We provide Ready-Made  <span class=" text-primary-600"> Software Solutions</span</h1>
+            {{ $allSoftwaresSettings['title'] ?? '' }}
+        </h1>
 
         <div class=" flex flex-col items-center my-8">
             <div class="w-8/12">
-                <p class=" body-text-regular-large text-secondary-800 text-wrap">Explore our pre-built software solutions designed to save time and deliver results. Each product is crafted to meet industry standards and can be customized to suit your business needs.</p>
+                <p class=" body-text-regular-large text-secondary-800 text-wrap">{{ $allSoftwaresSettings['description'] ?? '' }}</p>
             </div>
 
             <div class="my-20">
@@ -20,7 +21,7 @@
          {{-- All softwares  --}}
 
          <div class="my-15">
-            <h1 class=" heading-text-regular-medium text-center text-secondary-950 mt-15 mb-8"> Technologies in the System</h1>
+            <h1 class=" heading-text-regular-medium text-center text-secondary-950 mt-15 mb-8"> {{ $allSoftwaresSettings['section_title'] ?? '' }}</h1>
 
             <div class="grid md:grid-cols-2 lg:grid-cols-2 xl:grid-cols-2 gap-8 justify-center items-center p-6">
                 <!-- Service Card -->

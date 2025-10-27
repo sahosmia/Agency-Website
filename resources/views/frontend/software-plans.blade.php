@@ -1,8 +1,9 @@
 @extends('frontend.layouts.app')
+@section('title', $softwarePlansSettings['page_title'] ?? 'Software Plans')
 
 @section('content')
     <div class="container mx-auto px-4 py-8">
-        <h1 class="text-3xl font-bold text-center mb-8">Software Plans</h1>
+        <h1 class="text-3xl font-bold text-center mb-8">{{ $softwarePlansSettings['title'] ?? '' }}</h1>
 
         <div x-data="{ activeTab: {{ $softwareCategories->first()->id }} }">
             <div class="flex justify-center mb-8">
