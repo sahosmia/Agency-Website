@@ -33,6 +33,13 @@
             @enderror
         </div>
         <div class="mb-4">
+            <label for="description" class="block text-gray-700">Description</label>
+            <textarea name="description" id="description" class="w-full px-3 py-2 border rounded-md">{{ old('description') }}</textarea>
+            @error('description')
+                <p class="text-red-500 text-xs mt-1">{{ $message }}</p>
+            @enderror
+        </div>
+        <div class="mb-4">
             <label for="image" class="block text-gray-700">Image</label>
             <input type="file" name="image" id="image" class="w-full px-3 py-2 border rounded-md">
             @error('image')
