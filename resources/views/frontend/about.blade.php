@@ -13,22 +13,22 @@
 
         {{-- Our Achievements --}}
         <div class="my-10 md:my-15">
-            <h1 class="heading-text-regular-large text-secondary-950 text-center text-3xl md:text-5xl">{{ $aboutSettings['achievement_title'] ?? '' }}</h1>
+            <h2 class="heading-text-regular-large text-secondary-950 text-center text-3xl md:text-5xl">{{ $aboutSettings['achievement_title'] ?? '' }}</h2>
             <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 justify-center gap-6 py-10 md:py-15">
                 <div class="flex items-center">
                     <p class="body-text-regular-medium text-secondary-800">{{ $aboutSettings['achievement_description'] ?? '' }}</p>
                 </div>
                 <div class="hero-card">
-                    <h1 class="title-text-bold-medium text-secondary-900">{{ $aboutSettings['achievement_one_value'] ?? '' }}</h1>
-                    <h2 class="sub-title-large-regular text-secondary-900">{{ $aboutSettings['achievement_one_title'] ?? '' }}</h2>
+                    <h3 class="title-text-bold-medium text-secondary-900">{{ $aboutSettings['achievement_one_value'] ?? '' }}</h3>
+                    <h4 class="sub-title-large-regular text-secondary-900">{{ $aboutSettings['achievement_one_title'] ?? '' }}</h4>
                 </div>
                 <div class="hero-card">
-                    <h1 class="title-text-bold-medium text-secondary-900">{{ $aboutSettings['achievement_two_value'] ?? '' }}</h1>
-                    <h2 class="sub-title-large-regular text-secondary-900">{{ $aboutSettings['achievement_two_title'] ?? '' }}</h2>
+                    <h3 class="title-text-bold-medium text-secondary-900">{{ $aboutSettings['achievement_two_value'] ?? '' }}</h3>
+                    <h4 class="sub-title-large-regular text-secondary-900">{{ $aboutSettings['achievement_two_title'] ?? '' }}</h4>
                 </div>
                 <div class="hero-card">
-                    <h1 class="title-text-bold-medium text-secondary-900">{{ $aboutSettings['achievement_three_value'] ?? '' }}</h1>
-                    <h2 class="sub-title-large-regular text-secondary-900">{{ $aboutSettings['achievement_three_title'] ?? '' }}</h2>
+                    <h3 class="title-text-bold-medium text-secondary-900">{{ $aboutSettings['achievement_three_value'] ?? '' }}</h3>
+                    <h4 class="sub-title-large-regular text-secondary-900">{{ $aboutSettings['achievement_three_title'] ?? '' }}</h4>
                 </div>
             </div>
         </div>
@@ -36,7 +36,7 @@
 
         {{-- Our Journey --}}
         <div class="my-10 md:my-15 flex flex-col justify-center items-center gap-8">
-            <h1 class="heading-text-regular-large text-secondary-950 text-center text-3xl md:text-5xl">{{ $aboutSettings['journey_title'] ?? '' }}</h1>
+            <h2 class="heading-text-regular-large text-secondary-950 text-center text-3xl md:text-5xl">{{ $aboutSettings['journey_title'] ?? '' }}</h2>
             <p class="w-full md:w-10/12 sub-title-large-regular text-secondary-900 text-center">{{ $aboutSettings['journey_description'] ?? '' }}</p>
             <div class="w-full md:w-10/12 lg:w-8/12 mt-8">
                 <div class="relative">
@@ -46,7 +46,7 @@
                         <div class="flex items-center">
                             <div class="w-1/2 pr-8">
                                 <div class="p-6 bg-white rounded-lg border border-secondary-400">
-                                    <h2 class="title-text-bold-medium text-secondary-950">{{ $aboutSettings['journey_one_title'] ?? '' }}</h2>
+                                    <h3 class="title-text-bold-medium text-secondary-950">{{ $aboutSettings['journey_one_title'] ?? '' }}</h3>
                                     <p class="body-text-regular-medium text-secondary-800 mt-2">{{ $aboutSettings['journey_one_description'] ?? '' }}</p>
                                 </div>
                             </div>
@@ -59,7 +59,7 @@
                             <div class="w-6 h-6 bg-primary-600 rounded-full absolute left-1/2 -translate-x-1/2"></div>
                             <div class="w-1/2 pl-8">
                                 <div class="p-6 bg-white rounded-lg border border-secondary-400">
-                                    <h2 class="title-text-bold-medium text-secondary-950">{{ $aboutSettings['journey_two_title'] ?? '' }}</h2>
+                                    <h3 class="title-text-bold-medium text-secondary-950">{{ $aboutSettings['journey_two_title'] ?? '' }}</h3>
                                     <p class="body-text-regular-medium text-secondary-800 mt-2">{{ $aboutSettings['journey_two_description'] ?? '' }}</p>
                                 </div>
                             </div>
@@ -68,7 +68,7 @@
                         <div class="flex items-center">
                             <div class="w-1/2 pr-8">
                                 <div class="p-6 bg-white rounded-lg border border-secondary-400">
-                                    <h2 class="title-text-bold-medium text-secondary-950">{{ $aboutSettings['journey_three_title'] ?? '' }}</h2>
+                                    <h3 class="title-text-bold-medium text-secondary-950">{{ $aboutSettings['journey_three_title'] ?? '' }}</h3>
                                     <p class="body-text-regular-medium text-secondary-800 mt-2">{{ $aboutSettings['journey_three_description'] ?? '' }}</p>
                                 </div>
                             </div>
@@ -83,13 +83,13 @@
 
         {{-- Our Team --}}
         <div class="my-10 md:my-15 flex flex-col justify-center items-center gap-8">
-            <h1 class="heading-text-regular-large text-secondary-950 text-center text-3xl md:text-5xl">{{ $aboutSettings['team_title'] ?? '' }}</h1>
+            <h2 class="heading-text-regular-large text-secondary-950 text-center text-3xl md:text-5xl">{{ $aboutSettings['team_title'] ?? '' }}</h2>
             <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 mt-8">
                 @foreach ($teams as $team)
                     <div class="flex flex-col gap-4">
                         <img class="rounded-md" src="{{ asset('upload/teams/' . $team->avatar) }}" alt="{{ $team->name }}">
                         <div>
-                            <h1 class="title-text-bold-medium text-secondary-950">{{ $team->name }}</h1>
+                            <h3 class="title-text-bold-medium text-secondary-950">{{ $team->name }}</h3>
                             <p class="body-text-bold-large text-secondary-800">{{ $team->designation->title }}</p>
                         </div>
                     </div>
@@ -100,7 +100,7 @@
 
         {{-- Client Reviews --}}
         <div class="my-10 md:my-20">
-            <h1 class="text-center heading-text-regular-medium text-3xl md:text-4xl">Client Reviews</h1>
+            <h2 class="text-center heading-text-regular-medium text-3xl md:text-4xl">Client Reviews</h2>
             <div class="flex flex-col md:flex-row justify-between items-center my-8 gap-5">
                 <p class="body-text-regular-medium text-secondary-800 w-full md:w-6/12">Hear from our satisfied clients! Their feedback highlights our commitment to delivering exceptional digital solutions that drive results and build trust.</p>
                 <div class="button-group flex gap-4">
@@ -127,7 +127,7 @@
                     <div class="flex items-center gap-4">
                         <span><i class="text-6xl fa-regular fa-circle-user"></i></span>
                         <div>
-                            <h1 class="sub-title-large-bold text-secondary-950">Harper Jackson</h1>
+                            <h3 class="sub-title-large-bold text-secondary-950">Harper Jackson</h3>
                             <p class="body-text-regular-large text-secondary-800">Founder & CEO & Decode agency</p>
                         </div>
                     </div>
@@ -145,7 +145,7 @@
                     <div class="flex items-center gap-4">
                         <span><i class="text-6xl fa-regular fa-circle-user"></i></span>
                         <div>
-                            <h1 class="sub-title-large-bold text-secondary-950">Harper Jackson</h1>
+                            <h3 class="sub-title-large-bold text-secondary-950">Harper Jackson</h3>
                             <p class="body-text-regular-large text-secondary-800">Founder & CEO & Decode agency</p>
                         </div>
                     </div>
@@ -163,7 +163,7 @@
                     <div class="flex items-center gap-4">
                         <span><i class="text-6xl fa-regular fa-circle-user"></i></span>
                         <div>
-                            <h1 class="sub-title-large-bold text-secondary-950">Harper Jackson</h1>
+                            <h3 class="sub-title-large-bold text-secondary-950">Harper Jackson</h3>
                             <p class="body-text-regular-large text-secondary-800">Founder & CEO & Decode agency</p>
                         </div>
                     </div>

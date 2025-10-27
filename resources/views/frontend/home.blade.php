@@ -6,8 +6,7 @@
 <div class="container"
     x-data="{ videoOpen: false, closeVideo() { this.videoOpen = false; this.$refs.videoFrame.src = '' } }">
     <div class="text-center py-10 md:py-20">
-        <h1 class="heading-text-regular-large text-secondary-950 text-2xl md:text-4xl lg:text-5xl">{{ $homeSettings['hero_title'] ?? '' }}</h1>
-        <h1 class="heading-text-regular-large text-secondary-950 text-2xl md:text-4xl lg:text-5xl">{{ $homeSettings['hero_subtitle'] ?? '' }}</h1>
+        <h1 class="heading-text-regular-large text-secondary-950 text-2xl md:text-4xl lg:text-5xl">{{ $homeSettings['hero_title'] ?? '' }} <br> <span class="heading-text-regular-large text-secondary-950 text-2xl md:text-4xl lg:text-5xl">{{ $homeSettings['hero_subtitle'] ?? '' }}</span></h1>
 
         <div class="flex justify-center items-center mt-8 md:mt-14 gap-4">
             <button class="button-label px-5 py-2 md:px-7 md:py-3 bg-primary-600 text-white label-text-bold-large">Get
@@ -47,18 +46,18 @@
             <p class="body-text-regular-medium text-secondary-800">{{ $homeSettings['hero_card_description'] ?? '' }}</p>
         </div>
         <div class="hero-card">
-            <h1 class="title-text-bold-medium text-secondary-900">{{ $homeSettings['hero_card_one_value'] ?? '' }}</h1>
-            <h2 class="sub-title-large-regular text-secondary-900">{{ $homeSettings['hero_card_one_title'] ?? '' }}</h2>
+            <h2 class="title-text-bold-medium text-secondary-900">{{ $homeSettings['hero_card_one_value'] ?? '' }}</h2>
+            <h3 class="sub-title-large-regular text-secondary-900">{{ $homeSettings['hero_card_one_title'] ?? '' }}</h3>
             <p class="body-text-regular-small text-secondary-800">{{ $homeSettings['hero_card_one_description'] ?? '' }}</p>
         </div>
         <div class="hero-card">
-            <h1 class="title-text-bold-medium text-secondary-900">{{ $homeSettings['hero_card_two_value'] ?? '' }}</h1>
-            <h2 class="sub-title-large-regular text-secondary-900">{{ $homeSettings['hero_card_two_title'] ?? '' }}</h2>
+            <h2 class="title-text-bold-medium text-secondary-900">{{ $homeSettings['hero_card_two_value'] ?? '' }}</h2>
+            <h3 class="sub-title-large-regular text-secondary-900">{{ $homeSettings['hero_card_two_title'] ?? '' }}</h3>
             <p class="body-text-regular-small text-secondary-800">{{ $homeSettings['hero_card_two_description'] ?? '' }}</p>
         </div>
         <div class="hero-card">
-            <h1 class="title-text-bold-medium text-secondary-900">{{ $homeSettings['hero_card_three_value'] ?? '' }}</h1>
-            <h2 class="sub-title-large-regular text-secondary-900">{{ $homeSettings['hero_card_three_title'] ?? '' }}</h2>
+            <h2 class="title-text-bold-medium text-secondary-900">{{ $homeSettings['hero_card_three_value'] ?? '' }}</h2>
+            <h3 class="sub-title-large-regular text-secondary-900">{{ $homeSettings['hero_card_three_title'] ?? '' }}</h3>
             <p class="body-text-regular-small text-secondary-800">{{ $homeSettings['hero_card_three_description'] ?? '' }}</p>
         </div>
     </div>
@@ -123,7 +122,7 @@
 
     {{-- Searching section start --}}
     <div class="pt-10 md:pt-15 pb-10 md:pb-20">
-        <h1 class="text-center heading-text-regular-medium text-secondary-900 text-2xl md:text-3xl">{{ $homeSettings['search_title'] ?? '' }}</h1>
+        <h2 class="text-center heading-text-regular-medium text-secondary-900 text-2xl md:text-3xl">{{ $homeSettings['search_title'] ?? '' }}</h2>
         <div
             class="flex flex-col sm:flex-row w-full sm:w-8/12 md:w-6/12 m-auto items-center mt-8 p-2 sm:p-4 gap-2 border border-secondary-400 rounded-lg">
             <input type="text" name="search" value="{{ request('search') }}"
@@ -140,12 +139,12 @@
 
     {{-- values we live by start --}}
     <div class="pt-10 md:pt-15 pb-10 md:pb-20">
-        <h1 class="text-center heading-text-regular-medium text-secondary-900 text-2xl md:text-3xl">{{ $homeSettings['values_title'] ?? '' }}
-        </h1>
+        <h2 class="text-center heading-text-regular-medium text-secondary-900 text-2xl md:text-3xl">{{ $homeSettings['values_title'] ?? '' }}
+        </h2>
         <div class="grid grid-cols-1 sm:grid-cols-2 justify-center items-center flex-wrap gap-6 mt-8">
             @foreach ($values as $value)
                 <div class="viewer-card">
-                    <h1 class="title-text-bold-medium text-secondary-950">{{ $value->title }}</h1>
+                    <h3 class="title-text-bold-medium text-secondary-950">{{ $value->title }}</h3>
                     <hr class="w-full h-px bg-secondary-400 border-0">
                     <p class="body-text-regular-large text-secondary-800 text-justify">
                         {{ $value->description }}
@@ -162,15 +161,15 @@
 
     {{-- lets discuss your project start --}}
     <div class="w-full md:w-10/12 lg:w-9/12 m-auto pt-10 md:pt-15 pb-10 md:pb-20">
-        <h1 class="heading-text-regular-large text-secondary-950 text-center text-2xl md:text-4xl">Let's Discuss Your
-            Project!</h1>
+        <h2 class="heading-text-regular-large text-secondary-950 text-center text-2xl md:text-4xl">Let's Discuss Your
+            Project!</h2>
         <p class="sub-title-medium-regular text-secondary-600 pt-8 text-center w-full md:w-10/12 lg:w-8/12 mx-auto">We
             understand that every business is unique, and finding the right digital solution can be challenging. That’s
             why we offer a FREE first-time consultation to help you get started!</p>
 
         <div class="mt-8 border border-secondary-400 rounded-2xl p-4 sm:p-6">
             <div class="flex flex-col sm:flex-row justify-between items-center mb-6">
-                <h2 class="title-text-bold-medium text-secondary-900 mb-4 sm:mb-0">US Appointment</h2>
+                <h3 class="title-text-bold-medium text-secondary-900 mb-4 sm:mb-0">US Appointment</h3>
                 <div class="flex items-center gap-4">
                     <button class="text-secondary-600 hover:text-primary-600"><i
                             class="fas fa-chevron-left"></i></button>
@@ -287,7 +286,7 @@
 
     {{-- Our least projects start --}}
     <div class="slider-container mt-10 md:mt-15 mb-10 md:mb-20 overflow-hidden">
-        <h1 class="text-center heading-text-regular-medium text-2xl md:text-3xl">{{ $homeSettings['projects_title'] ?? '' }}</h1>
+        <h2 class="text-center heading-text-regular-medium text-2xl md:text-3xl">{{ $homeSettings['projects_title'] ?? '' }}</h2>
         <div class="flex flex-col md:flex-row justify-between my-8 gap-5">
             <p class="body-text-regular-medium text-secondary-800 w-full md:w-1/2">{{ $homeSettings['projects_description'] ?? '' }}</p>
             <div class="button-group flex justify-center md:justify-end gap-4">
@@ -318,7 +317,7 @@
 
     {{-- our services --}}
     <div class="slider-container mt-10 md:mt-15 mb-10 md:mb-20 overflow-hidden">
-        <h1 class="text-center heading-text-regular-medium text-2xl md:text-3xl">{{ $homeSettings['services_title'] ?? '' }}</h1>
+        <h2 class="text-center heading-text-regular-medium text-2xl md:text-3xl">{{ $homeSettings['services_title'] ?? '' }}</h2>
         <div class="flex flex-col md:flex-row justify-between my-8 gap-5">
             <p class="body-text-regular-medium text-secondary-800 w-full md:w-1/2">{{ $homeSettings['services_description'] ?? '' }}</p>
             <div class="button-group flex justify-center md:justify-end gap-4">
@@ -330,25 +329,25 @@
         </div>
 
         <div class="service-container flex gap-6">
-            @for ($i = 0; $i < 4; $i++) <div class="service-item">
-                <div class="flex flex-col gap-5 p-6 bg-white border rounded-md border-secondary-400">
-                    <div class="w-full">
-                        <img class="rounded w-full" src="{{ asset('upload/service-img.png') }}" alt="">
-                    </div>
-                    <div class="gap-2">
-                        <h1 class="title-text-bold-medium text-secondary-600">Web Design & Development</h1>
-                        <p class="body-text-regular-medium text-secondary-600">
-                            We create visually stunning and responsive websites tailored to your brand, ensuring
-                            seamless user experiences and high performance across all devices.
-                        </p>
-                    </div>
-                    <div class="w-full flex justify-center mt-8">
-                        <button class="button-label px-4 py-2">See plan</button>
+            @foreach ($services as $service)
+                <div class="service-item">
+                    <div class="flex flex-col gap-5 p-6 bg-white border rounded-md border-secondary-400">
+                        <div class="w-full">
+                            <img class="rounded w-full" src="{{ asset('storage/' . $service->image) }}" alt="{{ $service->name }}">
+                        </div>
+                        <div class="gap-2">
+                            <h1 class="title-text-bold-medium text-secondary-600">{{ $service->name }}</h1>
+                            <p class="body-text-regular-medium text-secondary-600">
+                                {{ $service->description }}
+                            </p>
+                        </div>
+                        <div class="w-full flex justify-center mt-8">
+                            <a href="{{ route('services.show', $service->slug) }}" class="button-label px-4 py-2">See plan</a>
+                        </div>
                     </div>
                 </div>
+            @endforeach
         </div>
-        @endfor
-    </div>
     <div class="flex justify-center items-center mt-14">
         <a href="{{ route('services') }}" class="button-label px-7 py-3 label-text-bold-large">See all
             service</a>
@@ -358,7 +357,7 @@
 
 {{-- Software's Solution --}}
 <div class="slider-container mt-10 md:mt-15 mb-10 md:mb-20 overflow-hidden">
-    <h1 class="text-center heading-text-regular-medium text-2xl md:text-3xl">{{ $homeSettings['software_title'] ?? '' }}</h1>
+    <h2 class="text-center heading-text-regular-medium text-2xl md:text-3xl">{{ $homeSettings['software_title'] ?? '' }}</h2>
     <div class="flex flex-col md:flex-row justify-between my-8 gap-5">
         <p class="body-text-regular-medium text-secondary-800 w-full md:w-1/2">{{ $homeSettings['software_description'] ?? '' }}</p>
         <div class="button-group flex justify-center md:justify-end gap-4">
@@ -376,7 +375,7 @@
                     <img class="rounded w-full" src="{{ asset('upload/softwer-img.png') }}" alt="">
                 </div>
                 <div class="gap-2">
-                    <h1 class="title-text-bold-medium text-secondary-600">Custom made Software for Your Needs</h1>
+                    <h3 class="title-text-bold-medium text-secondary-600">Custom made Software for Your Needs</h3>
                     <p class="body-text-regular-medium text-secondary-600">
                         Our custom software development services are designed to create solutions that align perfectly
                         with your business objectives. Whether you need to enhance efficiency, improve customer
@@ -398,14 +397,14 @@
 
 {{-- Working process start --}}
 <div class="mt-10 md:mt-15 mb-10 md:mb-20">
-    <h1 class="heading-text-regular-medium text-center text-secondary-900 text-2xl md:text-3xl">{{ $homeSettings['working_process_title'] ?? '' }}</h1>
+    <h2 class="heading-text-regular-medium text-center text-secondary-900 text-2xl md:text-3xl">{{ $homeSettings['working_process_title'] ?? '' }}</h2>
     <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8 mt-8">
         @foreach ($working_processes as $process)
             <div class="working-process-card">
                 <div class="w-12 h-12 bg-primary-100 rounded-full flex justify-center items-center">
                     <span class="title-text-bold-medium text-primary-600">{{ $loop->iteration }}</span>
                 </div>
-                <h2 class="title-text-bold-medium text-secondary-950 mt-4">{{ $process->title }}</h2>
+                <h3 class="title-text-bold-medium text-secondary-950 mt-4">{{ $process->title }}</h3>
                 <p class="body-text-regular-medium text-secondary-600 mt-2">{{ $process->description }}</p>
             </div>
         @endforeach
@@ -415,7 +414,7 @@
 
 {{-- Contact us start --}}
 <div class="mt-10 md:mt-15 mb-10 md:mb-20">
-    <h1 class="heading-text-regular-medium text-center text-secondary-900 mb-8 text-2xl md:text-3xl">{{ $homeSettings['contact_title'] ?? '' }}</h1>
+    <h2 class="heading-text-regular-medium text-center text-secondary-900 mb-8 text-2xl md:text-3xl">{{ $homeSettings['contact_title'] ?? '' }}</h2>
     <div class="grid grid-cols-1 lg:grid-cols-2 gap-8">
         <div class="flex flex-col gap-6">
             <div>
@@ -485,8 +484,8 @@
 
 {{-- Companies who trust us start --}}
 <div class="mt-10 md:mt-15 mb-10 md:mb-20">
-    <h1 class="heading-text-regular-medium text-center text-secondary-900 text-2xl md:text-3xl">Companies who Trust Us
-    </h1>
+    <h2 class="heading-text-regular-medium text-center text-secondary-900 text-2xl md:text-3xl">Companies who Trust Us
+    </h2>
     <p class="sub-title-medium-regular text-center text-secondary-600 w-full md:w-8/12 lg:w-7/12 mx-auto mt-4">We are
         proud to serve businesses and organizations across multiple countries and industries. We helped clients
         worldwide achieve success in the digital landscape.</p>
@@ -501,8 +500,8 @@
 
 {{-- Clients around the world start --}}
 <div class="mt-10 md:mt-15 mb-10 md:mb-20">
-    <h1 class="heading-text-regular-medium text-center text-secondary-900 text-2xl md:text-3xl">Clients Around the World
-    </h1>
+    <h2 class="heading-text-regular-medium text-center text-secondary-900 text-2xl md:text-3xl">Clients Around the World
+    </h2>
     <p class="sub-title-medium-regular text-center text-secondary-600 w-full md:w-8/12 lg:w-7/12 mx-auto mt-4">We are
         proud to serve businesses and organizations across multiple countries and industries. We helped clients
         worldwide achieve success in the digital landscape.</p>
@@ -518,7 +517,7 @@
 
 {{-- Client Reviews start --}}
 <div class="slider-container mt-10 md:mt-20 mb-10 md:mb-20 overflow-hidden">
-    <h1 class="heading-text-regular-medium text-center text-secondary-900 text-2xl md:text-3xl">{{ $homeSettings['client_reviews_title'] ?? '' }}</h1>
+    <h2 class="heading-text-regular-medium text-center text-secondary-900 text-2xl md:text-3xl">{{ $homeSettings['client_reviews_title'] ?? '' }}</h2>
     <div class="flex flex-col md:flex-row justify-between my-8 gap-5">
         <p class="body-text-regular-medium text-secondary-800 w-full md:w-1/2">{{ $homeSettings['client_reviews_description'] ?? '' }}</p>
         <div class="button-group flex justify-center md:justify-end gap-4">
@@ -543,12 +542,12 @@
 
 {{-- FAQ start --}}
 <div class="mt-10 md:mt-15 mb-10 md:mb-20" x-data="{ open: 0 }">
-    <h1 class="heading-text-regular-medium text-center text-secondary-900 text-2xl md:text-3xl">{{ $homeSettings['faq_title'] ?? '' }}</h1>
+    <h2 class="heading-text-regular-medium text-center text-secondary-900 text-2xl md:text-3xl">{{ $homeSettings['faq_title'] ?? '' }}</h2>
     <div class="mt-8 space-y-4">
         @foreach ($faqs as $faq)
             <div class="border border-secondary-400 rounded-lg">
                 <div class="flex justify-between items-center p-4 cursor-pointer" @click="open = (open === {{ $loop->iteration }} ? 0 : {{ $loop->iteration }})">
-                    <h2 class="title-text-bold-medium text-secondary-950">{{ $faq->question }}</h2>
+                    <h3 class="title-text-bold-medium text-secondary-950">{{ $faq->question }}</h3>
                     <i class="fa-solid" :class="open === {{ $loop->iteration }} ? 'fa-minus' : 'fa-plus'"></i>
                 </div>
                 <div x-show="open === {{ $loop->iteration }}" class="p-4 border-t border-secondary-400"
@@ -568,7 +567,7 @@
 
 {{-- Articles start --}}
 <div class="slider-container mt-10 md:mt-15 mb-10 md:mb-20 overflow-hidden">
-    <h1 class="heading-text-regular-medium text-center text-secondary-900 text-2xl md:text-3xl">{{ $homeSettings['articles_title'] ?? '' }}</h1>
+    <h2 class="heading-text-regular-medium text-center text-secondary-900 text-2xl md:text-3xl">{{ $homeSettings['articles_title'] ?? '' }}</h2>
     <div class="flex flex-col md:flex-row justify-between my-8 gap-5">
         <p class="body-text-regular-medium text-secondary-800 w-full md:w-1/2">{{ $homeSettings['articles_description'] ?? '' }}</p>
         <div class="button-group flex justify-center md:justify-end gap-4">
@@ -588,7 +587,7 @@
                 <button
                     class="px-4 py-2 border rounded-full border-secondary-200 label-text-regular-small text-secondary-800">{{
                     $article_data->article_category->title }}</button>
-                <h2 class="title-text-bold-medium text-secondary-950 pt-2">{{ $article_data->title }}</h2>
+                <h3 class="title-text-bold-medium text-secondary-950 pt-2">{{ $article_data->title }}</h3>
                 <p class="body-text-regular-medium text-secondary-600 pt-1">{{ $article_data->short_text }}</p>
             </div>
             <a href="{{ route('articles.show', $article_data->slug) }}"

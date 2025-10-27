@@ -56,14 +56,14 @@
                     <img class="max-h-72 w-full object-cover rounded-xl" src="{{ asset('upload/articles/card img.png') }}" alt="{{ $article->title }}" />
                     <div class="mt-4">
                         <button class="px-4 py-2   border rounded-full border-secondary-200 label-text-regular-small text-secondary-800"> {{ $article->article_category->title }} </button>
-                        <h2 class="title-text-bold-medium text-secondary-950 pt-2"> {{ $article->title }} </h2>
+                        <h3 class="title-text-bold-medium text-secondary-950 pt-2"> {{ $article->title }} </h3>
                         <p class="body-text-regular-medium text-secondary-600 pt-1"> {{ $article->short_text }} </p>
                     </div>
 
                     <a href="{{ route('articles.show', $article->slug) }}" class="inline-block px-3 py-2 rounded-sm border border-secondary-800 label-text-bold-small text-secondary-800 mt-4"> Read more </a>
                 </div>
             @empty
-                <h3 class="heading-text-regular-large text-secondary-800 m-auto">No Article available this area!</h3>
+                <h2 class="heading-text-regular-large text-secondary-800 m-auto">No Article available this area!</h2>
             @endforelse
         </div>
         @if ($articles->hasMorePages())
