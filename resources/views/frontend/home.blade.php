@@ -302,25 +302,25 @@
         </div>
 
         <div class="service-container flex gap-6">
-            @for ($i = 0; $i < 4; $i++) <div class="service-item">
-                <div class="flex flex-col gap-5 p-6 bg-white border rounded-md border-secondary-400">
-                    <div class="w-full">
-                        <img class="rounded w-full" src="{{ asset('upload/service-img.png') }}" alt="">
-                    </div>
-                    <div class="gap-2">
-                        <h3 class="title-text-bold-medium text-secondary-600">Web Design & Development</h3>
-                        <p class="body-text-regular-medium text-secondary-600">
-                            We create visually stunning and responsive websites tailored to your brand, ensuring
-                            seamless user experiences and high performance across all devices.
-                        </p>
-                    </div>
-                    <div class="w-full flex justify-center mt-8">
-                        <button class="button-label px-4 py-2">See plan</button>
+            @foreach ($services as $service)
+                <div class="service-item">
+                    <div class="flex flex-col gap-5 p-6 bg-white border rounded-md border-secondary-400">
+                        <div class="w-full">
+                            <img class="rounded w-full" src="{{ asset('storage/' . $service->image) }}" alt="{{ $service->name }}">
+                        </div>
+                        <div class="gap-2">
+                            <h1 class="title-text-bold-medium text-secondary-600">{{ $service->name }}</h1>
+                            <p class="body-text-regular-medium text-secondary-600">
+                                {{ $service->description }}
+                            </p>
+                        </div>
+                        <div class="w-full flex justify-center mt-8">
+                            <a href="{{ route('services.show', $service->slug) }}" class="button-label px-4 py-2">See plan</a>
+                        </div>
                     </div>
                 </div>
+            @endforeach
         </div>
-        @endfor
-    </div>
     <div class="flex justify-center items-center mt-14">
         <a href="{{ route('services') }}" class="button-label px-7 py-3 label-text-bold-large">See all
             service</a>
