@@ -21,7 +21,7 @@
          {{-- All softwares  --}}
 
          <div class="my-15">
-            <h1 class=" heading-text-regular-medium text-center text-secondary-950 mt-15 mb-8"> {{ $allSoftwaresSettings['section_title'] ?? '' }}</h1>
+            <h2 class=" heading-text-regular-medium text-center text-secondary-950 mt-15 mb-8"> {{ $allSoftwaresSettings['section_title'] ?? '' }}</h2>
 
             <div class="grid md:grid-cols-2 lg:grid-cols-2 xl:grid-cols-2 gap-8 justify-center items-center p-6">
                 <!-- Service Card -->
@@ -29,7 +29,7 @@
                     <div class="flex flex-col gap-5 p-6 bg-white border rounded-md border-secondary-400 shadow-lg">
                         <img class="rounded object-cover w-full " src="{{ asset('upload/software.png') }}" alt="">
                         <div class="gap-2">
-                            <h1 class="text-left md:text-left title-text-regular-x-large text-secondary-900">Custom made Software for Your Needs</h1>
+                            <h3 class="text-left md:text-left title-text-regular-x-large text-secondary-900">Custom made Software for Your Needs</h3>
                             <p class="sub-title-medium-regular text-secondary-600 text-left">Our custom software development services are designed to create solutions that align perfectly with your business objectives. Whether you need to enhance efficiency, improve customer experiences, or scale operations, we’re here to deliver.</p>
                         </div>
                         <div>
@@ -45,7 +45,7 @@
                     <div class="flex flex-col gap-5 p-6 bg-white border rounded-md border-secondary-400 shadow-lg">
                         <img class="rounded object-cover w-full " src="{{ asset('upload/software.png') }}" alt="">
                         <div class="gap-2">
-                            <h1 class="text-left md:text-left title-text-regular-x-large text-secondary-900">NGO Management System</h1>
+                            <h3 class="text-left md:text-left title-text-regular-x-large text-secondary-900">NGO Management System</h3>
                             <p class="sub-title-medium-regular text-secondary-600 text-left">Optimize your NGO's operations with our comprehensive solution. Manage donations, volunteers, projects, and reporting seamlessly, all in one place.</p>
                         </div>
                         <div>
@@ -61,7 +61,7 @@
                     <div class="flex flex-col gap-5 p-6 bg-white border rounded-md border-secondary-400 shadow-lg">
                         <img class="rounded object-cover w-full " src="{{ asset('upload/software.png') }}" alt="">
                         <div class="gap-2">
-                            <h1 class="text-left md:text-left title-text-regular-x-large text-secondary-900">School Management System</h1>
+                            <h3 class="text-left md:text-left title-text-regular-x-large text-secondary-900">School Management System</h3>
                             <p class="sub-title-medium-regular text-secondary-600 text-left">Streamline school administration with features for managing students, teachers, schedules, fees, and exams efficiently. Empower educators and enhance the learning experience.</p>
                         </div>
                         <div>
@@ -77,7 +77,7 @@
                     <div class="flex flex-col gap-5 p-6 bg-white border rounded-md border-secondary-400 shadow-lg">
                         <img class="rounded object-cover w-full" src="{{ asset('upload/software.png') }}" alt="">
                         <div class="gap-2">
-                            <h1 class="text-left md:text-left title-text-regular-x-large text-secondary-900">Restaurant Management System</h1>
+                            <h3 class="text-left md:text-left title-text-regular-x-large text-secondary-900">Restaurant Management System</h3>
                             <p class="sub-title-medium-regular text-secondary-600 text-left">Revolutionize your restaurant’s operations with tools for order management, inventory tracking, staff scheduling, and customer engagement, ensuring smooth day-to-day management.</p>
                         </div>
                         <div>

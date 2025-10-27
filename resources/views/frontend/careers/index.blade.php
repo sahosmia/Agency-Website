@@ -84,7 +84,7 @@
 
         @if ($vacancies->count() == 0)
             <div class="w-8/12 text-center m-auto pt-20">
-                <h3 class="heading-text-regular-large text-secondary-800 m-auto text-center">No vacancy available this area!</h3>
+                <h2 class="heading-text-regular-large text-secondary-800 m-auto text-center">No vacancy available this area!</h2>
                 <p class="sub-title-medium-regular text-secondary-600 pt-8">
                     If you have exceptional skills in development, design, marketing, or any other relevant field, we’d love to
                     hear from you! We encourage you to submit your resume. We’ll keep your details on file and reach out when a
