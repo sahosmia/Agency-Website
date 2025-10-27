@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Frontend;
 use App\Http\Controllers\Controller;
 use App\Models\Article;
 use App\Models\ArticleCategory;
+use App\Models\PageSetting;
 use Illuminate\Http\Request;
 
 class ArticleFrontController extends Controller
@@ -22,7 +23,10 @@ class ArticleFrontController extends Controller
             })
             ->paginate(6);
 
-        return view('frontend.articles.index', ['articles' => $articles, 'article_categories' => $article_categories]);
+        $articlesPage = PageSetting::where('page_name', 'articles')->first();
+        $articlesSettings = $articlesPage ? $articlesPage->settings : [];
+
+        return view('frontend.articles.index', ['articles' => $articles, 'article_categories' => $article_categories, 'articlesSettings' => $articlesSettings]);
     }
 
     // Show
@@ -30,7 +34,9 @@ class ArticleFrontController extends Controller
     {
         $article->load('article_category:id,title', 'tags');
         $articles = Article::with('article_category:id,title')->limit(5)->get();
+        $articleDetailPage = PageSetting::where('page_name', 'article-detail')->first();
+        $articleDetailSettings = $articleDetailPage ? $articleDetailPage->settings : [];
 
-        return view('frontend.articles.show', ['articles' => $articles, 'article' => $article]);
+        return view('frontend.articles.show', ['articles' => $articles, 'article' => $article, 'articleDetailSettings' => $articleDetailSettings]);
     }
 }

@@ -40,6 +40,28 @@
                     <a href="{{ route('admin.working-processes.index') }}" class="block px-4 py-2 text-gray-300 hover:bg-gray-700">Working Processes</a>
                     <a href="{{ route('admin.values.index') }}" class="block px-4 py-2 text-gray-300 hover:bg-gray-700">Values</a>
                     <a href="{{ route('admin.social-media-links.index') }}" class="block px-4 py-2 text-gray-300 hover:bg-gray-700">Social Media Links</a>
+                    <hr class="my-2 border-gray-600">
+                    <a href="{{ route('admin.pages.home') }}" class="block px-4 py-2 text-gray-300 hover:bg-gray-700">Home Page</a>
+                    <a href="{{ route('admin.pages.about') }}" class="block px-4 py-2 text-gray-300 hover:bg-gray-700">About Page</a>
+                    <a href="{{ route('admin.pages.contact') }}" class="block px-4 py-2 text-gray-300 hover:bg-gray-700">Contact Page</a>
+                    <a href="{{ route('admin.pages.404') }}" class="block px-4 py-2 text-gray-300 hover:bg-gray-700">404 Page</a>
+                    <a href="{{ route('admin.pages.terms') }}" class="block px-4 py-2 text-gray-300 hover:bg-gray-700">Terms & Conditions</a>
+                    <a href="{{ route('admin.pages.privacy') }}" class="block px-4 py-2 text-gray-300 hover:bg-gray-700">Privacy Policy</a>
+                    <a href="{{ route('admin.pages.services') }}" class="block px-4 py-2 text-gray-300 hover:bg-gray-700">Services Page</a>
+                    <a href="{{ route('admin.pages.articles') }}" class="block px-4 py-2 text-gray-300 hover:bg-gray-700">Articles Page</a>
+                    <a href="{{ route('admin.pages.softwares') }}" class="block px-4 py-2 text-gray-300 hover:bg-gray-700">Software Page</a>
+                    <a href="{{ route('admin.pages.projects') }}" class="block px-4 py-2 text-gray-300 hover:bg-gray-700">Projects Page</a>
+                    <a href="{{ route('admin.pages.all-softwares') }}" class="block px-4 py-2 text-gray-300 hover:bg-gray-700">All Software Page</a>
+                    <a href="{{ route('admin.pages.custom-software') }}" class="block px-4 py-2 text-gray-300 hover:bg-gray-700">Custom Software Page</a>
+                    <a href="{{ route('admin.pages.lets-discuss') }}" class="block px-4 py-2 text-gray-300 hover:bg-gray-700">Let's Discuss Page</a>
+                    <a href="{{ route('admin.pages.thank-you') }}" class="block px-4 py-2 text-gray-300 hover:bg-gray-700">Thank You Page</a>
+                    <a href="{{ route('admin.pages.service-plans') }}" class="block px-4 py-2 text-gray-300 hover:bg-gray-700">Service Plans Page</a>
+                    <a href="{{ route('admin.pages.software-plans') }}" class="block px-4 py-2 text-gray-300 hover:bg-gray-700">Software Plans Page</a>
+                    <a href="{{ route('admin.pages.careers') }}" class="block px-4 py-2 text-gray-300 hover:bg-gray-700">Careers Page</a>
+                    <a href="{{ route('admin.pages.service-detail') }}" class="block px-4 py-2 text-gray-300 hover:bg-gray-700">Service Detail Page</a>
+                    <a href="{{ route('admin.pages.article-detail') }}" class="block px-4 py-2 text-gray-300 hover:bg-gray-700">Article Detail Page</a>
+                    <a href="{{ route('admin.pages.software-detail') }}" class="block px-4 py-2 text-gray-300 hover:bg-gray-700">Software Detail Page</a>
+                    <a href="{{ route('admin.pages.project-detail') }}" class="block px-4 py-2 text-gray-300 hover:bg-gray-700">Project Detail Page</a>
                 </div>
             </nav>
         </aside>

@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Frontend;
 
 use App\Http\Controllers\Controller;
+use App\Models\PageSetting;
 use App\Models\Team;
 use Illuminate\Http\Request;
 use App\Models\ServiceCategory;
@@ -14,18 +15,26 @@ class PageController extends Controller
     public function about()
     {
         $teams = Team::get();
+        $aboutPage = PageSetting::where('page_name', 'about')->first();
+        $aboutSettings = $aboutPage ? $aboutPage->settings : [];
 
-        return view('frontend.about', ['teams' => $teams]);
+        return view('frontend.about', compact('teams', 'aboutSettings'));
     }
 
     public function terms_conditions()
     {
-        return view('frontend.terms-conditions');
+        $termsPage = PageSetting::where('page_name', 'terms')->first();
+        $termsSettings = $termsPage ? $termsPage->settings : [];
+
+        return view('frontend.terms-conditions', compact('termsSettings'));
     }
 
     public function privacy_policy()
     {
-        return view('frontend.privacy-policy');
+        $privacyPage = PageSetting::where('page_name', 'privacy')->first();
+        $privacySettings = $privacyPage ? $privacyPage->settings : [];
+
+        return view('frontend.privacy-policy', compact('privacySettings'));
     }
 
     public function job_apply_question()
@@ -45,12 +54,18 @@ class PageController extends Controller
 
     public function all_softwares()
     {
-        return view('frontend.all-softwares');
+        $allSoftwaresPage = PageSetting::where('page_name', 'all-softwares')->first();
+        $allSoftwaresSettings = $allSoftwaresPage ? $allSoftwaresPage->settings : [];
+
+        return view('frontend.all-softwares', compact('allSoftwaresSettings'));
     }
 
     public function lets_discuss()
     {
-        return view('frontend.lets-discuss');
+        $letsDiscussPage = PageSetting::where('page_name', 'lets-discuss')->first();
+        $letsDiscussSettings = $letsDiscussPage ? $letsDiscussPage->settings : [];
+
+        return view('frontend.lets-discuss', compact('letsDiscussSettings'));
     }
 
     public function confirmation()
@@ -65,7 +80,10 @@ class PageController extends Controller
 
     public function thankYouPage()
     {
-        return view('frontend.thank-you-page');
+        $thankYouPage = PageSetting::where('page_name', 'thank-you')->first();
+        $thankYouSettings = $thankYouPage ? $thankYouPage->settings : [];
+
+        return view('frontend.thank-you-page', compact('thankYouSettings'));
     }
 
     public function maintenancePage()
@@ -80,20 +98,27 @@ class PageController extends Controller
 
     public function custom_software()
     {
-        return view('frontend.custom-software');
+        $customSoftwarePage = PageSetting::where('page_name', 'custom-software')->first();
+        $customSoftwareSettings = $customSoftwarePage ? $customSoftwarePage->settings : [];
+
+        return view('frontend.custom-software', compact('customSoftwareSettings'));
     }
 
     public function service_plans()
     {
         $serviceCategories = ServiceCategory::with('services.serviceTypes.pricePlans.features')->get();
         $features = Feature::all();
-        return view('frontend.service-plans', compact('serviceCategories', 'features'));
+        $servicePlansPage = PageSetting::where('page_name', 'service-plans')->first();
+        $servicePlansSettings = $servicePlansPage ? $servicePlansPage->settings : [];
+        return view('frontend.service-plans', compact('serviceCategories', 'features', 'servicePlansSettings'));
     }
 
     public function software_plans()
     {
         $softwareCategories = SoftwareCategory::with('softwares.pricePlans.features')->get();
         $features = Feature::all();
-        return view('frontend.software-plans', compact('softwareCategories', 'features'));
+        $softwarePlansPage = PageSetting::where('page_name', 'software-plans')->first();
+        $softwarePlansSettings = $softwarePlansPage ? $softwarePlansPage->settings : [];
+        return view('frontend.software-plans', compact('softwareCategories', 'features', 'softwarePlansSettings'));
     }
 }

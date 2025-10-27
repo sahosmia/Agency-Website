@@ -1,5 +1,5 @@
 @extends('frontend.layouts.app')
-@section('title', 'Projects')
+@section('title', $projectsSettings['page_title'] ?? 'Projects')
 
 @section('content')
 <<<<<<< HEAD
@@ -22,7 +22,7 @@
 =======
     <div class="container mx-auto">
         <h1 class="text-3xl md:text-[52px] font-medium leading-tight md:leading-[68px] text-center mt-5">
-            Explore our least <span class="text-primary-600">Projects</span>
+            {{ $projectsSettings['title'] ?? '' }}
         </h1>
         <!-- Search Form -->
         <form action="{{ route('projects') }}" method="GET" class="mt-8 md:mt-14">
@@ -63,8 +63,7 @@
         @if ($projects->count() != 0)
             <div class="w-full md:w-8/12 lg:w-6/12 mt-16 md:mt-20 flex justify-center mx-auto">
                 <p class="sub-title-medium-regular leading-8 text-secondary-800 text-center">
-                    where we share the latest trends, insights, and best practices in
-                    technology, digital transformation, and business solutions.
+                    {{ $projectsSettings['description'] ?? '' }}
                 </p>
             </div>
         @endif

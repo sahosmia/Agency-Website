@@ -1,5 +1,5 @@
 @extends('frontend.layouts.app')
-@section('title', 'Service - ' . $service->name)
+@section('title', $serviceDetailSettings['page_title'] ?? 'Service Details')
 
 @section('content')
     <div class="container ">
@@ -13,7 +13,7 @@
 
         {{-- Key Features Section --}}
         <div class="my-20" x-data="{ activeTab: 0 }">
-            <h2 class="heading-text-regular-medium text-center text-secondary-900 mb-8">Key Features</h2>
+            <h2 class="heading-text-regular-medium text-center text-secondary-900 mb-8">{{ $serviceDetailSettings['key_features_title'] ?? '' }}</h2>
             <div class="flex justify-center mb-8">
                 @foreach ($service->keyFeatures as $key => $keyFeature)
                     <button @click="activeTab = {{ $key }}"
@@ -30,7 +30,7 @@
 
         {{-- Technologies Section --}}
         <div class="my-20">
-            <h2 class="heading-text-regular-medium text-center text-secondary-900 mb-8">Technologies We Use</h2>
+            <h2 class="heading-text-regular-medium text-center text-secondary-900 mb-8">{{ $serviceDetailSettings['technologies_title'] ?? '' }}</h2>
             <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
                 @foreach ($service->technologies as $technology)
                     <div class="card">
@@ -46,7 +46,7 @@
 
         {{-- Service Plans Section --}}
         <div class="my-20" x-data="{ activeTab: 0 }">
-            <h2 class="heading-text-regular-medium text-center text-secondary-900 mb-8">Service Plans</h2>
+            <h2 class="heading-text-regular-medium text-center text-secondary-900 mb-8">{{ $serviceDetailSettings['service_plans_title'] ?? '' }}</h2>
             <div class="flex justify-center mb-8">
                 @foreach ($service->serviceTypes as $key => $serviceType)
                     <button @click="activeTab = {{ $key }}"

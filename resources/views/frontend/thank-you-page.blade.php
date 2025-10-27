@@ -1,9 +1,17 @@
 @extends('frontend.layouts.app')
-@section('title', 'Thank-you')
+@section('title', $thankYouSettings['page_title'] ?? 'Thank You')
 
 @section('content')
-<div class="container">
-    <div class="w-8/12 h-[600px] flex flex-col justify-center text-center m-auto pt-20 mb-20">
+    <div class="container">
+        <div class="w-8/12 text-center m-auto pt-20 mb-20">
+
+            <img class="w-[184px] h-[184px]  mx-auto " src="{{ asset('upload/mail-heart.svg') }}" alt="">
+            <h1 class="heading-text-bold-large text-secondary-950 mt-7">{{ $thankYouSettings['title'] ?? '' }}</h1>
+
+            <p class="title-text-regular-x-large text-secondary-600 ">
+                {{ $thankYouSettings['subtitle'] ?? '' }}
+            </p>
+        </div>
 
         <img class="w-28   mx-auto " src="{{ asset('upload/mail-heart.svg') }}" alt="">
         <h1 class="heading-text-bold-large text-secondary-950 mt-7">Thanks for Your Enquiry </h1>
