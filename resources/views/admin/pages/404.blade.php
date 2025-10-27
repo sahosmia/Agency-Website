@@ -1,5 +1,12 @@
 @extends('admin.layouts.app')
 
+@section('title', '404')
+@section('header-title', '404')
+
+
+
+
+
 @section('content')
     <div class="container-fluid">
         <div class="row">

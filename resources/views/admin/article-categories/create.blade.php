@@ -1,6 +1,11 @@
 @extends('admin.layouts.app')
 
-@section('title', 'Create Article Category')
+@section('title', 'Create Article Categories')
+@section('header-title', 'Create Article Categories')
+
+
+
+
 
 @section('content')
     <h1 class="text-2xl font-bold mb-4">Create Article Category</h1>
