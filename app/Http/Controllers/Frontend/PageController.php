@@ -12,94 +12,100 @@ use App\Models\Feature;
 
 class PageController extends Controller
 {
+    private function getPageSettings($pageName)
+    {
+        $page = PageSetting::where('page_name', $pageName)->first();
+        return $page ? $page->settings : [];
+    }
+
     public function about()
     {
         $teams = Team::get();
-        $aboutPage = PageSetting::where('page_name', 'about')->first();
-        $aboutSettings = $aboutPage ? $aboutPage->settings : [];
+        $aboutSettings = $this->getPageSettings('about');
 
         return view('frontend.about', compact('teams', 'aboutSettings'));
     }
 
     public function terms_conditions()
     {
-        $termsPage = PageSetting::where('page_name', 'terms')->first();
-        $termsSettings = $termsPage ? $termsPage->settings : [];
+        $termsSettings = $this->getPageSettings('terms');
 
         return view('frontend.terms-conditions', compact('termsSettings'));
     }
 
     public function privacy_policy()
     {
-        $privacyPage = PageSetting::where('page_name', 'privacy')->first();
-        $privacySettings = $privacyPage ? $privacyPage->settings : [];
+        $privacySettings = $this->getPageSettings('privacy');
 
         return view('frontend.privacy-policy', compact('privacySettings'));
     }
 
     public function job_apply_question()
     {
-        return view('frontend.job.job-apply-question');
+        $jobApplyQuestionSettings = $this->getPageSettings('job-apply-question');
+        return view('frontend.job.job-apply-question', compact('jobApplyQuestionSettings'));
     }
 
     public function single_software_page()
     {
-        return view('frontend.single-software-page');
+        $singleSoftwarePageSettings = $this->getPageSettings('single-software-page');
+        return view('frontend.single-software-page', compact('singleSoftwarePageSettings'));
     }
 
     public function single_software_plan_page()
     {
-        return view('frontend.single-software-plan-page');
+        $singleSoftwarePlanPageSettings = $this->getPageSettings('single-software-plan-page');
+        return view('frontend.single-software-plan-page', compact('singleSoftwarePlanPageSettings'));
     }
 
     public function all_softwares()
     {
-        $allSoftwaresPage = PageSetting::where('page_name', 'all-softwares')->first();
-        $allSoftwaresSettings = $allSoftwaresPage ? $allSoftwaresPage->settings : [];
+        $allSoftwaresSettings = $this->getPageSettings('all-softwares');
 
         return view('frontend.all-softwares', compact('allSoftwaresSettings'));
     }
 
     public function lets_discuss()
     {
-        $letsDiscussPage = PageSetting::where('page_name', 'lets-discuss')->first();
-        $letsDiscussSettings = $letsDiscussPage ? $letsDiscussPage->settings : [];
+        $letsDiscussSettings = $this->getPageSettings('lets-discuss');
 
         return view('frontend.lets-discuss', compact('letsDiscussSettings'));
     }
 
     public function confirmation()
     {
-        return view('frontend.confirmation');
+        $confirmationSettings = $this->getPageSettings('confirmation');
+        return view('frontend.confirmation', compact('confirmationSettings'));
     }
 
     public function congratulationPage()
     {
-        return view('frontend.job.congratulation-page');
+        $congratulationPageSettings = $this->getPageSettings('congratulation-page');
+        return view('frontend.job.congratulation-page', compact('congratulationPageSettings'));
     }
 
     public function thankYouPage()
     {
-        $thankYouPage = PageSetting::where('page_name', 'thank-you')->first();
-        $thankYouSettings = $thankYouPage ? $thankYouPage->settings : [];
+        $thankYouSettings = $this->getPageSettings('thank-you');
 
         return view('frontend.thank-you-page', compact('thankYouSettings'));
     }
 
     public function maintenancePage()
     {
-        return view('frontend.maintenance-page');
+        $maintenancePageSettings = $this->getPageSettings('maintenance-page');
+        return view('frontend.maintenance-page', compact('maintenancePageSettings'));
     }
 
     public function ourWork()
     {
-        return view('frontend.our-work');
+        $ourWorkSettings = $this->getPageSettings('our-work');
+        return view('frontend.our-work', compact('ourWorkSettings'));
     }
 
     public function custom_software()
     {
-        $customSoftwarePage = PageSetting::where('page_name', 'custom-software')->first();
-        $customSoftwareSettings = $customSoftwarePage ? $customSoftwarePage->settings : [];
+        $customSoftwareSettings = $this->getPageSettings('custom-software');
 
         return view('frontend.custom-software', compact('customSoftwareSettings'));
     }
@@ -108,8 +114,7 @@ class PageController extends Controller
     {
         $serviceCategories = ServiceCategory::with('services.serviceTypes.pricePlans.features')->get();
         $features = Feature::all();
-        $servicePlansPage = PageSetting::where('page_name', 'service-plans')->first();
-        $servicePlansSettings = $servicePlansPage ? $servicePlansPage->settings : [];
+        $servicePlansSettings = $this->getPageSettings('service-plans');
         return view('frontend.service-plans', compact('serviceCategories', 'features', 'servicePlansSettings'));
     }
 
@@ -117,8 +122,7 @@ class PageController extends Controller
     {
         $softwareCategories = SoftwareCategory::with('softwares.pricePlans.features')->get();
         $features = Feature::all();
-        $softwarePlansPage = PageSetting::where('page_name', 'software-plans')->first();
-        $softwarePlansSettings = $softwarePlansPage ? $softwarePlansPage->settings : [];
+        $softwarePlansSettings = $this->getPageSettings('software-plans');
         return view('frontend.software-plans', compact('softwareCategories', 'features', 'softwarePlansSettings'));
     }
 }

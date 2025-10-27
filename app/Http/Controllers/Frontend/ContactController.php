@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers\Frontend;
 
-use App\Http/Controllers\Controller;
+use App\Http\Controllers\Controller;
 use App\Models\PageSetting;
 use Illuminate\Http\Request;
 

@@ -1,7 +1,7 @@
 <footer>
     <div class="container relative">
-        <div class="border-b-1 border-secondary-400">
-            <div class="py-10 md:py-[60px] flex flex-col lg:flex-row gap-10 lg:gap-[128px]">
+        <div class="border-b border-secondary-400">
+            <div class="py-10 md:py-[60px] flex flex-col lg:flex-row gap-10 lg:gap-32">
                 <div class="flex flex-col gap-5 w-full lg:w-4/12">
                     <div class="flex flex-col items-center text-center lg:items-start lg:text-left">
                         <img class="block w-[103px] h-10" src="{{ asset('frontend/images/logo.png') }}" alt="">
@@ -20,7 +20,7 @@
                                         class="text-secondary-800 label-text-bold-small group-hover:text-secondary-950">{{ $link->name }}</span>
                                 </a>
                             @empty
-                                <p class="text-secondary-800 label-text-bold-small">No Social Media Links Found</p>
+                            <p class="text-secondary-800 label-text-bold-small">No Social Media Links Found</p>
                             @endforelse
                         </div>
                     </div>
@@ -32,8 +32,8 @@
                         <ul class="flex flex-col gap-2 md:gap-3 pt-4">
                             <li class="label-text-regular-small text-secondary-900"><a
                                     href="{{ route('admin.dashboard.index') }}">Log in dashboard</a></li>
-                            <li class="label-text-regular-small text-secondary-900"><a
-                                    href="{{ route('about') }}">About us</a></li>
+                            <li class="label-text-regular-small text-secondary-900"><a href="{{ route('about') }}">About
+                                    us</a></li>
                             <li class="label-text-regular-small text-secondary-900"><a
                                     href="{{ route('contact') }}">Contact us</a></li>
                             <li class="label-text-regular-small text-secondary-900"><a
@@ -54,7 +54,7 @@
                                         href="{{ route('services.show', $service->slug) }}">{{ $service->name }}</a>
                                 </li>
                             @empty
-                                <li class="label-text-regular-small text-secondary-900">No Service Found</li>
+                            <li class="label-text-regular-small text-secondary-900">No Service Found</li>
                             @endforelse
                         </ul>
                     </div>
@@ -66,7 +66,7 @@
                                         href="{{ route('softwares.show', $software->slug) }}">{{ $software->name }}</a>
                                 </li>
                             @empty
-                                <li class="label-text-regular-small text-secondary-900">No Software Found</li>
+                            <li class="label-text-regular-small text-secondary-900">No Software Found</li>
                             @endforelse
                         </ul>
                     </div>

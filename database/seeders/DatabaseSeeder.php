@@ -41,6 +41,7 @@ class DatabaseSeeder extends Seeder
             ValueSeeder::class,
             WorkingProcessSeeder::class,
             SocialMediaLinkSeeder::class,
+            PageSettingSeeder::class,
         ]);
     }
 }
