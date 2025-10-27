@@ -1,35 +1,34 @@
 @extends('frontend.layouts.app')
+@section('title', $aboutSettings['page_title'] ?? 'About Us')
 
 @section('content')
     <div class="container my-10 md:my-20">
         <div class="flex flex-col justify-center items-center gap-8 md:gap-10">
-            <h1 class="heading-text-regular-large text-secondary-950 text-center text-3xl md:text-5xl">Leading the Way in <span class="text-primary-600">Digital Solutions</span></h1>
-            <img src="{{ asset('upload/aboutus.png') }}" alt="" class="w-full md:w-10/12 lg:w-8/12">
+        <h1 class="heading-text-regular-large text-secondary-950 text-center text-3xl md:text-5xl">{{ $aboutSettings['about_us_title'] ?? '' }}</h1>
+            <img src="{{ asset('storage/' . ($aboutSettings['about_us_image'] ?? '')) }}" alt="" class="w-full md:w-10/12 lg:w-8/12">
             <p class="w-full md:w-10/12 lg:w-8/12 sub-title-large-regular text-secondary-900 text-center">
-                short story about we're company. Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s,
-                <br class="hidden md:block">
-                when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially changed.
+                {{ $aboutSettings['about_us_description'] ?? '' }}
             </p>
         </div>
 
         {{-- Our Achievements --}}
         <div class="my-10 md:my-15">
-            <h1 class="heading-text-regular-large text-secondary-950 text-center text-3xl md:text-5xl">Our Achievements</h1>
+            <h1 class="heading-text-regular-large text-secondary-950 text-center text-3xl md:text-5xl">{{ $aboutSettings['achievement_title'] ?? '' }}</h1>
             <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 justify-center gap-6 py-10 md:py-15">
                 <div class="flex items-center">
-                    <p class="body-text-regular-medium text-secondary-800">We specialize in digital solutions to help your business grow and thrive in the digital landscape.</p>
+                    <p class="body-text-regular-medium text-secondary-800">{{ $aboutSettings['achievement_description'] ?? '' }}</p>
                 </div>
                 <div class="hero-card">
-                    <h1 class="title-text-bold-medium text-secondary-900">95%</h1>
-                    <h2 class="sub-title-large-regular text-secondary-900">Client Satisfaction</h2>
+                    <h1 class="title-text-bold-medium text-secondary-900">{{ $aboutSettings['achievement_one_value'] ?? '' }}</h1>
+                    <h2 class="sub-title-large-regular text-secondary-900">{{ $aboutSettings['achievement_one_title'] ?? '' }}</h2>
                 </div>
                 <div class="hero-card">
-                    <h1 class="title-text-bold-medium text-secondary-900">80+</h1>
-                    <h2 class="sub-title-large-regular text-secondary-900">Projects Completed</h2>
+                    <h1 class="title-text-bold-medium text-secondary-900">{{ $aboutSettings['achievement_two_value'] ?? '' }}</h1>
+                    <h2 class="sub-title-large-regular text-secondary-900">{{ $aboutSettings['achievement_two_title'] ?? '' }}</h2>
                 </div>
                 <div class="hero-card">
-                    <h1 class="title-text-bold-medium text-secondary-900">17+</h1>
-                    <h2 class="sub-title-large-regular text-secondary-900">Industries Served</h2>
+                    <h1 class="title-text-bold-medium text-secondary-900">{{ $aboutSettings['achievement_three_value'] ?? '' }}</h1>
+                    <h2 class="sub-title-large-regular text-secondary-900">{{ $aboutSettings['achievement_three_title'] ?? '' }}</h2>
                 </div>
             </div>
         </div>
@@ -37,8 +36,8 @@
 
         {{-- Our Journey --}}
         <div class="my-10 md:my-15 flex flex-col justify-center items-center gap-8">
-            <h1 class="heading-text-regular-large text-secondary-950 text-center text-3xl md:text-5xl">Our Journey</h1>
-            <p class="w-full md:w-10/12 sub-title-large-regular text-secondary-900 text-center">Our story is one of passion, innovation, and relentless dedication to delivering exceptional digital solutions. From humble beginnings to a global presence, we have grown into a trusted name in website development, custom software solutions, UI/UX design, digital marketing, and IT services.</p>
+            <h1 class="heading-text-regular-large text-secondary-950 text-center text-3xl md:text-5xl">{{ $aboutSettings['journey_title'] ?? '' }}</h1>
+            <p class="w-full md:w-10/12 sub-title-large-regular text-secondary-900 text-center">{{ $aboutSettings['journey_description'] ?? '' }}</p>
             <div class="w-full md:w-10/12 lg:w-8/12 mt-8">
                 <div class="relative">
                     <div class="border-l-2 border-primary-600 absolute h-full top-0 left-1/2 -translate-x-1/2"></div>
@@ -47,8 +46,8 @@
                         <div class="flex items-center">
                             <div class="w-1/2 pr-8">
                                 <div class="p-6 bg-white rounded-lg border border-secondary-400">
-                                    <h2 class="title-text-bold-medium text-secondary-950">2018</h2>
-                                    <p class="body-text-regular-medium text-secondary-800 mt-2">Founded with a vision to revolutionize the digital landscape, our agency started its journey with a small team of passionate innovators.</p>
+                                    <h2 class="title-text-bold-medium text-secondary-950">{{ $aboutSettings['journey_one_title'] ?? '' }}</h2>
+                                    <p class="body-text-regular-medium text-secondary-800 mt-2">{{ $aboutSettings['journey_one_description'] ?? '' }}</p>
                                 </div>
                             </div>
                             <div class="w-6 h-6 bg-primary-600 rounded-full absolute left-1/2 -translate-x-1/2"></div>
@@ -60,8 +59,8 @@
                             <div class="w-6 h-6 bg-primary-600 rounded-full absolute left-1/2 -translate-x-1/2"></div>
                             <div class="w-1/2 pl-8">
                                 <div class="p-6 bg-white rounded-lg border border-secondary-400">
-                                    <h2 class="title-text-bold-medium text-secondary-950">2020</h2>
-                                    <p class="body-text-regular-medium text-secondary-800 mt-2">Expanded our services to include custom software development and UI/UX design, helping businesses create seamless digital experiences.</p>
+                                    <h2 class="title-text-bold-medium text-secondary-950">{{ $aboutSettings['journey_two_title'] ?? '' }}</h2>
+                                    <p class="body-text-regular-medium text-secondary-800 mt-2">{{ $aboutSettings['journey_two_description'] ?? '' }}</p>
                                 </div>
                             </div>
                         </div>
@@ -69,8 +68,8 @@
                         <div class="flex items-center">
                             <div class="w-1/2 pr-8">
                                 <div class="p-6 bg-white rounded-lg border border-secondary-400">
-                                    <h2 class="title-text-bold-medium text-secondary-950">2022</h2>
-                                    <p class="body-text-regular-medium text-secondary-800 mt-2">Achieved a global presence by serving clients from over 17 countries, delivering innovative solutions that drive success worldwide.</p>
+                                    <h2 class="title-text-bold-medium text-secondary-950">{{ $aboutSettings['journey_three_title'] ?? '' }}</h2>
+                                    <p class="body-text-regular-medium text-secondary-800 mt-2">{{ $aboutSettings['journey_three_description'] ?? '' }}</p>
                                 </div>
                             </div>
                             <div class="w-6 h-6 bg-primary-600 rounded-full absolute left-1/2 -translate-x-1/2"></div>
@@ -84,7 +83,7 @@
 
         {{-- Our Team --}}
         <div class="my-10 md:my-15 flex flex-col justify-center items-center gap-8">
-            <h1 class="heading-text-regular-large text-secondary-950 text-center text-3xl md:text-5xl">Our Team</h1>
+            <h1 class="heading-text-regular-large text-secondary-950 text-center text-3xl md:text-5xl">{{ $aboutSettings['team_title'] ?? '' }}</h1>
             <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 mt-8">
                 @foreach ($teams as $team)
                     <div class="flex flex-col gap-4">

@@ -1,11 +1,11 @@
 @extends('frontend.layouts.app')
-@section('title', 'lets-discuss')
+@section('title', $letsDiscussSettings['page_title'] ?? 'Let\'s Discuss')
 
 @section('content')
     <div class="container">
         <div class="w-8/12 text-center m-auto pt-20">
-            <h1 class="heading-text-bold-large text-secondary-950">Let's discuss with US</h1>
-            <p class="sub-title-medium-regular text-secondary-600 pt-8">Get your information so we can contact you</p>
+            <h1 class="heading-text-bold-large text-secondary-950">{{ $letsDiscussSettings['title'] ?? '' }}</h1>
+            <p class="sub-title-medium-regular text-secondary-600 pt-8">{{ $letsDiscussSettings['subtitle'] ?? '' }}</p>
         </div>
 
         <form action="" method="POST">

@@ -1,15 +1,15 @@
 @extends('frontend.layouts.app')
-@section('title', 'Softwares')
+@section('title', $customSoftwareSettings['page_title'] ?? 'Custom Software')
 
 @section('content')
     <div class="container mx-auto">
 
         <h1 class="heading-text-regular-large text-center mt-20">
-            Empowering Your Vision with Tailored Solutions</h1>
+            {{ $customSoftwareSettings['title'] ?? '' }}</h1>
 
         <div class=" flex flex-col items-center my-8">
             <div class="w-8/12">
-                <p class=" body-text-regular-large text-secondary-800 text-wrap text-center">Our custom software development services are designed to create solutions that align perfectly with your business objectives. Whether you need to enhance efficiency, improve customer experiences, or scale operations, we’re here to deliver.</p>
+                <p class=" body-text-regular-large text-secondary-800 text-wrap text-center">{{ $customSoftwareSettings['description'] ?? '' }}</p>
             </div>
 
             <div class="my-20">
@@ -21,9 +21,9 @@
 
          <div class="slider-container mt-15 mb-20 overflow-hidden">
             <div>
-                <h1 class="heading-text-regular-medium text-center text-secondary-900">Why Choose Custom Software?</h1>
+                <h1 class="heading-text-regular-medium text-center text-secondary-900">{{ $customSoftwareSettings['why_choose_title'] ?? '' }}</h1>
                 <div class="flex justify-between my-8 gap-5">
-                    <p class="body-text-regular-medium text-secondary-800 w-full  md:w-1/2"> Custom software empowers your business with the tools to succeed. Contact us today to discuss your vision and explore how we can make it a reality. </p>
+                    <p class="body-text-regular-medium text-secondary-800 w-full  md:w-1/2"> {{ $customSoftwareSettings['why_choose_description'] ?? '' }} </p>
                     <div class="button-group ">
                         <button class="prev-btn-article button-label w-9 px-3 py-2  border-secondary-600 text-secondary-600"> <i class="w-5 h-5 fa-solid fa-circle-chevron-left"></i> </button>
                         <button class="next-btn-article button-label w-9 px-3 py-2  border-secondary-600 text-secondary-600"> <i class="w-5 h-5 fa-solid fa-circle-chevron-right"></i> </button>
@@ -63,7 +63,7 @@
 
          {{-- Software key Features  --}}
          <div class="mt-15 mb-20">
-            <h1 class=" heading-text-regular-medium text-secondary-900 text-center">Software Key Features</h1>
+            <h1 class=" heading-text-regular-medium text-secondary-900 text-center">{{ $customSoftwareSettings['key_features_title'] ?? '' }}</h1>
 
             <div class="w-10/12">
 
@@ -136,7 +136,7 @@
 
         {{-- Software Plans  --}}
         <div>
-            <h1 class=" heading-text-regular-medium text-center text-secondary-950 my-15"> Custom Software Plans</h1>
+            <h1 class=" heading-text-regular-medium text-center text-secondary-950 my-15"> {{ $customSoftwareSettings['plans_title'] ?? '' }}</h1>
             <div class="flex items-center justify-center">
 
                 <div class="w-4/12 viewer-card bg-primary-600 ">
@@ -178,7 +178,7 @@
         {{-- Technologies in the system  --}}
 
         <div class="my-15">
-            <h1 class=" heading-text-regular-medium text-center text-secondary-950 mt-15 mb-8"> Technologies in the System</h1>
+            <h1 class=" heading-text-regular-medium text-center text-secondary-950 mt-15 mb-8"> {{ $customSoftwareSettings['technologies_title'] ?? '' }}</h1>
 
             <div class="grid grid-cols-3 gap-6 justify-center">
                 <div class="service-item">

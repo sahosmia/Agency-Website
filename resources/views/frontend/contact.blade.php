@@ -1,4 +1,5 @@
 @extends('frontend.layouts.app')
+@section('title', $contactSettings['page_title'] ?? 'Contact Us')
 
 @section('content')
     <div class="bg-gray-100">
@@ -10,22 +11,29 @@
             @endif
             <div class="flex flex-wrap -mx-4">
                 <div class="w-full md:w-1/2 px-4 mb-8 md:mb-0">
-                    <h2 class="text-3xl font-bold mb-4">Contact us</h2>
+                    <h2 class="text-3xl font-bold mb-4">{{ $contactSettings['contact_title'] ?? '' }}</h2>
                     <p class="text-gray-600 mb-8">
-                        We're here to help. If you have any questions, please don't hesitate to reach out to us.
+                        {{ $contactSettings['contact_description'] ?? '' }}
                     </p>
                     <div class="flex items-center mb-4">
                         <i class="fas fa-phone-alt text-2xl text-gray-600 mr-4"></i>
                         <div>
                             <p class="font-bold">Phone</p>
-                            <p class="text-gray-600">+1 234 567 890</p>
+                            <p class="text-gray-600">{{ $contactSettings['contact_phone'] ?? '' }}</p>
                         </div>
                     </div>
                     <div class="flex items-center mb-4">
                         <i class="fas fa-envelope text-2xl text-gray-600 mr-4"></i>
                         <div>
                             <p class="font-bold">Email</p>
-                            <p class="text-gray-600">info@example.com</p>
+                            <p class="text-gray-600">{{ $contactSettings['contact_email'] ?? '' }}</p>
+                        </div>
+                    </div>
+                    <div class="flex items-center mb-4">
+                        <i class="fas fa-map-marker-alt text-2xl text-gray-600 mr-4"></i>
+                        <div>
+                            <p class="font-bold">Address</p>
+                            <p class="text-gray-600">{{ $contactSettings['contact_address'] ?? '' }}</p>
                         </div>
                     </div>
                     <div class="flex mt-8">
@@ -60,6 +68,12 @@
                     </div>
                 </div>
             </div>
+        </div>
+    </div>
+    <div class="container mx-auto py-12">
+        <h2 class="text-3xl font-bold mb-4 text-center">Our Location</h2>
+        <div class="w-full">
+            {!! $contactSettings['contact_map_iframe_url'] ?? '' !!}
         </div>
     </div>
 @endsection

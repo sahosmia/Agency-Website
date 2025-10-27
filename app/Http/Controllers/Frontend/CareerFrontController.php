@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Frontend;
 
 use App\Http\Controllers\Controller;
+use App\Models\PageSetting;
 use App\Models\Vacancy;
 use App\Models\VacancyCategory;
 use Illuminate\Http\Request;
@@ -24,7 +25,10 @@ class CareerFrontController extends Controller
             })
             ->paginate(6);
 
-        return view('frontend.careers.index', ['vacancies' => $vacancies, 'vacancy_categories' => $vacancy_categories]);
+        $careersPage = PageSetting::where('page_name', 'careers')->first();
+        $careersSettings = $careersPage ? $careersPage->settings : [];
+
+        return view('frontend.careers.index', ['vacancies' => $vacancies, 'vacancy_categories' => $vacancy_categories, 'careersSettings' => $careersSettings]);
     }
 
     // Show
