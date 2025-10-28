@@ -20,7 +20,8 @@ use App\Http\Controllers\Admin\{
     TechnologyController,
     KeyFeatureController,
     FeatureController,
-    PageSettingController
+    PageSettingController,
+    MenuController
 };
 use App\Http\Controllers\Admin\{
     TagController,
@@ -145,6 +146,7 @@ Route::prefix('admin')->name('admin.')->middleware(['auth'])->group(function () 
         'values'              => ValueController::class,
         'social-media-links'  => SocialMediaLinkController::class,
         'price-plans'         => PricePlanController::class,
+        'menus'               => MenuController::class,
     ]);
 
     // Page Settings (Grouped)
@@ -213,6 +215,9 @@ Route::prefix('admin')->name('admin.')->middleware(['auth'])->group(function () 
 
             Route::get('project-detail', 'projectDetail')->name('project-detail');
             Route::post('project-detail', 'projectDetailUpdate')->name('project-detail.update');
+
+            Route::get('header', 'header')->name('header');
+            Route::post('header', 'headerUpdate')->name('header.update');
         });
 });
 
