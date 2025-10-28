@@ -42,6 +42,9 @@ class DatabaseSeeder extends Seeder
             WorkingProcessSeeder::class,
             SocialMediaLinkSeeder::class,
             PageSettingSeeder::class,
+            MenuSeeder::class,
+            TrustedPartnerSeeder::class,
+            BusinessPartnerSeeder::class,
         ]);
     }
 }

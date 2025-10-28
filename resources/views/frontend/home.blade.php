@@ -19,11 +19,11 @@
         </div>
 
         <div class="mt-8 md:mt-14">
-            <p class="text-center text-secondary-800 body-text-regular-medium">Our business partner</p>
+            <p class="text-center text-secondary-800 body-text-regular-medium">{{ $homeSettings['business_partner_title'] ?? '' }}</p>
             <div class="flex justify-center items-center gap-4 mt-4">
-                <img src="{{ asset('frontend/images/partner-1.png') }}" alt="">
-                <img src="{{ asset('frontend/images/partner-2.png') }}" alt="">
-                <img src="{{ asset('frontend/images/partner-3.png') }}" alt="">
+                @foreach ($business_partners as $partner)
+                    <img src="{{ asset('frontend/images/' . $partner->logo) }}" alt="{{ $partner->name }}">
+                @endforeach
             </div>
         </div>
 
@@ -484,16 +484,13 @@
 
 {{-- Companies who trust us start --}}
 <div class="mt-10 md:mt-15 mb-10 md:mb-20">
-    <h2 class="heading-text-regular-medium text-center text-secondary-900 text-2xl md:text-3xl">Companies who Trust Us
+    <h2 class="heading-text-regular-medium text-center text-secondary-900 text-2xl md:text-3xl">{{ $homeSettings['trusted_partners_title'] ?? '' }}
     </h2>
-    <p class="sub-title-medium-regular text-center text-secondary-600 w-full md:w-8/12 lg:w-7/12 mx-auto mt-4">We are
-        proud to serve businesses and organizations across multiple countries and industries. We helped clients
-        worldwide achieve success in the digital landscape.</p>
+    <p class="sub-title-medium-regular text-center text-secondary-600 w-full md:w-8/12 lg:w-7/12 mx-auto mt-4">{{ $homeSettings['trusted_partners_description'] ?? '' }}</p>
     <div class="flex flex-wrap justify-center items-center gap-10 sm:gap-20 mt-8">
-        <img src="{{ asset('upload/fiverr.svg') }}" alt="Fiverr">
-        <img src="{{ asset('upload/envato.svg') }}" alt="Envato">
-        <img src="{{ asset('upload/upwork-2.svg') }}" alt="Upwork">
-        <img src="{{ asset('upload/peopleperhour.svg') }}" alt="PeoplePerHour">
+        @foreach ($trusted_partners as $partner)
+            <img src="{{ asset('upload/' . $partner->logo) }}" alt="{{ $partner->name }}">
+        @endforeach
     </div>
 </div>
 {{-- Companies who trust us end --}}

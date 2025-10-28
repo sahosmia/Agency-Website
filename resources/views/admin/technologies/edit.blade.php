@@ -3,10 +3,6 @@
 @section('title', 'Edit Technologies')
 @section('header-title', 'Edit Technologies')
 
-
-
-
-
 @section('content')
     <div class="container-fluid">
         <div class="row">
@@ -21,33 +17,10 @@
                             enctype="multipart/form-data">
                             @csrf
                             @method('PUT')
-                            <div class="form-group">
-                                <label for="name">Name</label>
-                                <input type="text" name="name" id="name" class="form-control"
-                                    value="{{ old('name', $technology->name) }}">
-                                @error('name')
-                                    <span class="text-danger">{{ $message }}</span>
-                                @enderror
-                            </div>
-                            <div class="form-group">
-                                <label for="description">Description</label>
-                                <textarea name="description" id="description" class="form-control">{{ old('description', $technology->description) }}</textarea>
-                                @error('description')
-                                    <span class="text-danger">{{ $message }}</span>
-                                @enderror
-                            </div>
-                            <div class="form-group">
-                                <label for="image">Image</label>
-                                <input type="file" name="image" id="image" class="form-control">
-                                @error('image')
-                                    <span class="text-danger">{{ $message }}</span>
-                                @enderror
-                                @if ($technology->image)
-                                    <img src="{{ asset('storage/technologies/' . $technology->image) }}"
-                                        alt="{{ $technology->name }}" width="100" class="mt-2">
-                                @endif
-                            </div>
-                            <button type="submit" class="btn btn-primary">Update</button>
+                            <x-admin.bootstrap.text-input name="name" label="Name" :value="$technology->name" required />
+                            <x-admin.bootstrap.textarea name="description" label="Description" :value="$technology->description" />
+                            <x-admin.bootstrap.file-input name="image" label="Image" :value="$technology->image" />
+                            <x-admin.bootstrap.submit-button label="Update" />
                         </form>
                     </div>
                     <!-- /.card-body -->

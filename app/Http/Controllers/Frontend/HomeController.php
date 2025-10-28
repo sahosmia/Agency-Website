@@ -10,6 +10,8 @@ use App\Models\PageSetting;
 use App\Models\Project;
 use App\Models\Service;
 use App\Models\Software;
+use App\Models\BusinessPartner;
+use App\Models\TrustedPartner;
 use App\Models\Value;
 use App\Models\WorkingProcess;
 
@@ -25,6 +27,8 @@ class HomeController extends Controller
         $values = Value::latest()->limit(4)->get();
         $working_processes = WorkingProcess::latest()->limit(4)->get();
         $faqs = Faq::latest()->limit(3)->get();
+        $trusted_partners = TrustedPartner::latest()->limit(4)->get();
+        $business_partners = BusinessPartner::latest()->limit(3)->get();
 
         $homePage = PageSetting::where('page_name', 'home')->first();
         $homeSettings = $homePage ? $homePage->settings : [];
@@ -42,6 +46,8 @@ class HomeController extends Controller
             'working_processes' => $working_processes,
             'faqs' => $faqs,
             'contactSettings' => $contactSettings,
+            'trusted_partners' => $trusted_partners,
+            'business_partners' => $business_partners,
         ]);
     }
 }

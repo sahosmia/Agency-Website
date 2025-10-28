@@ -585,4 +585,27 @@ class PageSettingController extends Controller
 
         return redirect()->back()->with('success', 'Project Detail page settings updated successfully.');
     }
+
+    public function header()
+    {
+        $headerPage = PageSetting::where('page_name', 'header')->first();
+        $headerSettings = $headerPage ? $headerPage->settings : [];
+
+        return view('admin.pages.header', compact('headerSettings'));
+    }
+
+    public function headerUpdate(Request $request)
+    {
+        $request->validate([
+            'logo' => 'nullable|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
+        ]);
+
+        $imageFields = [
+            ['name' => 'logo', 'path' => 'uploads/header']
+        ];
+
+        $this->updatePageSettings($request, 'header', [], $imageFields);
+
+        return redirect()->back()->with('success', 'Header settings updated successfully.');
+    }
 }
