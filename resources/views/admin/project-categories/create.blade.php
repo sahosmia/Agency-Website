@@ -1,6 +1,11 @@
 @extends('admin.layouts.app')
 
-@section('title', 'Create Project Category')
+@section('title', 'Create Project Categories')
+@section('header-title', 'Create Project Categories')
+
+
+
+
 
 @section('content')
     <h1 class="text-2xl font-bold mb-4">Create Project Category</h1>

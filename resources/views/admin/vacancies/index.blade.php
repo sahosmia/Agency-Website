@@ -1,6 +1,11 @@
 @extends('admin.layouts.app')
 
-@section('title', 'Vacancies')
+@section('title', 'Index Vacancies')
+@section('header-title', 'Index Vacancies')
+
+
+
+
 
 @section('content')
     <div class="flex justify-between items-center mb-4">

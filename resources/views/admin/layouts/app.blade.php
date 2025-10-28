@@ -203,6 +203,7 @@
 
             <!-- Main Content -->
             <main class="flex-1 p-8 overflow-y-auto">
+                @include('admin.partials.breadcrumbs')
                 @yield('content')
             </main>
         </div>

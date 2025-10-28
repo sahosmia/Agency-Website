@@ -16,22 +16,22 @@ class SocialMediaLinkSeeder extends Seeder
             [
                 'name' => 'Facebook',
                 'url' => 'https://facebook.com',
-                'icon' => 'facebook.svg',
+                'icon' => 'facebook.png',
             ],
             [
                 'name' => 'Twitter',
                 'url' => 'https://twitter.com',
-                'icon' => 'twitter.svg',
+                'icon' => 'twitter.png',
             ],
             [
                 'name' => 'Instagram',
                 'url' => 'https://instagram.com',
-                'icon' => 'instagram.svg',
+                'icon' => 'instagram.png',
             ],
             [
                 'name' => 'LinkedIn',
                 'url' => 'https://linkedin.com',
-                'icon' => 'linkedin.svg',
+                'icon' => 'linkedin.png',
             ],
         ];
 

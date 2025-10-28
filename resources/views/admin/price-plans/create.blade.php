@@ -1,6 +1,11 @@
 @extends('admin.layouts.app')
 
-@section('title', 'Create Price Plan')
+@section('title', 'Create Price Plans')
+@section('header-title', 'Create Price Plans')
+
+
+
+
 
 @section('content')
     <h1 class="text-2xl font-bold mb-4">Create Price Plan</h1>

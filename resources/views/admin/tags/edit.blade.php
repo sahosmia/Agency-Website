@@ -1,6 +1,11 @@
 @extends('admin.layouts.app')
 
-@section('title', 'Edit Tag')
+@section('title', 'Edit Tags')
+@section('header-title', 'Edit Tags')
+
+
+
+
 
 @section('content')
     <h1 class="text-2xl font-bold mb-4">Edit Tag</h1>
