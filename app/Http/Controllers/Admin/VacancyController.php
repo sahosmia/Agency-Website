@@ -28,6 +28,11 @@ class VacancyController extends Controller
         return redirect()->route('admin.vacancies.index')->with('success', 'Vacancy created successfully.');
     }
 
+    public function show(Vacancy $vacancy)
+    {
+        return view('admin.vacancies.show', compact('vacancy'));
+    }
+
     public function edit(Vacancy $vacancy)
     {
         $categories = VacancyCategory::all();

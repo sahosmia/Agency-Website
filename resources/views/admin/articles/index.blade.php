@@ -35,6 +35,7 @@
                         @endif
                     </td>
                     <td class="border px-4 py-2">
+                        <a href="{{ route('admin.articles.show', $article) }}" class="text-green-500 hover:underline mr-2">Show</a>
                         <a href="{{ route('admin.articles.edit', $article) }}" class="text-blue-500 hover:underline">Edit</a>
                         <x-admin.delete-button :route="route('admin.articles.destroy', $article)" />
                     </td>

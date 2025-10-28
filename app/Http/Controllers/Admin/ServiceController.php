@@ -34,6 +34,11 @@ class ServiceController extends Controller
         return redirect()->route('admin.services.index')->with('success', 'Service created successfully.');
     }
 
+    public function show(Service $service)
+    {
+        return view('admin.services.show', compact('service'));
+    }
+
     public function edit(Service $service)
     {
         $categories = ServiceCategory::all();

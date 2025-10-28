@@ -34,6 +34,11 @@ class SoftwareController extends Controller
         return redirect()->route('admin.softwares.index')->with('success', 'Software created successfully.');
     }
 
+    public function show(Software $software)
+    {
+        return view('admin.softwares.show', compact('software'));
+    }
+
     public function edit(Software $software)
     {
         $categories = SoftwareCategory::all();
