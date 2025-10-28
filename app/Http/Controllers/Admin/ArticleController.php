@@ -36,6 +36,12 @@ class ArticleController extends Controller
         return redirect()->route('admin.articles.index')->with('success', 'Article created successfully.');
     }
 
+    public function show(Article $article)
+    {
+        $article->load('tags');
+        return view('admin.articles.show', compact('article'));
+    }
+
     public function edit(Article $article)
     {
         $categories = ArticleCategory::all();

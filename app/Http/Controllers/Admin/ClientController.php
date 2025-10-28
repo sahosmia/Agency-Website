@@ -31,6 +31,11 @@ class ClientController extends Controller
         return redirect()->route('admin.clients.index')->with('success', 'Client created successfully.');
     }
 
+    public function show(Client $client)
+    {
+        return view('admin.clients.show', compact('client'));
+    }
+
     public function edit(Client $client)
     {
         return view('admin.clients.edit', compact('client'));

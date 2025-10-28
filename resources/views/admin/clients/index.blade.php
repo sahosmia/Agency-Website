@@ -6,7 +6,7 @@
 @section('content')
     <div class="flex justify-between items-center mb-4">
         <h1 class="text-2xl font-bold">Clients</h1>
-        <a href="{{ route('admin.clients.create') }}" class="px-4 py-2 bg-blue-500 text-white rounded-md">Create New</a>
+        <x-admin.create-button :route="route('admin.clients.create')" />
     </div>
 
     <table class="w-full bg-white shadow-md rounded-lg">
@@ -29,6 +29,7 @@
                         @endif
                     </td>
                     <td class="border px-4 py-2">
+                        <a href="{{ route('admin.clients.show', $client) }}" class="text-green-500 hover:underline mr-2">Show</a>
                         <a href="{{ route('admin.clients.edit', $client) }}" class="text-blue-500 hover:underline">Edit</a>
                         <x-admin.delete-button :route="route('admin.clients.destroy', $client)" />
                     </td>
