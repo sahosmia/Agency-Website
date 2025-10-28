@@ -33,6 +33,11 @@ class ProjectController extends Controller
         return redirect()->route('admin.projects.index')->with('success', 'Project created successfully.');
     }
 
+    public function show(Project $project)
+    {
+        return view('admin.projects.show', compact('project'));
+    }
+
     public function edit(Project $project)
     {
         $categories = ProjectCategory::all();
