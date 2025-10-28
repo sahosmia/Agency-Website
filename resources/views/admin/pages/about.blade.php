@@ -3,10 +3,6 @@
 @section('title', 'About')
 @section('header-title', 'About')
 
-
-
-
-
 @section('content')
     <div class="container-fluid">
         <div class="row">
@@ -18,138 +14,71 @@
                     <div class="card-body">
                         <form action="{{ route('admin.pages.about.update') }}" method="POST" enctype="multipart/form-data">
                             @csrf
-                            <div class="form-group">
-                                <label for="page_title">Page Title</label>
-                                <input type="text" name="page_title" id="page_title" class="form-control" value="{{ $aboutSettings['page_title'] ?? '' }}">
-                            </div>
+                            <x-admin.bootstrap.text-input name="page_title" label="Page Title" :value="$aboutSettings['page_title'] ?? ''" />
                             <hr>
-                            <div class="form-group">
-                                <label for="about_us_title">Title</label>
-                                <input type="text" name="about_us_title" id="about_us_title" class="form-control" value="{{ $aboutSettings['about_us_title'] ?? '' }}">
-                            </div>
-                            <div class="form-group">
-                                <label for="about_us_description">Description</label>
-                                <textarea name="about_us_description" id="about_us_description" class="form-control" rows="5">{{ $aboutSettings['about_us_description'] ?? '' }}</textarea>
-                            </div>
-                            <div class="form-group">
-                                <label for="about_us_image">Image</label>
-                                <input type="file" name="about_us_image" id="about_us_image" class="form-control">
-                                @if(isset($aboutSettings['about_us_image']))
-                                    <img src="{{ asset('storage/' . $aboutSettings['about_us_image']) }}" alt="About Us Image" class="img-thumbnail mt-2" width="200">
-                                @endif
-                            </div>
+                            <x-admin.bootstrap.text-input name="about_us_title" label="Title" :value="$aboutSettings['about_us_title'] ?? ''" />
+                            <x-admin.bootstrap.textarea name="about_us_description" label="Description" :value="$aboutSettings['about_us_description'] ?? ''" />
+                            <x-admin.bootstrap.file-input name="about_us_image" label="Image" :value="$aboutSettings['about_us_image'] ?? ''" />
                             <hr>
                             <h4>Achievements</h4>
-                            <div class="form-group">
-                                <label for="achievement_title">Achievement Title</label>
-                                <input type="text" name="achievement_title" id="achievement_title" class="form-control" value="{{ $aboutSettings['achievement_title'] ?? '' }}">
-                            </div>
-                             <div class="form-group">
-                                <label for="achievement_description">Achievement Description</label>
-                                <input type="text" name="achievement_description" id="achievement_description" class="form-control" value="{{ $aboutSettings['achievement_description'] ?? '' }}">
-                            </div>
+                            <x-admin.bootstrap.text-input name="achievement_title" label="Achievement Title" :value="$aboutSettings['achievement_title'] ?? ''" />
+                            <x-admin.bootstrap.text-input name="achievement_description" label="Achievement Description" :value="$aboutSettings['achievement_description'] ?? ''" />
                             <div class="row">
                                 <div class="col-md-6">
-                                    <div class="form-group">
-                                        <label for="achievement_one_title">Achievement 1 Title</label>
-                                        <input type="text" name="achievement_one_title" id="achievement_one_title" class="form-control" value="{{ $aboutSettings['achievement_one_title'] ?? '' }}">
-                                    </div>
+                                    <x-admin.bootstrap.text-input name="achievement_one_title" label="Achievement 1 Title" :value="$aboutSettings['achievement_one_title'] ?? ''" />
                                 </div>
                                 <div class="col-md-6">
-                                    <div class="form-group">
-                                        <label for="achievement_one_value">Achievement 1 Value</label>
-                                        <input type="text" name="achievement_one_value" id="achievement_one_value" class="form-control" value="{{ $aboutSettings['achievement_one_value'] ?? '' }}">
-                                    </div>
-                                </div>
-                            </div>
-                             <div class="row">
-                                <div class="col-md-6">
-                                    <div class="form-group">
-                                        <label for="achievement_two_title">Achievement 2 Title</label>
-                                        <input type="text" name="achievement_two_title" id="achievement_two_title" class="form-control" value="{{ $aboutSettings['achievement_two_title'] ?? '' }}">
-                                    </div>
-                                </div>
-                                <div class="col-md-6">
-                                    <div class="form-group">
-                                        <label for="achievement_two_value">Achievement 2 Value</label>
-                                        <input type="text" name="achievement_two_value" id="achievement_two_value" class="form-control" value="{{ $aboutSettings['achievement_two_value'] ?? '' }}">
-                                    </div>
+                                    <x-admin.bootstrap.text-input name="achievement_one_value" label="Achievement 1 Value" :value="$aboutSettings['achievement_one_value'] ?? ''" />
                                 </div>
                             </div>
                             <div class="row">
                                 <div class="col-md-6">
-                                    <div class="form-group">
-                                        <label for="achievement_three_title">Achievement 3 Title</label>
-                                        <input type="text" name="achievement_three_title" id="achievement_three_title" class="form-control" value="{{ $aboutSettings['achievement_three_title'] ?? '' }}">
-                                    </div>
+                                    <x-admin.bootstrap.text-input name="achievement_two_title" label="Achievement 2 Title" :value="$aboutSettings['achievement_two_title'] ?? ''" />
                                 </div>
                                 <div class="col-md-6">
-                                    <div class="form-group">
-                                        <label for="achievement_three_value">Achievement 3 Value</label>
-                                        <input type="text" name="achievement_three_value" id="achievement_three_value" class="form-control" value="{{ $aboutSettings['achievement_three_value'] ?? '' }}">
-                                    </div>
+                                    <x-admin.bootstrap.text-input name="achievement_two_value" label="Achievement 2 Value" :value="$aboutSettings['achievement_two_value'] ?? ''" />
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <x-admin.bootstrap.text-input name="achievement_three_title" label="Achievement 3 Title" :value="$aboutSettings['achievement_three_title'] ?? ''" />
+                                </div>
+                                <div class="col-md-6">
+                                    <x-admin.bootstrap.text-input name="achievement_three_value" label="Achievement 3 Value" :value="$aboutSettings['achievement_three_value'] ?? ''" />
                                 </div>
                             </div>
                             <hr>
                             <h4>Journey</h4>
-                            <div class="form-group">
-                                <label for="journey_title">Journey Title</label>
-                                <input type="text" name="journey_title" id="journey_title" class="form-control" value="{{ $aboutSettings['journey_title'] ?? '' }}">
-                            </div>
-                             <div class="form-group">
-                                <label for="journey_description">Journey Description</label>
-                                <input type="text" name="journey_description" id="journey_description" class="form-control" value="{{ $aboutSettings['journey_description'] ?? '' }}">
-                            </div>
+                            <x-admin.bootstrap.text-input name="journey_title" label="Journey Title" :value="$aboutSettings['journey_title'] ?? ''" />
+                            <x-admin.bootstrap.text-input name="journey_description" label="Journey Description" :value="$aboutSettings['journey_description'] ?? ''" />
                             <div class="row">
                                 <div class="col-md-6">
-                                    <div class="form-group">
-                                        <label for="journey_one_title">Journey 1 Title</label>
-                                        <input type="text" name="journey_one_title" id="journey_one_title" class="form-control" value="{{ $aboutSettings['journey_one_title'] ?? '' }}">
-                                    </div>
+                                    <x-admin.bootstrap.text-input name="journey_one_title" label="Journey 1 Title" :value="$aboutSettings['journey_one_title'] ?? ''" />
                                 </div>
                                 <div class="col-md-6">
-                                    <div class="form-group">
-                                        <label for="journey_one_description">Journey 1 Description</label>
-                                        <input type="text" name="journey_one_description" id="journey_one_description" class="form-control" value="{{ $aboutSettings['journey_one_description'] ?? '' }}">
-                                    </div>
+                                    <x-admin.bootstrap.text-input name="journey_one_description" label="Journey 1 Description" :value="$aboutSettings['journey_one_description'] ?? ''" />
                                 </div>
                             </div>
                             <div class="row">
                                 <div class="col-md-6">
-                                    <div class="form-group">
-                                        <label for="journey_two_title">Journey 2 Title</label>
-                                        <input type="text" name="journey_two_title" id="journey_two_title" class="form-control" value="{{ $aboutSettings['journey_two_title'] ?? '' }}">
-                                    </div>
+                                    <x-admin.bootstrap.text-input name="journey_two_title" label="Journey 2 Title" :value="$aboutSettings['journey_two_title'] ?? ''" />
                                 </div>
                                 <div class="col-md-6">
-                                    <div class="form-group">
-                                        <label for="journey_two_description">Journey 2 Description</label>
-                                        <input type="text" name="journey_two_description" id="journey_two_description" class="form-control" value="{{ $aboutSettings['journey_two_description'] ?? '' }}">
-                                    </div>
+                                    <x-admin.bootstrap.text-input name="journey_two_description" label="Journey 2 Description" :value="$aboutSettings['journey_two_description'] ?? ''" />
                                 </div>
                             </div>
                             <div class="row">
                                 <div class="col-md-6">
-                                    <div class="form-group">
-                                        <label for="journey_three_title">Journey 3 Title</label>
-                                        <input type="text" name="journey_three_title" id="journey_three_title" class="form-control" value="{{ $aboutSettings['journey_three_title'] ?? '' }}">
-                                    </div>
+                                    <x-admin.bootstrap.text-input name="journey_three_title" label="Journey 3 Title" :value="$aboutSettings['journey_three_title'] ?? ''" />
                                 </div>
                                 <div class="col-md-6">
-                                    <div class="form-group">
-                                        <label for="journey_three_description">Journey 3 Description</label>
-                                        <input type="text" name="journey_three_description" id="journey_three_description" class="form-control" value="{{ $aboutSettings['journey_three_description'] ?? '' }}">
-                                    </div>
+                                    <x-admin.bootstrap.text-input name="journey_three_description" label="Journey 3 Description" :value="$aboutSettings['journey_three_description'] ?? ''" />
                                 </div>
                             </div>
-                             <hr>
+                            <hr>
                             <h4>Our Team</h4>
-                             <div class="form-group">
-                                <label for="team_title">Team Title</label>
-                                <input type="text" name="team_title" id="team_title" class="form-control" value="{{ $aboutSettings['team_title'] ?? '' }}">
-                            </div>
-
-                            <button type="submit" class="btn btn-primary">Update Settings</button>
+                            <x-admin.bootstrap.text-input name="team_title" label="Team Title" :value="$aboutSettings['team_title'] ?? ''" />
+                            <x-admin.bootstrap.submit-button label="Update Settings" />
                         </form>
                     </div>
                 </div>

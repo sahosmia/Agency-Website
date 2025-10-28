@@ -3,73 +3,26 @@
 @section('title', 'Create Vacancies')
 @section('header-title', 'Create Vacancies')
 
-
-
-
-
 @section('content')
     <h1 class="text-2xl font-bold mb-4">Create Vacancy</h1>
 
     <form action="{{ route('admin.vacancies.store') }}" method="POST">
         @csrf
         <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
-            <div class="mb-4">
-                <label for="title" class="block text-gray-700">Title</label>
-                <input type="text" name="title" id="title" class="w-full px-3 py-2 border rounded-md" value="{{ old('title') }}" required>
-            </div>
-            <div class="mb-4">
-                <label for="slug" class="block text-gray-700">Slug</label>
-                <input type="text" name="slug" id="slug" class="w-full px-3 py-2 border rounded-md" value="{{ old('slug') }}" required>
-            </div>
-            <div class="mb-4">
-                <label for="vacancy_category_id" class="block text-gray-700">Category</label>
-                <select name="vacancy_category_id" id="vacancy_category_id" class="w-full px-3 py-2 border rounded-md" required>
-                    @foreach ($categories as $category)
-                        <option value="{{ $category->id }}">{{ $category->name }}</option>
-                    @endforeach
-                </select>
-            </div>
-            <div class="mb-4">
-                <label for="type" class="block text-gray-700">Type</label>
-                <input type="text" name="type" id="type" class="w-full px-3 py-2 border rounded-md" value="{{ old('type') }}">
-            </div>
-            <div class="mb-4">
-                <label for="location" class="block text-gray-700">Location</label>
-                <input type="text" name="location" id="location" class="w-full px-3 py-2 border rounded-md" value="{{ old('location') }}">
-            </div>
-            <div class="mb-4">
-                <label for="end_date" class="block text-gray-700">End Date</label>
-                <input type="date" name="end_date" id="end_date" class="w-full px-3 py-2 border rounded-md" value="{{ old('end_date') }}">
-            </div>
-            <div class="mb-4">
-                <label for="salary" class="block text-gray-700">Salary</label>
-                <input type="text" name="salary" id="salary" class="w-full px-3 py-2 border rounded-md" value="{{ old('salary') }}">
-            </div>
-            <div class="mb-4">
-                <label for="weekly_holidays" class="block text-gray-700">Weekly Holidays</label>
-                <input type="text" name="weekly_holidays" id="weekly_holidays" class="w-full px-3 py-2 border rounded-md" value="{{ old('weekly_holidays') }}">
-            </div>
+            <x-admin.text-input name="title" label="Title" required />
+            <x-admin.text-input name="slug" label="Slug" required />
+            <x-admin.select name="vacancy_category_id" label="Category" :options="$categories->pluck('name', 'id')" required />
+            <x-admin.text-input name="type" label="Type" />
+            <x-admin.text-input name="location" label="Location" />
+            <x-admin.text-input name="end_date" label="End Date" />
+            <x-admin.text-input name="salary" label="Salary" />
+            <x-admin.text-input name="weekly_holidays" label="Weekly Holidays" />
         </div>
-        <div class="mb-4">
-            <label for="benefits" class="block text-gray-700">Benefits</label>
-            <textarea name="benefits" id="benefits" class="w-full px-3 py-2 border rounded-md">{{ old('benefits') }}</textarea>
-        </div>
-        <div class="mb-4">
-            <label for="responsibilities" class="block text-gray-700">Responsibilities</label>
-            <textarea name="responsibilities" id="responsibilities" class="w-full px-3 py-2 border rounded-md">{{ old('responsibilities') }}</textarea>
-        </div>
-        <div class="mb-4">
-            <label for="requirements" class="block text-gray-700">Requirements</label>
-            <textarea name="requirements" id="requirements" class="w-full px-3 py-2 border rounded-md">{{ old('requirements') }}</textarea>
-        </div>
-        <div class="mb-4">
-            <label for="skills_required" class="block text-gray-700">Skills Required</label>
-            <textarea name="skills_required" id="skills_required" class="w-full px-3 py-2 border rounded-md">{{ old('skills_required') }}</textarea>
-        </div>
-        <div class="mb-4">
-            <label for="others" class="block text-gray-700">Others</label>
-            <textarea name="others" id="others" class="w-full px-3 py-2 border rounded-md">{{ old('others') }}</textarea>
-        </div>
-        <button type="submit" class="px-4 py-2 bg-blue-500 text-white rounded-md">Create</button>
+        <x-admin.textarea name="benefits" label="Benefits" />
+        <x-admin.textarea name="responsibilities" label="Responsibilities" />
+        <x-admin.textarea name="requirements" label="Requirements" />
+        <x-admin.textarea name="skills_required" label="Skills Required" />
+        <x-admin.textarea name="others" label="Others" />
+        <x-admin.submit-button label="Create" />
     </form>
 @endsection

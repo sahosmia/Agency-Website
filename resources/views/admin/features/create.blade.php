@@ -3,10 +3,6 @@
 @section('title', 'Create Features')
 @section('header-title', 'Create Features')
 
-
-
-
-
 @section('content')
     <div class="container-fluid">
         <div class="row">
@@ -18,15 +14,9 @@
                     <div class="card-body">
                         <form action="{{ route('admin.features.store') }}" method="POST">
                             @csrf
-                            <div class="form-group">
-                                <label for="name">Name</label>
-                                <input type="text" name="name" id="name" class="form-control" required>
-                            </div>
-                            <div class="form-group">
-                                <label for="description">Description</label>
-                                <textarea name="description" id="description" class="form-control" rows="3"></textarea>
-                            </div>
-                            <button type="submit" class="btn btn-primary">Create</button>
+                            <x-admin.bootstrap.text-input name="name" label="Name" required />
+                            <x-admin.bootstrap.textarea name="description" label="Description" />
+                            <x-admin.bootstrap.submit-button label="Create" />
                         </form>
                     </div>
                 </div>
