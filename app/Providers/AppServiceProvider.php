@@ -3,6 +3,8 @@
 namespace App\Providers;
 
 use App\Models\Faq;
+use App\Models\Menu;
+use App\Models\PageSetting;
 use App\Models\Service;
 use App\Models\SocialMediaLink;
 use App\Models\Software;
@@ -35,6 +37,12 @@ class AppServiceProvider extends ServiceProvider
             $softwares = Schema::hasTable('softwares') ? Software::latest()->limit(7)->get() : collect();
             $socialMediaLinks = Schema::hasTable('social_media_links') ? SocialMediaLink::get() : collect();
             $view->with('services', $services)->with('softwares', $softwares)->with('socialMediaLinks', $socialMediaLinks);
+        });
+
+        View::composer('frontend.layouts.navbar', function ($view) {
+            $menus = Schema::hasTable('menus') ? Menu::orderBy('order')->get() : collect();
+            $headerSettings = Schema::hasTable('page_settings') ? PageSetting::where('page_name', 'header')->first() : null;
+            $view->with('menus', $menus)->with('headerSettings', $headerSettings ? $headerSettings->settings : []);
         });
 
         Route::pattern('id', '[0-9]+');

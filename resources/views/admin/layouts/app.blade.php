@@ -114,8 +114,10 @@
                         <a href="{{ route('admin.pages.article-detail') }}" class="block px-8 py-2 text-gray-300 hover:bg-gray-600">Article Detail Page</a>
                         <a href="{{ route('admin.pages.software-detail') }}" class="block px-8 py-2 text-gray-300 hover:bg-gray-600">Software Detail Page</a>
                         <a href="{{ route('admin.pages.project-detail') }}" class="block px-8 py-2 text-gray-300 hover:bg-gray-600">Project Detail Page</a>
+                        <a href="{{ route('admin.pages.header') }}" class="block px-8 py-2 text-gray-300 hover:bg-gray-600">Header Settings</a>
                     </div>
                 </div>
+                <a href="{{ route('admin.menus.index') }}" class="block px-4 py-2 text-gray-300 hover:bg-gray-700">Menus</a>
             </nav>
         </aside>
 
