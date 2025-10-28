@@ -43,6 +43,8 @@ class DatabaseSeeder extends Seeder
             SocialMediaLinkSeeder::class,
             PageSettingSeeder::class,
             MenuSeeder::class,
+            TrustedPartnerSeeder::class,
+            BusinessPartnerSeeder::class,
         ]);
     }
 }
