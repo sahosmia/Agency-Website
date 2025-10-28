@@ -150,6 +150,7 @@
             <!-- Main Content -->
             <main class="flex-1 p-8 overflow-y-auto">
                 @include('admin.partials.breadcrumbs')
+                <x-admin.status-message />
                 @yield('content')
             </main>
         </div>

@@ -3,10 +3,6 @@
 @section('title', 'Edit Features')
 @section('header-title', 'Edit Features')
 
-
-
-
-
 @section('content')
     <div class="container-fluid">
         <div class="row">
@@ -19,16 +15,9 @@
                         <form action="{{ route('admin.features.update', $feature->id) }}" method="POST">
                             @csrf
                             @method('PUT')
-                            <div class="form-group">
-                                <label for="name">Name</label>
-                                <input type="text" name="name" id="name" class="form-control"
-                                    value="{{ $feature->name }}" required>
-                            </div>
-                            <div class="form-group">
-                                <label for="description">Description</label>
-                                <textarea name="description" id="description" class="form-control" rows="3">{{ $feature->description }}</textarea>
-                            </div>
-                            <button type="submit" class="btn btn-primary">Update</button>
+                            <x-admin.bootstrap.text-input name="name" label="Name" :value="$feature->name" required />
+                            <x-admin.bootstrap.textarea name="description" label="Description" :value="$feature->description" />
+                            <x-admin.bootstrap.submit-button label="Update" />
                         </form>
                     </div>
                 </div>

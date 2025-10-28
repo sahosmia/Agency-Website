@@ -7,18 +7,9 @@
 
     <form action="{{ route('admin.menus.store') }}" method="POST">
         @csrf
-        <div class="mb-3">
-            <label for="name" class="form-label">Name</label>
-            <input type="text" class="form-control" id="name" name="name" required>
-        </div>
-        <div class="mb-3">
-            <label for="route" class="form-label">Route</label>
-            <input type="text" class="form-control" id="route" name="route" required>
-        </div>
-        <div class="mb-3">
-            <label for="order" class="form-label">Order</label>
-            <input type="number" class="form-control" id="order" name="order" value="0" required>
-        </div>
-        <button type="submit" class="btn btn-primary">Create</button>
+        <x-admin.bootstrap.text-input name="name" label="Name" required />
+        <x-admin.bootstrap.text-input name="route" label="Route" required />
+        <x-admin.bootstrap.text-input name="order" label="Order" value="0" required />
+        <x-admin.bootstrap.submit-button label="Create" />
     </form>
 @endsection

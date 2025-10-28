@@ -3,10 +3,6 @@
 @section('title', 'Index Articles')
 @section('header-title', 'Index Articles')
 
-
-
-
-
 @section('content')
     <div class="flex justify-between items-center mb-4">
         <h1 class="text-2xl font-bold">Articles</h1>
@@ -40,11 +36,7 @@
                     </td>
                     <td class="border px-4 py-2">
                         <a href="{{ route('admin.articles.edit', $article) }}" class="text-blue-500 hover:underline">Edit</a>
-                        <form action="{{ route('admin.articles.destroy', $article) }}" method="POST" class="inline-block ml-2">
-                            @csrf
-                            @method('DELETE')
-                            <button type="submit" class="text-red-500 hover:underline" onclick="return confirm('Are you sure?')">Delete</button>
-                        </form>
+                        <x-admin.delete-button :route="route('admin.articles.destroy', $article)" />
                     </td>
                 </tr>
             @endforeach

@@ -3,12 +3,11 @@
 @section('title', 'Menus')
 
 @section('content')
-    <div class="d-flex justify-content-between align-items-center">
-        <h1 class="h3">Menus</h1>
-        <a href="{{ route('admin.menus.create') }}" class="btn btn-primary">Create Menu</a>
-    </div>
+    <h1 class="h3">Menus</h1>
 
-    <table class="table table-bordered mt-3">
+    <a href="{{ route('admin.menus.create') }}" class="btn btn-primary mb-3">Create Menu</a>
+
+    <table class="table">
         <thead>
             <tr>
                 <th>Name</th>
@@ -25,12 +24,7 @@
                     <td>{{ $menu->order }}</td>
                     <td>
                         <a href="{{ route('admin.menus.edit', $menu) }}" class="btn btn-sm btn-primary">Edit</a>
-                        <form action="{{ route('admin.menus.destroy', $menu) }}" method="POST" class="d-inline">
-                            @csrf
-                            @method('DELETE')
-                            <button type="submit" class="btn btn-sm btn-danger"
-                                onclick="return confirm('Are you sure?')">Delete</button>
-                        </form>
+                        <x-admin.bootstrap.delete-button :route="route('admin.menus.destroy', $menu)" />
                     </td>
                 </tr>
             @endforeach

@@ -8,18 +8,9 @@
     <form action="{{ route('admin.menus.update', $menu) }}" method="POST">
         @csrf
         @method('PUT')
-        <div class="mb-3">
-            <label for="name" class="form-label">Name</label>
-            <input type="text" class="form-control" id="name" name="name" value="{{ $menu->name }}" required>
-        </div>
-        <div class="mb-3">
-            <label for="route" class="form-label">Route</label>
-            <input type="text" class="form-control" id="route" name="route" value="{{ $menu->route }}" required>
-        </div>
-        <div class="mb-3">
-            <label for="order" class="form-label">Order</label>
-            <input type="number" class="form-control" id="order" name="order" value="{{ $menu->order }}" required>
-        </div>
-        <button type="submit" class="btn btn-primary">Update</button>
+        <x-admin.bootstrap.text-input name="name" label="Name" :value="$menu->name" required />
+        <x-admin.bootstrap.text-input name="route" label="Route" :value="$menu->route" required />
+        <x-admin.bootstrap.text-input name="order" label="Order" :value="$menu->order" required />
+        <x-admin.bootstrap.submit-button label="Update" />
     </form>
 @endsection
