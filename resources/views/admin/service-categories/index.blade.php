@@ -20,7 +20,7 @@
         <tbody>
             @foreach ($serviceCategories as $category)
                 <tr>
-                    <td class="border px-4 py-2">{{ $category->name }}</td>
+                    <td class="border px-4 py-2">{{ $category->title }}</td>
                     <td class="border px-4 py-2">{{ $category->slug }}</td>
                     <td class="border px-4 py-2">
                         <a href="{{ route('admin.service-categories.edit', $category) }}" class="text-blue-500 hover:underline">Edit</a>
