@@ -10,7 +10,7 @@
                 <div class="card">
                     <div class="card-header">
                         <h3 class="card-title">Key Features</h3>
-                        <a href="{{ route('admin.key-features.create') }}" class="btn btn-primary float-right">Create New</a>
+                        <x-admin.create-button :route="route('admin.key-features.create')" class="btn btn-primary float-right" />
                     </div>
                     <div class="card-body">
                         <table class="table table-bordered">
