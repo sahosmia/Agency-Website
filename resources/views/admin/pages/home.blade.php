@@ -164,6 +164,162 @@
                                 <label for="articles_description">Description</label>
                                 <input type="text" name="articles_description" id="articles_description" class="form-control" value="{{ $homeSettings['articles_description'] ?? '' }}">
                             </div>
+                            <hr>
+                            <h4>Trusted Partners Section</h4>
+                            <div class="form-group">
+                                <label for="trusted_partners_title">Title</label>
+                                <input type="text" name="trusted_partners_title" id="trusted_partners_title" class="form-control" value="{{ $homeSettings['trusted_partners_title'] ?? '' }}">
+                            </div>
+                            <div class="form-group">
+                                <label for="trusted_partners_description">Description</label>
+                                <input type="text" name="trusted_partners_description" id="trusted_partners_description" class="form-control" value="{{ $homeSettings['trusted_partners_description'] ?? '' }}">
+                            </div>
+                            <hr>
+                            <h4>Clients Around World Section</h4>
+                            <div class="form-group">
+                                <label for="clients_around_world_title">Title</label>
+                                <input type="text" name="clients_around_world_title" id="clients_around_world_title" class="form-control" value="{{ $homeSettings['clients_around_world_title'] ?? '' }}">
+                            </div>
+                            <div class="form-group">
+                                <label for="clients_around_world_description">Description</label>
+                                <input type="text" name="clients_around_world_description" id="clients_around_world_description" class="form-control" value="{{ $homeSettings['clients_around_world_description'] ?? '' }}">
+                            </div>
+                            <hr>
+                            <h4>Images</h4>
+                            <div class="row">
+                                <div class="col-md-4">
+                                    <div class="form-group">
+                                        <label for="tech_partner_one_image">Tech Partner 1</label>
+                                        <input type="file" name="tech_partner_one_image" id="tech_partner_one_image" class="form-control">
+                                        @if (isset($homeSettings['tech_partner_one_image']))
+                                            <img src="{{ asset('uploads/home/' . $homeSettings['tech_partner_one_image']) }}" alt="Tech Partner 1" class="img-thumbnail mt-2" width="100">
+                                        @endif
+                                    </div>
+                                </div>
+                                <div class="col-md-4">
+                                    <div class="form-group">
+                                        <label for="tech_partner_two_image">Tech Partner 2</label>
+                                        <input type="file" name="tech_partner_two_image" id="tech_partner_two_image" class="form-control">
+                                        @if (isset($homeSettings['tech_partner_two_image']))
+                                            <img src="{{ asset('uploads/home/' . $homeSettings['tech_partner_two_image']) }}" alt="Tech Partner 2" class="img-thumbnail mt-2" width="100">
+                                        @endif
+                                    </div>
+                                </div>
+                                <div class="col-md-4">
+                                    <div class="form-group">
+                                        <label for="tech_partner_three_image">Tech Partner 3</label>
+                                        <input type="file" name="tech_partner_three_image" id="tech_partner_three_image" class="form-control">
+                                        @if (isset($homeSettings['tech_partner_three_image']))
+                                            <img src="{{ asset('uploads/home/' . $homeSettings['tech_partner_three_image']) }}" alt="Tech Partner 3" class="img-thumbnail mt-2" width="100">
+                                        @endif
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-3">
+                                    <div class="form-group">
+                                        <label for="reviewer_one_image">Reviewer 1</label>
+                                        <input type="file" name="reviewer_one_image" id="reviewer_one_image" class="form-control">
+                                        @if (isset($homeSettings['reviewer_one_image']))
+                                            <img src="{{ asset('uploads/home/' . $homeSettings['reviewer_one_image']) }}" alt="Reviewer 1" class="img-thumbnail mt-2" width="100">
+                                        @endif
+                                    </div>
+                                </div>
+                                <div class="col-md-3">
+                                    <div class="form-group">
+                                        <label for="reviewer_two_image">Reviewer 2</label>
+                                        <input type="file" name="reviewer_two_image" id="reviewer_two_image" class="form-control">
+                                        @if (isset($homeSettings['reviewer_two_image']))
+                                            <img src="{{ asset('uploads/home/' . $homeSettings['reviewer_two_image']) }}" alt="Reviewer 2" class="img-thumbnail mt-2" width="100">
+                                        @endif
+                                    </div>
+                                </div>
+                                <div class="col-md-3">
+                                    <div class="form-group">
+                                        <label for="reviewer_three_image">Reviewer 3</label>
+                                        <input type="file" name="reviewer_three_image" id="reviewer_three_image" class="form-control">
+                                        @if (isset($homeSettings['reviewer_three_image']))
+                                            <img src="{{ asset('uploads/home/' . $homeSettings['reviewer_three_image']) }}" alt="Reviewer 3" class="img-thumbnail mt-2" width="100">
+                                        @endif
+                                    </div>
+                                </div>
+                                <div class="col-md-3">
+                                    <div class="form-group">
+                                        <label for="reviewer_four_image">Reviewer 4</label>
+                                        <input type="file" name="reviewer_four_image" id="reviewer_four_image" class="form-control">
+                                        @if (isset($homeSettings['reviewer_four_image']))
+                                            <img src="{{ asset('uploads/home/' . $homeSettings['reviewer_four_image']) }}" alt="Reviewer 4" class="img-thumbnail mt-2" width="100">
+                                        @endif
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-3">
+                                    <div class="form-group">
+                                        <label for="client_country_one_image">Client Country 1</label>
+                                        <input type="file" name="client_country_one_image" id="client_country_one_image" class="form-control">
+                                        @if (isset($homeSettings['client_country_one_image']))
+                                            <img src="{{ asset('uploads/home/' . $homeSettings['client_country_one_image']) }}" alt="Client Country 1" class="img-thumbnail mt-2" width="100">
+                                        @endif
+                                    </div>
+                                </div>
+                                <div class="col-md-3">
+                                    <div class="form-group">
+                                        <label for="client_country_two_image">Client Country 2</label>
+                                        <input type="file" name="client_country_two_image" id="client_country_two_image" class="form-control">
+                                        @if (isset($homeSettings['client_country_two_image']))
+                                            <img src="{{ asset('uploads/home/' . $homeSettings['client_country_two_image']) }}" alt="Client Country 2" class="img-thumbnail mt-2" width="100">
+                                        @endif
+                                    </div>
+                                </div>
+                                <div class="col-md-3">
+                                    <div class="form-group">
+                                        <label for="client_country_three_image">Client Country 3</label>
+                                        <input type="file" name="client_country_three_image" id="client_country_three_image" class="form-control">
+                                        @if (isset($homeSettings['client_country_three_image']))
+                                            <img src="{{ asset('uploads/home/' . $homeSettings['client_country_three_image']) }}" alt="Client Country 3" class="img-thumbnail mt-2" width="100">
+                                        @endif
+                                    </div>
+                                </div>
+                                <div class="col-md-3">
+                                    <div class="form-group">
+                                        <label for="client_country_four_image">Client Country 4</label>
+                                        <input type="file" name="client_country_four_image" id="client_country_four_image" class="form-control">
+                                        @if (isset($homeSettings['client_country_four_image']))
+                                            <img src="{{ asset('uploads/home/' . $homeSettings['client_country_four_image']) }}" alt="Client Country 4" class="img-thumbnail mt-2" width="100">
+                                        @endif
+                                    </div>
+                                </div>
+                                <div class="col-md-3">
+                                    <div class="form-group">
+                                        <label for="client_country_five_image">Client Country 5</label>
+                                        <input type="file" name="client_country_five_image" id="client_country_five_image" class="form-control">
+                                        @if (isset($homeSettings['client_country_five_image']))
+                                            <img src="{{ asset('uploads/home/' . $homeSettings['client_country_five_image']) }}" alt="Client Country 5" class="img-thumbnail mt-2" width="100">
+                                        @endif
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label for="software_solution_image">Software Solution</label>
+                                        <input type="file" name="software_solution_image" id="software_solution_image" class="form-control">
+                                        @if (isset($homeSettings['software_solution_image']))
+                                            <img src="{{ asset('uploads/home/' . $homeSettings['software_solution_image']) }}" alt="Software Solution" class="img-thumbnail mt-2" width="100">
+                                        @endif
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label for="article_default_image">Article Default</label>
+                                        <input type="file" name="article_default_image" id="article_default_image" class="form-control">
+                                        @if (isset($homeSettings['article_default_image']))
+                                            <img src="{{ asset('uploads/home/' . $homeSettings['article_default_image']) }}" alt="Article Default" class="img-thumbnail mt-2" width="100">
+                                        @endif
+                                    </div>
+                                </div>
+                            </div>
                             <button type="submit" class="btn btn-primary">Update Settings</button>
                         </form>
                     </div>

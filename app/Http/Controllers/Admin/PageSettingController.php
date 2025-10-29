@@ -125,6 +125,25 @@ class PageSettingController extends Controller
             'faq_title' => 'required|string|max:255',
             'articles_title' => 'required|string|max:255',
             'articles_description' => 'required|string',
+            'trusted_partners_title' => 'required|string|max:255',
+            'trusted_partners_description' => 'required|string',
+            'clients_around_world_title' => 'required|string|max:255',
+            'clients_around_world_description' => 'required|string',
+
+            'tech_partner_one_image' => 'nullable|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
+            'tech_partner_two_image' => 'nullable|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
+            'tech_partner_three_image' => 'nullable|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
+            'reviewer_one_image' => 'nullable|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
+            'reviewer_two_image' => 'nullable|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
+            'reviewer_three_image' => 'nullable|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
+            'reviewer_four_image' => 'nullable|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
+            'software_solution_image' => 'nullable|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
+            'client_country_one_image' => 'nullable|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
+            'client_country_two_image' => 'nullable|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
+            'client_country_three_image' => 'nullable|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
+            'client_country_four_image' => 'nullable|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
+            'client_country_five_image' => 'nullable|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
+            'article_default_image' => 'nullable|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
         ]);
 
         $fields = [
@@ -137,10 +156,28 @@ class PageSettingController extends Controller
             'hero_card_two_description', 'hero_card_three_title',
             'hero_card_three_value', 'hero_card_three_description', 'search_title',
             'values_title', 'working_process_title', 'faq_title', 'articles_title',
-            'articles_description'
+            'articles_description', 'trusted_partners_title', 'trusted_partners_description',
+            'clients_around_world_title', 'clients_around_world_description'
         ];
 
-        $this->updatePageSettings($request, 'home', $fields);
+        $imageFields = [
+            ['name' => 'tech_partner_one_image', 'path' => 'uploads/home'],
+            ['name' => 'tech_partner_two_image', 'path' => 'uploads/home'],
+            ['name' => 'tech_partner_three_image', 'path' => 'uploads/home'],
+            ['name' => 'reviewer_one_image', 'path' => 'uploads/home'],
+            ['name' => 'reviewer_two_image', 'path' => 'uploads/home'],
+            ['name' => 'reviewer_three_image', 'path' => 'uploads/home'],
+            ['name' => 'reviewer_four_image', 'path' => 'uploads/home'],
+            ['name' => 'software_solution_image', 'path' => 'uploads/home'],
+            ['name' => 'client_country_one_image', 'path' => 'uploads/home'],
+            ['name' => 'client_country_two_image', 'path' => 'uploads/home'],
+            ['name' => 'client_country_three_image', 'path' => 'uploads/home'],
+            ['name' => 'client_country_four_image', 'path' => 'uploads/home'],
+            ['name' => 'client_country_five_image', 'path' => 'uploads/home'],
+            ['name' => 'article_default_image', 'path' => 'uploads/home'],
+        ];
+
+        $this->updatePageSettings($request, 'home', $fields, $imageFields);
 
         return redirect()->back()->with('success', 'Home page settings updated successfully.');
     }
