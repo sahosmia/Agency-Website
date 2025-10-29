@@ -9,7 +9,7 @@
     <form action="{{ route('admin.vacancy-categories.update', $vacancyCategory) }}" method="POST">
         @csrf
         @method('PUT')
-        <x-admin.text-input name="name" label="Name" :value="$vacancyCategory->name" required />
+        <x-admin.text-input name="title" label="Title" :value="$vacancyCategory->title" required />
         <x-admin.text-input name="slug" label="Slug" :value="$vacancyCategory->slug" required />
         <x-admin.submit-button label="Update" />
     </form>

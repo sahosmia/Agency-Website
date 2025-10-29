@@ -12,7 +12,7 @@
     <table class="w-full bg-white shadow-md rounded-lg">
         <thead>
             <tr class="bg-gray-200">
-                <th class="px-4 py-2">Name</th>
+                <th class="px-4 py-2">Title</th>
                 <th class="px-4 py-2">Slug</th>
                 <th class="px-4 py-2">Actions</th>
             </tr>
@@ -20,7 +20,7 @@
         <tbody>
             @foreach ($articleCategories as $category)
                 <tr>
-                    <td class="border px-4 py-2">{{ $category->name }}</td>
+                    <td class="border px-4 py-2">{{ $category->title }}</td>
                     <td class="border px-4 py-2">{{ $category->slug }}</td>
                     <td class="border px-4 py-2">
                         <a href="{{ route('admin.article-categories.edit', $category) }}" class="text-blue-500 hover:underline">Edit</a>
