@@ -130,27 +130,10 @@
                         Page Settings
                     </button>
                     <div x-show="open" @click.away="open = false" class="bg-gray-700">
-                        <a href="{{ route('admin.pages.home') }}" class="block px-8 py-2 text-gray-300 hover:bg-gray-600">Home Page</a>
-                        <a href="{{ route('admin.pages.about') }}" class="block px-8 py-2 text-gray-300 hover:bg-gray-600">About Page</a>
-                        <a href="{{ route('admin.pages.contact') }}" class="block px-8 py-2 text-gray-300 hover:bg-gray-600">Contact Page</a>
-                        <a href="{{ route('admin.pages.404') }}" class="block px-8 py-2 text-gray-300 hover:bg-gray-600">404 Page</a>
-                        <a href="{{ route('admin.pages.terms') }}" class="block px-8 py-2 text-gray-300 hover:bg-gray-600">Terms & Conditions</a>
-                        <a href="{{ route('admin.pages.privacy') }}" class="block px-8 py-2 text-gray-300 hover:bg-gray-600">Privacy Policy</a>
-                        <a href="{{ route('admin.pages.services') }}" class="block px-8 py-2 text-gray-300 hover:bg-gray-600">Services Page</a>
-                        <a href="{{ route('admin.pages.articles') }}" class="block px-8 py-2 text-gray-300 hover:bg-gray-600">Articles Page</a>
-                        <a href="{{ route('admin.pages.softwares') }}" class="block px-8 py-2 text-gray-300 hover:bg-gray-600">Software Page</a>
-                        <a href="{{ route('admin.pages.projects') }}" class="block px-8 py-2 text-gray-300 hover:bg-gray-600">Projects Page</a>
-                        <a href="{{ route('admin.pages.all-softwares') }}" class="block px-8 py-2 text-gray-300 hover:bg-gray-600">All Software Page</a>
-                        <a href="{{ route('admin.pages.custom-software') }}" class="block px-8 py-2 text-gray-300 hover:bg-gray-600">Custom Software Page</a>
-                        <a href="{{ route('admin.pages.lets-discuss') }}" class="block px-8 py-2 text-gray-300 hover:bg-gray-600">Let's Discuss Page</a>
-                        <a href="{{ route('admin.pages.thank-you') }}" class="block px-8 py-2 text-gray-300 hover:bg-gray-600">Thank You Page</a>
-                        <a href="{{ route('admin.pages.service-plans') }}" class="block px-8 py-2 text-gray-300 hover:bg-gray-600">Service Plans Page</a>
-                        <a href="{{ route('admin.pages.software-plans') }}" class="block px-8 py-2 text-gray-300 hover:bg-gray-600">Software Plans Page</a>
-                        <a href="{{ route('admin.pages.service-detail') }}" class="block px-8 py-2 text-gray-300 hover:bg-gray-600">Service Detail Page</a>
-                        <a href="{{ route('admin.pages.article-detail') }}" class="block px-8 py-2 text-gray-300 hover:bg-gray-600">Article Detail Page</a>
-                        <a href="{{ route('admin.pages.software-detail') }}" class="block px-8 py-2 text-gray-300 hover:bg-gray-600">Software Detail Page</a>
-                        <a href="{{ route('admin.pages.project-detail') }}" class="block px-8 py-2 text-gray-300 hover:bg-gray-600">Project Detail Page</a>
-                        <a href="{{ route('admin.pages.header') }}" class="block px-8 py-2 text-gray-300 hover:bg-gray-600">Header Settings</a>
+                        <a href="{{ route('admin.pages.index', 'home') }}" class="block px-8 py-2 text-gray-300 hover:bg-gray-600">Home Page</a>
+                        <a href="{{ route('admin.pages.index', 'other_page') }}" class="block px-8 py-2 text-gray-300 hover:bg-gray-600">Other Page</a>
+                        <a href="{{ route('admin.pages.index', 'contact_information') }}" class="block px-8 py-2 text-gray-300 hover:bg-gray-600">Contact Information</a>
+                        <a href="{{ route('admin.pages.index', 'common_setting') }}" class="block px-8 py-2 text-gray-300 hover:bg-gray-600">Common Setting</a>
                     </div>
                 </div>
                 <a href="{{ route('admin.menus.index') }}" class="block px-4 py-2 text-gray-300 hover:bg-gray-700">Menus</a>
