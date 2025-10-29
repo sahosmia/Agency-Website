@@ -21,7 +21,8 @@ use App\Http\Controllers\Admin\{
     KeyFeatureController,
     FeatureController,
     PageSettingController,
-    MenuController
+    MenuController,
+    ApplicantController
 };
 use App\Http\Controllers\Admin\{
     TagController,
@@ -147,6 +148,7 @@ Route::prefix('admin')->name('admin.')->middleware(['auth'])->group(function () 
         'social-media-links'  => SocialMediaLinkController::class,
         'price-plans'         => PricePlanController::class,
         'menus'               => MenuController::class,
+        'applicants'          => ApplicantController::class,
     ]);
 
     // Page Settings (Grouped)

@@ -4,6 +4,8 @@ namespace App\Http\Controllers\Frontend;
 
 use App\Http\Controllers\Controller;
 use App\Models\PageSetting;
+use App\Models\JobApplication;
+use App\Models\PageSetting;
 use App\Models\Vacancy;
 use App\Models\VacancyCategory;
 use Illuminate\Http\Request;
@@ -52,6 +54,10 @@ class CareerFrontController extends Controller
     public function apply_submit(Request $request, $slug)
     {
         if ($request->step == 1) {
+            $request->validate([
+                'name' => 'required|string|max:255',
+                'email' => 'required|email|max:255',
+            ]);
             // Store the first form's data in session
             Session::put('job_application', [
                 'name' => $request->name,
@@ -62,19 +68,25 @@ class CareerFrontController extends Controller
             return view('frontend.careers.apply-question', ['slug' => $slug]);
         }
         if ($request->step == 2) {
-            // Retrieve session data and merge with second form data
-            $jobApplication = Session::get('job_application', []);
-            $jobApplication['experience'] = $request->experience;
-            $jobApplication['why_hire'] = $request->why_hire;
+            $request->validate([
+                'experience' => 'required|string',
+                'why_hire' => 'required|string',
+            ]);
 
-            return $jobApplication;
-            // Save to database (Example)
-            // \DB::table('job_applications')->insert($jobApplication);
+            $vacancy = Vacancy::where('slug', $slug)->firstOrFail();
+            // Retrieve session data and merge with second form data
+            $jobApplicationData = Session::get('job_application', []);
+            $jobApplicationData['experience'] = $request->experience;
+            $jobApplicationData['why_hire'] = $request->why_hire;
+            $jobApplicationData['vacancy_id'] = $vacancy->id;
+
+            // Save to database
+            JobApplication::create($jobApplicationData);
 
             // Clear session after submission
             Session::forget('job_application');
 
-            // return redirect()->back()->with('message', 'Application Submitted Successfully!');
+            return redirect()->route('careers.index')->with('success', 'Application Submitted Successfully!');
         }
 
         return back()->with('error', 'Invalid Step!');

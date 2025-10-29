@@ -86,6 +86,10 @@
                     <div x-show="open" @click.away="open = false" class="bg-gray-700">
                         <a href="{{ route('admin.vacancy-categories.index') }}"
                             class="block px-8 py-2 text-gray-300 hover:bg-gray-600">Vacancy Categories</a>
+                        <a href="{{ route('admin.vacancies.index') }}"
+                            class="block px-8 py-2 text-gray-300 hover:bg-gray-600">Vacancies</a>
+                        <a href="{{ route('admin.applicants.index') }}"
+                            class="block px-8 py-2 text-gray-300 hover:bg-gray-600">Applicants</a>
                         <a href="{{ route('admin.pages.careers') }}"
                             class="block px-8 py-2 text-gray-300 hover:bg-gray-600">Careers Page</a>
                     </div>
