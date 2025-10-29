@@ -24,6 +24,7 @@ class UpdateArticleCategoryRequest extends FormRequest
         return [
             'title' => 'required|string|max:255',
             'slug' => 'required|string|max:255|unique:article_categories,slug,' . $this->route('article_category')->id,
+            'description' => 'nullable|string',
         ];
     }
 }

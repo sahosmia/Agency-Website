@@ -34,7 +34,7 @@ class Project extends Model
     ];
 
     // Relationship with ProjectCategory
-    public function category()
+    public function project_category()
     {
         return $this->belongsTo(ProjectCategory::class, 'project_category_id');
     }

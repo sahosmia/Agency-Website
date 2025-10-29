@@ -22,7 +22,7 @@
             @foreach ($projects as $project)
                 <tr>
                     <td class="border px-4 py-2">{{ $project->title }}</td>
-                    <td class="border px-4 py-2">{{ $project->project_category->name }}</td>
+                    <td class="border px-4 py-2">{{ $project->project_category->title }}</td>
                     <td class="border px-4 py-2">
                         @if ($project->thumbnail)
                             <img src="{{ asset('storage/' . $project->thumbnail) }}" alt="{{ $project->title }}" class="h-16 w-16 object-cover">

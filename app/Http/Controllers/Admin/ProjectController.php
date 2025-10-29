@@ -15,7 +15,7 @@ class ProjectController extends Controller
 
     public function index()
     {
-        $projects = Project::with('category')->get();
+        $projects = Project::with('project_category')->get();
         return view('admin.projects.index', compact('projects'));
     }
 

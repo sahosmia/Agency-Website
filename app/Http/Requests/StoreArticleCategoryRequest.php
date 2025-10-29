@@ -24,6 +24,7 @@ class StoreArticleCategoryRequest extends FormRequest
         return [
             'title' => 'required|string|max:255',
             'slug' => 'required|string|max:255|unique:article_categories',
+            'description' => 'nullable|string',
         ];
     }
 }

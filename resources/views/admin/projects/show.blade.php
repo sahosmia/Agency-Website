@@ -6,14 +6,14 @@
 @section('content')
     <div class="p-6 bg-white shadow-md rounded-lg">
         <div class="mb-4">
-            <h2 class="text-2xl font-bold">{{ $project->name }}</h2>
+            <h2 class="text-2xl font-bold">{{ $project->title }}</h2>
         </div>
         <div class="mb-4">
-            <strong>Category:</strong> {{ $project->category->name }}
+            <strong>Category:</strong> {{ $project->project_category->title }}
         </div>
         @if ($project->thumbnail)
             <div class="mb-4">
-                <img src="{{ asset('storage/' . $project->thumbnail) }}" alt="{{ $project->name }}"
+                <img src="{{ asset('storage/' . $project->thumbnail) }}" alt="{{ $project->title }}"
                     class="h-48 w-full object-cover">
             </div>
         @endif

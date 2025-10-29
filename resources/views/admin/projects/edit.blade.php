@@ -11,7 +11,7 @@
         @method('PUT')
         <x-admin.text-input name="title" label="Title" :value="$project->title" required />
         <x-admin.text-input name="slug" label="Slug" :value="$project->slug" required />
-        <x-admin.select name="project_category_id" label="Category" :options="$categories->pluck('name', 'id')" :value="$project->project_category_id" required />
+        <x-admin.select name="project_category_id" label="Category" :options="$categories->pluck('title', 'id')" :value="$project->project_category_id" required />
         <x-admin.file-input name="thumbnail" label="Thumbnail" :value="$project->thumbnail" />
         <x-admin.submit-button label="Update" />
     </form>

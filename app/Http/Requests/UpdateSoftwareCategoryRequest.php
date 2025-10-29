@@ -22,8 +22,9 @@ class UpdateSoftwareCategoryRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'name' => 'required|string|max:255',
+            'title' => 'required|string|max:255',
             'slug' => 'required|string|max:255|unique:software_categories,slug,' . $this->route('software_category')->id,
+            'description' => 'nullable|string',
         ];
     }
 }

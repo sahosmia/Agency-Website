@@ -10,7 +10,7 @@
         @csrf
         <x-admin.text-input name="title" label="Title" required />
         <x-admin.text-input name="slug" label="Slug" required />
-        <x-admin.select name="project_category_id" label="Category" :options="$categories->pluck('name', 'id')" required />
+        <x-admin.select name="project_category_id" label="Category" :options="$categories->pluck('title', 'id')" required />
         <x-admin.file-input name="thumbnail" label="Thumbnail" />
         <x-admin.submit-button label="Create" />
     </form>
