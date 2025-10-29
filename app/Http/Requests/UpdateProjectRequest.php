@@ -23,7 +23,6 @@ class UpdateProjectRequest extends FormRequest
     {
         return [
             'title' => 'required|string|max:255',
-            'slug' => 'required|string|max:255|unique:projects,slug,' . $this->route('project')->id,
             'project_category_id' => 'required|exists:project_categories,id',
             'thumbnail' => 'nullable|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
         ];

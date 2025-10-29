@@ -10,7 +10,6 @@
         @csrf
         @method('PUT')
         <x-admin.text-input name="title" label="Title" :value="$article->title" required />
-        <x-admin.text-input name="slug" label="Slug" :value="$article->slug" required />
         <x-admin.select name="article_category_id" label="Category" :options="$categories->pluck('title', 'id')" :value="$article->article_category_id" required />
         <x-admin.multi-select name="tags" label="Tags" :options="$tags->pluck('name', 'id')" :values="$article->tags->pluck('id')->toArray()" />
         <x-admin.file-input name="thumbnail" label="Thumbnail" :value="$article->thumbnail" />

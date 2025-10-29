@@ -23,7 +23,6 @@ class UpdateProjectCategoryRequest extends FormRequest
     {
         return [
             'title' => 'required|string|max:255',
-            'slug' => 'required|string|max:255|unique:project_categories,slug,' . $this->route('project_category')->id,
             'description' => 'nullable|string',
         ];
     }

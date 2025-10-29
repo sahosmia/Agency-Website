@@ -9,7 +9,6 @@
     <form action="{{ route('admin.softwares.store') }}" method="POST" enctype="multipart/form-data">
         @csrf
         <x-admin.text-input name="name" label="Name" required />
-        <x-admin.text-input name="slug" label="Slug" required />
         <x-admin.select name="software_category_id" label="Category" :options="$categories->pluck('name', 'id')" required />
         <x-admin.file-input name="image" label="Image" />
         <x-admin.submit-button label="Create" />

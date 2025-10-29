@@ -23,7 +23,6 @@ class StoreVacancyCategoryRequest extends FormRequest
     {
         return [
             'title' => 'required|string|max:255',
-            'slug' => 'required|string|max:255|unique:vacancy_categories',
             'description' => 'nullable|string',
         ];
     }

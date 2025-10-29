@@ -23,7 +23,6 @@ class UpdateServiceRequest extends FormRequest
     {
         return [
             'name' => 'required|string|max:255',
-            'slug' => 'required|string|max:255|unique:services,slug,' . $this->route('service')->id,
             'service_category_id' => 'required|exists:service_categories,id',
             'description' => 'nullable|string',
             'image' => 'nullable|image|mimes:jpeg,png,jpg,gif,svg|max:2048',

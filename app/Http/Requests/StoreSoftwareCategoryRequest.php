@@ -23,7 +23,6 @@ class StoreSoftwareCategoryRequest extends FormRequest
     {
         return [
             'title' => 'required|string|max:255',
-            'slug' => 'required|string|max:255|unique:software_categories',
             'description' => 'nullable|string',
         ];
     }

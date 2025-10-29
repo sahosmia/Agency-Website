@@ -10,7 +10,6 @@
         @csrf
         @method('PUT')
         <x-admin.text-input name="title" label="Title" :value="$articleCategory->title" required />
-        <x-admin.text-input name="slug" label="Slug" :value="$articleCategory->slug" required />
         <x-admin.submit-button label="Update" />
     </form>
 @endsection

@@ -23,7 +23,6 @@ class UpdateServiceCategoryRequest extends FormRequest
     {
         return [
             'title' => 'required|string|max:255',
-            'slug' => 'required|string|max:255|unique:service_categories,slug,' . $this->route('service_category')->id,
             'description' => 'nullable|string',
         ];
     }

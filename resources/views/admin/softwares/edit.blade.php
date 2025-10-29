@@ -10,7 +10,6 @@
         @csrf
         @method('PUT')
         <x-admin.text-input name="name" label="Name" :value="$software->name" required />
-        <x-admin.text-input name="slug" label="Slug" :value="$software->slug" required />
         <x-admin.select name="software_category_id" label="Category" :options="$categories->pluck('name', 'id')" :value="$software->software_category_id" required />
         <x-admin.file-input name="image" label="Image" :value="$software->image" />
         <x-admin.submit-button label="Update" />
