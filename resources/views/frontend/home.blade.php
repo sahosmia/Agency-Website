@@ -30,9 +30,15 @@
         <div class="mt-8 md:mt-14">
             <p class="text-center text-secondary-800 body-text-regular-medium">Our tech partner</p>
             <div class="flex justify-center items-center gap-4 mt-4">
-                <img src="{{ asset('frontend/images/tech-partner-1.png') }}" alt="">
-                <img src="{{ asset('frontend/images/tech-partner-2.png') }}" alt="">
-                <img src="{{ asset('frontend/images/tech-partner-3.png') }}" alt="">
+                @if (isset($homeSettings['tech_partner_one_image']))
+                    <img src="{{ asset('uploads/home/' . $homeSettings['tech_partner_one_image']) }}" alt="Tech Partner 1">
+                @endif
+                @if (isset($homeSettings['tech_partner_two_image']))
+                    <img src="{{ asset('uploads/home/' . $homeSettings['tech_partner_two_image']) }}" alt="Tech Partner 2">
+                @endif
+                @if (isset($homeSettings['tech_partner_three_image']))
+                    <img src="{{ asset('uploads/home/' . $homeSettings['tech_partner_three_image']) }}" alt="Tech Partner 3">
+                @endif
             </div>
         <div class="flex justify-center items-center mt-8 md:mt-14">
             <button class="button-label px-5 py-2 md:px-7 md:py-3 bg-primary-600 text-white label-text-bold-large">{{ $homeSettings['hero_button_text'] ?? '' }}
@@ -66,7 +72,9 @@
     {{-- reviewer card --}}
     <div class="grid grid-cols-2 lg:grid-cols-4 gap-10 py-10 md:py-20">
         <div class="reviewer-card">
-            <img class="" src="{{ asset('upload/reviewer/google.svg') }}" alt="">
+            @if (isset($homeSettings['reviewer_one_image']))
+                <img class="" src="{{ asset('uploads/home/' . $homeSettings['reviewer_one_image']) }}" alt="Reviewer 1">
+            @endif
             <div>
                 <div class="flex gap-1">
                     <i class="fa-solid fa-star"></i>
@@ -79,7 +87,9 @@
             </div>
         </div>
         <div class="reviewer-card">
-            <img src="{{ asset('upload/reviewer/Frame 99.svg') }}" alt="">
+            @if (isset($homeSettings['reviewer_two_image']))
+                <img src="{{ asset('uploads/home/' . $homeSettings['reviewer_two_image']) }}" alt="Reviewer 2">
+            @endif
             <div>
                 <div class="flex gap-1">
                     <i class="fa-solid fa-star"></i>
@@ -92,7 +102,9 @@
             </div>
         </div>
         <div class="reviewer-card">
-            <img src="{{ asset('upload/reviewer/Frame 100.svg') }}" alt="">
+            @if (isset($homeSettings['reviewer_three_image']))
+                <img src="{{ asset('uploads/home/' . $homeSettings['reviewer_three_image']) }}" alt="Reviewer 3">
+            @endif
             <div>
                 <div class="flex gap-1">
                     <i class="fa-solid fa-star"></i>
@@ -105,7 +117,9 @@
             </div>
         </div>
         <div class="reviewer-card">
-            <img src="{{ asset('upload/reviewer/Frame 101.svg') }}" alt="">
+            @if (isset($homeSettings['reviewer_four_image']))
+                <img src="{{ asset('uploads/home/' . $homeSettings['reviewer_four_image']) }}" alt="Reviewer 4">
+            @endif
             <div>
                 <div class="flex gap-1">
                     <i class="fa-solid fa-star"></i>
@@ -372,7 +386,9 @@
         @for ($i = 0; $i < 4; $i++) <div class="softwer-item">
             <div class="flex flex-col gap-5 p-6 bg-white border rounded-md border-secondary-400">
                 <div class="w-full">
-                    <img class="rounded w-full" src="{{ asset('upload/softwer-img.png') }}" alt="">
+                    @if (isset($homeSettings['software_solution_image']))
+                        <img class="rounded w-full" src="{{ asset('uploads/home/' . $homeSettings['software_solution_image']) }}" alt="Software Solution">
+                    @endif
                 </div>
                 <div class="gap-2">
                     <h3 class="title-text-bold-medium text-secondary-600">Custom made Software for Your Needs</h3>
@@ -497,17 +513,25 @@
 
 {{-- Clients around the world start --}}
 <div class="mt-10 md:mt-15 mb-10 md:mb-20">
-    <h2 class="heading-text-regular-medium text-center text-secondary-900 text-2xl md:text-3xl">Clients Around the World
+    <h2 class="heading-text-regular-medium text-center text-secondary-900 text-2xl md:text-3xl">{{ $homeSettings['clients_around_world_title'] ?? '' }}
     </h2>
-    <p class="sub-title-medium-regular text-center text-secondary-600 w-full md:w-8/12 lg:w-7/12 mx-auto mt-4">We are
-        proud to serve businesses and organizations across multiple countries and industries. We helped clients
-        worldwide achieve success in the digital landscape.</p>
+    <p class="sub-title-medium-regular text-center text-secondary-600 w-full md:w-8/12 lg:w-7/12 mx-auto mt-4">{{ $homeSettings['clients_around_world_description'] ?? '' }}</p>
     <div class="flex flex-wrap justify-center items-center gap-10 mt-8">
-        <img src="{{ asset('upload/Bangladesh Flag.svg') }}" alt="Bangladesh">
-        <img src="{{ asset('upload/usa-flag.svg') }}" alt="USA">
-        <img src="{{ asset('upload/canada-flag.svg') }}" alt="Canada">
-        <img src="{{ asset('upload/uk-flag.svg') }}" alt="UK">
-        <img src="{{ asset('upload/australia-flag.svg') }}" alt="Australia">
+        @if (isset($homeSettings['client_country_one_image']))
+            <img src="{{ asset('uploads/home/' . $homeSettings['client_country_one_image']) }}" alt="Client Country 1">
+        @endif
+        @if (isset($homeSettings['client_country_two_image']))
+            <img src="{{ asset('uploads/home/' . $homeSettings['client_country_two_image']) }}" alt="Client Country 2">
+        @endif
+        @if (isset($homeSettings['client_country_three_image']))
+            <img src="{{ asset('uploads/home/' . $homeSettings['client_country_three_image']) }}" alt="Client Country 3">
+        @endif
+        @if (isset($homeSettings['client_country_four_image']))
+            <img src="{{ asset('uploads/home/' . $homeSettings['client_country_four_image']) }}" alt="Client Country 4">
+        @endif
+        @if (isset($homeSettings['client_country_five_image']))
+            <img src="{{ asset('uploads/home/' . $homeSettings['client_country_five_image']) }}" alt="Client Country 5">
+        @endif
     </div>
 </div>
 {{-- Clients around the world end --}}
@@ -579,7 +603,7 @@
         @foreach ($articles as $article_data)
         <div class="article-item">
             <img class="max-h-72 w-full object-cover rounded-xl self-start"
-                src="{{ asset('upload/articles/card img.png') }}" alt="Article Image" />
+                src="{{ isset($homeSettings['article_default_image']) ? asset('uploads/home/' . $homeSettings['article_default_image']) : asset('upload/articles/card img.png') }}" alt="Article Image" />
             <div class="mt-4">
                 <button
                     class="px-4 py-2 border rounded-full border-secondary-200 label-text-regular-small text-secondary-800">{{
