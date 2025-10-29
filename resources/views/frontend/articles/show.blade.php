@@ -6,6 +6,7 @@
 
         <h1 class="w-full lg:w-8/12 heading-text-regular-large  text-secondary-950 mt-20">{{ $article->title }}</h1>
         <div class="mt-7 inline-flex items-center flex-wrap gap-4 ">
+            <div class="hero-badge-desktop">{{ $article->article_category->title }}</div>
             @foreach ($article->tags as $tag)
                 <div class="hero-badge-desktop">{{ $tag->name }}</div>
             @endforeach
