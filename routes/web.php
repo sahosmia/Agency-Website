@@ -151,75 +151,12 @@ Route::prefix('admin')->name('admin.')->middleware(['auth'])->group(function () 
         'applicants'          => ApplicantController::class,
     ]);
 
-    // Page Settings (Grouped)
+    // Page Settings
     Route::controller(PageSettingController::class)
         ->prefix('pages')->name('pages.')
         ->group(function () {
-            Route::get('about', 'about')->name('about');
-            Route::post('about', 'aboutUpdate')->name('about.update');
-
-            Route::get('home', 'home')->name('home');
-            Route::post('home', 'homeUpdate')->name('home.update');
-
-            Route::get('contact', 'contact')->name('contact');
-            Route::post('contact', 'contactUpdate')->name('contact.update');
-
-            Route::get('404', 'notFound')->name('404');
-            Route::post('404', 'notFoundUpdate')->name('404.update');
-
-            Route::get('terms', 'terms')->name('terms');
-            Route::post('terms', 'termsUpdate')->name('terms.update');
-
-            Route::get('privacy', 'privacy')->name('privacy');
-            Route::post('privacy', 'privacyUpdate')->name('privacy.update');
-
-            Route::get('services', 'services')->name('services');
-            Route::post('services', 'servicesUpdate')->name('services.update');
-
-            Route::get('articles', 'articles')->name('articles');
-            Route::post('articles', 'articlesUpdate')->name('articles.update');
-
-            Route::get('softwares', 'softwares')->name('softwares');
-            Route::post('softwares', 'softwaresUpdate')->name('softwares.update');
-
-            Route::get('projects', 'projects')->name('projects');
-            Route::post('projects', 'projectsUpdate')->name('projects.update');
-
-            Route::get('all-softwares', 'allSoftwares')->name('all-softwares');
-            Route::post('all-softwares', 'allSoftwaresUpdate')->name('all-softwares.update');
-
-            Route::get('custom-software', 'customSoftware')->name('custom-software');
-            Route::post('custom-software', 'customSoftwareUpdate')->name('custom-software.update');
-
-            Route::get('lets-discuss', 'letsDiscuss')->name('lets-discuss');
-            Route::post('lets-discuss', 'letsDiscussUpdate')->name('lets-discuss.update');
-
-            Route::get('thank-you', 'thankYou')->name('thank-you');
-            Route::post('thank-you', 'thankYouUpdate')->name('thank-you.update');
-
-            Route::get('service-plans', 'servicePlans')->name('service-plans');
-            Route::post('service-plans', 'servicePlansUpdate')->name('service-plans.update');
-
-            Route::get('software-plans', 'softwarePlans')->name('software-plans');
-            Route::post('software-plans', 'softwarePlansUpdate')->name('software-plans.update');
-
-            Route::get('careers', 'careers')->name('careers');
-            Route::post('careers', 'careersUpdate')->name('careers.update');
-
-            Route::get('service-detail', 'serviceDetail')->name('service-detail');
-            Route::post('service-detail', 'serviceDetailUpdate')->name('service-detail.update');
-
-            Route::get('article-detail', 'articleDetail')->name('article-detail');
-            Route::post('article-detail', 'articleDetailUpdate')->name('article-detail.update');
-
-            Route::get('software-detail', 'softwareDetail')->name('software-detail');
-            Route::post('software-detail', 'softwareDetailUpdate')->name('software-detail.update');
-
-            Route::get('project-detail', 'projectDetail')->name('project-detail');
-            Route::post('project-detail', 'projectDetailUpdate')->name('project-detail.update');
-
-            Route::get('header', 'header')->name('header');
-            Route::post('header', 'headerUpdate')->name('header.update');
+            Route::get('/{pageName}', 'index')->name('index');
+            Route::post('/{pageName}', 'update')->name('update');
         });
 });
 
