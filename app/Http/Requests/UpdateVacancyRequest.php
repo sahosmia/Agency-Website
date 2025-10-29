@@ -23,7 +23,6 @@ class UpdateVacancyRequest extends FormRequest
     {
         return [
             'title' => 'required|string|max:255',
-            'slug' => 'required|string|max:255|unique:vacancies,slug,' . $this->route('vacancy')->id,
             'vacancy_category_id' => 'required|exists:vacancy_categories,id',
             'type' => 'nullable|string',
             'location' => 'nullable|string',

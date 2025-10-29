@@ -23,7 +23,6 @@ class StoreSoftwareRequest extends FormRequest
     {
         return [
             'name' => 'required|string|max:255',
-            'slug' => 'required|string|max:255|unique:softwares',
             'software_category_id' => 'required|exists:software_categories,id',
             'image' => 'nullable|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
         ];

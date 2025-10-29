@@ -2,12 +2,13 @@
 
 namespace App\Models;
 
+use App\Traits\HasSlug;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
 class VacancyCategory extends Model
 {
-    use HasFactory;
+    use HasFactory, HasSlug;
 
     protected $table = 'vacancy_categories';
 

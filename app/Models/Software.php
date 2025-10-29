@@ -2,12 +2,13 @@
 
 namespace App\Models;
 
+use App\Traits\HasSlug;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
 class Software extends Model
 {
-    use HasFactory;
+    use HasFactory, HasSlug;
 
     protected $table = 'softwares';
 
@@ -17,6 +18,11 @@ class Software extends Model
         'software_category_id',
         'image',
     ];
+
+    public function getSlugSourceField(): string
+    {
+        return 'name';
+    }
 
     public function software_category()
     {

@@ -11,7 +11,6 @@
         @method('PATCH')
         <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
             <x-admin.text-input name="title" label="Title" :value="$vacancy->title" required />
-            <x-admin.text-input name="slug" label="Slug" :value="$vacancy->slug" required />
             <x-admin.select name="vacancy_category_id" label="Category" :options="$categories->pluck('name', 'id')" :value="$vacancy->vacancy_category_id" required />
             <x-admin.text-input name="type" label="Type" :value="$vacancy->type" />
             <x-admin.text-input name="location" label="Location" :value="$vacancy->location" />

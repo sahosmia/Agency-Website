@@ -23,7 +23,6 @@ class UpdateVacancyCategoryRequest extends FormRequest
     {
         return [
             'title' => 'required|string|max:255',
-            'slug' => 'required|string|max:255|unique:vacancy_categories,slug,' . $this->route('vacancy_category')->id,
             'description' => 'nullable|string',
         ];
     }

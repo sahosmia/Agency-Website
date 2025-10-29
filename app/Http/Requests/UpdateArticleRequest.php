@@ -23,7 +23,6 @@ class UpdateArticleRequest extends FormRequest
     {
         return [
             'title' => 'required|string|max:255',
-            'slug' => 'required|string|max:255|unique:articles,slug,' . $this->route('article')->id,
             'article_category_id' => 'required|exists:article_categories,id',
             'thumbnail' => 'nullable|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
             'short_text' => 'nullable|string',
