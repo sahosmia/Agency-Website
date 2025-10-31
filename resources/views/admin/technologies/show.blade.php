@@ -34,10 +34,7 @@
                                 <tr>
                                     <th>Image</th>
                                     <td>
-                                        @if ($technology->image)
-                                            <img src="{{ asset('storage/technologies/' . $technology->image) }}"
-                                                alt="{{ $technology->name }}" width="200">
-                                        @endif
+                                        <img src="{{ $technology->image_url }}" alt="{{ $technology->name }}" width="200">
                                     </td>
                                 </tr>
                             </tbody>

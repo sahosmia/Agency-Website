@@ -395,7 +395,7 @@
                 <div class="service-item">
                     <div class="flex flex-col gap-5 p-6 bg-white border rounded-md border-secondary-400">
                         <div class="w-full">
-                            <img class="rounded w-full" src="{{ asset('storage/' . $service->image) }}"
+                            <img class="rounded w-full" src="{{ $service->image_url }}"
                                 alt="{{ $service->name }}">
                         </div>
                         <div class="gap-2">
@@ -676,7 +676,7 @@
         <div class="articles-container flex gap-10">
             @foreach ($articles as $article)
             <div class="article-item">
-                <img class="h-72 w-full object-cover rounded-xl self-start" src="{{ $article->thumbnail_url }}"
+                <img class="h-72 w-full object-cover rounded-xl self-start" src="{{ $article->image_url }}"
                     alt="{{$article->title}}" />
                 <div class="mt-4">
                     <button

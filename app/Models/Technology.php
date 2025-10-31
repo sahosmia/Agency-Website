@@ -2,12 +2,15 @@
 
 namespace App\Models;
 
+use App\Traits\HasImage;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
 class Technology extends Model
 {
-    use HasFactory;
+    use HasFactory, HasImage;
+
+    public $image_folder = 'technologies';
 
     protected $fillable = [
         'name',

@@ -11,12 +11,9 @@
         <div class="mb-4">
             <strong>Category:</strong> {{ $service->service_category->name }}
         </div>
-        @if ($service->image)
-            <div class="mb-4">
-                <img src="{{ asset('storage/' . $service->image) }}" alt="{{ $service->name }}"
-                    class="h-48 w-full object-cover">
-            </div>
-        @endif
+        <div class="mb-4">
+            <img src="{{ $service->image_url }}" alt="{{ $service->name }}" class="h-48 w-full object-cover">
+        </div>
         <div>
             {!! $service->description !!}
         </div>

@@ -11,12 +11,9 @@
         <div class="mb-4">
             <strong>Category:</strong> {{ $software->category->name }}
         </div>
-        @if ($software->image)
-            <div class="mb-4">
-                <img src="{{ asset('storage/' . $software->image) }}" alt="{{ $software->name }}"
-                    class="h-48 w-full object-cover">
-            </div>
-        @endif
+        <div class="mb-4">
+            <img src="{{ $software->image_url }}" alt="{{ $software->name }}" class="h-48 w-full object-cover">
+        </div>
         <div>
             {!! $software->description !!}
         </div>

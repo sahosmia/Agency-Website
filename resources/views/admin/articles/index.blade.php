@@ -30,9 +30,7 @@
                     <td class="border px-4 py-2">{{ $article->title }}</td>
                     <td class="border px-4 py-2">{{ $article->article_category->name }}</td>
                     <td class="border px-4 py-2">
-                        @if ($article->thumbnail)
-                            <img src="{{ asset('storage/' . $article->thumbnail) }}" alt="{{ $article->title }}" class="h-16 w-16 object-cover">
-                        @endif
+                        <img src="{{ $article->image_url }}" alt="{{ $article->title }}" class="h-16 w-16 object-cover">
                     </td>
                     <td class="border px-4 py-2">
                         <a href="{{ route('admin.articles.show', $article) }}" class="text-green-500 hover:underline mr-2">Show</a>

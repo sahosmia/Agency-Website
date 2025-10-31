@@ -11,12 +11,9 @@
         <div class="mb-4">
             <strong>Category:</strong> {{ $project->project_category->title }}
         </div>
-        @if ($project->thumbnail)
-            <div class="mb-4">
-                <img src="{{ asset('storage/' . $project->thumbnail) }}" alt="{{ $project->title }}"
-                    class="h-48 w-full object-cover">
-            </div>
-        @endif
+        <div class="mb-4">
+            <img src="{{ $project->image_url }}" alt="{{ $project->title }}" class="h-48 w-full object-cover">
+        </div>
         <div>
             {!! $project->description !!}
         </div>

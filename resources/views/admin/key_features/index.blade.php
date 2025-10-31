@@ -28,9 +28,7 @@
                                         <td>{{ $keyFeature->name }}</td>
                                         <td>{{ $keyFeature->description }}</td>
                                         <td>
-                                            @if ($keyFeature->image)
-                                                <img src="{{ asset('storage/key_features/' . $keyFeature->image) }}" alt="{{ $keyFeature->name }}" width="100">
-                                            @endif
+                                            <img src="{{ $keyFeature->image_url }}" alt="{{ $keyFeature->name }}" width="100">
                                         </td>
                                         <td>
                                             <a href="{{ route('admin.key-features.edit', $keyFeature) }}" class="btn btn-info btn-sm">Edit</a>

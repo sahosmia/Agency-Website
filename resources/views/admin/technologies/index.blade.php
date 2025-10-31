@@ -28,9 +28,7 @@
                                         <td>{{ $technology->name }}</td>
                                         <td>{{ $technology->description }}</td>
                                         <td>
-                                            @if ($technology->image)
-                                                <img src="{{ asset('storage/technologies/' . $technology->image) }}" alt="{{ $technology->name }}" width="100">
-                                            @endif
+                                            <img src="{{ $technology->image_url }}" alt="{{ $technology->name }}" width="100">
                                         </td>
                                         <td>
                                             <a href="{{ route('admin.technologies.edit', $technology) }}" class="btn btn-info btn-sm">Edit</a>

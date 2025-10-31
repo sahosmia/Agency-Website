@@ -24,9 +24,7 @@
                     <td class="border px-4 py-2">{{ $software->name }}</td>
                     <td class="border px-4 py-2">{{ $software->software_category->name }}</td>
                     <td class="border px-4 py-2">
-                        @if ($software->image)
-                            <img src="{{ asset('storage/' . $software->image) }}" alt="{{ $software->name }}" class="h-16 w-16 object-cover">
-                        @endif
+                        <img src="{{ $software->image_url }}" alt="{{ $software->name }}" class="h-16 w-16 object-cover">
                     </td>
                     <td class="border px-4 py-2">
                         <a href="{{ route('admin.softwares.show', $software) }}" class="text-green-500 hover:underline mr-2">Show</a>

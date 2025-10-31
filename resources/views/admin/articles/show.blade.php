@@ -11,12 +11,9 @@
         <div class="mb-4">
             <strong>Category:</strong> {{ $article->article_category->name }}
         </div>
-        @if ($article->thumbnail)
-            <div class="mb-4">
-                <img src="{{ asset('storage/' . $article->thumbnail) }}" alt="{{ $article->title }}"
-                    class="h-48 w-full object-cover">
-            </div>
-        @endif
+        <div class="mb-4">
+            <img src="{{ $article->image_url }}" alt="{{ $article->title }}" class="h-48 w-full object-cover">
+        </div>
         <div class="mb-4">
             <strong>Tags:</strong>
             @foreach ($article->tags as $tag)

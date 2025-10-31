@@ -7,7 +7,7 @@
 
         <div class="flex flex-col mx-auto items-center justify-center mt-20">
             <div class="w-8/12 ">
-                <img class="rounded-lg m-auto w-full h-auto object-cover" src="{{ asset('storage/services/' . $service->image) }}" alt="{{ $service->name }}">
+                <img class="rounded-lg m-auto w-full h-auto object-cover" src="{{ $service->image_url }}" alt="{{ $service->name }}">
             </div>
         </div>
 
@@ -34,7 +34,7 @@
             <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
                 @foreach ($service->technologies as $technology)
                     <div class="card">
-                        <img class="w-full h-48 object-cover rounded-t-lg" src="{{ asset('storage/technologies/' . $technology->image) }}" alt="{{ $technology->name }}">
+                        <img class="w-full h-48 object-cover rounded-t-lg" src="{{ $technology->image_url }}" alt="{{ $technology->name }}">
                         <div class="p-4">
                             <h3 class="title-text-bold-medium text-secondary-950">{{ $technology->name }}</h3>
                             <p class="body-text-regular-medium text-secondary-600 mt-2">{{ $technology->description }}</p>

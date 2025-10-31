@@ -13,7 +13,7 @@
     </div>
     <div class="flex flex-col mx-auto items-center justify-center mt-20">
         <div class="w-8/12 ">
-            <img class="rounded-lg m-auto w-full h-auto object-cover" src="{{ $article->thumbnail_url }}" alt="">
+            <img class="rounded-lg m-auto w-full h-auto object-cover" src="{{ $article->image_url }}" alt="">
             <div class="prose lg:prose-xl mt-14">
                 {!! $article->long_text !!}
             </div>
@@ -43,7 +43,7 @@
         <div class="articles-container flex gap-10">
             @foreach ($articles as $item)
             <div class="article-item w-1/3">
-                <img class="h-72 w-full object-cover rounded-xl self-start" src="{{ $item->thumbnail_url }}"
+                <img class="h-72 w-full object-cover rounded-xl self-start" src="{{ $item->image_url }}"
                     alt="{{$item->title}}" />
                 <div class="mt-4">
                     <button

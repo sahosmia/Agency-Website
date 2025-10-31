@@ -24,9 +24,7 @@
                     <td class="border px-4 py-2">{{ $client->name }}</td>
                     <td class="border px-4 py-2">{{ $client->location }}</td>
                     <td class="border px-4 py-2">
-                        @if ($client->image)
-                            <img src="{{ asset('storage/' . $client->image) }}" alt="{{ $client->name }}" class="h-16 w-16 object-cover">
-                        @endif
+                        <img src="{{ $client->image_url }}" alt="{{ $client->name }}" class="h-16 w-16 object-cover">
                     </td>
                     <td class="border px-4 py-2">
                         <a href="{{ route('admin.clients.show', $client) }}" class="text-green-500 hover:underline mr-2">Show</a>

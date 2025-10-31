@@ -2,13 +2,16 @@
 
 namespace App\Models;
 
+use App\Traits\HasImage;
 use App\Traits\HasSlug;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
 class Project extends Model
 {
-    use HasFactory, HasSlug;
+    use HasFactory, HasSlug, HasImage;
+
+    public $image_folder = 'projects';
 
     protected $fillable = [
         'title',

@@ -61,7 +61,7 @@
     <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-x-6 gap-y-10 md:gap-y-[60px] mt-14">
         @forelse ($articles as $article)
         <div>
-            <img class="h-72 w-full object-cover rounded-xl" src="{{ $article->thumbnail_url }}"
+            <img class="h-72 w-full object-cover rounded-xl" src="{{ $article->image_url }}"
                 alt="{{ $article->title }}" />
             <div class="mt-4">
                 <button
