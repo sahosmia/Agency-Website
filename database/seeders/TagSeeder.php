@@ -13,12 +13,11 @@ class TagSeeder extends Seeder
     public function run(): void
     {
         $tags = [
-            ['name' => 'Technology'],
-            ['name' => 'Programming'],
-            ['name' => 'Web Development'],
-            ['name' => 'Design'],
-            ['name' => 'Lifestyle'],
-            ['name' => 'Travel'],
+            ['name' => 'Digital Marketing'],
+            ['name' => 'Marketing Strategy'],
+            ['name' => 'Email Campaigns'],
+            ['name' => 'Boost Engagement'],
+            ['name' => 'IncreaseConversions'],
         ];
 
         foreach ($tags as $tag) {

@@ -14,24 +14,28 @@ class FaqSeeder extends Seeder
     {
         $faqs = [
             [
-                'question' => 'What services do you offer?',
-                'answer' => 'We offer web development, SEO, branding, and digital marketing services.',
+                'question' => 'What services does your company offer?',
+                'answer' => 'We provide a range of digital solutions, including Web Design & Development, Mobile App Development, UX/UI Design, Digital Marketing, Cyber Security, and more.',
             ],
             [
-                'question' => 'How can I contact you?',
-                'answer' => 'You can contact us via email at contact@agency.com or through our contact form.',
+                'question' => 'What industries do you specialize in?',
+                'answer' => 'We have experience working with various industries such as Healthcare, Finance, E-commerce, Education, and others.',
             ],
             [
-                'question' => 'Do you provide custom software solutions?',
-                'answer' => 'Yes, we build custom software tailored to your business needs.',
+                'question' => 'Do you work with international clients?',
+                'answer' => 'Yes, we collaborate with clients from around the world to deliver high-quality digital solutions.',
             ],
             [
-                'question' => 'What is your pricing structure?',
-                'answer' => 'Our pricing depends on project complexity. Contact us for a quote.',
+                'question' => 'What makes your company stand out?',
+                'answer' => 'Our commitment to quality, customer satisfaction, and innovative solutions sets us apart in the industry.',
             ],
             [
-                'question' => 'Do you offer support after project completion?',
-                'answer' => 'Yes, we offer maintenance and support services after deployment.',
+                'question' => 'Do you provide support after project completion?',
+                'answer' => 'Absolutely! We offer ongoing support and maintenance services to ensure your solutions remain effective.',
+            ],
+            [
+                'question' => 'How can I get started with your services?',
+                'answer' => 'You can reach out to us via our contact page to discuss your project requirements.',
             ],
         ];
 

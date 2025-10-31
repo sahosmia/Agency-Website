@@ -15,7 +15,7 @@
         @method('PUT')
         <x-admin.text-input name="title" label="Title" :value="$value->title" required />
         <x-admin.textarea name="description" label="Description" :value="$value->description" />
-        <x-admin.text-input name="icon" label="Icon" :value="$value->icon" required />
+        
         <x-admin.submit-button label="Update" />
     </form>
 @endsection

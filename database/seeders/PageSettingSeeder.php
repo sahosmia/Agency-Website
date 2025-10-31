@@ -70,8 +70,8 @@ class PageSettingSeeder extends Seeder
                     'values_title' => 'Our Values',
                     'working_process_title' => 'Our Working Process',
                     'faq_title' => 'Frequently Asked Questions',
-                    'articles_title' => 'Our Articles',
-                    'articles_description' => 'Read our latest articles to learn more about our services and the industry.',
+                    'articles_title' => 'Articles',
+                    'articles_description' => 'Stay informed with our expert insights! Explore articles on the latest trends, tips, and strategies in web design, digital marketing, and more.',
                 ],
             ],
             [

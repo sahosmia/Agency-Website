@@ -24,7 +24,6 @@ class StoreValueRequest extends FormRequest
         return [
             'title' => 'required|string|max:255',
             'description' => 'required|string',
-            'icon' => 'required|string|max:255',
         ];
     }
 }

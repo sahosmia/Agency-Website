@@ -3,22 +3,26 @@
         <div class="border-b border-secondary-400">
             <div class="py-10 md:py-[60px] flex flex-col lg:flex-row gap-10 lg:gap-32">
                 <div class="flex flex-col gap-5 w-full lg:w-4/12">
+
+                    {{-- TODO: update footer logo and description --}}
                     <div class="flex flex-col items-center text-center lg:items-start lg:text-left">
                         <img class="block w-[103px] h-10" src="{{ asset('frontend/images/logo.png') }}" alt="">
                         <p class="text-secondary-800 body-text-regular-small pt-2">Lorem ipsum dolor sit amet,
                             consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna
                             aliqua. Ut enim ad minim veniam.</p>
                     </div>
+
                     <div>
                         <h4 class="body-text-bold-large text-secondary-900 text-center lg:text-left">Follow us</h4>
                         <div class="pt-2 grid grid-cols-2 sm:grid-cols-4 lg:grid-cols-2 gap-4">
                             @forelse ($socialMediaLinks as $link)
-                                <a class="flex justify-center items-center gap-2 rounded-sm border border-secondary-800 h-9 group"
-                                    href="{{ $link->url }}">
-                                    <img src="{{ asset('storage/' . $link->icon) }}" alt="{{ $link->name }}">
-                                    <span
-                                        class="text-secondary-800 label-text-bold-small group-hover:text-secondary-950">{{ $link->name }}</span>
-                                </a>
+                            <a class="flex justify-center items-center gap-2 rounded-sm border border-secondary-800 h-9 group"
+                                href="{{ $link->url }}">
+                                <img src="{{ asset('storage/social_media_links/' . $link->icon) }}"
+                                    alt="{{ $link->name }}">
+                                <span class="text-secondary-800 label-text-bold-small group-hover:text-secondary-950">{{
+                                    $link->name }}</span>
+                            </a>
                             @empty
                             <p class="text-secondary-800 label-text-bold-small">No Social Media Links Found</p>
                             @endforelse
@@ -26,6 +30,8 @@
                     </div>
                 </div>
 
+
+                {{-- TODO: update footer quick links, services and softwares --}}
                 <div class="w-full lg:w-8/12 flex flex-col sm:flex-row gap-8 sm:gap-5">
                     <div class="flex-1">
                         <h4 class="body-text-bold-large text-secondary-900">Quick links</h4>
@@ -50,9 +56,9 @@
                         <h4 class="body-text-bold-large text-secondary-900">Services solution</h4>
                         <ul class="flex flex-col gap-2 md:gap-3 pt-4">
                             @forelse ($services as $service)
-                                <li class="label-text-regular-small text-secondary-900"><a
-                                        href="{{ route('services.show', $service->slug) }}">{{ $service->name }}</a>
-                                </li>
+                            <li class="label-text-regular-small text-secondary-900"><a
+                                    href="{{ route('services.show', $service->slug) }}">{{ $service->name }}</a>
+                            </li>
                             @empty
                             <li class="label-text-regular-small text-secondary-900">No Service Found</li>
                             @endforelse
@@ -62,9 +68,9 @@
                         <h4 class="body-text-bold-large text-secondary-900">Software's solution</h4>
                         <ul class="flex flex-col gap-2 md:gap-3 pt-4">
                             @forelse ($softwares as $software)
-                                <li class="label-text-regular-small text-secondary-900"><a
-                                        href="{{ route('softwares.show', $software->slug) }}">{{ $software->name }}</a>
-                                </li>
+                            <li class="label-text-regular-small text-secondary-900"><a
+                                    href="{{ route('softwares.show', $software->slug) }}">{{ $software->name }}</a>
+                            </li>
                             @empty
                             <li class="label-text-regular-small text-secondary-900">No Software Found</li>
                             @endforelse
@@ -73,6 +79,8 @@
                 </div>
             </div>
         </div>
+
+        {{-- TODO: update footer copyright year and name --}}
         <div class="py-5">
             <p class="text-secondary-600 body-text-regular-small text-center">©2025 Yeasin arena All Rights Reserved</p>
         </div>

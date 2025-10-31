@@ -20,7 +20,7 @@ class HomeController extends Controller
     public function index()
     {
         $articles = Article::with('article_category:id,title')->latest()->limit(8)->get();
-        $projects = Project::with('category:id,title')->latest()->limit(8)->get();
+        $projects = Project::with('project_category:id,title')->latest()->limit(8)->get();
         $softwares = Software::with('software_category:id,title')->latest()->limit(8)->get();
         $services = Service::with('service_category:id,title')->latest()->limit(8)->get();
         $client_reviews = ClientReview::latest()->limit(8)->get();

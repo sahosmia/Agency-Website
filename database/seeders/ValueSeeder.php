@@ -14,19 +14,20 @@ class ValueSeeder extends Seeder
     {
         $datas = [
             [
-                'title' => 'Innovation',
-                'description' => 'We are constantly pushing the boundaries of what is possible.',
-                'icon' => 'innovation.svg',
+                'title' => 'Building Trust',
+                'description' => 'By embodying ethical business practices, we weave trustworthiness and integrity into every connection we forge. This commitment paves the way for enduring and rewarding partnerships',
             ],
             [
-                'title' => 'Quality',
-                'description' => 'We are committed to delivering the highest quality products and services.',
-                'icon' => 'quality.svg',
+                'title' => 'Future Forward',
+                'description' => 'Innovation isnt just a buzzword for us its the heartbeat of global change. Were not just in the business of providing solutions—were in the business of breaking barriers, exploring bold ideas, and redefining the future for our clients.',
             ],
             [
-                'title' => 'Customer Satisfaction',
-                'description' => 'We are dedicated to ensuring our customers are happy with our work.',
-                'icon' => 'customer-satisfaction.svg',
+                'title' => 'Accountability Matters',
+                'description' => 'We embrace accountability for every decision and action, whether taken individually or as a team. This core value fuels our strength and integrity, driving us forward with purpose and confidence. Let’s make every act count, together.',
+            ],
+            [
+                'title' => 'Sustainable Success',
+                'description' => 'Were committed to creating a legacy of sustainability and success. Our approach goes beyond financial gains; we prioritize the well-being of people, society, and the environment.',
             ],
         ];
 

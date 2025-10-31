@@ -14,14 +14,9 @@ class SocialMediaLinkSeeder extends Seeder
     {
         $datas = [
             [
-                'name' => 'Facebook',
-                'url' => 'https://facebook.com',
-                'icon' => 'facebook.png',
-            ],
-            [
-                'name' => 'Twitter',
-                'url' => 'https://twitter.com',
-                'icon' => 'twitter.png',
+                'name' => 'LinkedIn',
+                'url' => 'https://linkedin.com',
+                'icon' => 'linkedin.png',
             ],
             [
                 'name' => 'Instagram',
@@ -29,9 +24,34 @@ class SocialMediaLinkSeeder extends Seeder
                 'icon' => 'instagram.png',
             ],
             [
-                'name' => 'LinkedIn',
-                'url' => 'https://linkedin.com',
-                'icon' => 'linkedin.png',
+                'name' => 'Twitter',
+                'url' => 'https://twitter.com',
+                'icon' => 'twitter.png',
+            ],
+            [
+                'name' => 'Facebook',
+                'url' => 'https://facebook.com',
+                'icon' => 'facebook.png',
+            ],
+            [
+                'name' => 'Dribble',
+                'url' => 'https://dribble.com',
+                'icon' => 'dribble.png',
+            ],
+            [
+                'name' => 'Behance',
+                'url' => 'https://behance.net',
+                'icon' => 'behance.png',
+            ],
+            [
+                'name' => 'Skype',
+                'url' => 'https://skype.com',
+                'icon' => 'skype.png',
+            ],
+            [
+                'name' => 'Fiverr',
+                'url' => 'https://fiverr.com',
+                'icon' => 'fiverr.png',
             ],
         ];
 
