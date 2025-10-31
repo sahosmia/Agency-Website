@@ -2,7 +2,6 @@
 
 namespace Database\Seeders;
 
-use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 use App\Models\TrustedPartner;
 
@@ -13,21 +12,20 @@ class TrustedPartnerSeeder extends Seeder
      */
     public function run(): void
     {
-        TrustedPartner::updateOrCreate(
-            ['name' => 'Fiverr'],
-            ['logo' => 'fiverr.svg']
-        );
-        TrustedPartner::updateOrCreate(
-            ['name' => 'Envato'],
-            ['logo' => 'envato.svg']
-        );
-        TrustedPartner::updateOrCreate(
-            ['name' => 'Upwork'],
-            ['logo' => 'upwork-2.svg']
-        );
-        TrustedPartner::updateOrCreate(
-            ['name' => 'PeoplePerHour'],
-            ['logo' => 'peopleperhour.svg']
-        );
+
+
+        $trustedPartners = [
+            ['name' => 'Fiverr', 'logo' => 'fiverr.svg'],
+            ['name' => 'Envato', 'logo' => 'envato.svg'],
+            ['name' => 'Upwork', 'logo' => 'upwork.svg'],
+            ['name' => 'Bangladesh Govt', 'logo' => 'bangladesh-govt.png'],
+        ];
+
+        foreach ($trustedPartners as $partner) {
+            TrustedPartner::updateOrCreate(
+                ['name' => $partner['name']],
+                ['logo' => $partner['logo']]
+            );
+        }
     }
 }

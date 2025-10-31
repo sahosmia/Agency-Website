@@ -43,32 +43,45 @@ class PageSettingSeeder extends Seeder
             [
                 'page_name' => 'home',
                 'settings' => [
+
+                    // Home Page Settings
                     'page_title' => 'Home',
-                    'hero_title' => 'Welcome to our website',
-                    'hero_subtitle' => 'We are a team of passionate individuals who are dedicated to providing the best services to our clients.',
+                    'hero_title' => 'Your idea make in Realty',
+                    'hero_subtitle' => 'We provide Digital Marketing',
                     'hero_button_text' => 'Get Started',
+                    'hero_button_url' => 'http://localhost:8000/login',
+
                     'services_title' => 'Our Services',
-                    'services_description' => 'We offer a wide range of services to help you grow your business. Our services include web design, web development, digital marketing, and more.',
-                    'software_title' => 'Our Software',
-                    'software_description' => 'We have developed a wide range of software to help you manage your business. Our software is easy to use and can be customized to meet your specific needs.',
-                    'projects_title' => 'Our Projects',
-                    'projects_description' => 'We have worked on a wide range of projects for our clients. Our projects include websites, mobile apps, and more. We are proud of our work and are always looking for new challenges.',
+                    'services_description' => 'We offer a wide range of digital solutions tailored to meet your business needs. We provide innovative and impactful services to help you succeed in the digital age.',
+
+                    'software_title' => 'Software Solution',
+                    'software_description' => 'Simplify your operations with our ready-made software solutions designed to streamline workflows and improve efficiency. Each system is built with cutting-edge technology.',
+
+                    'projects_title' => 'Our Least Projects',
+                    'projects_description' => 'Explore how we’ve helped businesses achieve their goals with tailored digital solutions. Our latest projects highlight creativity, strategy, and measurable success in action.',
+
                     'contact_title' => 'Contact Us',
+
                     'client_reviews_title' => 'Client Reviews',
                     'client_reviews_description' => 'Hear from our satisfied clients! Their feedback highlights our commitment to delivering exceptional digital solutions that drive results and build trust.',
-                    'hero_card_description' => 'We have helped many businesses grow and have been recognized by many for our hard work and dedication.',
-                    'hero_card_one_title' => 'Projects Completed',
-                    'hero_card_one_value' => '1,200+',
-                    'hero_card_one_description' => 'We have completed over 1,200 projects for our clients.',
-                    'hero_card_two_title' => 'Happy Clients',
-                    'hero_card_two_value' => '1,000+',
-                    'hero_card_two_description' => 'We have over 1,000 happy clients who have been with us for years.',
-                    'hero_card_three_title' => 'Years of Experience',
-                    'hero_card_three_value' => '10+',
-                    'hero_card_three_description' => 'We have over 10 years of experience in the industry.',
-                    'search_title' => 'Search',
-                    'values_title' => 'Our Values',
-                    'working_process_title' => 'Our Working Process',
+
+                    'hero_card_description' => 'We specialize in digital solutions to help your business grow and thrive in the digital landscape.',
+
+                    'hero_card_one_title' => 'Satisfied Customers',
+                    'hero_card_one_value' => '95+',
+                    'hero_card_one_description' => 'We are committed to providing the best solutions to build happy relationships with our customers.',
+
+                    'hero_card_two_title' => 'Projects Completed',
+                    'hero_card_two_value' => '80+',
+                    'hero_card_two_description' => 'Consistently innovating and delivering excellence.',
+
+                    'hero_card_three_title' => 'Industries Served',
+                    'hero_card_three_value' => '17+',
+                    'hero_card_three_description' => 'Expertise tailored to your unique needs—because we’ve done it all.',
+
+                    'search_title' => 'Find the Perfect Service for Your Needs',
+                    'values_title' => 'Values we live by',
+                    'working_process_title' => 'Working Process',
                     'faq_title' => 'Frequently Asked Questions',
                     'articles_title' => 'Articles',
                     'articles_description' => 'Stay informed with our expert insights! Explore articles on the latest trends, tips, and strategies in web design, digital marketing, and more.',

@@ -6,52 +6,31 @@
 <div class="container"
     x-data="{ videoOpen: false, closeVideo() { this.videoOpen = false; this.$refs.videoFrame.src = '' } }">
     <div class="py-10 md:py-20">
-        <h1 class="heading-text-regular-large text-secondary-950 text-2xl md:text-4xl lg:text-5xl">{{
-            $homeSettings['hero_title'] ?? '' }} <br> <span
-                class="heading-text-regular-large text-secondary-950 text-2xl md:text-4xl lg:text-5xl">{{
-                $homeSettings['hero_subtitle'] ?? '' }}</span></h1>
 
-        <div class="flex justify-center items-center mt-8 md:mt-14 gap-4">
-            <button class="button-label px-5 py-2 md:px-7 md:py-3 bg-primary-600 text-white label-text-bold-large">Get
-                started <span><i class="fa-solid fa-arrow-right"></i></span></button>
-            <button @click="videoOpen = true; $refs.videoFrame.src = 'https://www.youtube.com/embed/dQw4w9WgXcQ'"
-                class="flex items-center gap-2 text-secondary-800 label-text-bold-large">
-                <i class="fa-solid fa-play-circle text-2xl"></i>
-                <span>Play this video</span>
-            </button>
-        </div>
+        {{-- hero section --}}
+        <div class="text-center max-w-4xl mx-auto px-4">
+            <h1 class="heading-text-regular-large text-secondary-950 text-2xl md:text-4xl lg:text-5xl">{{
+                $homeSettings['hero_title'] ?? '' }} <br> <span
+                    class="heading-text-regular-large text-secondary-950 text-2xl md:text-4xl lg:text-5xl">{{
+                    $homeSettings['hero_subtitle'] ?? '' }}</span></h1>
 
-        <div class="mt-8 md:mt-14">
-            <p class="text-center text-secondary-800 body-text-regular-medium">{{
-                $homeSettings['business_partner_title'] ?? '' }}</p>
-            <div class="flex justify-center items-center gap-4 mt-4">
-                @foreach ($business_partners as $partner)
-                <img src="{{ $partner->logo_url }}" alt="{{ $partner->name }}">
-                @endforeach
+            <div class="flex justify-center items-center gap-4 mt-4 flex-wrap">
+                @foreach ($business_tags as $tag)
+                <div class="hero-badge-desktop">{{ $tag->name }}</div> @endforeach
             </div>
-        </div>
 
-        <div class="mt-8 md:mt-14">
-            <p class="text-center text-secondary-800 body-text-regular-medium">Our tech partner</p>
-            <div class="flex justify-center items-center gap-4 mt-4">
-                @if (isset($homeSettings['tech_partner_one_image']))
-                <img src="{{ asset('uploads/home/' . $homeSettings['tech_partner_one_image']) }}" alt="Tech Partner 1">
-                @endif
-                @if (isset($homeSettings['tech_partner_two_image']))
-                <img src="{{ asset('uploads/home/' . $homeSettings['tech_partner_two_image']) }}" alt="Tech Partner 2">
-                @endif
-                @if (isset($homeSettings['tech_partner_three_image']))
-                <img src="{{ asset('uploads/home/' . $homeSettings['tech_partner_three_image']) }}"
-                    alt="Tech Partner 3">
-                @endif
-            </div>
-            <div class="flex justify-center items-center mt-8 md:mt-14">
+            <div class="flex justify-center items-center mt-8 md:mt-14 gap-4">
                 <button
-                    class="button-label px-5 py-2 md:px-7 md:py-3 bg-primary-600 text-white label-text-bold-large">{{
-                    $homeSettings['hero_button_text'] ?? '' }}
-                    <span><i class="fa-solid fa-arrow-right"></i></span></button>
+                    class="button-label px-5 py-2 md:px-7 md:py-3 bg-primary-600 text-white label-text-bold-large">Get
+                    started <span><i class="fa-solid fa-arrow-right"></i></span></button>
+                <button @click="videoOpen = true; $refs.videoFrame.src = 'https://www.youtube.com/embed/dQw4w9WgXcQ'"
+                    class="flex items-center gap-2 text-secondary-800 label-text-bold-large">
+                    <i class="fa-solid fa-play-circle text-2xl"></i>
+                    <span>Play this video</span>
+                </button>
             </div>
         </div>
+        {{-- hero section --}}
 
         {{-- hero card --}}
         <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 justify-center gap-6 py-10 md:py-15">
@@ -570,7 +549,7 @@
             $homeSettings['trusted_partners_description'] ?? '' }}</p>
         <div class="flex flex-wrap justify-center items-center gap-10 sm:gap-20 mt-8">
             @foreach ($trusted_partners as $partner)
-            <img src="{{ asset('upload/' . $partner->logo) }}" alt="{{ $partner->name }}">
+            <img src="{{  $partner->logo_url }}" alt="{{ $partner->name }}">
             @endforeach
         </div>
     </div>
@@ -632,25 +611,35 @@
     {{-- Client Reviews end --}}
 
     {{-- FAQ start --}}
-    <div class="mt-10 md:mt-15 mb-10 md:mb-20" x-data="{ open: 0 }">
-        <h2 class="heading-text-regular-medium text-center text-secondary-900 text-2xl md:text-3xl">{{
-            $homeSettings['faq_title'] ?? '' }}</h2>
-        <div class="mt-8 space-y-4">
+    <div class="mt-10 md:mt-16 mb-10 md:mb-20 max-w-[90%] md:max-w-3xl lg:max-w-5xl mx-auto px-4" x-data="{ open: 1 }">
+        <!-- Section Title -->
+        <h2
+            class="heading-text-regular-medium text-center text-secondary-900 text-2xl md:text-3xl lg:text-4xl font-semibold">
+            {{ $homeSettings['faq_title'] ?? 'Frequently Asked Questions' }}
+        </h2>
+
+        <!-- FAQ Items -->
+        <div class="mt-8 space-y-3 md:space-y-4">
             @foreach ($faqs as $faq)
-            <div class="border border-secondary-400 rounded-lg">
-                <div class="flex justify-between items-center p-4 cursor-pointer"
+            <div
+                class="border-b border-secondary-200 overflow-hidden  shadow-sm hover:shadow-md transition-shadow duration-300">
+                <!-- Question -->
+                <div class="flex justify-between items-center gap-3 p-3 md:p-4 cursor-pointer select-none"
                     @click="open = (open === {{ $loop->iteration }} ? 0 : {{ $loop->iteration }})">
-                    <h3 class="title-text-bold-medium text-secondary-950">{{ $faq->question }}</h3>
-                    <i class="fa-solid" :class="open === {{ $loop->iteration }} ? 'fa-minus' : 'fa-plus'"></i>
+                    <h3 class="title-text-bold-medium text-secondary-950 text-base md:text-lg leading-snug">
+                        {{ $faq->question }}
+                    </h3>
+                    <i class="fa-solid text-secondary-800 text-sm md:text-base transition-transform duration-300"
+                        :class="open === {{ $loop->iteration }} ? 'fa-minus rotate-180' : 'fa-plus rotate-0'"></i>
                 </div>
-                <div x-show="open === {{ $loop->iteration }}" class="p-4 border-t border-secondary-400"
-                    x-transition:enter="transition ease-out duration-300"
-                    x-transition:enter-start="opacity-0 transform -translate-y-2"
-                    x-transition:enter-end="opacity-100 transform translate-y-0"
-                    x-transition:leave="transition ease-in duration-200"
-                    x-transition:leave-start="opacity-100 transform translate-y-0"
-                    x-transition:leave-end="opacity-0 transform -translate-y-2">
-                    <p class="body-text-regular-medium text-secondary-600">{{ $faq->answer }}</p>
+
+                <!-- Answer (Smooth Collapse) -->
+                <div x-show="open === {{ $loop->iteration }}" x-collapse>
+                    <div class="p-3 md:p-4 bg-secondary-50 ">
+                        <p class="body-text-regular-medium text-secondary-600 text-sm md:text-base leading-relaxed">
+                            {{ $faq->answer }}
+                        </p>
+                    </div>
                 </div>
             </div>
             @endforeach

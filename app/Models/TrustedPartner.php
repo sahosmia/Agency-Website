@@ -11,13 +11,14 @@ class TrustedPartner extends Model
     use HasFactory, FileUploadTrait;
 
     protected $fillable = ['name', 'logo'];
-    protected $appends = ['logo_url'];
+   protected $appends = ['logo_url'];
     public function getLogoUrlAttribute()
     {
-        if ($this->logo && $this->fileExists('trusted_partners/' . $this->logo)) {
-            return $this->getFileUrl('trusted_partners/' . $this->logo);
+        if ($this->icon && file_exists(public_path('uploads/trusted_companies/' . $this->icon))) {
+            return asset('uploads/trusted_companies/' . $this->icon);
         }
-        return asset('images/default-trusted-partner-logo.jpg');
+        return asset('images/default-trusted-company-logo.jpg');
     }
-    
+
+
 }

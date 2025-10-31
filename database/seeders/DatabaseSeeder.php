@@ -20,7 +20,7 @@ class DatabaseSeeder extends Seeder
             ArticleCategorySeeder::class,
             TagSeeder::class,
             ArticleSeeder::class,
-            
+
             ClientReviewSeeder::class,
             ClientSeeder::class,
             DesignationSeeder::class,
@@ -45,7 +45,7 @@ class DatabaseSeeder extends Seeder
             PageSettingSeeder::class,
             MenuSeeder::class,
             TrustedPartnerSeeder::class,
-            BusinessPartnerSeeder::class,
+            BusinessTagSeeder::class,
         ]);
     }
 }
