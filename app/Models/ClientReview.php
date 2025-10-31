@@ -21,4 +21,14 @@ class ClientReview extends Model
     {
         return $this->hasMany(Project::class);
     }
+
+    // avatar_url accessor
+    protected $appends = ['avatar_url'];
+    public function getAvatarUrlAttribute()
+    {
+        if ($this->avatar && file_exists(public_path('uploads/client_reviews/' . $this->avatar))) {
+            return asset('uploads/client_reviews/' . $this->avatar);
+        }
+        return asset('images/default-client-avatar.jpg');
+    }
 }

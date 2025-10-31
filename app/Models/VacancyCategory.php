@@ -12,7 +12,7 @@ class VacancyCategory extends Model
 
     protected $table = 'vacancy_categories';
 
-    protected $fillable = ['title', 'slug', 'description'];
+    protected $fillable = ['title', 'slug'];
 
     public function vacancies()
     {

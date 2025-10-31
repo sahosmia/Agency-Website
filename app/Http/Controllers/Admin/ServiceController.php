@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
+use App\Http\Controllers\Traits\FileUploadTrait;
 use App\Http\Requests\StoreServiceRequest;
 use App\Http\Requests\UpdateServiceRequest;
 use App\Models\Service;
@@ -11,6 +12,7 @@ use Illuminate\Support\Facades\Storage;
 
 class ServiceController extends Controller
 {
+    use FileUploadTrait;
     public function index()
     {
         $services = Service::with('service_category')->get();
@@ -26,10 +28,8 @@ class ServiceController extends Controller
     public function store(StoreServiceRequest $request)
     {
         $data = $request->validated();
-        if ($request->hasFile('image')) {
-            $path = $request->file('image')->store('services', 'public');
-            $data['image'] = $path;
-        }
+        $data['thumbnail'] = $this->uploadFile($request, 'thumbnail', 'services');
+
         Service::create($data);
         return redirect()->route('admin.services.index')->with('success', 'Service created successfully.');
     }
@@ -49,13 +49,7 @@ class ServiceController extends Controller
     public function update(UpdateServiceRequest $request, Service $service)
     {
         $data = $request->validated();
-        if ($request->hasFile('image')) {
-            if ($service->image) {
-                Storage::disk('public')->delete($service->image);
-            }
-            $path = $request->file('image')->store('services', 'public');
-            $data['image'] = $path;
-        }
+        $data['thumbnail'] = $this->updateFile($request, 'thumbnail', 'services', $service);
         $service->update($data);
         return redirect()->route('admin.services.index')->with('success', 'Service updated successfully.');
     }

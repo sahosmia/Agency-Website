@@ -26,7 +26,7 @@
                 $homeSettings['business_partner_title'] ?? '' }}</p>
             <div class="flex justify-center items-center gap-4 mt-4">
                 @foreach ($business_partners as $partner)
-                <img src="{{ asset('frontend/images/' . $partner->logo) }}" alt="{{ $partner->name }}">
+                <img src="{{ $partner->logo_url }}" alt="{{ $partner->name }}">
                 @endforeach
             </div>
         </div>

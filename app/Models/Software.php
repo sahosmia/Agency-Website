@@ -19,6 +19,16 @@ class Software extends Model
         'image',
     ];
 
+    // image_url accessor
+    protected $appends = ['image_url'];
+    public function getImageUrlAttribute()
+    {
+        if ($this->image && file_exists(public_path('uploads/softwares/' . $this->image))) {
+            return asset('uploads/softwares/' . $this->image);
+        }
+        return asset('images/default-software-image.jpg');
+    }
+
     public function getSlugSourceField(): string
     {
         return 'name';

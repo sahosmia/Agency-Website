@@ -24,4 +24,14 @@ class Technology extends Model
     {
         return $this->morphedByMany(Software::class, 'technologable');
     }
+
+    // image_url accessor
+    protected $appends = ['image_url'];
+    public function getImageUrlAttribute()
+    {
+        if ($this->image && file_exists(public_path('uploads/technologies/' . $this->image))) {
+            return asset('uploads/technologies/' . $this->image);
+        }
+        return asset('images/default-technology-image.jpg');
+    }
 }

@@ -15,6 +15,16 @@ class KeyFeature extends Model
         'image',
     ];
 
+    // image_url accessor
+    protected $appends = ['image_url'];
+    public function getImageUrlAttribute()
+    {
+        if ($this->image && file_exists(public_path('uploads/key_features/' . $this->image))) {
+            return asset('uploads/key_features/' . $this->image);
+        }
+        return asset('images/default-key-feature-image.jpg');
+    }
+
     /**
      * Get all of the services that are assigned this key feature.
      */

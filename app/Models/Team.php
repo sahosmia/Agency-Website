@@ -15,4 +15,13 @@ class Team extends Model
     {
         return $this->belongsTo(Designation::class);
     }
+    // avatar_url accessor
+    protected $appends = ['avatar_url'];
+    public function getAvatarUrlAttribute()
+    {
+        if ($this->avatar && file_exists(public_path('uploads/teams/' . $this->avatar))) {
+            return asset('uploads/teams/' . $this->avatar);
+        }
+        return asset('images/default-team-avatar.jpg');
+    }
 }

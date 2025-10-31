@@ -123,8 +123,8 @@ class PageSettingSeeder extends Seeder
                 'page_name' => 'articles',
                 'settings' => [
                     'page_title' => 'Articles',
-                    'title' => 'Our Articles',
-                    'description' => 'Read our latest articles to learn more about our services and the industry.',
+                    'title' => 'Explore our least Articles',
+                    'description' => 'where we share the latest trends, insights, and best practices in technology, digital transformation, and business solutions.',
                 ],
             ],
             [
@@ -199,7 +199,7 @@ class PageSettingSeeder extends Seeder
                 'page_name' => 'careers',
                 'settings' => [
                     'page_title' => 'Careers',
-                    'title' => 'Careers',
+                    'title' => 'Join our team best Opportunity',
                 ],
             ],
             [

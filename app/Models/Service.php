@@ -18,6 +18,17 @@ class Service extends Model
         'image',
     ];
 
+    // image_url accessor
+    protected $appends = ['image_url'];
+    public function getImageUrlAttribute()
+    {
+        if ($this->image && file_exists(public_path('uploads/services/' . $this->image))) {
+            return asset('uploads/services/' . $this->image);
+
+        }
+        return asset('images/default-service-image.jpg');
+    }
+
     public function getSlugSourceField(): string
     {
         return 'name';

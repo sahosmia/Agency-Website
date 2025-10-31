@@ -3,12 +3,15 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
+use App\Http\Controllers\Traits\FileUploadTrait;
 use App\Http\Requests\StoreWorkingProcessRequest;
 use App\Http\Requests\UpdateWorkingProcessRequest;
 use App\Models\WorkingProcess;
 
 class WorkingProcessController extends Controller
 {
+    use FileUploadTrait;
+
     public function index()
     {
         $workingProcesses = WorkingProcess::all();
@@ -22,7 +25,10 @@ class WorkingProcessController extends Controller
 
     public function store(StoreWorkingProcessRequest $request)
     {
-        WorkingProcess::create($request->validated());
+        $data = $request->validated();
+        $data['icon'] = $this->uploadFile($request, 'icon', 'working_processes');
+        WorkingProcess::create($data);
+
         return redirect()->route('admin.working-processes.index')->with('success', 'Working Process created successfully.');
     }
 
@@ -33,7 +39,9 @@ class WorkingProcessController extends Controller
 
     public function update(UpdateWorkingProcessRequest $request, WorkingProcess $workingProcess)
     {
-        $workingProcess->update($request->validated());
+        $data = $request->validated();
+        $data['icon'] = $this->updateFile($request, 'icon', 'working_processes', $workingProcess);
+        $workingProcess->update($data);
         return redirect()->route('admin.working-processes.index')->with('success', 'Working Process updated successfully.');
     }
 

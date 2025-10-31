@@ -5,7 +5,6 @@ namespace App\Http\Controllers\Frontend;
 use App\Http\Controllers\Controller;
 use App\Models\PageSetting;
 use App\Models\JobApplication;
-use App\Models\PageSetting;
 use App\Models\Vacancy;
 use App\Models\VacancyCategory;
 use Illuminate\Http\Request;

@@ -34,6 +34,58 @@ class Project extends Model
         'thumbnails' => 'array',
     ];
 
+
+    // thumbnail_url accessor
+    protected $appends = ['thumbnail_url', 'screenshots_urls', 'images_urls', 'thumbnails_urls'];
+    public function getThumbnailUrlAttribute()
+    {
+        if ($this->thumbnail && file_exists(public_path('uploads/projects/' . $this->thumbnail))) {
+            return asset('uploads/projects/' . $this->thumbnail);
+        }
+        return asset('images/default-project-thumbnail.jpg');
+    }
+
+    public function getScreenshotsUrlsAttribute()
+    {
+        $urls = [];
+        if (is_array($this->screenshots)) {
+            foreach ($this->screenshots as $screenshot) {
+                if (file_exists(public_path('uploads/projects/' . $screenshot))) {
+                    $urls[] = asset('uploads/projects/' . $screenshot);
+                }
+            }
+        }
+        return $urls;
+    }
+
+    public function getImagesUrlsAttribute()
+    {
+        $urls = [];
+        if (is_array($this->images)) {
+            foreach ($this->images as $image) {
+                if (file_exists(public_path('uploads/projects/' . $image))) {
+                    $urls[] = asset('uploads/projects/' . $image);
+                }
+            }
+        }
+        return $urls;
+    }
+
+    public function getThumbnailsUrlsAttribute()
+    {
+        $urls = [];
+        if (is_array($this->thumbnails)) {
+            foreach ($this->thumbnails as $thumbnail) {
+                if (file_exists(public_path('uploads/projects/' . $thumbnail))) {
+                    $urls[] = asset('uploads/projects/' . $thumbnail);
+                }
+            }
+        }
+        return $urls;
+    }
+
+    
+
     // Relationship with ProjectCategory
     public function project_category()
     {
