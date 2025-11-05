@@ -19,7 +19,7 @@
                 <h1 class="text-2xl font-bold">Admin Panel</h1>
             </div>
             <nav class="mt-4">
-                <a href="{{ route('admin.dashboard.index') }}"
+                <a href="{{ route('admin.dashboard') }}"
                     class="block px-4 py-2 text-gray-300 hover:bg-gray-700">Dashboard</a>
 
                 <div x-data="{ open: false }" class="relative">

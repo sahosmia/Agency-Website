@@ -485,7 +485,24 @@
                     <p class="body-text-bold-large text-secondary-900">{{ $contactSettings['contact_address'] ?? '' }}
                     </p>
                 </div>
+
+                <div class="w-96">
+                    <h4 class="body-text-bold-large text-secondary-900 text-left">Follow us</h4>
+                    <div class="pt-2 grid grid-cols-2  lg:grid-cols-2 gap-4">
+                        @forelse ($socialMediaLinks as $link)
+                        <a class="flex justify-center items-center gap-2 rounded-sm border border-secondary-800 h-9 group"
+                            href="{{ $link->url }}">
+                            <img src="{{ asset('storage/social_media_links/' . $link->icon) }}" alt="{{ $link->name }}">
+                            <span class="text-secondary-800 label-text-bold-small group-hover:text-secondary-950">{{
+                                $link->name }}</span>
+                        </a>
+                        @empty
+                        <p class="text-secondary-800 label-text-bold-small">No Social Media Links Found</p>
+                        @endforelse
+                    </div>
+                </div>
             </div>
+
             <div>
                 <form action="" class="p-6 border border-secondary-400 rounded-2xl space-y-6">
                     <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
@@ -611,7 +628,7 @@
     {{-- Client Reviews end --}}
 
     {{-- FAQ start --}}
-    <div class="mt-10 md:mt-16 mb-10 md:mb-20 max-w-[90%] md:max-w-3xl lg:max-w-5xl mx-auto px-4" x-data="{ open: 1 }">
+    <div class="mt-10 md:mt-16 mb-10 md:mb-20 max-w-[95%] md:max-w-3xl lg:max-w-5xl mx-auto px-4" x-data="{ open: 1 }">
         <!-- Section Title -->
         <h2
             class="heading-text-regular-medium text-center text-secondary-900 text-2xl md:text-3xl lg:text-4xl font-semibold">
@@ -626,7 +643,7 @@
                 <!-- Question -->
                 <div class="flex justify-between items-center gap-3 p-3 md:p-4 cursor-pointer select-none"
                     @click="open = (open === {{ $loop->iteration }} ? 0 : {{ $loop->iteration }})">
-                    <h3 class="title-text-bold-medium text-secondary-950 text-base md:text-lg leading-snug">
+                    <h3 class="  font-semibold text-secondary-950 text-xl md:text-2xl leading-snug">
                         {{ $faq->question }}
                     </h3>
                     <i class="fa-solid text-secondary-800 text-sm md:text-base transition-transform duration-300"

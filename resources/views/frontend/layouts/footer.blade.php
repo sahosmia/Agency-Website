@@ -37,7 +37,7 @@
                         <h4 class="body-text-bold-large text-secondary-900">Quick links</h4>
                         <ul class="flex flex-col gap-2 md:gap-3 pt-4">
                             <li class="label-text-regular-small text-secondary-900"><a
-                                    href="{{ route('admin.dashboard.index') }}">Log in dashboard</a></li>
+                                    href="{{ route('admin.dashboard') }}">Log in dashboard</a></li>
                             <li class="label-text-regular-small text-secondary-900"><a href="{{ route('about') }}">About
                                     us</a></li>
                             <li class="label-text-regular-small text-secondary-900"><a

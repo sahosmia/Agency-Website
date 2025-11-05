@@ -24,7 +24,7 @@
 
                     <a href="{{ route('home') }}" class="btn-outline-full">Back home</a>
 
-                    <a href="{{ route('admin.dashboard.index') }}" class="btn-primary-full  ">Go to dashboard</a>
+                    <a href="{{ route('admin.dashboard') }}" class="btn-primary-full  ">Go to dashboard</a>
                 </div>
 
                 <p></p>

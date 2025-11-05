@@ -21,7 +21,7 @@
         {{-- Login Btn --}}
         <div class="hidden lg:flex justify-center items-center gap-4">
             @auth
-            <a href="{{ route('dashboard') }}"
+            <a href="{{ route('admin.dashboard') }}"
                 class="label-text-bold-medium text-white bg-primary-600 rounded-[6px] px-4 py-2">Dashboard</a>
             @else
             <a href="{{ route('login') }}"
@@ -56,7 +56,7 @@
                 </li>
             @endforeach
             @auth
-            <li><a href="{{ route('dashboard') }}"
+            <li><a href="{{ route('admin.dashboard') }}"
                     class="label-text-bold-medium text-white bg-primary-600 rounded-[6px] px-4 py-2">Dashboard</a></li>
             @else
             <li><a href="{{ route('login') }}"
