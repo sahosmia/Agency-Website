@@ -8,6 +8,7 @@ use App\Http\Requests\StoreServiceRequest;
 use App\Http\Requests\UpdateServiceRequest;
 use App\Models\Service;
 use App\Models\ServiceCategory;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Storage;
 
 class ServiceController extends Controller
@@ -27,10 +28,17 @@ class ServiceController extends Controller
 
     public function store(StoreServiceRequest $request)
     {
-        $data = $request->validated();
-        $data['thumbnail'] = $this->uploadFile($request, 'thumbnail', 'services');
+        DB::transaction(function () use ($request) {
+            $data = $request->validated();
+            $data['thumbnail'] = $this->uploadFile($request, 'thumbnail', 'services');
 
-        Service::create($data);
+            $service = Service::create($data);
+
+            if ($request->has('faqs')) {
+                $service->faqs()->createMany($request->faqs);
+            }
+        });
+
         return redirect()->route('admin.services.index')->with('success', 'Service created successfully.');
     }
 
@@ -48,9 +56,17 @@ class ServiceController extends Controller
 
     public function update(UpdateServiceRequest $request, Service $service)
     {
-        $data = $request->validated();
-        $data['thumbnail'] = $this->updateFile($request, 'thumbnail', 'services', $service);
-        $service->update($data);
+        DB::transaction(function () use ($request, $service) {
+            $data = $request->validated();
+            $data['thumbnail'] = $this->updateFile($request, 'thumbnail', 'services', $service);
+            $service->update($data);
+
+            if ($request->has('faqs')) {
+                $service->faqs()->delete();
+                $service->faqs()->createMany($request->faqs);
+            }
+        });
+
         return redirect()->route('admin.services.index')->with('success', 'Service updated successfully.');
     }
 

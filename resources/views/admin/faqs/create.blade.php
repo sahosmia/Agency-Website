@@ -14,6 +14,7 @@
         @csrf
         <x-admin.text-input name="question" label="Question" required />
         <x-admin.textarea name="answer" label="Answer" />
+        <x-admin.checkbox name="is_active" label="Active" value="1" checked />
         <x-admin.submit-button label="Create" />
     </form>
 @endsection

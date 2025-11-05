@@ -25,6 +25,10 @@ class UpdateProjectRequest extends FormRequest
             'title' => 'required|string|max:255',
             'project_category_id' => 'required|exists:project_categories,id',
             'thumbnail' => 'nullable|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
+            'faqs' => 'nullable|array',
+            'faqs.*.question' => 'required|string',
+            'faqs.*.answer' => 'required|string',
+            'faqs.*.is_active' => 'nullable|boolean',
         ];
     }
 }
