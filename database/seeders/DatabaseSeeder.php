@@ -14,7 +14,6 @@ class DatabaseSeeder extends Seeder
     public function run(): void
     {
         $this->call([
-            FaqSeeder::class,
             SocialMediaLinkSeeder::class,
             AchievementSeeder::class,
             ArticleCategorySeeder::class,
@@ -46,6 +45,7 @@ class DatabaseSeeder extends Seeder
             MenuSeeder::class,
             TrustedPartnerSeeder::class,
             BusinessTagSeeder::class,
+            FaqSeeder::class,
         ]);
     }
 }

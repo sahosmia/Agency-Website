@@ -8,6 +8,7 @@ use App\Http\Requests\UpdateProjectRequest;
 use App\Models\Project;
 use App\Models\ProjectCategory;
 use App\Http\Controllers\Traits\FileUploadTrait;
+use Illuminate\Support\Facades\DB;
 
 class ProjectController extends Controller
 {
@@ -27,9 +28,16 @@ class ProjectController extends Controller
 
     public function store(StoreProjectRequest $request)
     {
-        $data = $request->validated();
-        $data['thumbnail'] = $this->uploadFile($request, 'thumbnail', 'projects');
-        Project::create($data);
+        DB::transaction(function () use ($request) {
+            $data = $request->validated();
+            $data['thumbnail'] = $this->uploadFile($request, 'thumbnail', 'projects');
+            $project = Project::create($data);
+
+            if ($request->has('faqs')) {
+                $project->faqs()->createMany($request->faqs);
+            }
+        });
+
         return redirect()->route('admin.projects.index')->with('success', 'Project created successfully.');
     }
 
@@ -46,9 +54,17 @@ class ProjectController extends Controller
 
     public function update(UpdateProjectRequest $request, Project $project)
     {
-        $data = $request->validated();
-        $data['thumbnail'] = $this->updateFile($request, 'thumbnail', 'projects', $project);
-        $project->update($data);
+        DB::transaction(function () use ($request, $project) {
+            $data = $request->validated();
+            $data['thumbnail'] = $this->updateFile($request, 'thumbnail', 'projects', $project);
+            $project->update($data);
+
+            if ($request->has('faqs')) {
+                $project->faqs()->delete();
+                $project->faqs()->createMany($request->faqs);
+            }
+        });
+
         return redirect()->route('admin.projects.index')->with('success', 'Project updated successfully.');
     }
 

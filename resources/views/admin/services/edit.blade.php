@@ -13,6 +13,13 @@
         <x-admin.select name="service_category_id" label="Category" :options="$categories->pluck('name', 'id')" :value="$service->service_category_id" required />
         <x-admin.textarea name="description" label="Description" :value="$service->description" />
         <x-admin.file-input name="image" label="Image" :value="$service->image" />
+
+        <div class="card">
+            <div class="card-body">
+                <x-admin.faq-repeater :faqs="$service->faqs" />
+            </div>
+        </div>
+
         <x-admin.submit-button label="Update" />
     </form>
 

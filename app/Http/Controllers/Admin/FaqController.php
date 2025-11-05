@@ -11,7 +11,7 @@ class FaqController extends Controller
 {
     public function index()
     {
-        $faqs = Faq::all();
+        $faqs = Faq::whereNull('faqable_type')->get();
         return view('admin.faqs.index', compact('faqs'));
     }
 
@@ -22,7 +22,7 @@ class FaqController extends Controller
 
     public function store(StoreFaqRequest $request)
     {
-        Faq::create($request->validated());
+        Faq::create($request->validated() + ['faqable_id' => null, 'faqable_type' => null]);
         return redirect()->route('admin.faqs.index')->with('success', 'FAQ created successfully.');
     }
 
