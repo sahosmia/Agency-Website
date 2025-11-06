@@ -23,8 +23,10 @@
                     <td class="border px-4 py-2">{{ $serviceType->name }}</td>
                     <td class="border px-4 py-2">{{ $serviceType->service->name }}</td>
                     <td class="border px-4 py-2">
-                        <a href="{{ route('admin.service-types.edit', $serviceType) }}" class="text-blue-500 hover:underline">Edit</a>
-                        <x-admin.delete-button :route="route('admin.service-types.destroy', $serviceType)" />
+                        <x-admin.actions-dropdown
+                            :editUrl="route('admin.service-types.edit', $serviceType)"
+                            :deleteRoute="route('admin.service-types.destroy', $serviceType)"
+                        />
                     </td>
                 </tr>
             @endforeach

@@ -33,8 +33,10 @@
                         <x-admin.status-badge :is-active="$socialMediaLink->is_active" />
                      </td>
                     <td class="border px-4 py-2">
-                        <a href="{{ route('admin.social-media-links.edit', $socialMediaLink) }}" class="text-blue-500 hover:underline">Edit</a>
-                        <x-admin.delete-button :route="route('admin.social-media-links.destroy', $socialMediaLink)" />
+                        <x-admin.actions-dropdown
+                            :editUrl="route('admin.social-media-links.edit', $socialMediaLink)"
+                            :deleteRoute="route('admin.social-media-links.destroy', $socialMediaLink)"
+                        />
                     </td>
                 </tr>
             @endforeach

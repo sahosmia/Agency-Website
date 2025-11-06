@@ -23,8 +23,10 @@
                     <td class="border px-4 py-2">{{ $category->title }}</td>
                     <td class="border px-4 py-2">{{ $category->slug }}</td>
                     <td class="border px-4 py-2">
-                        <a href="{{ route('admin.software-categories.edit', $category) }}" class="text-blue-500 hover:underline">Edit</a>
-                        <x-admin.delete-button :route="route('admin.software-categories.destroy', $category)" />
+                        <x-admin.actions-dropdown
+                            :editUrl="route('admin.software-categories.edit', $category)"
+                            :deleteRoute="route('admin.software-categories.destroy', $category)"
+                        />
                     </td>
                 </tr>
             @endforeach

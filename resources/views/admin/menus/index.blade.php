@@ -23,8 +23,10 @@
                     <td>{{ $menu->route }}</td>
                     <td>{{ $menu->order }}</td>
                     <td>
-                        <a href="{{ route('admin.menus.edit', $menu) }}" class="btn btn-sm btn-primary">Edit</a>
-                        <x-admin.bootstrap.delete-button :route="route('admin.menus.destroy', $menu)" />
+                        <x-admin.bootstrap.actions-dropdown
+                            :editUrl="route('admin.menus.edit', $menu)"
+                            :deleteRoute="route('admin.menus.destroy', $menu)"
+                        />
                     </td>
                 </tr>
             @endforeach

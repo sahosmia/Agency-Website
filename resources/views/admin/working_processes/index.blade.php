@@ -29,8 +29,10 @@
                         <x-admin.status-badge :is-active="$workingProcess->is_active" />
                     </td>
                     <td class="border px-4 py-2">
-                        <a href="{{ route('admin.working-processes.edit', $workingProcess) }}" class="text-blue-500 hover:underline">Edit</a>
-                        <x-admin.delete-button :route="route('admin.working-processes.destroy', $workingProcess)" />
+                        <x-admin.actions-dropdown
+                            :editUrl="route('admin.working-processes.edit', $workingProcess)"
+                            :deleteRoute="route('admin.working-processes.destroy', $workingProcess)"
+                        />
                     </td>
                 </tr>
             @endforeach
