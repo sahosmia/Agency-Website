@@ -1,9 +1,15 @@
-@props(['route'])
+@props(['route', 'displayAs' => 'button'])
 
-<form action="{{ $route }}" method="POST" class="inline-block ml-2 delete-form">
+<form action="{{ $route }}" method="POST" {{ $attributes->merge(['class' => 'inline-block delete-form']) }}>
     @csrf
     @method('DELETE')
-    <button type="submit" class="text-red-500 hover:underline">Delete</button>
+    <button type="submit"
+        @class([
+            'text-red-500 hover:underline' => $displayAs === 'button',
+            'block w-full text-left px-4 py-2 text-sm text-red-500 hover:bg-gray-100' => $displayAs === 'link',
+        ])>
+        Delete
+    </button>
 </form>
 
 @pushOnce('scripts')

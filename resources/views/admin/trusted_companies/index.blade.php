@@ -31,8 +31,10 @@
                         <x-admin.status-badge :is-active="$trustedCompany->is_active" />
                     </td>
                     <td class="border px-4 py-2">
-                        <a href="{{ route('admin.trusted-companies.edit', $trustedCompany) }}" class="text-blue-500 hover:underline">Edit</a>
-                        <x-admin.delete-button :route="route('admin.trusted-companies.destroy', $trustedCompany)" />
+                        <x-admin.actions-dropdown
+                            :editUrl="route('admin.trusted-companies.edit', $trustedCompany)"
+                            :deleteRoute="route('admin.trusted-companies.destroy', $trustedCompany)"
+                        />
                     </td>
                 </tr>
             @endforeach

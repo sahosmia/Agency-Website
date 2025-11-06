@@ -21,8 +21,10 @@
                 <tr>
                     <td class="border px-4 py-2">{{ $tag->name }}</td>
                     <td class="border px-4 py-2">
-                        <a href="{{ route('admin.tags.edit', $tag) }}" class="text-blue-500 hover:underline">Edit</a>
-                        <x-admin.delete-button :route="route('admin.tags.destroy', $tag)" />
+                        <x-admin.actions-dropdown
+                            :editUrl="route('admin.tags.edit', $tag)"
+                            :deleteRoute="route('admin.tags.destroy', $tag)"
+                        />
                     </td>
                 </tr>
             @endforeach

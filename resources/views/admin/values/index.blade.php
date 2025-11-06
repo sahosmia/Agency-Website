@@ -29,8 +29,10 @@
                         <x-admin.status-badge :is-active="$value->is_active" />
                     </td>
                     <td class="border px-4 py-2">
-                        <a href="{{ route('admin.values.edit', $value) }}" class="text-blue-500 hover:underline">Edit</a>
-                        <x-admin.delete-button :route="route('admin.values.destroy', $value)" />
+                        <x-admin.actions-dropdown
+                            :editUrl="route('admin.values.edit', $value)"
+                            :deleteRoute="route('admin.values.destroy', $value)"
+                        />
                     </td>
                 </tr>
             @endforeach
