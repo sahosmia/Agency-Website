@@ -33,9 +33,11 @@
                         <x-admin.status-badge :is-active="$project->is_active" />
                     </td>
                     <td class="border px-4 py-2">
-                        <a href="{{ route('admin.projects.show', $project) }}" class="text-green-500 hover:underline mr-2">Show</a>
-                        <a href="{{ route('admin.projects.edit', $project) }}" class="text-blue-500 hover:underline">Edit</a>
-                        <x-admin.delete-button :route="route('admin.projects.destroy', $project)" />
+                        <x-admin.actions-dropdown
+                            :showUrl="route('admin.projects.show', $project)"
+                            :editUrl="route('admin.projects.edit', $project)"
+                            :deleteRoute="route('admin.projects.destroy', $project)"
+                        />
                     </td>
                 </tr>
             @endforeach

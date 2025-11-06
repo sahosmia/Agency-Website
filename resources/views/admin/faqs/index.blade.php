@@ -27,8 +27,10 @@
                         <x-admin.status-badge :is-active="$faq->is_active" />
                     </td>
                     <td class="border px-4 py-2">
-                        <a href="{{ route('admin.faqs.edit', $faq) }}" class="text-blue-500 hover:underline">Edit</a>
-                        <x-admin.delete-button :route="route('admin.faqs.destroy', $faq)" />
+                        <x-admin.actions-dropdown
+                            :editUrl="route('admin.faqs.edit', $faq)"
+                            :deleteRoute="route('admin.faqs.destroy', $faq)"
+                        />
                     </td>
                 </tr>
             @endforeach

@@ -37,8 +37,10 @@
                                             <x-admin.bootstrap.status-badge :is-active="$technology->is_active" />
                                         </td>
                                         <td>
-                                            <a href="{{ route('admin.technologies.edit', $technology) }}" class="btn btn-info btn-sm">Edit</a>
-                                            <x-admin.bootstrap.delete-button :route="route('admin.technologies.destroy', $technology)" />
+                                            <x-admin.bootstrap.actions-dropdown
+                                                :editUrl="route('admin.technologies.edit', $technology)"
+                                                :deleteRoute="route('admin.technologies.destroy', $technology)"
+                                            />
                                         </td>
                                     </tr>
                                 @endforeach

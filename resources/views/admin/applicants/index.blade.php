@@ -29,7 +29,9 @@
                         <td class="border px-4 py-2">{{ $applicant->experience }}</td>
                         <td class="border px-4 py-2">{{ $applicant->why_hire }}</td>
                         <td class="border px-4 py-2">
-                            <x-admin.delete-button :route="route('admin.applicants.destroy', $applicant)" />
+                            <x-admin.actions-dropdown
+                                :deleteRoute="route('admin.applicants.destroy', $applicant)"
+                            />
                         </td>
                     </tr>
                 @endforeach
