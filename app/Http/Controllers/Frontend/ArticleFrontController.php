@@ -14,7 +14,7 @@ class ArticleFrontController extends Controller
     {
         $article_categories = ArticleCategory::get();
 
-        $articles = Article::with('article_category:id,title')
+        $articles = Article::active()->with('article_category:id,title')
             ->when($request->search, function ($query) use ($request) {
                 $query->where('title', 'like', '%'.$request->search.'%');
             })
@@ -33,7 +33,7 @@ class ArticleFrontController extends Controller
     public function show(Article $article)
     {
         $article->load('article_category:id,title', 'tags');
-        $articles = Article::with('article_category:id,title')->limit(5)->get();
+        $articles = Article::active()->with('article_category:id,title')->limit(5)->get();
         $articleDetailPage = PageSetting::where('page_name', 'article-detail')->first();
         $articleDetailSettings = $articleDetailPage ? $articleDetailPage->settings : [];
 

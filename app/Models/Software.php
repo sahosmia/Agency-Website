@@ -17,7 +17,13 @@ class Software extends Model
         'slug',
         'software_category_id',
         'image',
+        'is_active',
     ];
+
+    public function scopeActive($query)
+    {
+        return $query->where('is_active', 1);
+    }
 
     // image_url accessor
     protected $appends = ['image_url'];

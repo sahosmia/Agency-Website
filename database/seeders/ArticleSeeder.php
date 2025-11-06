@@ -41,6 +41,7 @@ class ArticleSeeder extends Seeder
                 'short_text' => 'A comprehensive guide for designers to enhance their creative skills.',
                 'long_text' => 'Explore various design techniques and tools to elevate your work...',
                 'article_category_id' => $categories->skip(1)->first()->id,
+                'is_active' => true,
             ],
             [
                 'title' => 'Code Crafting: Mastering Web Development',
@@ -49,6 +50,7 @@ class ArticleSeeder extends Seeder
                 'short_text' => 'Learn the art of web development with practical coding tips and best practices.',
                 'long_text' => 'This article delves into modern web development frameworks and methodologies...',
                 'article_category_id' => $categories->skip(2)->first()->id,
+                'is_active' => true,
             ],
             // Web Development Wonders: Tutorials and More
             [
@@ -58,6 +60,7 @@ class ArticleSeeder extends Seeder
                 'short_text' => 'Explore a variety of web development tutorials and resources for all skill levels.',
                 'long_text' => 'From beginner to advanced, this article covers essential web development topics...',
                 'article_category_id' => $categories->skip(3)->first()->id,
+                'is_active' => true,
             ],
             [
                 'title' => 'Travel Tales: Exploring the World One Destination at a Time',
@@ -66,6 +69,7 @@ class ArticleSeeder extends Seeder
                 'short_text' => 'Join us on a journey to discover breathtaking destinations around the globe.',
                 'long_text' => 'This article shares travel experiences, tips, and must-visit locations...',
                 'article_category_id' => $categories->skip(4)->first()->id,
+                'is_active' => true,
             ],
             [
                 'title' => 'Lifestyle Lounge: Embracing a Balanced Life',
@@ -74,6 +78,7 @@ class ArticleSeeder extends Seeder
                 'short_text' => 'Tips and insights on achieving a balanced and fulfilling lifestyle.',
                 'long_text' => 'Explore various aspects of lifestyle, including health, wellness, and personal growth...',
                 'article_category_id' => $categories->skip(5)->first()->id,
+                'is_active' => true,
             ]
 
 

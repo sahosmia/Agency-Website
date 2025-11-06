@@ -34,6 +34,7 @@ class StoreVacancyRequest extends FormRequest
             'weekly_holidays' => 'nullable|string',
             'salary' => 'nullable|string',
             'others' => 'nullable|string',
+            'is_active' => 'nullable|boolean',
         ];
     }
 }

@@ -35,6 +35,7 @@ class VacancySeeder extends Seeder
                 'weekly_holidays' => 'Saturday, Sunday',
                 'salary' => '25,000-30,000 BDT(Negotiable)',
                 'others' => 'Flexible work hours',
+                'is_active' => true,
             ],
             [
                 'title' => 'Junior Frontend Developer',
@@ -49,6 +50,7 @@ class VacancySeeder extends Seeder
                 'weekly_holidays' => 'Friday',
                 'salary' => '40000',
                 'others' => 'Great learning opportunity',
+                'is_active' => true,
             ],
         ];
 

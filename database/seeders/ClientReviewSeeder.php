@@ -19,6 +19,7 @@ class ClientReviewSeeder extends Seeder
                 'avatar' => 'avatars/john_doe.jpg',
                 'rating' => '5',
                 'review' => 'Excellent service! The team was highly professional and delivered beyond expectations.',
+                'is_active' => true,
             ],
             [
                 'name' => 'Sarah Smith',
@@ -26,6 +27,7 @@ class ClientReviewSeeder extends Seeder
                 'avatar' => 'avatars/sarah_smith.jpg',
                 'rating' => '4.5',
                 'review' => 'Great experience! Very responsive and dedicated to quality work.',
+                'is_active' => true,
             ],
             [
                 'name' => 'Michael Johnson',
@@ -33,6 +35,7 @@ class ClientReviewSeeder extends Seeder
                 'avatar' => 'avatars/michael_johnson.jpg',
                 'rating' => '4',
                 'review' => 'Good service overall. There were some minor issues, but they were resolved quickly.',
+                'is_active' => true,
             ],
             [
                 'name' => 'Emily Davis',
@@ -40,6 +43,7 @@ class ClientReviewSeeder extends Seeder
                 'avatar' => 'avatars/emily_davis.jpg',
                 'rating' => '5',
                 'review' => 'Outstanding work! Highly recommended for anyone looking for top-notch services.',
+                'is_active' => true,
             ],
             [
                 'name' => 'David Brown',
@@ -47,6 +51,7 @@ class ClientReviewSeeder extends Seeder
                 'avatar' => 'avatars/david_brown.jpg',
                 'rating' => '4.8',
                 'review' => 'Very professional and delivered the project on time. Will work with them again!',
+                'is_active' => true,
             ],
         ];
 

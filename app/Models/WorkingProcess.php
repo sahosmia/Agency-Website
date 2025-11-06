@@ -9,7 +9,12 @@ class WorkingProcess extends Model
 {
     use HasFactory;
 
-    protected $fillable = ['title', 'description', 'icon'];
+    protected $fillable = ['title', 'description', 'icon', 'is_active'];
+
+    public function scopeActive($query)
+    {
+        return $query->where('is_active', 1);
+    }
 
     // icon_url accessor
     protected $appends = ['icon_url'];

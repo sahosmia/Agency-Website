@@ -26,6 +26,7 @@ return new class extends Migration
             $table->string('salary');
             $table->text('others')->nullable();
             $table->unsignedBigInteger('vacancy_category_id'); // Foreign key
+            $table->boolean('is_active')->default(true);
             $table->timestamps();
 
             // Setting up the foreign key constraint

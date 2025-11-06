@@ -25,46 +25,55 @@ class TeamSeeder extends Seeder
                 'name' => 'John Doe',
                 'slug' => Str::slug('John Doe'),
                 'avatar' => 'one.png',
+                'is_active' => true,
             ],
             [
                 'name' => 'Jane Smith',
                 'slug' => Str::slug('Jane Smith'),
                 'avatar' => 'two.png',
+                'is_active' => true,
             ],
             [
                 'name' => 'Michael Brown',
                 'slug' => Str::slug('Michael Brown'),
                 'avatar' => 'three.png',
+                'is_active' => true,
             ],
             [
                 'name' => 'Emily Johnson',
                 'slug' => Str::slug('Emily Johnson'),
                 'avatar' => 'four.png',
+                'is_active' => true,
             ],
             [
                 'name' => 'David Wilson',
                 'slug' => Str::slug('David Wilson'),
                 'avatar' => 'five.png',
+                'is_active' => true,
             ],
             [
                 'name' => 'Sarah Miller',
                 'slug' => Str::slug('Sarah Miller'),
                 'avatar' => 'six.png',
+                'is_active' => true,
             ],
             [
                 'name' => 'Robert Davis',
                 'slug' => Str::slug('Robert Davis'),
                 'avatar' => 'seven.png',
+                'is_active' => true,
             ],
             [
                 'name' => 'Jessica Martinez',
                 'slug' => Str::slug('Jessica Martinez'),
                 'avatar' => 'eight.png',
+                'is_active' => true,
             ],
             [
                 'name' => 'Daniel Anderson',
                 'slug' => Str::slug('Daniel Anderson'),
                 'avatar' => 'nine.png',
+                'is_active' => true,
             ],
         ];
 

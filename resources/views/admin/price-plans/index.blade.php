@@ -17,6 +17,7 @@
                 <th class="px-4 py-2">Price</th>
                 <th class="px-4 py-2">Planable Type</th>
                 <th class="px-4 py-2">Planable Name</th>
+                 <th class="px-4 py-2">Status</th>
                 <th class="px-4 py-2">Actions</th>
             </tr>
         </thead>
@@ -28,6 +29,9 @@
                     <td class="border px-4 py-2">{{ $pricePlan->price }}</td>
                     <td class="border px-4 py-2">{{ $pricePlan->planable_type }}</td>
                     <td class="border px-4 py-2">{{ $pricePlan->planable->name }}</td>
+                     <td class="border px-4 py-2">
+                        <x-admin.status-badge :is-active="$pricePlan->is_active" />
+                     </td>
                     <td class="border px-4 py-2">
                         <a href="{{ route('admin.price-plans.edit', $pricePlan) }}" class="text-blue-500 hover:underline">Edit</a>
                         <x-admin.delete-button :route="route('admin.price-plans.destroy', $pricePlan)" />

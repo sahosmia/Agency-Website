@@ -25,6 +25,7 @@ class UpdateTechnologyRequest extends FormRequest
             'name' => 'required|string|max:255',
             'description' => 'required|string',
             'image' => 'nullable|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
+            'is_active' => 'nullable|boolean',
         ];
     }
 }

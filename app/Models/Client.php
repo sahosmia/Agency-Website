@@ -9,7 +9,12 @@ class Client extends Model
 {
     use HasFactory;
 
-    protected $fillable = ['name', 'location', 'image'];
+    protected $fillable = ['name', 'location', 'image', 'is_active'];
+
+    public function scopeActive($query)
+    {
+        return $query->where('is_active', 1);
+    }
 
     // image_utl accessor
     protected $appends = ['image_url'];

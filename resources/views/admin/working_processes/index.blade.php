@@ -15,6 +15,7 @@
                 <th class="px-4 py-2">Title</th>
                 <th class="px-4 py-2">Description</th>
                 <th class="px-4 py-2">Icon</th>
+                <th class="px-4 py-2">Status</th>
                 <th class="px-4 py-2">Actions</th>
             </tr>
         </thead>
@@ -24,6 +25,9 @@
                     <td class="border px-4 py-2">{{ $workingProcess->title }}</td>
                     <td class="border px-4 py-2">{{ $workingProcess->description }}</td>
                     <td class="border px-4 py-2">{{ $workingProcess->icon }}</td>
+                    <td class="border px-4 py-2">
+                        <x-admin.status-badge :is-active="$workingProcess->is_active" />
+                    </td>
                     <td class="border px-4 py-2">
                         <a href="{{ route('admin.working-processes.edit', $workingProcess) }}" class="text-blue-500 hover:underline">Edit</a>
                         <x-admin.delete-button :route="route('admin.working-processes.destroy', $workingProcess)" />

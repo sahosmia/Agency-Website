@@ -15,6 +15,7 @@
                 <th class="px-4 py-2">Title</th>
                 <th class="px-4 py-2">Category</th>
                 <th class="px-4 py-2">Thumbnail</th>
+                <th class="px-4 py-2">Status</th>
                 <th class="px-4 py-2">Actions</th>
             </tr>
         </thead>
@@ -27,6 +28,9 @@
                         @if ($project->thumbnail)
                             <img src="{{ asset('storage/' . $project->thumbnail) }}" alt="{{ $project->title }}" class="h-16 w-16 object-cover">
                         @endif
+                    </td>
+                    <td class="border px-4 py-2">
+                        <x-admin.status-badge :is-active="$project->is_active" />
                     </td>
                     <td class="border px-4 py-2">
                         <a href="{{ route('admin.projects.show', $project) }}" class="text-green-500 hover:underline mr-2">Show</a>

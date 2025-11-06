@@ -12,8 +12,13 @@ class Article extends Model
 {
     use HasFactory, HasSlug;
 
-    protected $fillable = ['title', 'slug', 'short_text', 'long_text', 'article_category_id', 'thumbnail'];
+    protected $fillable = ['title', 'slug', 'short_text', 'long_text', 'article_category_id', 'thumbnail', 'is_active'];
     protected $appends = ['thumbnail_url'];
+
+    public function scopeActive($query)
+    {
+        return $query->where('is_active', 1);
+    }
 
     public function getThumbnailUrlAttribute()
     {

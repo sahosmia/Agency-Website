@@ -18,6 +18,7 @@
                             <x-admin.bootstrap.text-input name="name" label="Name" required />
                             <x-admin.bootstrap.textarea name="description" label="Description" />
                             <x-admin.bootstrap.file-input name="image" label="Image" />
+                            <x-admin.bootstrap.checkbox-input name="is_active" label="Active" checked />
                             <x-admin.bootstrap.submit-button label="Create" />
                         </form>
                     </div>

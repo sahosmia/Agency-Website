@@ -26,6 +26,7 @@
     <x-admin.textarea name="requirements" label="Requirements":value="is_array($vacancy->requirements) ? implode(', ', $vacancy->requirements) : $vacancy->requirements"/>
     <x-admin.textarea name="skills_required" label="Skills Required" :value="is_array($vacancy->skills_required) ? implode(', ', $vacancy->skills_required) : $vacancy->skills_required" />
     <x-admin.textarea name="others" label="Others" :value="$vacancy->others" />
+    <x-admin.checkbox-input name="is_active" label="Active" :value="$vacancy->is_active" />
     <x-admin.submit-button label="Update" />
 </form>
 @endsection

@@ -15,6 +15,7 @@
         <x-admin.text-input name="title" label="Title" required />
         <x-admin.textarea name="description" label="Description" />
         <x-admin.text-input name="icon" label="Icon" required />
+        <x-admin.checkbox-input name="is_active" label="Active" checked />
         <x-admin.submit-button label="Create" />
     </form>
 @endsection

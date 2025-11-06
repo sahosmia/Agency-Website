@@ -25,6 +25,7 @@ class UpdateClientRequest extends FormRequest
             'name' => 'required|string|max:255',
             'location' => 'required|string|max:255',
             'image' => 'nullable|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
+            'is_active' => 'nullable|boolean',
         ];
     }
 }

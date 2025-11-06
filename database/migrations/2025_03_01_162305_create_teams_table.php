@@ -17,6 +17,7 @@ return new class extends Migration
             $table->string('slug');
             $table->string('avatar');
             $table->unsignedBigInteger('designation_id'); // Foreign key
+            $table->boolean('is_active')->default(true);
             $table->timestamps();
 
             // Setting up the foreign key constraint

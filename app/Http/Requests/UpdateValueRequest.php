@@ -24,6 +24,7 @@ class UpdateValueRequest extends FormRequest
         return [
             'title' => 'required|string|max:255',
             'description' => 'required|string',
+            'is_active' => 'nullable|boolean',
         ];
     }
 }

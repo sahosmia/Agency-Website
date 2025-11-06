@@ -25,6 +25,7 @@ class StoreWorkingProcessRequest extends FormRequest
             'title' => 'required|string|max:255',
             'description' => 'required|string',
             'icon' => 'required|string|max:255',
+            'is_active' => 'nullable|boolean',
         ];
     }
 }

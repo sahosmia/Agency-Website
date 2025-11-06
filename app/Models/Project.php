@@ -27,7 +27,13 @@ class Project extends Model
         'thumbnails',
         'project_category_id',
         'client_review_id',
+        'is_active',
     ];
+
+    public function scopeActive($query)
+    {
+        return $query->where('is_active', 1);
+    }
 
     protected $casts = [
         'screenshots' => 'array',

@@ -15,6 +15,7 @@
                 <th class="px-4 py-2">Name</th>
                 <th class="px-4 py-2">URL</th>
                 <th class="px-4 py-2">Icon</th>
+                 <th class="px-4 py-2">Status</th>
                 <th class="px-4 py-2">Actions</th>
             </tr>
         </thead>
@@ -28,6 +29,9 @@
                             <img src="{{ asset('storage/' . $socialMediaLink->icon) }}" alt="{{ $socialMediaLink->name }}" class="h-16 w-16 object-cover">
                         @endif
                     </td>
+                     <td class="border px-4 py-2">
+                        <x-admin.status-badge :is-active="$socialMediaLink->is_active" />
+                     </td>
                     <td class="border px-4 py-2">
                         <a href="{{ route('admin.social-media-links.edit', $socialMediaLink) }}" class="text-blue-500 hover:underline">Edit</a>
                         <x-admin.delete-button :route="route('admin.social-media-links.destroy', $socialMediaLink)" />

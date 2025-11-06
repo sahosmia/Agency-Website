@@ -25,6 +25,7 @@ class StoreKeyFeatureRequest extends FormRequest
             'name' => 'required|string|max:255',
             'description' => 'required|string',
             'image' => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
+            'is_active' => 'nullable|boolean',
         ];
     }
 }

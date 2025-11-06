@@ -14,7 +14,7 @@ class ServiceFrontController extends Controller
     {
         $service_categories = ServiceCategory::get();
 
-        $services = Service::with('service_category:id,title')
+        $services = Service::active()->with('service_category:id,title')
             ->when($request->search, function ($query) use ($request) {
                 $query->where('title', 'like', '%'.$request->search.'%');
             })
@@ -32,7 +32,7 @@ class ServiceFrontController extends Controller
     public function show(Service $service)
     {
         $service->load('service_category', 'keyFeatures', 'technologies', 'serviceTypes.pricePlans.features');
-        $services = Service::with('service_category')->limit(5)->get();
+        $services = Service::active()->with('service_category')->limit(5)->get();
         $serviceDetailPage = PageSetting::where('page_name', 'service-detail')->first();
         $serviceDetailSettings = $serviceDetailPage ? $serviceDetailPage->settings : [];
 
