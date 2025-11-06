@@ -1,5 +1,6 @@
 @extends('frontend.layouts.app')
-@section('title', $projectDetailSettings['page_title'] ?? 'Project Details')
+@section('meta_title', $project->meta_title ?? 'Project Details')
+@section('meta_description', $project->meta_description ?? 'Project Details')
 
 @section('content')
 

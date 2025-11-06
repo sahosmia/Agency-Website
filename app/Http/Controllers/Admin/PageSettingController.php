@@ -18,6 +18,8 @@ class PageSettingController extends Controller
             'home' => [
                 'text_fields' => [
                     'page_title' => 'required|string|max:255',
+                    'meta_title' => 'required|string|max:255',
+                    'meta_description' => 'required|string',
                     'hero_title' => 'required|string|max:255',
                     'hero_subtitle' => 'required|string|max:255',
                     'hero_button_text' => 'required|string|max:255',
@@ -100,6 +102,8 @@ class PageSettingController extends Controller
             'other_page' => [
                 'text_fields' => [
                     'page_title' => 'required|string|max:255',
+                    'meta_title' => 'required|string|max:255',
+                    'meta_description' => 'required|string',
                     'title' => 'required|string|max:255',
                     'description' => 'required|string',
                     'section_title' => 'required|string|max:255',
@@ -127,6 +131,8 @@ class PageSettingController extends Controller
             'contact_information' => [
                 'text_fields' => [
                     'page_title' => 'required|string|max:255',
+                    'meta_title' => 'required|string|max:255',
+                    'meta_description' => 'required|string',
                     'contact_title' => 'required|string|max:255',
                     'contact_description' => 'required|string',
                     'contact_email' => 'required|email|max:255',

@@ -1,5 +1,6 @@
 @extends('frontend.layouts.app')
-@section('title', $aboutSettings['page_title'] ?? 'About Us')
+@section('meta_title', $aboutSettings['meta_title'] ?? 'About Us')
+@section('meta_description', $aboutSettings['meta_description'] ?? 'About Us')
 
 @section('content')
     <div class="container my-10 md:my-20">

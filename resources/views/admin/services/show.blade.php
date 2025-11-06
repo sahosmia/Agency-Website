@@ -20,6 +20,7 @@
         <div>
             {!! $service->description !!}
         </div>
+        <x-admin.seo-display :metaTitle="$service->meta_title" :metaDescription="$service->meta_description" />
         <div class="mt-4">
             <a href="{{ route('admin.services.index') }}" class="text-blue-500 hover:underline">Back to Services</a>
         </div>

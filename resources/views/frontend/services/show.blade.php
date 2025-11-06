@@ -1,5 +1,6 @@
 @extends('frontend.layouts.app')
-@section('title', $serviceDetailSettings['page_title'] ?? 'Service Details')
+@section('meta_title', $service->meta_title ?? 'Service Details')
+@section('meta_description', $service->meta_description ?? 'Service Details')
 
 @section('content')
     <div class="container ">

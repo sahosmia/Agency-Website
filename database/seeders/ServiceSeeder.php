@@ -25,24 +25,32 @@ class ServiceSeeder extends Seeder
                 'slug' => 'custom-website-design',
                 'image' => 'service/service-1.jpg',
                 'is_active' => true,
+                'meta_title' => 'Custom Website Design',
+                'meta_description' => 'Custom Website Design',
             ],
             [
                 'name' => 'Custom Website Development',
                 'slug' => 'custom-website-development',
                 'image' => 'service/service-2.jpg',
                 'is_active' => true,
+                'meta_title' => 'Custom Website Development',
+                'meta_description' => 'Custom Website Development',
             ],
             [
                 'name' => 'Landing Page Design',
                 'slug' => 'landing-page-design',
                 'image' => 'service/service-3.jpg',
                 'is_active' => true,
+                'meta_title' => 'Landing Page Design',
+                'meta_description' => 'Landing Page Design',
             ],
             [
                 'name' => 'Website Maintenance and Support',
                 'slug' => 'website-maintenance-and-support',
                 'image' => 'service/service-4.jpg',
                 'is_active' => true,
+                'meta_title' => 'Website Maintenance and Support',
+                'meta_description' => 'Website Maintenance and Support',
             ],
         ];
 

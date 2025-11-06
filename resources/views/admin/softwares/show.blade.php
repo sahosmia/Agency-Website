@@ -20,6 +20,7 @@
         <div>
             {!! $software->description !!}
         </div>
+        <x-admin.seo-display :metaTitle="$software->meta_title" :metaDescription="$software->meta_description" />
         <div class="mt-4">
             <a href="{{ route('admin.softwares.index') }}" class="text-blue-500 hover:underline">Back to Softwares</a>
         </div>

@@ -57,6 +57,8 @@ class ProjectSeeder extends Seeder
                 'images' => ['ecommerce_1.png', 'ecommerce_2.png', 'ecommerce_3.png', 'ecommerce_4.png'],
                 'thumbnails' => ['ecommerce_1.png', 'ecommerce_2.png', 'ecommerce_3.png', 'ecommerce_4.png'],
                 'is_active' => true,
+                'meta_title' => 'E-Commerce Website',
+                'meta_description' => 'An online shopping platform with seamless user experience.',
             ],
             [
                 'title' => 'Portfolio Website',
@@ -88,6 +90,8 @@ class ProjectSeeder extends Seeder
                 'images' => ['portfolio_website_1.png', 'portfolio_website_2.png', 'portfolio_website_3.png', 'portfolio_website_4.png'],
                 'thumbnails' => ['portfolio_website_1.png', 'portfolio_website_2.png', 'portfolio_website_3.png', 'portfolio_website_4.png'],
                 'is_active' => true,
+                'meta_title' => 'Portfolio Website',
+                'meta_description' => 'A modern portfolio website for showcasing work and skills.',
             ],
             [
                 'title' => 'SaaS Dashboard',
@@ -119,6 +123,8 @@ class ProjectSeeder extends Seeder
                 'images' => ['saas_dashboard_1.png', 'saas_dashboard_2.png', 'saas_dashboard_3.png', 'saas_dashboard_4.png'],
                 'thumbnails' => ['saas_dashboard_1.png', 'saas_dashboard_2.png', 'saas_dashboard_3.png', 'saas_dashboard_4.png'],
                 'is_active' => true,
+                'meta_title' => 'SaaS Dashboard',
+                'meta_description' => 'A cloud-based analytics dashboard for businesses.',
             ],
         ];
 

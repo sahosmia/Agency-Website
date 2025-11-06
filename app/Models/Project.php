@@ -28,6 +28,8 @@ class Project extends Model
         'project_category_id',
         'client_review_id',
         'is_active',
+        'meta_title',
+        'meta_description',
     ];
 
     public function scopeActive($query)

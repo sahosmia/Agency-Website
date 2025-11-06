@@ -12,6 +12,8 @@
     <x-admin.select name="service_category_id" label="Category" :options="$categories->pluck('title', 'id')" required />
     <x-admin.textarea name="description" label="Description" />
     <x-admin.file-input name="image" label="Image" />
+    <x-admin.text-input name="meta_title" label="Meta Title" />
+    <x-admin.textarea name="meta_description" label="Meta Description" />
     <x-admin.checkbox-input name="is_active" label="Active" checked />
 
     <div class="card">

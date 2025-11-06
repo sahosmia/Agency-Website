@@ -1,5 +1,6 @@
 @extends('frontend.layouts.app')
-@section('title', $contactSettings['page_title'] ?? 'Contact Us')
+@section('meta_title', $contactSettings['meta_title'] ?? 'Contact Us')
+@section('meta_description', $contactSettings['meta_description'] ?? 'Contact Us')
 
 @section('content')
     <div class="bg-gray-100">

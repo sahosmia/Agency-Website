@@ -18,6 +18,8 @@ class Software extends Model
         'software_category_id',
         'image',
         'is_active',
+        'meta_title',
+        'meta_description',
     ];
 
     public function scopeActive($query)
