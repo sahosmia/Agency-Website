@@ -2,12 +2,13 @@
 
 namespace App\Models;
 
+use App\Traits\ScopeActive;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
 class PricePlan extends Model
 {
-    use HasFactory;
+    use HasFactory, ScopeActive;
 
     protected $fillable = [
         'planable_id',
@@ -18,11 +19,6 @@ class PricePlan extends Model
         'features',
         'is_active',
     ];
-
-    public function scopeActive($query)
-    {
-        return $query->where('is_active', 1);
-    }
 
     protected $casts = [
         'features' => 'array',

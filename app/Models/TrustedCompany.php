@@ -2,19 +2,15 @@
 
 namespace App\Models;
 
+use App\Traits\ScopeActive;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
 class TrustedCompany extends Model
 {
-    use HasFactory;
+    use HasFactory, ScopeActive;
 
     protected $fillable = ['name', 'logo', 'is_active'];
-
-    public function scopeActive($query)
-    {
-        return $query->where('is_active', 1);
-    }
 
     // logo_url accessor
     protected $appends = ['logo_url'];

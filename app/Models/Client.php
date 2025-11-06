@@ -2,19 +2,15 @@
 
 namespace App\Models;
 
+use App\Traits\ScopeActive;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
 class Client extends Model
 {
-    use HasFactory;
+    use HasFactory, ScopeActive;
 
     protected $fillable = ['name', 'location', 'image', 'is_active'];
-
-    public function scopeActive($query)
-    {
-        return $query->where('is_active', 1);
-    }
 
     // image_utl accessor
     protected $appends = ['image_url'];

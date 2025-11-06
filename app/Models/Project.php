@@ -3,13 +3,14 @@
 namespace App\Models;
 
 use App\Traits\HasSlug;
+use App\Traits\ScopeActive;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\MorphMany;
 
 class Project extends Model
 {
-    use HasFactory, HasSlug;
+    use HasFactory, HasSlug, ScopeActive;
 
     protected $fillable = [
         'title',
@@ -32,17 +33,11 @@ class Project extends Model
         'meta_description',
     ];
 
-    public function scopeActive($query)
-    {
-        return $query->where('is_active', 1);
-    }
-
     protected $casts = [
         'screenshots' => 'array',
         'images' => 'array',
         'thumbnails' => 'array',
     ];
-
 
     // thumbnail_url accessor
     protected $appends = ['thumbnail_url', 'screenshots_urls', 'images_urls', 'thumbnails_urls'];
