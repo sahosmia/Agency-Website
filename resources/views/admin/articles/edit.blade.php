@@ -14,7 +14,7 @@
         <x-admin.multi-select name="tags" label="Tags" :options="$tags->pluck('name', 'id')" :values="$article->tags->pluck('id')->toArray()" />
         <x-admin.file-input name="thumbnail" label="Thumbnail" :value="$article->thumbnail" />
         <x-admin.textarea name="short_text" label="Short Text" :value="$article->short_text" />
-        <x-admin.textarea name="long_text" label="Long Text" :value="$article->long_text" />
+        <x-admin.ckeditor name="long_text" label="Long Text" :value="$article->long_text" />
         <x-admin.text-input name="meta_title" label="Meta Title" :value="$article->meta_title" />
         <x-admin.textarea name="meta_description" label="Meta Description" :value="$article->meta_description" />
         <x-admin.checkbox-input name="is_active" label="Active" :value="$article->is_active" />
@@ -27,10 +27,5 @@
         $(document).ready(function() {
             $('#tags').select2();
         });
-        ClassicEditor
-            .create(document.querySelector('#long_text'))
-            .catch(error => {
-                console.error(error);
-            });
     </script>
 @endpush

@@ -17,11 +17,15 @@
                                 @foreach ($fields['text_fields'] as $field => $rules)
                                     <div class="col-md-6">
                                         <div class="form-group">
-                                            <label for="{{ $field }}">{{ Str::of($field)->replace('_', ' ')->title() }}</label>
-                                            @if (in_array($field, $fields['textarea_fields']))
-                                                <textarea name="{{ $field }}" id="{{ $field }}" class="form-control" rows="5">{{ old($field, $settings[$field] ?? '') }}</textarea>
+                                            @if ($field === 'terms_content' || $field === 'privacy_content')
+                                                <x-admin.ckeditor name="{{ $field }}" label="{{ Str::of($field)->replace('_', ' ')->title() }}" :value="old($field, $settings[$field] ?? '')" />
                                             @else
-                                                <input type="text" name="{{ $field }}" id="{{ $field }}" class="form-control" value="{{ old($field, $settings[$field] ?? '') }}">
+                                                <label for="{{ $field }}">{{ Str::of($field)->replace('_', ' ')->title() }}</label>
+                                                @if (in_array($field, $fields['textarea_fields']))
+                                                    <textarea name="{{ $field }}" id="{{ $field }}" class="form-control" rows="5">{{ old($field, $settings[$field] ?? '') }}</textarea>
+                                                @else
+                                                    <input type="text" name="{{ $field }}" id="{{ $field }}" class="form-control" value="{{ old($field, $settings[$field] ?? '') }}">
+                                                @endif
                                             @endif
                                         </div>
                                     </div>
