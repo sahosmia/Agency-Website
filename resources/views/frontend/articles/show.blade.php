@@ -1,5 +1,6 @@
 @extends('frontend.layouts.app')
-@section('title', $articleDetailSettings['page_title'] ?? 'Article Details')
+@section('meta_title', $article->meta_title ?? 'Article Details')
+@section('meta_description', $article->meta_description ?? 'Article Details')
 
 @section('content')
 <div class="container ">

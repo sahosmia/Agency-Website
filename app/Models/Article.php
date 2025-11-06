@@ -12,7 +12,7 @@ class Article extends Model
 {
     use HasFactory, HasSlug;
 
-    protected $fillable = ['title', 'slug', 'short_text', 'long_text', 'article_category_id', 'thumbnail', 'is_active'];
+    protected $fillable = ['title', 'slug', 'short_text', 'long_text', 'article_category_id', 'thumbnail', 'is_active', 'meta_title', 'meta_description'];
     protected $appends = ['thumbnail_url'];
 
     public function scopeActive($query)

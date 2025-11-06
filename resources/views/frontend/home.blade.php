@@ -1,5 +1,6 @@
 @extends('frontend.layouts.app')
-@section('title', $homeSettings['page_title'] ?? 'Home')
+@section('meta_title', $homeSettings['meta_title'] ?? 'Home')
+@section('meta_description', $homeSettings['meta_description'] ?? 'Home')
 
 @section('content')
 

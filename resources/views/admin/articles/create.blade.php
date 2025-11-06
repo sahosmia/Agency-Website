@@ -21,6 +21,8 @@
         <x-admin.file-input name="thumbnail" label="Thumbnail" />
         <x-admin.textarea name="short_text" label="Short Text" />
         <x-admin.textarea name="long_text" label="Long Text" />
+        <x-admin.text-input name="meta_title" label="Meta Title" />
+        <x-admin.textarea name="meta_description" label="Meta Description" />
         <x-admin.checkbox-input name="is_active" label="Active" checked />
         <x-admin.submit-button label="Create" />
     </form>

@@ -18,6 +18,8 @@ class Service extends Model
         'description',
         'image',
         'is_active',
+        'meta_title',
+        'meta_description',
     ];
 
     public function scopeActive($query)
