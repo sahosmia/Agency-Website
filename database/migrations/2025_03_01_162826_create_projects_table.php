@@ -28,6 +28,7 @@ return new class extends Migration
             $table->json('thumbnails');
             $table->unsignedBigInteger('project_category_id'); // Foreign key
             $table->unsignedBigInteger('client_review_id'); // Foreign key
+            $table->boolean('is_active')->default(true);
             $table->timestamps();
 
             // Setting up the foreign key constraint

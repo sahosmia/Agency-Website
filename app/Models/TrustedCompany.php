@@ -9,7 +9,12 @@ class TrustedCompany extends Model
 {
     use HasFactory;
 
-    protected $fillable = ['name', 'logo'];
+    protected $fillable = ['name', 'logo', 'is_active'];
+
+    public function scopeActive($query)
+    {
+        return $query->where('is_active', 1);
+    }
 
     // logo_url accessor
     protected $appends = ['logo_url'];

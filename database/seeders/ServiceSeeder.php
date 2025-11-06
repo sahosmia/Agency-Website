@@ -24,21 +24,25 @@ class ServiceSeeder extends Seeder
                 'name' => 'Custom Website Design',
                 'slug' => 'custom-website-design',
                 'image' => 'service/service-1.jpg',
+                'is_active' => true,
             ],
             [
                 'name' => 'Custom Website Development',
                 'slug' => 'custom-website-development',
                 'image' => 'service/service-2.jpg',
+                'is_active' => true,
             ],
             [
                 'name' => 'Landing Page Design',
                 'slug' => 'landing-page-design',
                 'image' => 'service/service-3.jpg',
+                'is_active' => true,
             ],
             [
                 'name' => 'Website Maintenance and Support',
                 'slug' => 'website-maintenance-and-support',
                 'image' => 'service/service-4.jpg',
+                'is_active' => true,
             ],
         ];
 

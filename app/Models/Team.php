@@ -9,7 +9,12 @@ class Team extends Model
 {
     use HasFactory;
 
-    protected $fillable = ['name', 'slug', 'avatar', 'designation_id'];
+    protected $fillable = ['name', 'slug', 'avatar', 'designation_id', 'is_active'];
+
+    public function scopeActive($query)
+    {
+        return $query->where('is_active', 1);
+    }
 
     public function designation()
     {

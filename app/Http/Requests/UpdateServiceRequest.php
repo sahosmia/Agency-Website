@@ -26,6 +26,7 @@ class UpdateServiceRequest extends FormRequest
             'service_category_id' => 'required|exists:service_categories,id',
             'description' => 'nullable|string',
             'image' => 'nullable|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
+            'is_active' => 'nullable|boolean',
             'faqs' => 'nullable|array',
             'faqs.*.question' => 'required|string',
             'faqs.*.answer' => 'required|string',

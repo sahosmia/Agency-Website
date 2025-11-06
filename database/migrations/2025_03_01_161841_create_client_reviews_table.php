@@ -18,6 +18,7 @@ return new class extends Migration
             $table->string('avatar')->nullable();
             $table->text('rating');
             $table->text('review');
+            $table->boolean('is_active')->default(true);
             $table->timestamps();
         });
     }

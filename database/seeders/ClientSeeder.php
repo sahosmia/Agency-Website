@@ -17,16 +17,19 @@ class ClientSeeder extends Seeder
                 'name' => 'John Doe',
                 'location' => 'New York, USA',
                 'image' => 'client1.jpg',
+                'is_active' => true,
             ],
             [
                 'name' => 'Jane Smith',
                 'location' => 'London, UK',
                 'image' => 'client2.jpg',
+                'is_active' => true,
             ],
             [
                 'name' => 'Mike Johnson',
                 'location' => 'Sydney, Australia',
                 'image' => 'client3.jpg',
+                'is_active' => true,
             ],
         ];
 

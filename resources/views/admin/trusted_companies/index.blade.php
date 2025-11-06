@@ -14,6 +14,7 @@
             <tr class="bg-gray-200">
                 <th class="px-4 py-2">Name</th>
                 <th class="px-4 py-2">Logo</th>
+                <th class="px-4 py-2">Status</th>
                 <th class="px-4 py-2">Actions</th>
             </tr>
         </thead>
@@ -25,6 +26,9 @@
                         @if ($trustedCompany->logo)
                             <img src="{{ asset('storage/' . $trustedCompany->logo) }}" alt="{{ $trustedCompany->name }}" class="h-16 w-16 object-cover">
                         @endif
+                    </td>
+                    <td class="border px-4 py-2">
+                        <x-admin.status-badge :is-active="$trustedCompany->is_active" />
                     </td>
                     <td class="border px-4 py-2">
                         <a href="{{ route('admin.trusted-companies.edit', $trustedCompany) }}" class="text-blue-500 hover:underline">Edit</a>

@@ -16,6 +16,7 @@
             <th class="px-4 py-2">Category</th>
             <th class="px-4 py-2">Location</th>
             <th class="px-4 py-2">End Date</th>
+            <th class="px-4 py-2">Status</th>
             <th class="px-4 py-2">Actions</th>
         </tr>
     </thead>
@@ -26,6 +27,9 @@
             <td class="border px-4 py-2">{{ $vacancy->vacancy_category->title }}</td>
             <td class="border px-4 py-2">{{ $vacancy->location }}</td>
             <td class="border px-4 py-2">{{ $vacancy->end_date }}</td>
+            <td class="border px-4 py-2">
+                <x-admin.status-badge :is-active="$vacancy->is_active" />
+            </td>
             <td class="border px-4 py-2">
                 <a href="{{ route('admin.vacancies.show', $vacancy) }}"
                     class="text-green-500 hover:underline mr-2">Show</a>

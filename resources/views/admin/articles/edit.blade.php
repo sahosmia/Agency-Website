@@ -15,6 +15,7 @@
         <x-admin.file-input name="thumbnail" label="Thumbnail" :value="$article->thumbnail" />
         <x-admin.textarea name="short_text" label="Short Text" :value="$article->short_text" />
         <x-admin.textarea name="long_text" label="Long Text" :value="$article->long_text" />
+        <x-admin.checkbox-input name="is_active" label="Active" :value="$article->is_active" />
         <x-admin.submit-button label="Update" />
     </form>
 @endsection

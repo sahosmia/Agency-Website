@@ -18,6 +18,7 @@ return new class extends Migration
                         $table->string('image')->nullable();
 
             $table->foreignId('service_category_id')->constrained()->onDelete('cascade');
+            $table->boolean('is_active')->default(true);
             $table->timestamps();
         });
     }

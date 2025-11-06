@@ -17,7 +17,7 @@ class CareerFrontController extends Controller
     {
         $vacancy_categories = VacancyCategory::get();
 
-        $vacancies = Vacancy::with('vacancy_category:id,title')
+        $vacancies = Vacancy::active()->with('vacancy_category:id,title')
             ->when($request->search, function ($query) use ($request) {
                 $query->where('title', 'like', '%'.$request->search.'%');
             })
@@ -35,7 +35,7 @@ class CareerFrontController extends Controller
     // Show
     public function show($career)
     {
-        $careerD = Vacancy::where('slug', $career)->first();
+        $careerD = Vacancy::active()->where('slug', $career)->first();
 
         if (! $careerD) {
             return response()->view('errors.careers-not-found', [], 404);

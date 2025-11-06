@@ -16,6 +16,7 @@
         <x-admin.text-input name="name" label="Name" :value="$socialMediaLink->name" required />
         <x-admin.text-input name="url" label="URL" :value="$socialMediaLink->url" required />
         <x-admin.file-input name="icon" label="Icon" :value="$socialMediaLink->icon" />
+        <x-admin.checkbox-input name="is_active" label="Active" :value="$socialMediaLink->is_active" />
         <x-admin.submit-button label="Update" />
     </form>
 @endsection

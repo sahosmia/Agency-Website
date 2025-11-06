@@ -20,6 +20,7 @@
                             <x-admin.bootstrap.text-input name="name" label="Name" :value="$keyFeature->name" required />
                             <x-admin.bootstrap.textarea name="description" label="Description" :value="$keyFeature->description" />
                             <x-admin.bootstrap.file-input name="image" label="Image" :value="$keyFeature->image" />
+                            <x-admin.bootstrap.checkbox-input name="is_active" label="Active" :value="$keyFeature->is_active" />
                             <x-admin.bootstrap.submit-button label="Update" />
                         </form>
                     </div>

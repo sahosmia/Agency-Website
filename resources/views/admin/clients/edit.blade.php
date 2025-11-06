@@ -16,6 +16,7 @@
         <x-admin.text-input name="name" label="Name" :value="$client->name" required />
         <x-admin.text-input name="location" label="Location" :value="$client->location" required />
         <x-admin.file-input name="image" label="Image" :value="$client->image" />
+        <x-admin.checkbox-input name="is_active" label="Active" :value="$client->is_active" />
         <x-admin.submit-button label="Update" />
     </form>
 @endsection

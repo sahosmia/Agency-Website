@@ -15,6 +15,7 @@
                 <th class="px-4 py-2">Name</th>
                 <th class="px-4 py-2">Location</th>
                 <th class="px-4 py-2">Image</th>
+                <th class="px-4 py-2">Status</th>
                 <th class="px-4 py-2">Actions</th>
             </tr>
         </thead>
@@ -27,6 +28,9 @@
                         @if ($client->image)
                             <img src="{{ asset('storage/' . $client->image) }}" alt="{{ $client->name }}" class="h-16 w-16 object-cover">
                         @endif
+                    </td>
+                    <td class="border px-4 py-2">
+                        <x-admin.status-badge :is-active="$client->is_active" />
                     </td>
                     <td class="border px-4 py-2">
                         <a href="{{ route('admin.clients.show', $client) }}" class="text-green-500 hover:underline mr-2">Show</a>

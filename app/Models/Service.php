@@ -17,7 +17,13 @@ class Service extends Model
         'service_category_id',
         'description',
         'image',
+        'is_active',
     ];
+
+    public function scopeActive($query)
+    {
+        return $query->where('is_active', 1);
+    }
 
     // image_url accessor
     protected $appends = ['image_url'];

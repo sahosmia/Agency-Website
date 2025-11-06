@@ -12,6 +12,11 @@ class Faq extends Model
 
     protected $fillable = ['question', 'answer', 'is_active'];
 
+    public function scopeActive($query)
+    {
+        return $query->where('is_active', 1);
+    }
+
     public function faqable(): MorphTo
     {
         return $this->morphTo();

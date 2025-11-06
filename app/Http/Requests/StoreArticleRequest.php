@@ -29,6 +29,7 @@ class StoreArticleRequest extends FormRequest
             'long_text' => 'nullable|string',
             'tags' => 'nullable|array',
             'tags.*' => 'exists:tags,id',
+            'is_active' => 'nullable|boolean',
         ];
     }
 }

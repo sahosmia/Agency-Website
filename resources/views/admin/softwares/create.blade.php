@@ -11,6 +11,7 @@
         <x-admin.text-input name="name" label="Name" required />
         <x-admin.select name="software_category_id" label="Category" :options="$categories->pluck('name', 'id')" required />
         <x-admin.file-input name="image" label="Image" />
+        <x-admin.checkbox-input name="is_active" label="Active" checked />
         <x-admin.submit-button label="Create" />
     </form>
 @endsection

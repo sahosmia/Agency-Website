@@ -14,7 +14,7 @@ class ProjectFrontController extends Controller
     {
         $project_categories = ProjectCategory::get();
 
-        $projects = Project::with('category:id,title')
+        $projects = Project::active()->with('category:id,title')
             ->when($request->search, function ($query) use ($request) {
                 $query->where('title', 'like', '%'.$request->search.'%');
             })
@@ -32,7 +32,7 @@ class ProjectFrontController extends Controller
     public function show(Project $project)
     {
         $project->load('category:id,title');
-        $projects = Project::with('category:id,title', 'clientReview')->limit(5)->get();
+        $projects = Project::active()->with('category:id,title', 'clientReview')->limit(5)->get();
         $projectDetailPage = PageSetting::where('page_name', 'project-detail')->first();
         $projectDetailSettings = $projectDetailPage ? $projectDetailPage->settings : [];
 

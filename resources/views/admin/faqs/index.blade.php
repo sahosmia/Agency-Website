@@ -14,6 +14,7 @@
             <tr class="bg-gray-200">
                 <th class="px-4 py-2">Question</th>
                 <th class="px-4 py-2">Answer</th>
+                <th class="px-4 py-2">Status</th>
                 <th class="px-4 py-2">Actions</th>
             </tr>
         </thead>
@@ -22,6 +23,9 @@
                 <tr>
                     <td class="border px-4 py-2">{{ $faq->question }}</td>
                     <td class="border px-4 py-2">{{ $faq->answer }}</td>
+                    <td class="border px-4 py-2">
+                        <x-admin.status-badge :is-active="$faq->is_active" />
+                    </td>
                     <td class="border px-4 py-2">
                         <a href="{{ route('admin.faqs.edit', $faq) }}" class="text-blue-500 hover:underline">Edit</a>
                         <x-admin.delete-button :route="route('admin.faqs.destroy', $faq)" />

@@ -25,6 +25,7 @@ class StoreClientRequest extends FormRequest
             'name' => 'required|string|max:255',
             'location' => 'required|string|max:255',
             'image' => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
+            'is_active' => 'nullable|boolean',
         ];
     }
 }

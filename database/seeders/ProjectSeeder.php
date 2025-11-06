@@ -56,6 +56,7 @@ class ProjectSeeder extends Seeder
                 'screenshots' => ['ecommerce_1.png', 'ecommerce_2.png', 'ecommerce_3.png'],
                 'images' => ['ecommerce_1.png', 'ecommerce_2.png', 'ecommerce_3.png', 'ecommerce_4.png'],
                 'thumbnails' => ['ecommerce_1.png', 'ecommerce_2.png', 'ecommerce_3.png', 'ecommerce_4.png'],
+                'is_active' => true,
             ],
             [
                 'title' => 'Portfolio Website',
@@ -86,6 +87,7 @@ class ProjectSeeder extends Seeder
                 'screenshots' => ['portfolio_website_1.png', 'portfolio_website_2.png', 'portfolio_website_3.png'],
                 'images' => ['portfolio_website_1.png', 'portfolio_website_2.png', 'portfolio_website_3.png', 'portfolio_website_4.png'],
                 'thumbnails' => ['portfolio_website_1.png', 'portfolio_website_2.png', 'portfolio_website_3.png', 'portfolio_website_4.png'],
+                'is_active' => true,
             ],
             [
                 'title' => 'SaaS Dashboard',
@@ -116,6 +118,7 @@ class ProjectSeeder extends Seeder
                 'screenshots' => ['saas_dashboard_1.png', 'saas_dashboard_2.png', 'saas_dashboard_3.png'],
                 'images' => ['saas_dashboard_1.png', 'saas_dashboard_2.png', 'saas_dashboard_3.png', 'saas_dashboard_4.png'],
                 'thumbnails' => ['saas_dashboard_1.png', 'saas_dashboard_2.png', 'saas_dashboard_3.png', 'saas_dashboard_4.png'],
+                'is_active' => true,
             ],
         ];
 

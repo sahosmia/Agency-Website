@@ -18,6 +18,7 @@
                                 <tr>
                                     <th>Name</th>
                                     <th>Description</th>
+                                    <th>Status</th>
                                     <th>Actions</th>
                                 </tr>
                             </thead>
@@ -26,6 +27,9 @@
                                     <tr>
                                         <td>{{ $feature->name }}</td>
                                         <td>{{ $feature->description }}</td>
+                                        <td>
+                                            <x-admin.bootstrap.status-badge :is-active="$feature->is_active" />
+                                        </td>
                                         <td>
                                             <a href="{{ route('admin.features.edit', $feature) }}" class="btn btn-info btn-sm">Edit</a>
                                             <x-admin.bootstrap.delete-button :route="route('admin.features.destroy', $feature)" />

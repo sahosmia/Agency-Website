@@ -19,6 +19,7 @@ return new class extends Migration
             $table->text('short_text');
             $table->text('long_text');
             $table->unsignedBigInteger('article_category_id'); // Foreign key
+            $table->boolean('is_active')->default(true);
             $table->timestamps();
 
             // Setting up the foreign key constraint

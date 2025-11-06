@@ -9,7 +9,12 @@ class SocialMediaLink extends Model
 {
     use HasFactory;
 
-    protected $fillable = ['name', 'url', 'icon'];
+    protected $fillable = ['name', 'url', 'icon', 'is_active'];
+
+    public function scopeActive($query)
+    {
+        return $query->where('is_active', 1);
+    }
 
     // icon_url accessor
     protected $appends = ['icon_url'];
