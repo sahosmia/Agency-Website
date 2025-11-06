@@ -1,15 +1,21 @@
 @props(['faqs' => []])
 
+@php
+$faqData = $faqs instanceof \Illuminate\Database\Eloquent\Collection
+? $faqs->values()->map(function ($faq, $index) {
+return [
+'id' => $index,
+'question' => $faq->question,
+'answer' => $faq->answer,
+'is_active' => (bool)$faq->is_active,
+];
+})->all()
+: [];
+@endphp
+
 <div x-data='{
-    faqs: @json($faqs instanceof \Illuminate\Database\Eloquent\Collection ? $faqs->map(function($faq, $index) {
-        return [
-            "id" => $index,
-            "question" => $faq->question,
-            "answer" => $faq->answer,
-            "is_active" => $faq->is_active
-        ];
-    })->values()->all() : []) || [],
-    nextId: {{ count($faqs) }},
+    faqs: @json($faqData),
+    nextId: {{ count($faqData) }},
     addFaq() {
         this.faqs.push({
             id: this.nextId++,
@@ -31,15 +37,18 @@
                         <div class="col-md-11">
                             <div class="mb-3">
                                 <label class="form-label">Question</label>
-                                <input type="text" class="form-control" :name="`faqs[${faq.id}][question]`" x-model="faq.question" placeholder="Enter Question">
+                                <input type="text" class="form-control" :name="`faqs[${index}][question]`"
+                                    x-model="faq.question" placeholder="Enter Question">
                             </div>
                             <div class="mb-3">
                                 <label class="form-label">Answer</label>
-                                <textarea class="form-control" :name="`faqs[${faq.id}][answer]`" x-model="faq.answer" rows="3" placeholder="Enter Answer"></textarea>
+                                <textarea class="form-control" :name="`faqs[${index}][answer]`" x-model="faq.answer"
+                                    rows="3" placeholder="Enter Answer"></textarea>
                             </div>
-                             <div class="mb-3 form-check">
-                                <input type="hidden" :name="`faqs[${faq.id}][is_active]`" value="0">
-                                <input type="checkbox" class="form-check-input" :name="`faqs[${faq.id}][is_active]`" x-model="faq.is_active" value="1" :id="`faq_is_active_${faq.id}`">
+                            <div class="mb-3 form-check">
+                                <input type="hidden" :name="`faqs[${index}][is_active]`" value="0">
+                                <input type="checkbox" class="form-check-input" :name="`faqs[${index}][is_active]`"
+                                    x-model="faq.is_active" value="1" :id="`faq_is_active_${faq.id}`">
                                 <label class="form-check-label" :for="`faq_is_active_${faq.id}`">Active</label>
                             </div>
                         </div>
