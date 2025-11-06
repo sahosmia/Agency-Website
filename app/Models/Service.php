@@ -3,13 +3,14 @@
 namespace App\Models;
 
 use App\Traits\HasSlug;
+use App\Traits\ScopeActive;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\MorphMany;
 
 class Service extends Model
 {
-    use HasFactory, HasSlug;
+    use HasFactory, HasSlug, ScopeActive;
 
     protected $fillable = [
         'name',
@@ -21,11 +22,6 @@ class Service extends Model
         'meta_title',
         'meta_description',
     ];
-
-    public function scopeActive($query)
-    {
-        return $query->where('is_active', 1);
-    }
 
     // image_url accessor
     protected $appends = ['image_url'];

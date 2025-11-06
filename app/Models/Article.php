@@ -3,6 +3,7 @@
 namespace App\Models;
 
 use App\Traits\HasSlug;
+use App\Traits\ScopeActive;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Facades\Storage;
@@ -10,15 +11,10 @@ use Illuminate\Support\Facades\Storage;
 
 class Article extends Model
 {
-    use HasFactory, HasSlug;
+    use HasFactory, HasSlug, ScopeActive;
 
     protected $fillable = ['title', 'slug', 'short_text', 'long_text', 'article_category_id', 'thumbnail', 'is_active', 'meta_title', 'meta_description'];
     protected $appends = ['thumbnail_url'];
-
-    public function scopeActive($query)
-    {
-        return $query->where('is_active', 1);
-    }
 
     public function getThumbnailUrlAttribute()
     {

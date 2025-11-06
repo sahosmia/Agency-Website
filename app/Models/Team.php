@@ -2,19 +2,15 @@
 
 namespace App\Models;
 
+use App\Traits\ScopeActive;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
 class Team extends Model
 {
-    use HasFactory;
+    use HasFactory, ScopeActive;
 
     protected $fillable = ['name', 'slug', 'avatar', 'designation_id', 'is_active'];
-
-    public function scopeActive($query)
-    {
-        return $query->where('is_active', 1);
-    }
 
     public function designation()
     {

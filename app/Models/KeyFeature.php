@@ -2,12 +2,13 @@
 
 namespace App\Models;
 
+use App\Traits\ScopeActive;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
 class KeyFeature extends Model
 {
-    use HasFactory;
+    use HasFactory, ScopeActive;
 
     protected $fillable = [
         'name',
@@ -15,11 +16,6 @@ class KeyFeature extends Model
         'image',
         'is_active',
     ];
-
-    public function scopeActive($query)
-    {
-        return $query->where('is_active', 1);
-    }
 
     // image_url accessor
     protected $appends = ['image_url'];

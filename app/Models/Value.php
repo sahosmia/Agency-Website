@@ -2,17 +2,13 @@
 
 namespace App\Models;
 
+use App\Traits\ScopeActive;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
 class Value extends Model
 {
-    use HasFactory;
+    use HasFactory, ScopeActive;
 
     protected $fillable = ['title', 'description', 'is_active'];
-
-    public function scopeActive($query)
-    {
-        return $query->where('is_active', 1);
-    }
 }
