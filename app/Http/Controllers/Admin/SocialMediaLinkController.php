@@ -7,13 +7,24 @@ use App\Http\Controllers\Traits\FileUploadTrait;
 use App\Http\Requests\StoreSocialMediaLinkRequest;
 use App\Http\Requests\UpdateSocialMediaLinkRequest;
 use App\Models\SocialMediaLink;
+use Illuminate\Http\Request;
 
 class SocialMediaLinkController extends Controller
 {
     use FileUploadTrait;
-    public function index()
+    public function index(Request $request)
     {
-        $socialMediaLinks = SocialMediaLink::all();
+        $query = SocialMediaLink::query();
+
+        if ($request->filled('q')) {
+            $query->where('name', 'like', '%' . $request->q . '%');
+        }
+
+        if ($request->filled('status')) {
+            $query->where('is_active', $request->status);
+        }
+
+        $socialMediaLinks = $query->latest()->paginate(10);
         return view('admin.social_media_links.index', compact('socialMediaLinks'));
     }
 

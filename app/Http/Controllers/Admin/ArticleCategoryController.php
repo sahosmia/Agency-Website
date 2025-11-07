@@ -6,12 +6,19 @@ use App\Http\Controllers\Controller;
 use App\Http\Requests\StoreArticleCategoryRequest;
 use App\Http\Requests\UpdateArticleCategoryRequest;
 use App\Models\ArticleCategory;
+use Illuminate\Http\Request;
 
 class ArticleCategoryController extends Controller
 {
-    public function index()
+    public function index(Request $request)
     {
-        $articleCategories = ArticleCategory::all();
+        $query = ArticleCategory::query();
+
+        if ($request->filled('q')) {
+            $query->where('name', 'like', '%' . $request->q . '%');
+        }
+
+        $articleCategories = $query->latest()->paginate(10);
         return view('admin.article-categories.index', compact('articleCategories'));
     }
 

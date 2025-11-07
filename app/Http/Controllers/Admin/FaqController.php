@@ -6,12 +6,23 @@ use App\Http\Controllers\Controller;
 use App\Http\Requests\StoreFaqRequest;
 use App\Http\Requests\UpdateFaqRequest;
 use App\Models\Faq;
+use Illuminate\Http\Request;
 
 class FaqController extends Controller
 {
-    public function index()
+    public function index(Request $request)
     {
-        $faqs = Faq::whereNull('faqable_type')->get();
+        $query = Faq::whereNull('faqable_type');
+
+        if ($request->filled('q')) {
+            $query->where('question', 'like', '%' . $request->q . '%');
+        }
+
+        if ($request->filled('status')) {
+            $query->where('is_active', $request->status);
+        }
+
+        $faqs = $query->latest()->paginate(10);
         return view('admin.faqs.index', compact('faqs'));
     }
 

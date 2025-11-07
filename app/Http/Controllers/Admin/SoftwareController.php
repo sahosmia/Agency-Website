@@ -8,15 +8,31 @@ use App\Http\Requests\StoreSoftwareRequest;
 use App\Http\Requests\UpdateSoftwareRequest;
 use App\Models\Software;
 use App\Models\SoftwareCategory;
+use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
 
 class SoftwareController extends Controller
 {
      use FileUploadTrait;
-    public function index()
+    public function index(Request $request)
     {
-        $softwares = Software::with('category')->get();
-        return view('admin.softwares.index', compact('softwares'));
+        $categories = SoftwareCategory::all();
+        $query = Software::with('category');
+
+        if ($request->filled('q')) {
+            $query->where('name', 'like', '%' . $request->q . '%');
+        }
+
+        if ($request->filled('category_id')) {
+            $query->where('software_category_id', $request->category_id);
+        }
+
+        if ($request->filled('status')) {
+            $query->where('is_active', $request->status);
+        }
+
+        $softwares = $query->latest()->paginate(10);
+        return view('admin.softwares.index', compact('softwares', 'categories'));
     }
 
     public function create()

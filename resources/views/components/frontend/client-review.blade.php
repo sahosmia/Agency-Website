@@ -13,7 +13,7 @@
      <p class="body-text-regular-large text-secondary-800">{{ $review->review }} </p>
      <hr class="w-full h-px bg-secondary-400 border-0">
      <div class="flex items-center gap-4">
-         <img class="w-16 h-16 rounded-full object-center object-cover" src="{{ asset('upload/client_reviews/ecommerce_1.png') }}" alt="">
+         <img class="w-16 h-16 rounded-full object-center object-cover" src="{{ $review->avatar_url }}" alt="{{ $review->name }}">
          <div>
              <h4 class="sub-title-large-bold text-secondary-950">{{ $review->name }}</h4>
              <p class=" body-text-regular-large text-secondary-800">{{ $review->designation }}</p>

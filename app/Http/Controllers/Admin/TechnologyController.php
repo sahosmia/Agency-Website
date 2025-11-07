@@ -16,9 +16,19 @@ class TechnologyController extends Controller
     /**
      * Display a listing of the resource.
      */
-    public function index()
+    public function index(Request $request)
     {
-        $technologies = Technology::latest()->get();
+        $query = Technology::query();
+
+        if ($request->filled('q')) {
+            $query->where('name', 'like', '%' . $request->q . '%');
+        }
+
+        if ($request->filled('status')) {
+            $query->where('is_active', $request->status);
+        }
+
+        $technologies = $query->latest()->paginate(10);
         return view('admin.technologies.index', compact('technologies'));
     }
 

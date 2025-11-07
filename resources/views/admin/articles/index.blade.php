@@ -18,13 +18,11 @@
 <div class="mb-4">
     <form action="{{ route('admin.articles.index') }}" method="GET">
         <div class="flex items-center">
-            <input type="text" name="q" value="{{ request()->q }}"
-                class="border border-gray-300 rounded-l-md px-4 py-2 w-1/2" placeholder="Search by title...">
+            <input type="text" name="q" value="{{ request()->q }}" class="border border-gray-300 rounded-l-md px-4 py-2 w-1/2" placeholder="Search by title...">
             <select name="category_id" class="border border-gray-300 px-4 py-2 w-1/3">
                 <option value="">All Categories</option>
                 @foreach($categories as $category)
-                <option value="{{ $category->id }}" {{ request()->category_id == $category->id ? 'selected' : '' }}>{{
-                    $category->name }}</option>
+                    <option value="{{ $category->id }}" {{ request()->category_id == $category->id ? 'selected' : '' }}>{{ $category->name }}</option>
                 @endforeach
             </select>
             <select name="status" class="border border-gray-300 px-4 py-2 w-1/3">
@@ -32,47 +30,47 @@
                 <option value="1" {{ request()->status == '1' ? 'selected' : '' }}>Active</option>
                 <option value="0" {{ request()->status == '0' ? 'selected' : '' }}>Inactive</option>
             </select>
-            <button type="submit"
-                class="bg-blue-500 hover:bg-blue-600 text-white font-bold py-2 px-4 rounded-r-md">Filter</button>
+            <button type="submit" class="bg-blue-500 hover:bg-blue-600 text-white font-bold py-2 px-4 rounded-r-md">Filter</button>
         </div>
     </form>
 </div>
 
-<table class="w-full bg-white shadow-md rounded-lg">
-    <thead>
-        <tr class="bg-gray-200">
-            <th class="px-4 py-2">Title</th>
-            <th class="px-4 py-2">Category</th>
-            <th class="px-4 py-2">Thumbnail</th>
-            <th class="px-4 py-2">Status</th>
-            <th class="px-4 py-2">Actions</th>
-        </tr>
-    </thead>
-    <tbody>
-        @foreach ($articles as $article)
-        <tr>
-            <td class="border px-4 py-2">{{ $article->title }}</td>
-            <td class="border px-4 py-2">{{ $article->article_category->name }}</td>
-            <td class="border px-4 py-2">
-                @if ($article->thumbnail)
-                <img src="{{ asset('storage/' . $article->thumbnail) }}" alt="{{ $article->title }}"
-                    class="h-16 w-16 object-cover">
-                @endif
-            </td>
-            <td class="border px-4 py-2">
-                <x-admin.status-badge :is-active="$article->is_active" />
-            </td>
-            <td class="border px-4 py-2">
-                <x-admin.actions-dropdown :showUrl="route('admin.articles.show', $article)"
-                    :editUrl="route('admin.articles.edit', $article)"
-                    :deleteRoute="route('admin.articles.destroy', $article)" />
-            </td>
-        </tr>
-        @endforeach
-    </tbody>
-</table>
+    <table class="w-full bg-white shadow-md rounded-lg">
+        <thead>
+            <tr class="bg-gray-200">
+                <th class="px-4 py-2">Title</th>
+                <th class="px-4 py-2">Category</th>
+                <th class="px-4 py-2">Thumbnail</th>
+                <th class="px-4 py-2">Status</th>
+                <th class="px-4 py-2 w-24">Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach ($articles as $article)
+                <tr>
+                    <td class="border px-4 py-2">{{ $article->title }}</td>
+                    <td class="border px-4 py-2">{{ $article->article_category->name }}</td>
+                    <td class="border px-4 py-2">
+                        @if ($article->thumbnail)
+                            <img src="{{ asset('storage/' . $article->thumbnail) }}" alt="{{ $article->title }}" class="h-16 w-16 object-cover">
+                        @endif
+                    </td>
+                    <td class="border px-4 py-2">
+                        <x-admin.status-badge :is-active="$article->is_active" />
+                    </td>
+                    <td class="border px-4 py-2">
+                        <x-admin.actions-dropdown
+                            :showUrl="route('admin.articles.show', $article)"
+                            :editUrl="route('admin.articles.edit', $article)"
+                            :deleteRoute="route('admin.articles.destroy', $article)"
+                        />
+                    </td>
+                </tr>
+            @endforeach
+        </tbody>
+    </table>
 
 <div class="mt-4">
-    {{ $articles->links() }}
+    {{ $articles->appends(request()->query())->links() }}
 </div>
-@endsection     
+@endsection

@@ -6,12 +6,19 @@ use App\Http\Controllers\Controller;
 use App\Http\Requests\StoreVacancyCategoryRequest;
 use App\Http\Requests\UpdateVacancyCategoryRequest;
 use App\Models\VacancyCategory;
+use Illuminate\Http\Request;
 
 class VacancyCategoryController extends Controller
 {
-    public function index()
+    public function index(Request $request)
     {
-        $vacancyCategories = VacancyCategory::all();
+        $query = VacancyCategory::query();
+
+        if ($request->filled('q')) {
+            $query->where('name', 'like', '%' . $request->q . '%');
+        }
+
+        $vacancyCategories = $query->latest()->paginate(10);
         return view('admin.vacancy-categories.index', compact('vacancyCategories'));
     }
 

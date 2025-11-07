@@ -191,6 +191,38 @@
                     </div>
                 </div>
 
+                <div x-data="{ open: @json(request()->routeIs('admin.teams.*') || request()->routeIs('admin.designations.*')) }"
+                    class="relative">
+                    <button @click="sidebarCollapsed ? (sidebarCollapsed = false, open = true) : open = !open"
+                        class="w-full text-left flex items-center justify-between px-4 py-2 text-gray-300 hover:bg-gray-700 focus:outline-none">
+                        <span class="flex items-center">
+                            <svg class="h-6 w-6 mr-2" viewBox="0 0 24 24" fill="none"
+                                xmlns="http://www.w3.org/2000/svg">
+                                <path
+                                    d="M12 2C15.31 2 18 4.69 18 8C18 11.31 15.31 14 12 14C8.69 14 6 11.31 6 8C6 4.69 8.69 2 12 2Z"
+                                    stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                                    stroke-linejoin="round"></path>
+                                <path d="M20 21V19C20 16.79 16.42 15 12 15C7.58 15 4 16.79 4 19V21"
+                                    stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                                    stroke-linejoin="round"></path>
+                            </svg>
+                            <span x-show="!sidebarCollapsed">Team</span>
+                        </span>
+                        <svg x-show="!sidebarCollapsed" class="h-4 w-4 transform" :class="{ 'rotate-180': open }"
+                            viewBox="0 0 20 20" fill="currentColor">
+                            <path fill-rule="evenodd"
+                                d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z"
+                                clip-rule="evenodd" />
+                        </svg>
+                    </button>
+                    <div x-show="open && !sidebarCollapsed" @click.away="open = false" class="bg-gray-700">
+                        <a href="{{ route('admin.teams.index') }}"
+                            class="block px-8 py-2 text-gray-300 hover:bg-gray-600 {{ request()->routeIs('admin.teams.*') ? 'bg-gray-600' : '' }}">Teams</a>
+                        <a href="#"
+                            class="block px-8 py-2 text-gray-300 hover:bg-gray-600 {{ request()->routeIs('admin.designations.*') ? 'bg-gray-600' : '' }}">Designations</a>
+                    </div>
+                </div>
+
                 <div x-data="{ open: @json(request()->routeIs('admin.vacancy-categories.*') || request()->routeIs('admin.vacancies.*') || request()->routeIs('admin.applicants.*')) }"
                     class="relative">
                     <button @click="sidebarCollapsed ? (sidebarCollapsed = false, open = true) : open = !open"
@@ -273,6 +305,8 @@
                             class="block px-8 py-2 text-gray-300 hover:bg-gray-600 {{ request()->routeIs('admin.clients.*') ? 'bg-gray-600' : '' }}">Clients</a>
                         <a href="{{ route('admin.faqs.index') }}"
                             class="block px-8 py-2 text-gray-300 hover:bg-gray-600 {{ request()->routeIs('admin.faqs.*') ? 'bg-gray-600' : '' }}">FAQs</a>
+                        <a href="{{ route('admin.client-reviews.index') }}"
+                            class="block px-8 py-2 text-gray-300 hover:bg-gray-600 {{ request()->routeIs('admin.client-reviews.*') ? 'bg-gray-600' : '' }}">Testimonials</a>
                         <a href="{{ route('admin.working-processes.index') }}"
                             class="block px-8 py-2 text-gray-300 hover:bg-gray-600 {{ request()->routeIs('admin.working-processes.*') ? 'bg-gray-600' : '' }}">Working
                             Processes</a>
@@ -423,6 +457,10 @@
                                     Plan</a>
                                 <a href="{{ route('admin.menus.create') }}"
                                     class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">New Menu</a>
+                                <a href="{{ route('admin.teams.create') }}"
+                                    class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">New Team Member</a>
+                                <a href="{{ route('admin.client-reviews.create') }}"
+                                    class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">New Testimonial</a>
                             </div>
                         </div>
                         <div x-data="{ open: false }" class="relative">
