@@ -4,7 +4,6 @@ use Illuminate\Support\Facades\Route;
 
 // ========== Controllers ==========
 use App\Http\Controllers\ProfileController;
-use App\Http\Controllers\AuthController;
 use App\Http\Controllers\Admin\{
     DashboardController,
     ArticleController,
@@ -151,6 +150,7 @@ Route::prefix('admin')->name('admin.')->middleware(['auth'])->group(function () 
         'menus'               => MenuController::class,
         'applicants'          => ApplicantController::class,
         'teams'               => TeamController::class,
+        'designations'        => DesignationController::class,
         'client-reviews'      => ClientReviewController::class,
     ]);
 

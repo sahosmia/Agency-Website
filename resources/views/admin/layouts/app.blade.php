@@ -433,6 +433,7 @@
                                     class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">New
                                     Technology</a>
                                 <a href="{{ route('admin.key-features.create') }}"
+                                <a hderef="{{ route('admin.key-features.create') }}"
                                     class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">New Key
                                     Feature</a>
                                 <a href="{{ route('admin.features.create') }}"

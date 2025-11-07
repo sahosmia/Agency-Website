@@ -13,7 +13,7 @@
     <form action="{{ route('admin.teams.store') }}" method="POST" enctype="multipart/form-data">
         @csrf
         <x-admin.text-input name="name" label="Name" required />
-        <x-admin.select name="designation_id" label="Designation" :options="$designations->pluck('name', 'id')" required />
+        <x-admin.select name="designation_id" label="Designation" :options="$designations->pluck('title', 'id')" required />
         <x-admin.file-input name="avatar" label="Avatar" />
         <x-admin.checkbox-input name="is_active" label="Active" checked />
 

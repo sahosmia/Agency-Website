@@ -9,3 +9,10 @@
     </select>
     <x-admin.error-message :name="$name" />
 </div>
+@push('scripts')
+<script>
+    $(document).ready(function() {
+        $('#{{ $name }}').select2();
+    });
+</script>
+@endpush
