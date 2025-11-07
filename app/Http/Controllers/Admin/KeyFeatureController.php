@@ -16,9 +16,19 @@ class KeyFeatureController extends Controller
     /**
      * Display a listing of the resource.
      */
-    public function index()
+    public function index(Request $request)
     {
-        $keyFeatures = KeyFeature::latest()->get();
+        $query = KeyFeature::query();
+
+        if ($request->filled('q')) {
+            $query->where('title', 'like', '%' . $request->q . '%');
+        }
+
+        if ($request->filled('status')) {
+            $query->where('is_active', $request->status);
+        }
+
+        $keyFeatures = $query->latest()->paginate(10);
         return view('admin.key_features.index', compact('keyFeatures'));
     }
 

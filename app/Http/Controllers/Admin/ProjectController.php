@@ -8,16 +8,32 @@ use App\Http\Requests\UpdateProjectRequest;
 use App\Models\Project;
 use App\Models\ProjectCategory;
 use App\Http\Controllers\Traits\FileUploadTrait;
+use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 
 class ProjectController extends Controller
 {
     use FileUploadTrait;
 
-    public function index()
+    public function index(Request $request)
     {
-        $projects = Project::with('project_category')->get();
-        return view('admin.projects.index', compact('projects'));
+        $categories = ProjectCategory::all();
+        $query = Project::with('project_category');
+
+        if ($request->filled('q')) {
+            $query->where('name', 'like', '%' . $request->q . '%');
+        }
+
+        if ($request->filled('category_id')) {
+            $query->where('project_category_id', $request->category_id);
+        }
+
+        if ($request->filled('status')) {
+            $query->where('is_active', $request->status);
+        }
+
+        $projects = $query->latest()->paginate(10);
+        return view('admin.projects.index', compact('projects', 'categories'));
     }
 
     public function create()

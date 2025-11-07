@@ -11,9 +11,19 @@ use Illuminate\Http\Request;
 
 class PricePlanController extends Controller
 {
-    public function index()
+    public function index(Request $request)
     {
-        $pricePlans = PricePlan::with('planable')->get();
+        $query = PricePlan::with('planable');
+
+        if ($request->filled('q')) {
+            $query->where('name', 'like', '%' . $request->q . '%');
+        }
+
+        if ($request->filled('status')) {
+            $query->where('is_active', $request->status);
+        }
+
+        $pricePlans = $query->latest()->paginate(10);
         return view('admin.price-plans.index', compact('pricePlans'));
     }
 

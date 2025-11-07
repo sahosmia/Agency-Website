@@ -7,14 +7,25 @@ use App\Http\Controllers\Traits\FileUploadTrait;
 use App\Http\Requests\StoreTrustedCompanyRequest;
 use App\Http\Requests\UpdateTrustedCompanyRequest;
 use App\Models\TrustedCompany;
+use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
 
 class TrustedCompanyController extends Controller
 {
     use FileUploadTrait;
-    public function index()
+    public function index(Request $request)
     {
-        $trustedCompanies = TrustedCompany::all();
+        $query = TrustedCompany::query();
+
+        if ($request->filled('q')) {
+            $query->where('name', 'like', '%' . $request->q . '%');
+        }
+
+        if ($request->filled('status')) {
+            $query->where('is_active', $request->status);
+        }
+
+        $trustedCompanies = $query->latest()->paginate(10);
         return view('admin.trusted_companies.index', compact('trustedCompanies'));
     }
 

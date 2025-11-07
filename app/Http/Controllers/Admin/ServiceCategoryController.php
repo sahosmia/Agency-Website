@@ -6,12 +6,19 @@ use App\Http\Controllers\Controller;
 use App\Http\Requests\StoreServiceCategoryRequest;
 use App\Http\Requests\UpdateServiceCategoryRequest;
 use App\Models\ServiceCategory;
+use Illuminate\Http\Request;
 
 class ServiceCategoryController extends Controller
 {
-    public function index()
+    public function index(Request $request)
     {
-        $serviceCategories = ServiceCategory::all();
+        $query = ServiceCategory::query();
+
+        if ($request->filled('q')) {
+            $query->where('name', 'like', '%' . $request->q . '%');
+        }
+
+        $serviceCategories = $query->latest()->paginate(10);
         return view('admin.service-categories.index', compact('serviceCategories'));
     }
 

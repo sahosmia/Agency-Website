@@ -8,9 +8,15 @@ use Illuminate\Http\Request;
 
 class TagController extends Controller
 {
-    public function index()
+    public function index(Request $request)
     {
-        $tags = Tag::all();
+        $query = Tag::query();
+
+        if ($request->filled('q')) {
+            $query->where('name', 'like', '%' . $request->q . '%');
+        }
+
+        $tags = $query->latest()->paginate(10);
         return view('admin.tags.index', compact('tags'));
     }
 

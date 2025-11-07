@@ -6,12 +6,23 @@ use App\Http\Controllers\Controller;
 use App\Http\Requests\StoreValueRequest;
 use App\Http\Requests\UpdateValueRequest;
 use App\Models\Value;
+use Illuminate\Http\Request;
 
 class ValueController extends Controller
 {
-    public function index()
+    public function index(Request $request)
     {
-        $values = Value::all();
+        $query = Value::query();
+
+        if ($request->filled('q')) {
+            $query->where('title', 'like', '%' . $request->q . '%');
+        }
+
+        if ($request->filled('status')) {
+            $query->where('is_active', $request->status);
+        }
+
+        $values = $query->latest()->paginate(10);
         return view('admin.values.index', compact('values'));
     }
 

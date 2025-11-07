@@ -6,12 +6,19 @@ use App\Http\Controllers\Controller;
 use App\Http\Requests\StoreProjectCategoryRequest;
 use App\Http\Requests\UpdateProjectCategoryRequest;
 use App\Models\ProjectCategory;
+use Illuminate\Http\Request;
 
 class ProjectCategoryController extends Controller
 {
-    public function index()
+    public function index(Request $request)
     {
-        $projectCategories = ProjectCategory::all();
+        $query = ProjectCategory::query();
+
+        if ($request->filled('q')) {
+            $query->where('name', 'like', '%' . $request->q . '%');
+        }
+
+        $projectCategories = $query->latest()->paginate(10);
         return view('admin.project-categories.index', compact('projectCategories'));
     }
 
