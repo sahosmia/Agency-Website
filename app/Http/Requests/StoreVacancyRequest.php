@@ -14,6 +14,16 @@ class StoreVacancyRequest extends FormRequest
         return true;
     }
 
+
+       protected function prepareForValidation()
+    {
+        if ($this->end_date) {
+            $this->merge([
+                'end_date' => \Carbon\Carbon::createFromFormat('m/d/Y', $this->end_date)->format('Y-m-d'),
+            ]);
+        }
+    }
+
     /**
      * Get the validation rules that apply to the request.
      *
@@ -28,11 +38,11 @@ class StoreVacancyRequest extends FormRequest
             'location' => 'nullable|string',
             'end_date' => 'nullable|date',
             'benefits' => 'nullable|string',
-            'responsibilities' => 'nullable|string',
-            'requirements' => 'nullable|string',
-            'skills_required' => 'nullable|string',
-            'weekly_holidays' => 'nullable|string',
-            'salary' => 'nullable|string',
+            'responsibilities' => 'required|string',
+            'requirements' => 'required|string',
+            'skills_required' => 'required|string',
+            'weekly_holidays' => 'required|string',
+            'salary' => 'required|string',
             'others' => 'nullable|string',
             'is_active' => 'nullable|boolean',
         ];

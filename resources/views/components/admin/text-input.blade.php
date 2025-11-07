@@ -1,7 +1,8 @@
-@props(['name', 'label', 'value' => '', 'required' => false])
+@props(['name', 'label', 'value' => '', 'required' => false, 'placeholder' => ''])
 
 <div class="mb-4">
     <label for="{{ $name }}" class="block text-gray-700">{{ $label }}</label>
-    <input type="text" name="{{ $name }}" id="{{ $name }}" class="w-full px-3 py-2 border rounded-md" value="{{ old($name, $value) }}" {{ $required ? 'required' : '' }}>
+    <input type="text" name="{{ $name }}" id="{{ $name }}" class="w-full px-3 py-2 border rounded-md"
+        value="{{ old($name, $value) }}" placeholder="{{$placeholder}}" {{ $required ? 'required' : '' }}>
     <x-admin.error-message :name="$name" />
 </div>

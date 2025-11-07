@@ -15,10 +15,10 @@ return new class extends Migration
             $table->id();
             $table->string('title');
             $table->string('slug')->unique();
-            $table->string('type');
-            $table->string('location');
-            $table->date('end_date');
-            $table->json('benefits');
+            $table->string('type')->nullable();
+            $table->string('location')->nullable();
+            $table->date('end_date')->nullable();
+            $table->json('benefits')->nullable();
             $table->json('responsibilities');
             $table->json('requirements');
             $table->json('skills_required');
