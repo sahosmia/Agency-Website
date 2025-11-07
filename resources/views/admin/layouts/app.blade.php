@@ -17,8 +17,14 @@
         <aside :class="{ 'w-64': !sidebarCollapsed, 'w-20': sidebarCollapsed }"
             class="bg-gray-800 text-white flex-shrink-0 transition-all duration-300">
             <div class="p-4">
-                <h1 class="text-2xl font-bold" x-show="!sidebarCollapsed">Admin Panel</h1>
-                <h1 class="text-2xl font-bold text-center" x-show="sidebarCollapsed">A</h1>
+                <h1 class="text-2xl font-bold" x-show="!sidebarCollapsed"
+                    x-transition:enter="transition ease-out duration-300" x-transition:enter-start="opacity-0"
+                    x-transition:enter-end="opacity-100" x-transition:leave="transition ease-in duration-200"
+                    x-transition:leave-start="opacity-100" x-transition:leave-end="opacity-0">Admin Panel</h1>
+                <h1 class="text-2xl font-bold text-center" x-show="sidebarCollapsed"
+                    x-transition:enter="transition ease-out duration-300" x-transition:enter-start="opacity-0"
+                    x-transition:enter-end="opacity-100" x-transition:leave="transition ease-in duration-200"
+                    x-transition:leave-start="opacity-100" x-transition:leave-end="opacity-0">A</h1>
             </div>
             <nav class="mt-4">
                 <a href="{{ route('admin.dashboard') }}"
@@ -29,7 +35,10 @@
                         <path d="M5 10V20H19V10" stroke="currentColor" stroke-width="2" stroke-linecap="round"
                             stroke-linejoin="round"></path>
                     </svg>
-                    <span x-show="!sidebarCollapsed">Dashboard</span>
+                    <span x-show="!sidebarCollapsed" x-transition:enter="transition ease-out duration-300"
+                        x-transition:enter-start="opacity-0" x-transition:enter-end="opacity-100"
+                        x-transition:leave="transition ease-in duration-200" x-transition:leave-start="opacity-100"
+                        x-transition:leave-end="opacity-0">Dashboard</span>
                 </a>
 
                 <div x-data="{ open: @json(request()->routeIs('admin.service-categories.*') || request()->routeIs('admin.services.*') || request()->routeIs('admin.service-types.*') || request()->routeIs('admin.price-plans.*')) }"
@@ -46,7 +55,11 @@
                                 <path d="M2 12L12 17L22 12" stroke="currentColor" stroke-width="2"
                                     stroke-linecap="round" stroke-linejoin="round"></path>
                             </svg>
-                            <span x-show="!sidebarCollapsed">Services</span>
+                            <span x-show="!sidebarCollapsed" x-transition:enter="transition ease-out duration-300"
+                                x-transition:enter-start="opacity-0" x-transition:enter-end="opacity-100"
+                                x-transition:leave="transition ease-in duration-200"
+                                x-transition:leave-start="opacity-100"
+                                x-transition:leave-end="opacity-0">Services</span>
                         </span>
                         <svg x-show="!sidebarCollapsed" class="h-4 w-4 transform" :class="{ 'rotate-180': open }"
                             viewBox="0 0 20 20" fill="currentColor">
@@ -55,7 +68,7 @@
                                 clip-rule="evenodd" />
                         </svg>
                     </button>
-                    <div x-show="open && !sidebarCollapsed" @click.away="open = false" class="bg-gray-700">
+                    <div x-show="open && !sidebarCollapsed" @click.away="open = false" class="bg-gray-700" x-transition>
                         <a href="{{ route('admin.service-categories.index') }}"
                             class="block px-8 py-2 text-gray-300 hover:bg-gray-600 {{ request()->routeIs('admin.service-categories.*') ? 'bg-gray-600' : '' }}">Service
                             Categories</a>
@@ -84,7 +97,11 @@
                                 <path d="M4 18H20" stroke="currentColor" stroke-width="2" stroke-linecap="round"
                                     stroke-linejoin="round"></path>
                             </svg>
-                            <span x-show="!sidebarCollapsed">Projects</span>
+                            <span x-show="!sidebarCollapsed" x-transition:enter="transition ease-out duration-300"
+                                x-transition:enter-start="opacity-0" x-transition:enter-end="opacity-100"
+                                x-transition:leave="transition ease-in duration-200"
+                                x-transition:leave-start="opacity-100"
+                                x-transition:leave-end="opacity-0">Projects</span>
                         </span>
                         <svg x-show="!sidebarCollapsed" class="h-4 w-4 transform" :class="{ 'rotate-180': open }"
                             viewBox="0 0 20 20" fill="currentColor">
@@ -93,7 +110,7 @@
                                 clip-rule="evenodd" />
                         </svg>
                     </button>
-                    <div x-show="open && !sidebarCollapsed" @click.away="open = false" class="bg-gray-700">
+                    <div x-show="open && !sidebarCollapsed" @click.away="open = false" class="bg-gray-700" x-transition>
                         <a href="{{ route('admin.project-categories.index') }}"
                             class="block px-8 py-2 text-gray-300 hover:bg-gray-600 {{ request()->routeIs('admin.project-categories.*') ? 'bg-gray-600' : '' }}">Project
                             Categories</a>
@@ -114,7 +131,11 @@
                                 <path d="M22 2L15 22L11 13L2 9L22 2Z" stroke="currentColor" stroke-width="2"
                                     stroke-linecap="round" stroke-linejoin="round"></path>
                             </svg>
-                            <span x-show="!sidebarCollapsed">Articles</span>
+                            <span x-show="!sidebarCollapsed" x-transition:enter="transition ease-out duration-300"
+                                x-transition:enter-start="opacity-0" x-transition:enter-end="opacity-100"
+                                x-transition:leave="transition ease-in duration-200"
+                                x-transition:leave-start="opacity-100"
+                                x-transition:leave-end="opacity-0">Articles</span>
                         </span>
                         <svg x-show="!sidebarCollapsed" class="h-4 w-4 transform" :class="{ 'rotate-180': open }"
                             viewBox="0 0 20 20" fill="currentColor">
@@ -123,7 +144,7 @@
                                 clip-rule="evenodd" />
                         </svg>
                     </button>
-                    <div x-show="open && !sidebarCollapsed" @click.away="open = false" class="bg-gray-700">
+                    <div x-show="open && !sidebarCollapsed" @click.away="open = false" class="bg-gray-700" x-transition>
                         <a href="{{ route('admin.article-categories.index') }}"
                             class="block px-8 py-2 text-gray-300 hover:bg-gray-600 {{ request()->routeIs('admin.article-categories.*') ? 'bg-gray-600' : '' }}">Article
                             Categories</a>
@@ -148,7 +169,11 @@
                                 <path d="M12 8H12.01" stroke="currentColor" stroke-width="2" stroke-linecap="round"
                                     stroke-linejoin="round"></path>
                             </svg>
-                            <span x-show="!sidebarCollapsed">Software</span>
+                            <span x-show="!sidebarCollapsed" x-transition:enter="transition ease-out duration-300"
+                                x-transition:enter-start="opacity-0" x-transition:enter-end="opacity-100"
+                                x-transition:leave="transition ease-in duration-200"
+                                x-transition:leave-start="opacity-100"
+                                x-transition:leave-end="opacity-0">Software</span>
                         </span>
                         <svg x-show="!sidebarCollapsed" class="h-4 w-4 transform" :class="{ 'rotate-180': open }"
                             viewBox="0 0 20 20" fill="currentColor">
@@ -157,7 +182,7 @@
                                 clip-rule="evenodd" />
                         </svg>
                     </button>
-                    <div x-show="open && !sidebarCollapsed" @click.away="open = false" class="bg-gray-700">
+                    <div x-show="open && !sidebarCollapsed" @click.away="open = false" class="bg-gray-700" x-transition>
                         <a href="{{ route('admin.software-categories.index') }}"
                             class="block px-8 py-2 text-gray-300 hover:bg-gray-600 {{ request()->routeIs('admin.software-categories.*') ? 'bg-gray-600' : '' }}">Software
                             Categories</a>
@@ -181,7 +206,10 @@
                                     stroke="currentColor" stroke-width="2" stroke-linecap="round"
                                     stroke-linejoin="round"></path>
                             </svg>
-                            <span x-show="!sidebarCollapsed">Careers</span>
+                            <span x-show="!sidebarCollapsed" x-transition:enter="transition ease-out duration-300"
+                                x-transition:enter-start="opacity-0" x-transition:enter-end="opacity-100"
+                                x-transition:leave="transition ease-in duration-200"
+                                x-transition:leave-start="opacity-100" x-transition:leave-end="opacity-0">Careers</span>
                         </span>
                         <svg x-show="!sidebarCollapsed" class="h-4 w-4 transform" :class="{ 'rotate-180': open }"
                             viewBox="0 0 20 20" fill="currentColor">
@@ -190,7 +218,7 @@
                                 clip-rule="evenodd" />
                         </svg>
                     </button>
-                    <div x-show="open && !sidebarCollapsed" @click.away="open = false" class="bg-gray-700">
+                    <div x-show="open && !sidebarCollapsed" @click.away="open = false" class="bg-gray-700" x-transition>
                         <a href="{{ route('admin.vacancy-categories.index') }}"
                             class="block px-8 py-2 text-gray-300 hover:bg-gray-600 {{ request()->routeIs('admin.vacancy-categories.*') ? 'bg-gray-600' : '' }}">Vacancy
                             Categories</a>
@@ -215,7 +243,11 @@
                                 <path d="M2 12L12 17L22 12" stroke="currentColor" stroke-width="2"
                                     stroke-linecap="round" stroke-linejoin="round"></path>
                             </svg>
-                            <span x-show="!sidebarCollapsed">Miscellaneous</span>
+                            <span x-show="!sidebarCollapsed" x-transition:enter="transition ease-out duration-300"
+                                x-transition:enter-start="opacity-0" x-transition:enter-end="opacity-100"
+                                x-transition:leave="transition ease-in duration-200"
+                                x-transition:leave-start="opacity-100"
+                                x-transition:leave-end="opacity-0">Miscellaneous</span>
                         </span>
                         <svg x-show="!sidebarCollapsed" class="h-4 w-4 transform" :class="{ 'rotate-180': open }"
                             viewBox="0 0 20 20" fill="currentColor">
@@ -224,7 +256,7 @@
                                 clip-rule="evenodd" />
                         </svg>
                     </button>
-                    <div x-show="open && !sidebarCollapsed" @click.away="open = false" class="bg-gray-700">
+                    <div x-show="open && !sidebarCollapsed" @click.away="open = false" class="bg-gray-700" x-transition>
                         <a href="{{ route('admin.tags.index') }}"
                             class="block px-8 py-2 text-gray-300 hover:bg-gray-600 {{ request()->routeIs('admin.tags.*') ? 'bg-gray-600' : '' }}">Tags</a>
                         <a href="{{ route('admin.technologies.index') }}"
@@ -263,7 +295,11 @@
                                 <path d="M5 10V20H19V10" stroke="currentColor" stroke-width="2" stroke-linecap="round"
                                     stroke-linejoin="round"></path>
                             </svg>
-                            <span x-show="!sidebarCollapsed">Page Settings</span>
+                            <span x-show="!sidebarCollapsed" x-transition:enter="transition ease-out duration-300"
+                                x-transition:enter-start="opacity-0" x-transition:enter-end="opacity-100"
+                                x-transition:leave="transition ease-in duration-200"
+                                x-transition:leave-start="opacity-100" x-transition:leave-end="opacity-0">Page
+                                Settings</span>
                         </span>
                         <svg x-show="!sidebarCollapsed" class="h-4 w-4 transform" :class="{ 'rotate-180': open }"
                             viewBox="0 0 20 20" fill="currentColor">
@@ -272,7 +308,7 @@
                                 clip-rule="evenodd" />
                         </svg>
                     </button>
-                    <div x-show="open && !sidebarCollapsed" @click.away="open = false" class="bg-gray-700">
+                    <div x-show="open && !sidebarCollapsed" @click.away="open = false" class="bg-gray-700" x-transition>
                         <a href="{{ route('admin.pages.index', 'home') }}"
                             class="block px-8 py-2 text-gray-300 hover:bg-gray-600 {{ request()->routeIs('admin.pages.index') && request()->route('page') == 'home' ? 'bg-gray-600' : '' }}">Home
                             Page</a>
@@ -293,7 +329,10 @@
                         <path d="M4 6H20M4 12H20M4 18H14" stroke="currentColor" stroke-width="2" stroke-linecap="round"
                             stroke-linejoin="round"></path>
                     </svg>
-                    <span x-show="!sidebarCollapsed">Menus</span>
+                    <span x-show="!sidebarCollapsed" x-transition:enter="transition ease-out duration-300"
+                        x-transition:enter-start="opacity-0" x-transition:enter-end="opacity-100"
+                        x-transition:leave="transition ease-in duration-200" x-transition:leave-start="opacity-100"
+                        x-transition:leave-end="opacity-0">Menus</span>
                 </a>
             </nav>
         </aside>
@@ -325,7 +364,7 @@
                                 <span>Quick Create</span>
                             </button>
                             <div x-show="open" @click.away="open = false"
-                                class="absolute right-0 mt-2 w-48 bg-white rounded-md shadow-lg py-1 z-10">
+                                class="absolute right-0 mt-2 w-48 bg-white rounded-md shadow-lg py-1 z-10" x-transition>
                                 <a href="{{ route('admin.services.create') }}"
                                     class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">New Service</a>
                                 <a href="{{ route('admin.service-categories.create') }}"
@@ -397,7 +436,7 @@
                                 </svg>
                             </button>
                             <div x-show="open" @click.away="open = false"
-                                class="absolute right-0 mt-2 w-48 bg-white rounded-md shadow-lg py-1 z-10">
+                                class="absolute right-0 mt-2 w-48 bg-white rounded-md shadow-lg py-1 z-10" x-transition>
                                 <form method="POST" action="{{ route('logout') }}">
                                     @csrf
                                     <button type="submit"

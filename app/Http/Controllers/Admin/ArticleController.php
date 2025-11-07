@@ -8,16 +8,33 @@ use App\Http\Requests\UpdateArticleRequest;
 use App\Models\Article;
 use App\Models\ArticleCategory;
 use App\Models\Tag;
+use Illuminate\Http\Request;
 use App\Http\Controllers\Traits\FileUploadTrait;
 
 class ArticleController extends Controller
 {
     use FileUploadTrait;
 
-    public function index()
+    public function index(Request $request)
     {
-        $articles = Article::with('article_category')->get();
-        return view('admin.articles.index', compact('articles'));
+        $categories = ArticleCategory::all();
+        $query = Article::with('article_category');
+
+        if ($request->filled('q')) {
+            $query->where('title', 'like', '%' . $request->q . '%');
+        }
+
+        if ($request->filled('category_id')) {
+            $query->where('article_category_id', $request->category_id);
+        }
+
+        if ($request->filled('status')) {
+            $query->where('is_active', $request->status);
+        }
+
+        $articles = $query->latest()->paginate(10);
+
+        return view('admin.articles.index', compact('articles', 'categories'));
     }
 
     public function create()
