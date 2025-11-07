@@ -21,6 +21,7 @@ class ProjectFrontController extends Controller
             ->when($request->category, function ($query) use ($request) {
                 $query->where('project_category_id', $request->category);
             })
+            ->orderBy('sort')
             ->paginate(6);
 
         $projectsPage = PageSetting::where('page_name', 'projects')->first();
@@ -32,7 +33,7 @@ class ProjectFrontController extends Controller
     public function show(Project $project)
     {
         $project->load('category:id,title');
-        $projects = Project::active()->with('category:id,title', 'clientReview')->limit(5)->get();
+        $projects = Project::active()->with('category:id,title', 'clientReview')->orderBy('sort')->limit(5)->get();
         $projectDetailPage = PageSetting::where('page_name', 'project-detail')->first();
         $projectDetailSettings = $projectDetailPage ? $projectDetailPage->settings : [];
 

@@ -17,6 +17,7 @@ return new class extends Migration
             $table->text('answer');
             $table->nullableMorphs('faqable');
             $table->boolean('is_active')->default(true);
+            $table->integer('sort')->default(0);
             $table->timestamps();
         });
     }

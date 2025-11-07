@@ -13,6 +13,7 @@
         <x-admin.file-input name="thumbnail" label="Thumbnail" />
         <x-admin.text-input name="meta_title" label="Meta Title" />
         <x-admin.textarea name="meta_description" label="Meta Description" />
+        <x-admin.text-input name="sort" label="Sort Order" type="number" value="0" />
         <x-admin.checkbox-input name="is_active" label="Active" checked />
 
         <div class="card">

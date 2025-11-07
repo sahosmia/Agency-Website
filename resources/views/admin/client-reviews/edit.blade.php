@@ -24,6 +24,7 @@
         </div>
         <x-admin.text-input name="rating" label="Rating" :value="$clientReview->rating" required />
         <x-admin.textarea name="review" label="Review" :value="$clientReview->review" required />
+        <x-admin.text-input name="sort" label="Sort Order" type="number" :value="$clientReview->sort" />
         <x-admin.checkbox-input name="is_active" label="Active" :checked="$clientReview->is_active" />
 
         <x-admin.submit-button label="Update" />

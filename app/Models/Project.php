@@ -31,6 +31,7 @@ class Project extends Model
         'is_active',
         'meta_title',
         'meta_description',
+        'sort',
     ];
 
     protected $casts = [

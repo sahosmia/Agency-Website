@@ -17,6 +17,7 @@ class ClientReview extends Model
         'rating',
         'review',
         'is_active',
+        'sort',
     ];
 
     public function projects()
