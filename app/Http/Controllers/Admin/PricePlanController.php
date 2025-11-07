@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
+use App\Http\Requests\Admin\PricePlanRequest;
 use App\Models\PricePlan;
 use App\Models\ServiceType;
 use App\Models\Software;
@@ -35,17 +36,9 @@ class PricePlanController extends Controller
         return view('admin.price-plans.create', compact('serviceTypes', 'softwares', 'features'));
     }
 
-    public function store(Request $request)
+    public function store(PricePlanRequest $request)
     {
-        $request->validate([
-            'name' => 'required|string|max:255',
-            'price' => 'required_if:type,fixed|nullable|numeric',
-            'type' => 'required|string|in:fixed,free,custom',
-            'planable_id' => 'required',
-            'planable_type' => 'required|string',
-        ]);
-
-        $data = $request->except('features');
+        $data = $request->validated();
 
         if ($request->type === 'free' || $request->type === 'custom') {
             $data['price'] = null;
@@ -74,17 +67,9 @@ class PricePlanController extends Controller
         return view('admin.price-plans.edit', compact('pricePlan', 'serviceTypes', 'softwares', 'features'));
     }
 
-    public function update(Request $request, PricePlan $pricePlan)
+    public function update(PricePlanRequest $request, PricePlan $pricePlan)
     {
-        $request->validate([
-            'name' => 'required|string|max:255',
-            'price' => 'required_if:type,fixed|nullable|numeric',
-            'type' => 'required|string|in:fixed,free,custom',
-            'planable_id' => 'required',
-            'planable_type' => 'required|string',
-        ]);
-
-        $data = $request->except('features');
+        $data = $request->validated();
 
         if ($request->type === 'free' || $request->type === 'custom') {
             $data['price'] = null;
