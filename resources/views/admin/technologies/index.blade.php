@@ -20,7 +20,7 @@
                                     <th>Description</th>
                                     <th>Image</th>
                                      <th>Status</th>
-                                    <th>Actions</th>
+                                    <th style="width: 100px;">Actions</th>
                                 </tr>
                             </thead>
                             <tbody>

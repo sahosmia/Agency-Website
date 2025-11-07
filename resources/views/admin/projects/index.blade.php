@@ -16,7 +16,7 @@
                 <th class="px-4 py-2">Category</th>
                 <th class="px-4 py-2">Thumbnail</th>
                 <th class="px-4 py-2">Status</th>
-                <th class="px-4 py-2">Actions</th>
+                <th class="px-4 py-2 w-24">Actions</th>
             </tr>
         </thead>
         <tbody>

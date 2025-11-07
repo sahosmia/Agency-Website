@@ -17,7 +17,7 @@
                     <th class="px-4 py-2">Applied For</th>
                     <th class="px-4 py-2">Experience</th>
                     <th class="px-4 py-2">Why Hire</th>
-                    <th class="px-4 py-2">Actions</th>
+                    <th class="px-4 py-2 w-24">Actions</th>
                 </tr>
             </thead>
             <tbody>

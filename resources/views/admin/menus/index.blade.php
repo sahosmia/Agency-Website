@@ -13,7 +13,7 @@
                 <th>Name</th>
                 <th>Route</th>
                 <th>Order</th>
-                <th>Actions</th>
+                <th style="width: 100px;">Actions</th>
             </tr>
         </thead>
         <tbody>
