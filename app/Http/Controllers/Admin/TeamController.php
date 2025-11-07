@@ -1,0 +1,102 @@
+<?php
+
+namespace App\Http\Controllers\Admin;
+
+use App\Http\Controllers\Controller;
+use App\Models\Team;
+use App\Models\Designation;
+use App\Http\Controllers\Traits\FileUploadTrait;
+use Illuminate\Http\Request;
+use Illuminate\Support\Str;
+
+class TeamController extends Controller
+{
+    use FileUploadTrait;
+
+    public function index(Request $request)
+    {
+        $query = Team::query()->with('designation');
+
+        if ($request->filled('q')) {
+            $query->where('name', 'like', "%{$request->q}%");
+        }
+
+        if ($request->filled('designation_id')) {
+            $query->where('designation_id', $request->designation_id);
+        }
+
+        if ($request->filled('status')) {
+            $query->where('is_active', $request->status);
+        }
+
+        $teams = $query->latest()->paginate(10);
+        $designations = Designation::all();
+
+        return view('admin.teams.index', compact('teams', 'designations'));
+    }
+
+    public function create()
+    {
+        $designations = Designation::all();
+        return view('admin.teams.create', compact('designations'));
+    }
+
+    public function store(Request $request)
+    {
+        $request->validate([
+            'name' => 'required|string|max:255',
+            'designation_id' => 'required|exists:designations,id',
+            'avatar' => 'nullable|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
+            'is_active' => 'nullable|boolean',
+        ]);
+
+        $team = new Team($request->except('avatar'));
+        $team->slug = Str::slug($request->name);
+        $team->is_active = $request->has('is_active');
+
+        if ($request->hasFile('avatar')) {
+            $team->avatar = $this->uploadFile($request->file('avatar'), 'uploads/teams');
+        }
+
+        $team->save();
+
+        return redirect()->route('admin.teams.index')->with('success', 'Team member created successfully.');
+    }
+
+    public function edit(Team $team)
+    {
+        $designations = Designation::all();
+        return view('admin.teams.edit', compact('team', 'designations'));
+    }
+
+    public function update(Request $request, Team $team)
+    {
+        $request->validate([
+            'name' => 'required|string|max:255',
+            'designation_id' => 'required|exists:designations,id',
+            'avatar' => 'nullable|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
+            'is_active' => 'nullable|boolean',
+        ]);
+
+        $team->fill($request->except('avatar'));
+        $team->slug = Str::slug($request->name);
+        $team->is_active = $request->has('is_active');
+
+        if ($request->hasFile('avatar')) {
+            $this->deleteFile($team->avatar, 'uploads/teams');
+            $team->avatar = $this->uploadFile($request->file('avatar'), 'uploads/teams');
+        }
+
+        $team->save();
+
+        return redirect()->route('admin.teams.index')->with('success', 'Team member updated successfully.');
+    }
+
+    public function destroy(Team $team)
+    {
+        $this->deleteFile($team->avatar, 'uploads/teams');
+        $team->delete();
+
+        return redirect()->route('admin.teams.index')->with('success', 'Team member deleted successfully.');
+    }
+}

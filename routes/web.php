@@ -22,7 +22,9 @@ use App\Http\Controllers\Admin\{
     FeatureController,
     PageSettingController,
     MenuController,
-    ApplicantController
+    ApplicantController,
+    TeamController,
+    ClientReviewController
 };
 use App\Http\Controllers\Admin\{
     TagController,
@@ -148,6 +150,8 @@ Route::prefix('admin')->name('admin.')->middleware(['auth'])->group(function () 
         'price-plans'         => PricePlanController::class,
         'menus'               => MenuController::class,
         'applicants'          => ApplicantController::class,
+        'teams'               => TeamController::class,
+        'client-reviews'      => ClientReviewController::class,
     ]);
 
     // Page Settings

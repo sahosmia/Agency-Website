@@ -20,7 +20,7 @@ class PageController extends Controller
 
     public function about()
     {
-        $teams = Team::get();
+        $teams = Team::active()->get();
         $aboutSettings = $this->getPageSettings('about');
 
         return view('frontend.about', compact('teams', 'aboutSettings'));

@@ -23,7 +23,7 @@ class HomeController extends Controller
         $projects = Project::with('project_category:id,title')->latest()->limit(8)->get();
         $softwares = Software::with('software_category:id,title')->latest()->limit(8)->get();
         $services = Service::with('service_category:id,title')->latest()->limit(8)->get();
-        $client_reviews = ClientReview::latest()->limit(8)->get();
+        $client_reviews = ClientReview::active()->latest()->limit(8)->get();
         $values = Value::latest()->limit(4)->get();
         $working_processes = WorkingProcess::latest()->limit(4)->get();
         $faqs = Faq::latest()->get();
