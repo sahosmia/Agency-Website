@@ -13,7 +13,7 @@
         <thead>
             <tr class="bg-gray-200">
                 <th class="px-4 py-2">Name</th>
-                <th class="px-4 py-2">Actions</th>
+                <th class="px-4 py-2 w-24">Actions</th>
             </tr>
         </thead>
         <tbody>
