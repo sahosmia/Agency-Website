@@ -3,11 +3,11 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
+use App\Http\Requests\Admin\TeamRequest;
 use App\Models\Team;
 use App\Models\Designation;
 use App\Http\Controllers\Traits\FileUploadTrait;
 use Illuminate\Http\Request;
-use Illuminate\Support\Str;
 
 class TeamController extends Controller
 {
@@ -41,18 +41,9 @@ class TeamController extends Controller
         return view('admin.teams.create', compact('designations'));
     }
 
-    public function store(Request $request)
+    public function store(TeamRequest $request)
     {
-        $request->validate([
-            'name' => 'required|string|max:255',
-            'designation_id' => 'required|exists:designations,id',
-            'avatar' => 'nullable|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
-            'is_active' => 'nullable|boolean',
-        ]);
-
         $team = new Team($request->except('avatar'));
-        $team->slug = Str::slug($request->name);
-        $team->is_active = $request->has('is_active');
 
         if ($request->hasFile('avatar')) {
             $team->avatar = $this->uploadFile($request->file('avatar'), 'uploads/teams');
@@ -69,18 +60,9 @@ class TeamController extends Controller
         return view('admin.teams.edit', compact('team', 'designations'));
     }
 
-    public function update(Request $request, Team $team)
+    public function update(TeamRequest $request, Team $team)
     {
-        $request->validate([
-            'name' => 'required|string|max:255',
-            'designation_id' => 'required|exists:designations,id',
-            'avatar' => 'nullable|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
-            'is_active' => 'nullable|boolean',
-        ]);
-
         $team->fill($request->except('avatar'));
-        $team->slug = Str::slug($request->name);
-        $team->is_active = $request->has('is_active');
 
         if ($request->hasFile('avatar')) {
             $this->deleteFile($team->avatar, 'uploads/teams');

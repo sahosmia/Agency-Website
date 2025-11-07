@@ -3,8 +3,8 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
+use App\Http\Requests\Admin\MenuRequest;
 use App\Models\Menu;
-use Illuminate\Http\Request;
 
 class MenuController extends Controller
 {
@@ -28,15 +28,9 @@ class MenuController extends Controller
     /**
      * Store a newly created resource in storage.
      */
-    public function store(Request $request)
+    public function store(MenuRequest $request)
     {
-        $request->validate([
-            'name' => 'required|string|max:255',
-            'route' => 'required|string|max:255',
-            'order' => 'required|integer',
-        ]);
-
-        Menu::create($request->all());
+        Menu::create($request->validated());
 
         return redirect()->route('admin.menus.index')->with('success', 'Menu created successfully.');
     }
@@ -52,15 +46,9 @@ class MenuController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, Menu $menu)
+    public function update(MenuRequest $request, Menu $menu)
     {
-        $request->validate([
-            'name' => 'required|string|max:255',
-            'route' => 'required|string|max:255',
-            'order' => 'required|integer',
-        ]);
-
-        $menu->update($request->all());
+        $menu->update($request->validated());
 
         return redirect()->route('admin.menus.index')->with('success', 'Menu updated successfully.');
     }

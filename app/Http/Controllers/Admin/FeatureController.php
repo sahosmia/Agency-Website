@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
+use App\Http\Requests\Admin\FeatureRequest;
 use App\Models\Feature;
 use Illuminate\Http\Request;
 
@@ -38,14 +39,9 @@ class FeatureController extends Controller
     /**
      * Store a newly created resource in storage.
      */
-    public function store(Request $request)
+    public function store(FeatureRequest $request)
     {
-        $request->validate([
-            'name' => 'required|string|max:255',
-            'description' => 'nullable|string',
-        ]);
-
-        Feature::create($request->all());
+        Feature::create($request->validated());
 
         return redirect()->route('admin.features.index')->with('success', 'Feature created successfully.');
     }
@@ -69,14 +65,9 @@ class FeatureController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, Feature $feature)
+    public function update(FeatureRequest $request, Feature $feature)
     {
-        $request->validate([
-            'name' => 'required|string|max:255',
-            'description' => 'nullable|string',
-        ]);
-
-        $feature->update($request->all());
+        $feature->update($request->validated());
 
         return redirect()->route('admin.features.index')->with('success', 'Feature updated successfully.');
     }

@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
+use App\Http\Requests\Admin\ServiceTypeRequest;
 use App\Models\Service;
 use App\Models\ServiceType;
 use Illuminate\Http\Request;
@@ -27,14 +28,9 @@ class ServiceTypeController extends Controller
         return view('admin.service-types.create', compact('services'));
     }
 
-    public function store(Request $request)
+    public function store(ServiceTypeRequest $request)
     {
-        $request->validate([
-            'name' => 'required|string|max:255',
-            'service_id' => 'required|exists:services,id',
-        ]);
-
-        ServiceType::create($request->all());
+        ServiceType::create($request->validated());
 
         return redirect()->route('admin.service-types.index')->with('success', 'Service Type created successfully.');
     }
@@ -45,14 +41,9 @@ class ServiceTypeController extends Controller
         return view('admin.service-types.edit', compact('serviceType', 'services'));
     }
 
-    public function update(Request $request, ServiceType $serviceType)
+    public function update(ServiceTypeRequest $request, ServiceType $serviceType)
     {
-        $request->validate([
-            'name' => 'required|string|max:255',
-            'service_id' => 'required|exists:services,id',
-        ]);
-
-        $serviceType->update($request->all());
+        $serviceType->update($request->validated());
 
         return redirect()->route('admin.service-types.index')->with('success', 'Service Type updated successfully.');
     }
