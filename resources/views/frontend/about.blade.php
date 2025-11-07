@@ -88,10 +88,10 @@
             <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 mt-8">
                 @foreach ($teams as $team)
                     <div class="flex flex-col gap-4">
-                        <img class="rounded-md" src="{{ asset('upload/teams/' . $team->avatar) }}" alt="{{ $team->name }}">
+                        <img class="rounded-md" src="{{ $team->avatar_url }}" alt="{{ $team->name }}">
                         <div>
                             <h3 class="title-text-bold-medium text-secondary-950">{{ $team->name }}</h3>
-                            <p class="body-text-bold-large text-secondary-800">{{ $team->designation->title }}</p>
+                            <p class="body-text-bold-large text-secondary-800">{{ $team->designation->name }}</p>
                         </div>
                     </div>
                 @endforeach
