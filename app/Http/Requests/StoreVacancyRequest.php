@@ -2,16 +2,28 @@
 
 namespace App\Http\Requests;
 
+use App\Http\Requests\Traits\HandlesRequestValidation;
 use Illuminate\Foundation\Http\FormRequest;
 
 class StoreVacancyRequest extends FormRequest
 {
+    use HandlesRequestValidation;
+
     /**
      * Determine if the user is authorized to make this request.
      */
     public function authorize(): bool
     {
         return true;
+    }
+
+    /**
+     * Prepare the data for validation.
+     */
+    protected function prepareForValidation()
+    {
+        $this->prepareIsActive();
+        $this->prepareEndDate();
     }
 
     /**
@@ -24,7 +36,7 @@ class StoreVacancyRequest extends FormRequest
         return [
             'title' => 'required|string|max:255',
             'vacancy_category_id' => 'required|exists:vacancy_categories,id',
-            'type' => 'nullable|string',
+            'type' => 'required|string',
             'location' => 'nullable|string',
             'end_date' => 'nullable|date',
             'benefits' => 'nullable|string',

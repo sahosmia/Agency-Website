@@ -12,7 +12,7 @@
         <x-admin.create-button :route="route('admin.teams.create')" />
     </div>
 
-    <x-admin.flash-message />
+    <x-admin.status-message />
 
     <div class="mb-4">
         <form action="{{ route('admin.teams.index') }}" method="GET">
