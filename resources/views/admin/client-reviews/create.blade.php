@@ -17,6 +17,7 @@
         <x-admin.file-input name="avatar" label="Avatar" />
         <x-admin.text-input name="rating" label="Rating" required />
         <x-admin.textarea name="review" label="Review" required />
+        <x-admin.text-input name="sort" label="Sort Order" type="number" value="0" />
         <x-admin.checkbox-input name="is_active" label="Active" checked />
 
         <x-admin.submit-button label="Create" />

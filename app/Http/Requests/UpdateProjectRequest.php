@@ -28,6 +28,7 @@ class UpdateProjectRequest extends FormRequest
             'meta_title' => 'nullable|string|max:255',
             'meta_description' => 'nullable|string',
             'is_active' => 'nullable|boolean',
+            'sort' => 'nullable|integer',
             'faqs' => 'nullable|array',
             'faqs.*.question' => 'required|string',
             'faqs.*.answer' => 'required|string',

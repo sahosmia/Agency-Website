@@ -5,6 +5,8 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use App\Models\ClientReview;
 use App\Http\Controllers\Traits\FileUploadTrait;
+use App\Http\Requests\StoreClientReviewRequest;
+use App\Http\Requests\UpdateClientReviewRequest;
 use Illuminate\Http\Request;
 use Illuminate\Support\Str;
 
@@ -34,19 +36,10 @@ class ClientReviewController extends Controller
         return view('admin.client-reviews.create');
     }
 
-    public function store(Request $request)
+    public function store(StoreClientReviewRequest $request)
     {
-        $request->validate([
-            'name' => 'required|string|max:255',
-            'designation' => 'required|string|max:255',
-            'avatar' => 'nullable|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
-            'rating' => 'required|string|max:255',
-            'review' => 'required|string',
-            'is_active' => 'nullable|boolean',
-        ]);
-
-        $clientReview = new ClientReview($request->except('avatar'));
-        $clientReview->is_active = $request->has('is_active');
+        $clientReview = new ClientReview($request->validated());
+        $clientReview->is_active = $request->boolean('is_active');
 
         if ($request->hasFile('avatar')) {
             $clientReview->avatar = $this->uploadFile($request->file('avatar'), 'uploads/client_reviews');
@@ -62,19 +55,10 @@ class ClientReviewController extends Controller
         return view('admin.client-reviews.edit', compact('clientReview'));
     }
 
-    public function update(Request $request, ClientReview $clientReview)
+    public function update(UpdateClientReviewRequest $request, ClientReview $clientReview)
     {
-        $request->validate([
-            'name' => 'required|string|max:255',
-            'designation' => 'required|string|max:255',
-            'avatar' => 'nullable|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
-            'rating' => 'required|string|max:255',
-            'review' => 'required|string',
-            'is_active' => 'nullable|boolean',
-        ]);
-
-        $clientReview->fill($request->except('avatar'));
-        $clientReview->is_active = $request->has('is_active');
+        $clientReview->fill($request->validated());
+        $clientReview->is_active = $request->boolean('is_active');
 
         if ($request->hasFile('avatar')) {
             $this->deleteFile($clientReview->avatar, 'uploads/client_reviews');
