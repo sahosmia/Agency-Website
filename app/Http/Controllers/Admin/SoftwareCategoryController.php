@@ -6,12 +6,19 @@ use App\Http\Controllers\Controller;
 use App\Http\Requests\StoreSoftwareCategoryRequest;
 use App\Http\Requests\UpdateSoftwareCategoryRequest;
 use App\Models\SoftwareCategory;
+use Illuminate\Http\Request;
 
 class SoftwareCategoryController extends Controller
 {
-    public function index()
+    public function index(Request $request)
     {
-        $softwareCategories = SoftwareCategory::all();
+        $query = SoftwareCategory::query();
+
+        if ($request->filled('q')) {
+            $query->where('name', 'like', '%' . $request->q . '%');
+        }
+
+        $softwareCategories = $query->latest()->paginate(10);
         return view('admin.software-categories.index', compact('softwareCategories'));
     }
 

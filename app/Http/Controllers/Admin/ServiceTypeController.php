@@ -9,9 +9,15 @@ use Illuminate\Http\Request;
 
 class ServiceTypeController extends Controller
 {
-    public function index()
+    public function index(Request $request)
     {
-        $serviceTypes = ServiceType::with('service')->get();
+        $query = ServiceType::with('service');
+
+        if ($request->filled('q')) {
+            $query->where('name', 'like', '%' . $request->q . '%');
+        }
+
+        $serviceTypes = $query->latest()->paginate(10);
         return view('admin.service-types.index', compact('serviceTypes'));
     }
 

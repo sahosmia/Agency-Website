@@ -7,14 +7,25 @@ use App\Http\Controllers\Traits\FileUploadTrait;
 use App\Http\Requests\StoreWorkingProcessRequest;
 use App\Http\Requests\UpdateWorkingProcessRequest;
 use App\Models\WorkingProcess;
+use Illuminate\Http\Request;
 
 class WorkingProcessController extends Controller
 {
     use FileUploadTrait;
 
-    public function index()
+    public function index(Request $request)
     {
-        $workingProcesses = WorkingProcess::all();
+        $query = WorkingProcess::query();
+
+        if ($request->filled('q')) {
+            $query->where('title', 'like', '%' . $request->q . '%');
+        }
+
+        if ($request->filled('status')) {
+            $query->where('is_active', $request->status);
+        }
+
+        $workingProcesses = $query->latest()->paginate(10);
         return view('admin.working_processes.index', compact('workingProcesses'));
     }
 

@@ -8,16 +8,32 @@ use App\Http\Requests\StoreServiceRequest;
 use App\Http\Requests\UpdateServiceRequest;
 use App\Models\Service;
 use App\Models\ServiceCategory;
+use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Storage;
 
 class ServiceController extends Controller
 {
     use FileUploadTrait;
-    public function index()
+    public function index(Request $request)
     {
-        $services = Service::with('service_category')->get();
-        return view('admin.services.index', compact('services'));
+        $categories = ServiceCategory::all();
+        $query = Service::with('service_category');
+
+        if ($request->filled('q')) {
+            $query->where('name', 'like', '%' . $request->q . '%');
+        }
+
+        if ($request->filled('category_id')) {
+            $query->where('service_category_id', $request->category_id);
+        }
+
+        if ($request->filled('status')) {
+            $query->where('is_active', $request->status);
+        }
+
+        $services = $query->latest()->paginate(10);
+        return view('admin.services.index', compact('services', 'categories'));
     }
 
     public function create()

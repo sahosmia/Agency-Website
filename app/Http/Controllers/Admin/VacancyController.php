@@ -7,13 +7,29 @@ use App\Http\Requests\StoreVacancyRequest;
 use App\Http\Requests\UpdateVacancyRequest;
 use App\Models\Vacancy;
 use App\Models\VacancyCategory;
+use Illuminate\Http\Request;
 
 class VacancyController extends Controller
 {
-    public function index()
+    public function index(Request $request)
     {
-        $vacancies = Vacancy::with('vacancy_category')->get();
-        return view('admin.vacancies.index', compact('vacancies'));
+        $categories = VacancyCategory::all();
+        $query = Vacancy::with('vacancy_category');
+
+        if ($request->filled('q')) {
+            $query->where('title', 'like', '%' . $request->q . '%');
+        }
+
+        if ($request->filled('category_id')) {
+            $query->where('vacancy_category_id', $request->category_id);
+        }
+
+        if ($request->filled('status')) {
+            $query->where('is_active', $request->status);
+        }
+
+        $vacancies = $query->latest()->paginate(10);
+        return view('admin.vacancies.index', compact('vacancies', 'categories'));
     }
 
     public function create()

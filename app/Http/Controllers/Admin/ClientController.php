@@ -6,15 +6,26 @@ use App\Http\Controllers\Controller;
 use App\Http\Requests\StoreClientRequest;
 use App\Http\Requests\UpdateClientRequest;
 use App\Models\Client;
+use Illuminate\Http\Request;
 use App\Http\Controllers\Traits\FileUploadTrait;
 
 class ClientController extends Controller
 {
     use FileUploadTrait;
 
-    public function index()
+    public function index(Request $request)
     {
-        $clients = Client::all();
+        $query = Client::query();
+
+        if ($request->filled('q')) {
+            $query->where('name', 'like', '%' . $request->q . '%');
+        }
+
+        if ($request->filled('status')) {
+            $query->where('is_active', $request->status);
+        }
+
+        $clients = $query->latest()->paginate(10);
         return view('admin.clients.index', compact('clients'));
     }
 

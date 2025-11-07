@@ -13,6 +13,21 @@
                         <x-admin.create-button :route="route('admin.features.create')" class="btn btn-primary float-right" />
                     </div>
                     <div class="card-body">
+                        <div class="mb-3">
+                            <form action="{{ route('admin.features.index') }}" method="GET">
+                                <div class="input-group">
+                                    <input type="text" name="q" value="{{ request()->q }}" class="form-control" placeholder="Search by name...">
+                                    <select name="status" class="form-control">
+                                        <option value="">All Statuses</option>
+                                        <option value="1" {{ request()->status == '1' ? 'selected' : '' }}>Active</option>
+                                        <option value="0" {{ request()->status == '0' ? 'selected' : '' }}>Inactive</option>
+                                    </select>
+                                    <div class="input-group-append">
+                                        <button type="submit" class="btn btn-primary">Filter</button>
+                                    </div>
+                                </div>
+                            </form>
+                        </div>
                         <table class="table table-bordered">
                             <thead>
                                 <tr>
@@ -40,6 +55,9 @@
                                 @endforeach
                             </tbody>
                         </table>
+                        <div class="mt-4">
+                            {{ $features->appends(request()->query())->links() }}
+                        </div>
                     </div>
                 </div>
             </div>
