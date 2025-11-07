@@ -23,6 +23,7 @@ use App\Http\Controllers\Admin\{
     MenuController,
     ApplicantController,
     TeamController,
+    DesignationController,
     ClientReviewController
 };
 use App\Http\Controllers\Admin\{

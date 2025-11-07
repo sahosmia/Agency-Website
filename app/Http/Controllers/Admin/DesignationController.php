@@ -2,19 +2,17 @@
 
 namespace App\Http\Controllers\Admin;
 
-use App\Http\Controllers\Controller;
 use App\Models\Designation;
-use App\Http\Controllers\Traits\FileUploadTrait;
+use App\Http\Controllers\Controller;
+use App\Http\Requests\StoreDesignationRequest;
+use App\Http\Requests\UpdateDesignationRequest;
 use Illuminate\Http\Request;
-use Illuminate\Support\Str;
 
 class DesignationController extends Controller
 {
-    use FileUploadTrait;
-
     public function index(Request $request)
     {
-        $query = Designation::query()->with('designation');
+        $query = Designation::query();
 
         if ($request->filled('q')) {
             $query->where('title', 'like', "%{$request->q}%");
@@ -27,47 +25,32 @@ class DesignationController extends Controller
 
     public function create()
     {
-        $designations = Designation::all();
-        return view('admin.designations.create', compact('designations'));
+        return view('admin.designations.create');
     }
 
-    public function store(Request $request)
+    public function store(StoreDesignationRequest $request)
     {
-        $request->validate([
-            'title' => 'required|string|max:255',
-            'is_active' => 'nullable|boolean',
-        ]);
+        Designation::create($request->validated());
 
-        $designation = new Designation();
-        $designation->title = $request->title;
-        $designation->slug = Str::slug($request->title);
-        $designation->save();
-
-        return redirect()->route('admin.designations.index')->with('success', 'Designation member created successfully.');
+        return redirect()->route('admin.designations.index')->with('success', 'Designation created successfully.');
     }
 
     public function edit(Designation $designation)
     {
-        $designations = Designation::all();
-        return view('admin.designations.edit', compact('designation', 'designations'));
+        return view('admin.designations.edit', compact('designation'));
     }
 
-    public function update(Request $request, Designation $designation)
+    public function update(UpdateDesignationRequest $request, Designation $designation)
     {
-        $request->validate([
-            'title' => 'required|string|max:255',
-        ]);
+        $designation->update($request->validated());
 
-        $designation->slug = Str::slug($request->title);
-        $designation->save();
-
-        return redirect()->route('admin.designations.index')->with('success', 'Designation member updated successfully.');
+        return redirect()->route('admin.designations.index')->with('success', 'Designation updated successfully.');
     }
 
     public function destroy(Designation $designation)
     {
         $designation->delete();
 
-        return redirect()->route('admin.designations.index')->with('success', 'Designation member deleted successfully.');
+        return redirect()->route('admin.designations.index')->with('success', 'Designation deleted successfully.');
     }
 }

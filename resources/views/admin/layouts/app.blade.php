@@ -218,7 +218,7 @@
                     <div x-show="open && !sidebarCollapsed" @click.away="open = false" class="bg-gray-700">
                         <a href="{{ route('admin.teams.index') }}"
                             class="block px-8 py-2 text-gray-300 hover:bg-gray-600 {{ request()->routeIs('admin.teams.*') ? 'bg-gray-600' : '' }}">Teams</a>
-                        <a href="#"
+                        <a href="{{ route('admin.designations.index') }}"
                             class="block px-8 py-2 text-gray-300 hover:bg-gray-600 {{ request()->routeIs('admin.designations.*') ? 'bg-gray-600' : '' }}">Designations</a>
                     </div>
                 </div>
@@ -432,10 +432,7 @@
                                 <a href="{{ route('admin.technologies.create') }}"
                                     class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">New
                                     Technology</a>
-                                <a href="{{ route('admin.key-features.create') }}"
-                                <a hderef="{{ route('admin.key-features.create') }}"
-                                    class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">New Key
-                                    Feature</a>
+
                                 <a href="{{ route('admin.features.create') }}"
                                     class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">New Feature</a>
                                 <a href="{{ route('admin.trusted-companies.create') }}"
@@ -448,16 +445,14 @@
                                 <a href="{{ route('admin.working-processes.create') }}"
                                     class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">New Working
                                     Process</a>
-                                <a href="{{ route('admin.values.create') }}"
-                                    class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">New Value</a>
+
                                 <a href="{{ route('admin.social-media-links.create') }}"
                                     class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">New Social
                                     Media Link</a>
                                 <a href="{{ route('admin.price-plans.create') }}"
                                     class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">New Price
                                     Plan</a>
-                                <a href="{{ route('admin.menus.create') }}"
-                                    class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">New Menu</a>
+
                                 <a href="{{ route('admin.teams.create') }}"
                                     class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">New Team Member</a>
                                 <a href="{{ route('admin.client-reviews.create') }}"
