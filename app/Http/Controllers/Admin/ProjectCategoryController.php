@@ -15,7 +15,7 @@ class ProjectCategoryController extends Controller
         $query = ProjectCategory::query();
 
         if ($request->filled('q')) {
-            $query->where('name', 'like', '%' . $request->q . '%');
+            $query->where('title', 'like', '%' . $request->q . '%');
         }
 
         $projectCategories = $query->latest()->paginate(10);
