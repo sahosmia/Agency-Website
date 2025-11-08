@@ -6,22 +6,22 @@ use App\Http\Controllers\Controller;
 use App\Http\Requests\StoreVacancyRequest;
 use App\Http\Requests\UpdateVacancyRequest;
 use App\Models\Vacancy;
-use App\Models\VacancyCategory;
+use App\Models\Category;
 use Illuminate\Http\Request;
 
 class VacancyController extends Controller
 {
     public function index(Request $request)
     {
-        $categories = VacancyCategory::all();
-        $query = Vacancy::with('vacancy_category');
+        $categories = Category::all();
+        $query = Vacancy::with('category');
 
         if ($request->filled('q')) {
             $query->where('title', 'like', '%' . $request->q . '%');
         }
 
         if ($request->filled('category_id')) {
-            $query->where('vacancy_category_id', $request->category_id);
+            $query->where('category_id', $request->category_id);
         }
 
         if ($request->filled('status')) {
@@ -34,7 +34,7 @@ class VacancyController extends Controller
 
     public function create()
     {
-        $categories = VacancyCategory::all();
+        $categories = Category::all();
         return view('admin.vacancies.create', compact('categories'));
     }
 
@@ -51,7 +51,7 @@ class VacancyController extends Controller
 
     public function edit(Vacancy $vacancy)
     {
-        $categories = VacancyCategory::all();
+        $categories = Category::all();
         return view('admin.vacancies.edit', compact('vacancy', 'categories'));
     }
 

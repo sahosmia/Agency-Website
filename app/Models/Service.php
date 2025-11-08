@@ -15,7 +15,7 @@ class Service extends Model
     protected $fillable = [
         'name',
         'slug',
-        'service_category_id',
+        'category_id',
         'description',
         'image',
         'is_active',
@@ -39,9 +39,9 @@ class Service extends Model
         return 'name';
     }
 
-    public function service_category()
+    public function category()
     {
-        return $this->belongsTo(ServiceCategory::class, 'service_category_id');
+        return $this->belongsTo(Category::class);
     }
 
     public function serviceTypes()

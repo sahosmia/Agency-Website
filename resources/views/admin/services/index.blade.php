@@ -49,7 +49,7 @@
             @foreach ($services as $service)
                 <tr>
                     <td class="border px-4 py-2">{{ $service->name }}</td>
-                    <td class="border px-4 py-2">{{ $service->service_category->title }}</td>
+                    <td class="border px-4 py-2">{{ $service->category->name }}</td>
                     <td class="border px-4 py-2">
                         @if ($service->image)
                             <img src="{{ asset('storage/' . $service->image) }}" alt="{{ $service->name }}" class="h-16 w-16 object-cover">

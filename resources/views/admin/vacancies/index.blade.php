@@ -44,7 +44,7 @@
         @foreach ($vacancies as $vacancy)
         <tr>
             <td class="border px-4 py-2">{{ $vacancy->title }}</td>
-            <td class="border px-4 py-2">{{ $vacancy->vacancy_category->title }}</td>
+            <td class="border px-4 py-2">{{ $vacancy->category->name }}</td>
             <td class="border px-4 py-2">{{ $vacancy->location }}</td>
             <td class="border px-4 py-2">{{ $vacancy->end_date }}</td>
             <td class="border px-4 py-2">

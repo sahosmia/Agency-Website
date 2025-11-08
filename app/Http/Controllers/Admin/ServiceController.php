@@ -7,7 +7,7 @@ use App\Http\Controllers\Traits\FileUploadTrait;
 use App\Http\Requests\StoreServiceRequest;
 use App\Http\Requests\UpdateServiceRequest;
 use App\Models\Service;
-use App\Models\ServiceCategory;
+use App\Models\Category;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Storage;
@@ -17,15 +17,15 @@ class ServiceController extends Controller
     use FileUploadTrait;
     public function index(Request $request)
     {
-        $categories = ServiceCategory::all();
-        $query = Service::with('service_category');
+        $categories = Category::all();
+        $query = Service::with('category');
 
         if ($request->filled('q')) {
             $query->where('name', 'like', '%' . $request->q . '%');
         }
 
         if ($request->filled('category_id')) {
-            $query->where('service_category_id', $request->category_id);
+            $query->where('category_id', $request->category_id);
         }
 
         if ($request->filled('status')) {
@@ -38,7 +38,7 @@ class ServiceController extends Controller
 
     public function create()
     {
-        $categories = ServiceCategory::all();
+        $categories = Category::all();
         return view('admin.services.create', compact('categories'));
     }
 
@@ -65,7 +65,7 @@ class ServiceController extends Controller
 
     public function edit(Service $service)
     {
-        $categories = ServiceCategory::all();
+        $categories = Category::all();
         $service->load('serviceTypes.pricePlans');
         return view('admin.services.edit', compact('service', 'categories'));
     }

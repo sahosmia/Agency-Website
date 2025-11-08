@@ -9,7 +9,7 @@
     <form action="{{ route('admin.projects.store') }}" method="POST" enctype="multipart/form-data">
         @csrf
         <x-admin.text-input name="title" label="Title" required />
-        <x-admin.select name="project_category_id" label="Category" :options="$categories->pluck('title', 'id')" required />
+        <x-admin.select name="category_id" label="Category" :options="$categories->pluck('name', 'id')" required />
         <x-admin.file-input name="thumbnail" label="Thumbnail" />
         <x-admin.text-input name="meta_title" label="Meta Title" />
         <x-admin.textarea name="meta_description" label="Meta Description" />

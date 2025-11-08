@@ -49,7 +49,7 @@
             @foreach ($articles as $article)
                 <tr>
                     <td class="border px-4 py-2">{{ $article->title }}</td>
-                    <td class="border px-4 py-2">{{ $article->article_category->name }}</td>
+                    <td class="border px-4 py-2">{{ $article->category->name }}</td>
                     <td class="border px-4 py-2">
                         @if ($article->thumbnail)
                             <img src="{{ asset('storage/' . $article->thumbnail) }}" alt="{{ $article->title }}" class="h-16 w-16 object-cover">

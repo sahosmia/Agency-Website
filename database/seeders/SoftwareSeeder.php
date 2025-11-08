@@ -3,7 +3,7 @@
 namespace Database\Seeders;
 
 use App\Models\Software;
-use App\Models\SoftwareCategory;
+use App\Models\Category;
 use Illuminate\Database\Seeder;
 
 class SoftwareSeeder extends Seeder
@@ -13,10 +13,10 @@ class SoftwareSeeder extends Seeder
      */
     public function run(): void
     {
-        $categories = SoftwareCategory::pluck('id');
+        $categories = Category::pluck('id');
         if ($categories->isEmpty()) {
-            $this->call(SoftwareCategorySeeder::class);
-            $categories = SoftwareCategory::pluck('id');
+            $this->call(CategorySeeder::class);
+            $categories = Category::pluck('id');
         }
 
         $datas = [
@@ -54,7 +54,7 @@ class SoftwareSeeder extends Seeder
             Software::firstOrCreate(
                 ['slug' => $data['slug']],
                 array_merge($data, [
-                    'software_category_id' => $categories->random(),
+                    'category_id' => $categories->random(),
                 ])
             );
         }

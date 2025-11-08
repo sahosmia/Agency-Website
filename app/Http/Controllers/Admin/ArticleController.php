@@ -6,7 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Http\Requests\StoreArticleRequest;
 use App\Http\Requests\UpdateArticleRequest;
 use App\Models\Article;
-use App\Models\ArticleCategory;
+use App\Models\Category;
 use App\Models\Tag;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Traits\FileUploadTrait;
@@ -17,15 +17,15 @@ class ArticleController extends Controller
 
     public function index(Request $request)
     {
-        $categories = ArticleCategory::all();
-        $query = Article::with('article_category');
+        $categories = Category::all();
+        $query = Article::with('category');
 
         if ($request->filled('q')) {
             $query->where('title', 'like', '%' . $request->q . '%');
         }
 
         if ($request->filled('category_id')) {
-            $query->where('article_category_id', $request->category_id);
+            $query->where('category_id', $request->category_id);
         }
 
         if ($request->filled('status')) {
@@ -39,7 +39,7 @@ class ArticleController extends Controller
 
     public function create()
     {
-        $categories = ArticleCategory::all();
+        $categories = Category::all();
         $tags = Tag::all();
         return view('admin.articles.create', compact('categories', 'tags'));
     }
@@ -61,7 +61,7 @@ class ArticleController extends Controller
 
     public function edit(Article $article)
     {
-        $categories = ArticleCategory::all();
+        $categories = Category::all();
         $tags = Tag::all();
         $article->load('tags');
         return view('admin.articles.edit', compact('article', 'categories', 'tags'));

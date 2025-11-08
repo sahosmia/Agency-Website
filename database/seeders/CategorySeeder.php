@@ -2,10 +2,10 @@
 
 namespace Database\Seeders;
 
-use App\Models\ArticleCategory;
+use App\Models\Category;
 use Illuminate\Database\Seeder;
 
-class ArticleCategorySeeder extends Seeder
+class CategorySeeder extends Seeder
 {
     /**
      * Run the database seeds.
@@ -14,53 +14,53 @@ class ArticleCategorySeeder extends Seeder
     {
         $datas = [
             [
-                'title' => 'Web design & development',
+                'name' => 'Web design & development',
                 'slug' => 'web-design-development',
             ],
             [
-                'title' => 'Mobile App Development',
+                'name' => 'Mobile App Development',
                 'slug' => 'mobile-app-development',
             ],
             [
-                'title' => 'UI/UX design',
+                'name' => 'UI/UX design',
                 'slug' => 'ui-ux-design',
             ],
             [
-                'title' => 'E-commerce Solutions',
+                'name' => 'E-commerce Solutions',
                 'slug' => 'e-commerce-solutions',
             ],
             [
-                'title' => 'Social Media Marketing',
+                'name' => 'Social Media Marketing',
                 'slug' => 'social-media-marketing',
             ],
             [
-                'title' => 'SEO',
+                'name' => 'SEO',
                 'slug' => 'seo',
             ],
             [
-                'title' => 'Data Solution',
+                'name' => 'Data Solution',
                 'slug' => 'data-solution',
             ],
             [
-                'title' => 'Artificial Intelligence',
+                'name' => 'Artificial Intelligence',
                 'slug' => 'artificial-intelligence',
             ],
             [
-                'title' => 'Internet of Things (IoT)',
+                'name' => 'Internet of Things (IoT)',
                 'slug' => 'internet-of-things-iot',
             ],
             [
-                'title' => 'Software Architecting',
+                'name' => 'Software Architecting',
                 'slug' => 'software-architecting',
             ],
             [
-                'title' => 'Business Consultation',
+                'name' => 'Business Consultation',
                 'slug' => 'business-consultation',
             ],
         ];
 
         foreach ($datas as $data) {
-            ArticleCategory::create($data);
+            Category::firstOrCreate($data);
         }
     }
 }

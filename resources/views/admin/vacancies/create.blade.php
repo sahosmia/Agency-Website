@@ -10,7 +10,7 @@
         @csrf
         <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
             <x-admin.text-input name="title" label="Title"  />
-            <x-admin.select name="vacancy_category_id" label="Category" :options="$categories->pluck('title', 'id')"  />
+            <x-admin.select name="category_id" label="Category" :options="$categories->pluck('name', 'id')"  />
             <x-admin.text-input name="type" label="Type" />
             <x-admin.text-input name="location" label="Location" />
             <x-admin.text-input name="end_date" label="End Date" />

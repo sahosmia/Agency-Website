@@ -6,7 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Http\Requests\StoreProjectRequest;
 use App\Http\Requests\UpdateProjectRequest;
 use App\Models\Project;
-use App\Models\ProjectCategory;
+use App\Models\Category;
 use App\Http\Controllers\Traits\FileUploadTrait;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
@@ -17,15 +17,15 @@ class ProjectController extends Controller
 
     public function index(Request $request)
     {
-        $categories = ProjectCategory::all();
-        $query = Project::with('project_category');
+        $categories = Category::all();
+        $query = Project::with('category');
 
         if ($request->filled('q')) {
             $query->where('name', 'like', '%' . $request->q . '%');
         }
 
         if ($request->filled('category_id')) {
-            $query->where('project_category_id', $request->category_id);
+            $query->where('category_id', $request->category_id);
         }
 
         if ($request->filled('status')) {
@@ -38,7 +38,7 @@ class ProjectController extends Controller
 
     public function create()
     {
-        $categories = ProjectCategory::all();
+        $categories = Category::all();
         return view('admin.projects.create', compact('categories'));
     }
 
@@ -64,7 +64,7 @@ class ProjectController extends Controller
 
     public function edit(Project $project)
     {
-        $categories = ProjectCategory::all();
+        $categories = Category::all();
         return view('admin.projects.edit', compact('project', 'categories'));
     }
 

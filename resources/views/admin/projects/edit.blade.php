@@ -10,7 +10,7 @@
         @csrf
         @method('PUT')
         <x-admin.text-input name="title" label="Title" :value="$project->title" required />
-        <x-admin.select name="project_category_id" label="Category" :options="$categories->pluck('title', 'id')" :value="$project->project_category_id" required />
+        <x-admin.select name="category_id" label="Category" :options="$categories->pluck('name', 'id')" :value="$project->category_id" required />
         <x-admin.file-input name="thumbnail" label="Thumbnail" :value="$project->thumbnail" />
         <x-admin.text-input name="meta_title" label="Meta Title" :value="$project->meta_title" />
         <x-admin.textarea name="meta_description" label="Meta Description" :value="$project->meta_description" />

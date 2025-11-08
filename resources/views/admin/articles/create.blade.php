@@ -16,7 +16,7 @@
     <form action="{{ route('admin.articles.store') }}" method="POST" enctype="multipart/form-data">
         @csrf
         <x-admin.text-input name="title" label="Title" required />
-        <x-admin.select name="article_category_id" label="Category" :options="$categories->pluck('title', 'id')" required />
+        <x-admin.select name="category_id" label="Category" :options="$categories->pluck('name', 'id')" required />
         <x-admin.multi-select name="tags" label="Tags" :options="$tags->pluck('name', 'id')" />
         <x-admin.file-input name="thumbnail" label="Thumbnail" />
         <x-admin.textarea name="short_text" label="Short Text" />

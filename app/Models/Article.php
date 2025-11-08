@@ -13,7 +13,7 @@ class Article extends Model
 {
     use HasFactory, HasSlug, ScopeActive;
 
-    protected $fillable = ['title', 'slug', 'short_text', 'long_text', 'article_category_id', 'thumbnail', 'is_active', 'meta_title', 'meta_description'];
+    protected $fillable = ['title', 'slug', 'short_text', 'long_text', 'category_id', 'thumbnail', 'is_active', 'meta_title', 'meta_description'];
     protected $appends = ['thumbnail_url'];
 
     public function getThumbnailUrlAttribute()
@@ -26,9 +26,9 @@ class Article extends Model
     }
 
 
-    public function article_category()
+    public function category()
     {
-        return $this->belongsTo(ArticleCategory::class, 'article_category_id');
+        return $this->belongsTo(Category::class);
     }
 
     public function tags()

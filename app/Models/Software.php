@@ -16,7 +16,7 @@ class Software extends Model
     protected $fillable = [
         'name',
         'slug',
-        'software_category_id',
+        'category_id',
         'image',
         'is_active',
         'meta_title',
@@ -38,9 +38,9 @@ class Software extends Model
         return 'name';
     }
 
-    public function software_category()
+    public function category()
     {
-        return $this->belongsTo(SoftwareCategory::class, 'software_category_id');
+        return $this->belongsTo(Category::class);
     }
 
     public function pricePlans()
