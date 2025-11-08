@@ -57,4 +57,9 @@ class Software extends Model
     {
         return $this->morphToMany(KeyFeature::class, 'key_featureable');
     }
+
+    public function reviews()
+    {
+        return $this->morphMany(ClientReview::class, 'reviewable');
+    }
 }

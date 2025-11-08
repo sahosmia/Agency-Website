@@ -63,4 +63,9 @@ class Service extends Model
     {
         return $this->morphMany(Faq::class, 'faqable');
     }
+
+    public function reviews(): MorphMany
+    {
+        return $this->morphMany(ClientReview::class, 'reviewable');
+    }
 }

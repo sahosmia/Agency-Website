@@ -27,7 +27,6 @@ class Project extends Model
         'images',
         'thumbnails',
         'project_category_id',
-        'client_review_id',
         'is_active',
         'meta_title',
         'meta_description',
@@ -97,14 +96,13 @@ class Project extends Model
         return $this->belongsTo(ProjectCategory::class, 'project_category_id');
     }
 
-    // Relationship with ClientReview
-    public function clientReview()
-    {
-        return $this->belongsTo(ClientReview::class, 'client_review_id');
-    }
-
     public function faqs(): MorphMany
     {
         return $this->morphMany(Faq::class, 'faqable');
+    }
+
+    public function reviews(): MorphMany
+    {
+        return $this->morphMany(ClientReview::class, 'reviewable');
     }
 }

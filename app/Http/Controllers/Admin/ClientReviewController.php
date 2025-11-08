@@ -33,13 +33,21 @@ class ClientReviewController extends Controller
 
     public function create()
     {
-        return view('admin.client-reviews.create');
+        $services = \App\Models\Service::pluck('name', 'id');
+        $projects = \App\Models\Project::pluck('title', 'id');
+        $softwares = \App\Models\Software::pluck('name', 'id');
+        return view('admin.client-reviews.create', compact('services', 'projects', 'softwares'));
     }
 
     public function store(StoreClientReviewRequest $request)
     {
         $clientReview = new ClientReview($request->validated());
         $clientReview->is_active = $request->boolean('is_active');
+
+        if ($request->reviewable_type) {
+            $clientReview->reviewable_id = $request->reviewable_id;
+            $clientReview->reviewable_type = $request->reviewable_type;
+        }
 
         if ($request->hasFile('avatar')) {
             $clientReview->avatar = $this->uploadFile($request->file('avatar'), 'uploads/client_reviews');
@@ -52,13 +60,24 @@ class ClientReviewController extends Controller
 
     public function edit(ClientReview $clientReview)
     {
-        return view('admin.client-reviews.edit', compact('clientReview'));
+        $services = \App\Models\Service::pluck('name', 'id');
+        $projects = \App\Models\Project::pluck('title', 'id');
+        $softwares = \App\Models\Software::pluck('name', 'id');
+        return view('admin.client-reviews.edit', compact('clientReview', 'services', 'projects', 'softwares'));
     }
 
     public function update(UpdateClientReviewRequest $request, ClientReview $clientReview)
     {
         $clientReview->fill($request->validated());
         $clientReview->is_active = $request->boolean('is_active');
+
+        if ($request->reviewable_type) {
+            $clientReview->reviewable_id = $request->reviewable_id;
+            $clientReview->reviewable_type = $request->reviewable_type;
+        } else {
+            $clientReview->reviewable_id = null;
+            $clientReview->reviewable_type = null;
+        }
 
         if ($request->hasFile('avatar')) {
             $this->deleteFile($clientReview->avatar, 'uploads/client_reviews');
