@@ -4,6 +4,7 @@
 @section('header-title', 'Create Services')
 
 @section('content')
+<x-admin.back-button :route="route('admin.services.index')" />
 <h1 class="text-2xl font-bold mb-4">Create Service</h1>
 
 <form action="{{ route('admin.services.store') }}" method="POST" enctype="multipart/form-data">

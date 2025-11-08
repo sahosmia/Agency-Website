@@ -27,7 +27,6 @@
         <thead>
             <tr class="bg-gray-200">
                 <th class="px-4 py-2">Name</th>
-                <th class="px-4 py-2">Logo</th>
                 <th class="px-4 py-2">Status</th>
                 <th class="px-4 py-2 w-24">Actions</th>
             </tr>
@@ -35,11 +34,8 @@
         <tbody>
             @foreach ($trustedCompanies as $trustedCompany)
                 <tr>
-                    <td class="border px-4 py-2">{{ $trustedCompany->name }}</td>
                     <td class="border px-4 py-2">
-                        @if ($trustedCompany->logo)
-                            <img src="{{ asset('storage/' . $trustedCompany->logo) }}" alt="{{ $trustedCompany->name }}" class="h-16 w-16 object-cover">
-                        @endif
+                        <x-admin.image-title :name="$trustedCompany->name" :imagePath="asset('storage/' . $trustedCompany->logo)" />
                     </td>
                     <td class="border px-4 py-2">
                         <x-admin.status-badge :is-active="$trustedCompany->is_active" />

@@ -4,6 +4,7 @@
 @section('header-title', 'Show Service')
 
 @section('content')
+    <x-admin.back-button :route="route('admin.services.index')" />
     <div class="p-6 bg-white shadow-md rounded-lg">
         <div class="mb-4">
             <h2 class="text-2xl font-bold">{{ $service->name }}</h2>
