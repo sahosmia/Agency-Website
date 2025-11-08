@@ -11,6 +11,7 @@
 @endsection
 
 @section('content')
+    <x-admin.back-button :route="route('admin.articles.index')" />
     <h1 class="text-2xl font-bold mb-4">Create Article</h1>
 
     <form action="{{ route('admin.articles.store') }}" method="POST" enctype="multipart/form-data">

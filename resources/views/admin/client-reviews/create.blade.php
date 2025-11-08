@@ -8,6 +8,7 @@
 @endsection
 
 @section('content')
+    <x-admin.back-button :route="route('admin.client-reviews.index')" />
     <h1 class="text-2xl font-bold mb-4">Create Testimonial</h1>
 
     <form action="{{ route('admin.client-reviews.store') }}" method="POST" enctype="multipart/form-data">

@@ -4,6 +4,7 @@
 @section('header-title', 'Edit Article Categories')
 
 @section('content')
+    <x-admin.back-button :route="route('admin.article-categories.index')" />
     <h1 class="text-2xl font-bold mb-4">Edit Article Category</h1>
 
     <form action="{{ route('admin.article-categories.update', $articleCategory) }}" method="POST">
