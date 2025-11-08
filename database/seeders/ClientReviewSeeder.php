@@ -3,6 +3,9 @@
 namespace Database\Seeders;
 
 use App\Models\ClientReview;
+use App\Models\Project;
+use App\Models\Service;
+use App\Models\Software;
 use Illuminate\Database\Seeder;
 
 class ClientReviewSeeder extends Seeder
@@ -56,7 +59,32 @@ class ClientReviewSeeder extends Seeder
         ];
 
         foreach ($datas as $data) {
-            ClientReview::create($data);
+            ClientReview::updateOrCreate(['name' => $data['name']], $data);
+        }
+
+        $services = Service::all();
+        $projects = Project::all();
+        $softwares = Software::all();
+
+        if ($services->count() > 0) {
+            ClientReview::first()->update([
+                'reviewable_id' => $services->first()->id,
+                'reviewable_type' => Service::class,
+            ]);
+        }
+
+        if ($projects->count() > 0) {
+            ClientReview::find(2)->update([
+                'reviewable_id' => $projects->first()->id,
+                'reviewable_type' => Project::class,
+            ]);
+        }
+
+        if ($softwares->count() > 0) {
+            ClientReview::find(3)->update([
+                'reviewable_id' => $softwares->first()->id,
+                'reviewable_type' => Software::class,
+            ]);
         }
     }
 }
