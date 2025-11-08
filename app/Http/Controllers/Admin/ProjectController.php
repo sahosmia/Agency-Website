@@ -21,7 +21,7 @@ class ProjectController extends Controller
         $query = Project::with('project_category');
 
         if ($request->filled('q')) {
-            $query->where('name', 'like', '%' . $request->q . '%');
+            $query->where('title', 'like', '%' . $request->q . '%');
         }
 
         if ($request->filled('category_id')) {
