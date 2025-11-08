@@ -9,6 +9,7 @@
 @endsection
 
 @section('content')
+    <x-admin.back-button :route="route('admin.designations.index')" />
 <h1 class="text-2xl font-bold mb-4">Edit Designation</h1>
 
 <form action="{{ route('admin.designations.update', $designation) }}" method="POST">

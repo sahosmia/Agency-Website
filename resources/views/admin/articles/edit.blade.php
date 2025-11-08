@@ -4,6 +4,7 @@
 @section('header-title', 'Edit Articles')
 
 @section('content')
+    <x-admin.back-button :route="route('admin.articles.index')" />
     <h1 class="text-2xl font-bold mb-4">Edit Article</h1>
 
     <form action="{{ route('admin.articles.update', $article) }}" method="POST" enctype="multipart/form-data">

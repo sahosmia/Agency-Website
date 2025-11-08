@@ -4,6 +4,7 @@
 @section('header-title', 'Create Article Categories')
 
 @section('content')
+    <x-admin.back-button :route="route('admin.article-categories.index')" />
     <h1 class="text-2xl font-bold mb-4">Create Article Category</h1>
 
     <form action="{{ route('admin.article-categories.store') }}" method="POST">
