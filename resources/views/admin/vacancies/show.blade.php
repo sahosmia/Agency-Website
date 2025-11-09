@@ -16,7 +16,7 @@
     <!-- Vacancy Info Grid -->
     <div class="grid grid-cols-1 md:grid-cols-2 gap-6 text-gray-700">
         <div>
-            <p><span class="font-semibold">Category:</span> {{ $vacancy->category->name ?? 'N/A' }}</p>
+            <p><span class="font-semibold">Category:</span> {{ $vacancy->category->title ?? 'N/A' }}</p>
             <p><span class="font-semibold">Type:</span> {{ $vacancy->type ?? 'N/A' }}</p>
             <p><span class="font-semibold">Location:</span> {{ $vacancy->location ?? 'N/A' }}</p>
         </div>

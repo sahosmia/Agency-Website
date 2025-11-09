@@ -22,7 +22,7 @@
             <select name="category_id" class="border border-gray-300 px-4 py-2 w-1/3">
                 <option value="">All Categories</option>
                 @foreach($categories as $category)
-                    <option value="{{ $category->id }}" {{ request()->category_id == $category->id ? 'selected' : '' }}>{{ $category->name }}</option>
+                    <option value="{{ $category->id }}" {{ request()->category_id == $category->id ? 'selected' : '' }}>{{ $category->title }}</option>
                 @endforeach
             </select>
             <select name="status" class="border border-gray-300 px-4 py-2 w-1/3">
@@ -50,7 +50,7 @@
                     <td class="border px-4 py-2">
                         <x-admin.image-title :name="$article->title" :imagePath="asset('storage/' . $article->thumbnail)" />
                     </td>
-                    <td class="border px-4 py-2">{{ $article->category->name }}</td>
+                    <td class="border px-4 py-2">{{ $article->category->title }}</td>
                     <td class="border px-4 py-2">
                         <x-admin.status-badge :is-active="$article->is_active" />
                     </td>

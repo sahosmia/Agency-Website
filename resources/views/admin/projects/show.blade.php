@@ -9,7 +9,7 @@
             <h2 class="text-2xl font-bold">{{ $project->title }}</h2>
         </div>
         <div class="mb-4">
-            <strong>Category:</strong> {{ $project->category->name }}
+            <strong>Category:</strong> {{ $project->category->title }}
         </div>
         @if ($project->thumbnail)
             <div class="mb-4">

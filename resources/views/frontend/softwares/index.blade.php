@@ -55,7 +55,7 @@
                 <div>
                     <img class="max-h-72 w-full object-cover rounded-xl" src="{{ asset('upload/softwares/card img.png') }}" alt="{{ $software->title }}" />
                     <div class="mt-4">
-                        <button class="px-4 py-2   border rounded-full border-secondary-200 label-text-regular-small text-secondary-800"> {{ $software->category->name }} </button>
+                        <button class="px-4 py-2   border rounded-full border-secondary-200 label-text-regular-small text-secondary-800"> {{ $software->category->title }} </button>
                         <h2 class="title-text-bold-medium text-secondary-950 pt-2"> {{ $software->title }} </h2>
                         <p class="body-text-regular-medium text-secondary-600 pt-1"> {{ $software->short_text }} </p>
                     </div>

@@ -77,7 +77,7 @@
             <div class="mt-4">
                 <button
                     class="px-4 py-2 border rounded-full border-secondary-200 label-text-regular-small text-secondary-800">
-                    {{ $service->category->name }}
+                    {{ $service->category->title }}
                 </button>
                 <h2 class="title-text-bold-medium text-secondary-950 pt-2">
                     {{ $service->title }}

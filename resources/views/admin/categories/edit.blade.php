@@ -10,7 +10,7 @@
     <form action="{{ route('admin.categories.update', $category) }}" method="POST">
         @csrf
         @method('PUT')
-        <x-admin.text-input name="title" label="Title" :value="$category->name" required />
+        <x-admin.text-input name="title" label="Title" :value="$category->title" required />
         <x-admin.submit-button label="Update" />
     </form>
 @endsection

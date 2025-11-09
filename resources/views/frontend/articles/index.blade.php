@@ -66,7 +66,7 @@
             <div class="mt-4">
                 <button
                     class="px-4 py-2   border rounded-full border-secondary-200 label-text-regular-small text-secondary-800">
-                    {{ $article->category->name }} </button>
+                    {{ $article->category->title }} </button>
                 <h3 class="title-text-bold-medium text-secondary-950 pt-2"> {{ $article->title }} </h3>
                 <p class="body-text-regular-medium text-secondary-600 pt-1"> {{ $article->short_text }} </p>
             </div>

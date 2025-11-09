@@ -55,7 +55,7 @@
                 <div class="border border-secondary-400 rounded-xl p-6 flex flex-col gap-6">
                     <div>
                         <h2 class="sub-title-large-regular text-secondary-950 "> {{ $vacancy->title }} </h2>
-                        <button class="px-4 py-2  mt-2  border rounded-full border-secondary-200 label-text-regular-small text-secondary-800"> {{ $vacancy->category->name }} </button>
+                        <button class="px-4 py-2  mt-2  border rounded-full border-secondary-200 label-text-regular-small text-secondary-800"> {{ $vacancy->category->title }} </button>
                     </div>
 
                     <div class="flex flex-col gap-4">

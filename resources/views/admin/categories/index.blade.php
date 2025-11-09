@@ -29,7 +29,7 @@
         <tbody>
             @foreach ($categories as $category)
                 <tr>
-                    <td class="border px-4 py-2">{{ $category->name }}</td>
+                    <td class="border px-4 py-2">{{ $category->title }}</td>
                     <td class="border px-4 py-2">{{ $category->slug }}</td>
                     <td class="border px-4 py-2">
                         <x-admin.actions-dropdown

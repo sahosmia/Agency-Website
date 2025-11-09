@@ -10,7 +10,7 @@
             <h2 class="text-2xl font-bold">{{ $service->name }}</h2>
         </div>
         <div class="mb-4">
-            <strong>Category:</strong> {{ $service->category->name }}
+            <strong>Category:</strong> {{ $service->category->title }}
         </div>
         @if ($service->image)
             <div class="mb-4">

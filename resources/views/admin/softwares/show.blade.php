@@ -9,7 +9,7 @@
             <h2 class="text-2xl font-bold">{{ $software->name }}</h2>
         </div>
         <div class="mb-4">
-            <strong>Category:</strong> {{ $software->category->name }}
+            <strong>Category:</strong> {{ $software->category->title }}
         </div>
         @if ($software->image)
             <div class="mb-4">
