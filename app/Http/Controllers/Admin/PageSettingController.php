@@ -52,6 +52,7 @@ class PageSettingController extends Controller
                     'trusted_partners_description' => 'required|string',
                     'clients_around_world_title' => 'required|string|max:255',
                     'clients_around_world_description' => 'required|string',
+                    'item_limit' => 'nullable|numeric|min:1',
                 ],
                 'textarea_fields' => [
                     'services_description',
@@ -97,7 +98,25 @@ class PageSettingController extends Controller
                     ['name' => 'client_country_four_image', 'path' => 'uploads/home'],
                     ['name' => 'client_country_five_image', 'path' => 'uploads/home'],
                     ['name' => 'article_default_image', 'path' => 'uploads/home'],
-                ]
+                ],
+                'checkbox_fields' => [
+                    'hero_section_is_active' => 'nullable|boolean',
+                    'hero_card_section_is_active' => 'nullable|boolean',
+                    'reviewer_card_section_is_active' => 'nullable|boolean',
+                    'searching_section_is_active' => 'nullable|boolean',
+                    'values_section_is_active' => 'nullable|boolean',
+                    'lets_discuss_section_is_active' => 'nullable|boolean',
+                    'projects_section_is_active' => 'nullable|boolean',
+                    'services_section_is_active' => 'nullable|boolean',
+                    'software_solution_section_is_active' => 'nullable|boolean',
+                    'working_process_section_is_active' => 'nullable|boolean',
+                    'contact_us_section_is_active' => 'nullable|boolean',
+                    'trusted_partners_section_is_active' => 'nullable|boolean',
+                    'clients_around_world_section_is_active' => 'nullable|boolean',
+                    'client_reviews_section_is_active' => 'nullable|boolean',
+                    'faq_section_is_active' => 'nullable|boolean',
+                    'articles_section_is_active' => 'nullable|boolean',
+                ],
             ],
             'other_page' => [
                 'text_fields' => [
@@ -118,6 +137,7 @@ class PageSettingController extends Controller
                     'client_reviews_title' => 'required|string|max:255',
                     'other_projects_title' => 'required|string|max:255',
                     'other_projects_description' => 'required|string',
+                    'admin_pagination' => 'nullable|numeric|min:1',
                 ],
                 'textarea_fields' => [
                     'description',
@@ -152,6 +172,7 @@ class PageSettingController extends Controller
                     'terms_content' => 'required|string',
                     'privacy_title' => 'required|string|max:255',
                     'privacy_content' => 'required|string',
+                    'admin_pagination' => 'nullable|numeric|min:1',
                 ],
                 'textarea_fields' => ['404_description', 'terms_content', 'privacy_content'],
                 'image_fields' => [
@@ -165,7 +186,7 @@ class PageSettingController extends Controller
             ]
         ];
 
-        return $fields[$pageName] ?? ['text_fields' => [], 'textarea_fields' => [], 'image_fields' => [], 'upload_paths' => []];
+        return $fields[$pageName] ?? ['text_fields' => [], 'textarea_fields' => [], 'image_fields' => [], 'upload_paths' => [], 'checkbox_fields' => []];
     }
 
 
@@ -182,15 +203,19 @@ class PageSettingController extends Controller
     public function update(Request $request, $pageName)
     {
         $fields = $this->getPageFields($pageName);
-        $validationRules = array_merge($fields['text_fields'], $fields['image_fields']);
+        $validationRules = array_merge(
+            $fields['text_fields'],
+            $fields['image_fields'],
+            $fields['checkbox_fields']
+        );
         $request->validate($validationRules);
 
-        $this->updatePageSettings($request, $pageName, array_keys($fields['text_fields']), $fields['upload_paths']);
+        $this->updatePageSettings($request, $pageName, array_keys($fields['text_fields']), $fields['upload_paths'], array_keys($fields['checkbox_fields']));
 
         return redirect()->back()->with('success', Str::of($pageName)->replace('_', ' ')->title() . ' settings updated successfully.');
     }
 
-    private function updatePageSettings(Request $request, $pageName, $fields, $imageFields = [])
+    private function updatePageSettings(Request $request, $pageName, $fields, $imageFields = [], $checkboxFields = [])
     {
         $page = PageSetting::firstOrNew(['page_name' => $pageName]);
         $settings = $page->settings ?? [];
@@ -205,6 +230,10 @@ class PageSettingController extends Controller
             if ($request->hasFile($imageField['name'])) {
                 $settings[$imageField['name']] = $this->uploadFile($request, $imageField['name'], $imageField['path']);
             }
+        }
+
+        foreach ($checkboxFields as $checkboxField) {
+            $settings[$checkboxField] = $request->has($checkboxField);
         }
 
         $page->settings = $settings;

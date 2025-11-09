@@ -31,6 +31,13 @@
                                     </div>
                                 @endforeach
 
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label for="item_limit">Item Limit</label>
+                                        <input type="number" name="item_limit" id="item_limit" class="form-control" value="{{ old('item_limit', $settings['item_limit'] ?? 8) }}">
+                                    </div>
+                                </div>
+
                                 @foreach ($fields['image_fields'] as $field => $rules)
                                     <div class="col-md-6">
                                         <div class="form-group">
@@ -43,6 +50,26 @@
                                     </div>
                                 @endforeach
                             </div>
+
+                            @if (!empty($fields['checkbox_fields']))
+                                <div class="row">
+                                    <div class="col-12">
+                                        <hr>
+                                        <h4>Section Visibility</h4>
+                                    </div>
+                                    @foreach ($fields['checkbox_fields'] as $field => $rules)
+                                        <div class="col-md-4">
+                                            <div class="form-group">
+                                                <div class="custom-control custom-switch">
+                                                    <input type="checkbox" class="custom-control-input" id="{{ $field }}" name="{{ $field }}" value="1" {{ old($field, $settings[$field] ?? false) ? 'checked' : '' }}>
+                                                    <label class="custom-control-label" for="{{ $field }}">{{ Str::of($field)->replace('_is_active', '')->replace('_', ' ')->title() }}</label>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    @endforeach
+                                </div>
+                            @endif
+
                             <button type="submit" class="btn btn-primary">Update Settings</button>
                         </form>
                     </div>

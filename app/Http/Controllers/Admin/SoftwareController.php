@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
+use App\Http\Controllers\Traits\AdminPagination;
 use App\Http\Controllers\Traits\FileUploadTrait;
 use App\Http\Requests\StoreSoftwareRequest;
 use App\Http\Requests\UpdateSoftwareRequest;
@@ -13,9 +14,11 @@ use Illuminate\Support\Facades\Storage;
 
 class SoftwareController extends Controller
 {
-     use FileUploadTrait;
+     use FileUploadTrait, AdminPagination;
     public function index(Request $request)
     {
+        $adminPagination = $this->getAdminPagination();
+
         $categories = SoftwareCategory::all();
         $query = Software::with('category');
 
@@ -31,7 +34,7 @@ class SoftwareController extends Controller
             $query->where('is_active', $request->status);
         }
 
-        $softwares = $query->latest()->paginate(10);
+        $softwares = $query->latest()->paginate($adminPagination);
         return view('admin.softwares.index', compact('softwares', 'categories'));
     }
 
