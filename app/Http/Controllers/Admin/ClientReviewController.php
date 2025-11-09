@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
+use App\Http\Controllers\Traits\AdminPagination;
 use App\Models\ClientReview;
 use App\Http\Controllers\Traits\FileUploadTrait;
 use App\Http\Requests\StoreClientReviewRequest;
@@ -12,10 +13,12 @@ use Illuminate\Support\Str;
 
 class ClientReviewController extends Controller
 {
-    use FileUploadTrait;
+    use FileUploadTrait, AdminPagination;
 
     public function index(Request $request)
     {
+        $adminPagination = $this->getAdminPagination();
+
         $query = ClientReview::query();
 
         if ($request->filled('q')) {
@@ -26,7 +29,7 @@ class ClientReviewController extends Controller
             $query->where('is_active', $request->status);
         }
 
-        $clientReviews = $query->latest()->paginate(10);
+        $clientReviews = $query->latest()->paginate($adminPagination);
 
         return view('admin.client-reviews.index', compact('clientReviews'));
     }

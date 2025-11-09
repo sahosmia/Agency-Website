@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
+use App\Http\Controllers\Traits\AdminPagination;
 use App\Http\Controllers\Traits\FileUploadTrait;
 use App\Http\Requests\StoreServiceRequest;
 use App\Http\Requests\UpdateServiceRequest;
@@ -14,9 +15,11 @@ use Illuminate\Support\Facades\Storage;
 
 class ServiceController extends Controller
 {
-    use FileUploadTrait;
+    use FileUploadTrait, AdminPagination;
     public function index(Request $request)
     {
+        $adminPagination = $this->getAdminPagination();
+
         $categories = ServiceCategory::all();
         $query = Service::with('service_category');
 
@@ -32,7 +35,7 @@ class ServiceController extends Controller
             $query->where('is_active', $request->status);
         }
 
-        $services = $query->latest()->paginate(10);
+        $services = $query->latest()->paginate($adminPagination);
         return view('admin.services.index', compact('services', 'categories'));
     }
 
