@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
+use App\Http\Controllers\Traits\AdminPagination;
 use App\Http\Requests\StoreProjectRequest;
 use App\Http\Requests\UpdateProjectRequest;
 use App\Models\Project;
@@ -13,10 +14,12 @@ use Illuminate\Support\Facades\DB;
 
 class ProjectController extends Controller
 {
-    use FileUploadTrait;
+    use FileUploadTrait, AdminPagination;
 
     public function index(Request $request)
     {
+                $adminPagination = $this->getAdminPagination();
+
         $categories = Category::all();
         $query = Project::with('category');
 
@@ -32,7 +35,7 @@ class ProjectController extends Controller
             $query->where('is_active', $request->status);
         }
 
-        $projects = $query->latest()->paginate(10);
+        $projects = $query->latest()->paginate($adminPagination);
         return view('admin.projects.index', compact('projects', 'categories'));
     }
 

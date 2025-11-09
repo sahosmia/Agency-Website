@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
+use App\Http\Controllers\Traits\AdminPagination;
 use App\Http\Requests\StoreArticleRequest;
 use App\Http\Requests\UpdateArticleRequest;
 use App\Models\Article;
@@ -13,10 +14,11 @@ use App\Http\Controllers\Traits\FileUploadTrait;
 
 class ArticleController extends Controller
 {
-    use FileUploadTrait;
+    use FileUploadTrait, AdminPagination;
 
     public function index(Request $request)
     {
+        $adminPagination = $this->getAdminPagination();
         $categories = Category::all();
         $query = Article::with('category');
 
@@ -32,7 +34,7 @@ class ArticleController extends Controller
             $query->where('is_active', $request->status);
         }
 
-        $articles = $query->latest()->paginate(10);
+        $articles = $query->latest()->paginate($adminPagination);
 
         return view('admin.articles.index', compact('articles', 'categories'));
     }

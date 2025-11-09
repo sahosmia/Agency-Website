@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
+use App\Http\Controllers\Traits\AdminPagination;
 use App\Http\Requests\StoreVacancyRequest;
 use App\Http\Requests\UpdateVacancyRequest;
 use App\Models\Vacancy;
@@ -11,8 +12,10 @@ use Illuminate\Http\Request;
 
 class VacancyController extends Controller
 {
+    use AdminPagination;
     public function index(Request $request)
     {
+        $adminPagination = $this->getAdminPagination();
         $categories = Category::all();
         $query = Vacancy::with('category');
 
@@ -28,7 +31,7 @@ class VacancyController extends Controller
             $query->where('is_active', $request->status);
         }
 
-        $vacancies = $query->latest()->paginate(10);
+        $vacancies = $query->latest()->paginate($adminPagination);
         return view('admin.vacancies.index', compact('vacancies', 'categories'));
     }
 

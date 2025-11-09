@@ -19,19 +19,21 @@ class HomeController extends Controller
 {
     public function index()
     {
-        $articles = Article::with('category:id,title')->latest()->limit(8)->get();
-        $projects = Project::with('category:id,title')->orderBy('sort')->limit(8)->get();
-        $softwares = Software::with('category:id,title')->latest()->limit(8)->get();
-        $services = Service::with('category:id,title')->latest()->limit(8)->get();
-        $client_reviews = ClientReview::active()->orderBy('sort')->limit(8)->get();
+        $homePage = PageSetting::where('page_name', 'home')->first();
+        $homeSettings = $homePage ? $homePage->settings : [];
+        $itemLimit = $homeSettings['item_limit'] ?? 8;
+
+        $articles = Article::with('category:id,title')->latest()->limit($itemLimit)->get();
+        $projects = Project::with('category:id,title')->orderBy('sort')->limit($itemLimit)->get();
+        $softwares = Software::with('category:id,title')->latest()->limit($itemLimit)->get();
+        $services = Service::with('category:id,title')->latest()->limit($itemLimit)->get();
+        $client_reviews = ClientReview::active()->orderBy('sort')->limit($itemLimit)->get();
         $values = Value::latest()->limit(4)->get();
         $working_processes = WorkingProcess::latest()->limit(4)->get();
         $faqs = Faq::orderBy('sort')->get();
         $trusted_partners = TrustedPartner::latest()->limit(4)->get();
         $business_tags = BusinessTag::latest()->get();
 
-        $homePage = PageSetting::where('page_name', 'home')->first();
-        $homeSettings = $homePage ? $homePage->settings : [];
         $contactPage = PageSetting::where('page_name', 'contact')->first();
         $contactSettings = $contactPage ? $contactPage->settings : [];
 
