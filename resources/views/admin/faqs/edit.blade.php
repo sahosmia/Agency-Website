@@ -4,6 +4,7 @@
 @section('header-title', 'Edit Faqs')
 
 @section('content')
+    <x-admin.back-button :route="route('admin.faqs.index')" />
     <div class="flex justify-between items-center mb-4">
         <h1 class="text-2xl font-bold">Edit FAQ</h1>
     </div>

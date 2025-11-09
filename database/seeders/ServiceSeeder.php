@@ -3,7 +3,7 @@
 namespace Database\Seeders;
 
 use App\Models\Service;
-use App\Models\ServiceCategory;
+use App\Models\Category;
 use Illuminate\Database\Seeder;
 
 class ServiceSeeder extends Seeder
@@ -13,10 +13,10 @@ class ServiceSeeder extends Seeder
      */
     public function run(): void
     {
-        $categories = ServiceCategory::pluck('id');
+        $categories = Category::pluck('id');
         if ($categories->isEmpty()) {
-            $this->call(ServiceCategorySeeder::class);
-            $categories = ServiceCategory::pluck('id');
+            $this->call(CategorySeeder::class);
+            $categories = Category::pluck('id');
         }
 
         $datas = [
@@ -58,7 +58,7 @@ class ServiceSeeder extends Seeder
             Service::firstOrCreate(
                 ['slug' => $data['slug']],
                 array_merge($data, [
-                    'service_category_id' => $categories->random(),
+                    'category_id' => $categories->random(),
                 ])
             );
         }

@@ -6,8 +6,8 @@ use App\Http\Controllers\Controller;
 use App\Models\PageSetting;
 use App\Models\Team;
 use Illuminate\Http\Request;
-use App\Models\ServiceCategory;
-use App\Models\SoftwareCategory;
+use App\Models\Category;
+use App\Models\Category;
 use App\Models\Feature;
 
 class PageController extends Controller
@@ -112,15 +112,15 @@ class PageController extends Controller
 
     public function service_plans()
     {
-        $serviceCategories = ServiceCategory::with('services.serviceTypes.pricePlans.features')->get();
+        $categories = Category::with('services.serviceTypes.pricePlans.features')->get();
         $features = Feature::all();
         $servicePlansSettings = $this->getPageSettings('service-plans');
-        return view('frontend.service-plans', compact('serviceCategories', 'features', 'servicePlansSettings'));
+        return view('frontend.service-plans', compact('Categories', 'features', 'servicePlansSettings'));
     }
 
     public function software_plans()
     {
-        $softwareCategories = SoftwareCategory::with('softwares.pricePlans.features')->get();
+        $softwareCategories = Category::with('softwares.pricePlans.features')->get();
         $features = Feature::all();
         $softwarePlansSettings = $this->getPageSettings('software-plans');
         return view('frontend.software-plans', compact('softwareCategories', 'features', 'softwarePlansSettings'));

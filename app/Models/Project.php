@@ -26,7 +26,7 @@ class Project extends Model
         'screenshots',
         'images',
         'thumbnails',
-        'project_category_id',
+        'category_id',
         'client_review_id',
         'is_active',
         'meta_title',
@@ -89,12 +89,12 @@ class Project extends Model
         return $urls;
     }
 
-    
 
-    // Relationship with ProjectCategory
-    public function project_category()
+
+    // Relationship with Category
+    public function category()
     {
-        return $this->belongsTo(ProjectCategory::class, 'project_category_id');
+        return $this->belongsTo(Category::class);
     }
 
     // Relationship with ClientReview

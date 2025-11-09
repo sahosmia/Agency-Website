@@ -4,7 +4,7 @@ namespace Database\Seeders;
 
 use App\Models\ClientReview;
 use App\Models\Project;
-use App\Models\ProjectCategory;
+use App\Models\Category;
 use Illuminate\Database\Seeder;
 
 class ProjectSeeder extends Seeder
@@ -14,10 +14,10 @@ class ProjectSeeder extends Seeder
      */
     public function run(): void
     {
-        $categories = ProjectCategory::pluck('id');
+        $categories = Category::pluck('id');
         if ($categories->isEmpty()) {
-            $this->call(ProjectCategorySeeder::class);
-            $categories = ProjectCategory::pluck('id');
+            $this->call(CategorySeeder::class);
+            $categories = Category::pluck('id');
         }
 
         $reviews = ClientReview::pluck('id');
@@ -130,8 +130,8 @@ class ProjectSeeder extends Seeder
 
         foreach ($datas as $data) {
             Project::create(array_merge($data, [
-                'project_category_id' => $categories->random(),
-                'client_review_id' => $reviews->random(),
+                'category_id' => $categories->random(),
+                // 'client_review_id' => $reviews->random(),
             ]));
         }
     }

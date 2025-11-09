@@ -4,12 +4,13 @@
 @section('header-title', 'Show Service')
 
 @section('content')
+    <x-admin.back-button :route="route('admin.services.index')" />
     <div class="p-6 bg-white shadow-md rounded-lg">
         <div class="mb-4">
             <h2 class="text-2xl font-bold">{{ $service->name }}</h2>
         </div>
         <div class="mb-4">
-            <strong>Category:</strong> {{ $service->service_category->name }}
+            <strong>Category:</strong> {{ $service->category->name }}
         </div>
         @if ($service->image)
             <div class="mb-4">

@@ -40,7 +40,6 @@
             <tr class="bg-gray-200">
                 <th class="px-4 py-2">Name</th>
                 <th class="px-4 py-2">Category</th>
-                <th class="px-4 py-2">Image</th>
                 <th class="px-4 py-2">Status</th>
                 <th class="px-4 py-2 w-24">Actions</th>
             </tr>
@@ -48,13 +47,10 @@
         <tbody>
             @foreach ($services as $service)
                 <tr>
-                    <td class="border px-4 py-2">{{ $service->name }}</td>
-                    <td class="border px-4 py-2">{{ $service->service_category->title }}</td>
                     <td class="border px-4 py-2">
-                        @if ($service->image)
-                            <img src="{{ asset('storage/' . $service->image) }}" alt="{{ $service->name }}" class="h-16 w-16 object-cover">
-                        @endif
+                        <x-admin.image-title :name="$service->name" :imagePath="asset('storage/' . $service->image)" />
                     </td>
+                    <td class="border px-4 py-2">{{ $service->category->name }}</td>
                     <td class="border px-4 py-2">
                         <x-admin.status-badge :is-active="$service->is_active" />
                     </td>

@@ -34,7 +34,6 @@
             <tr class="bg-gray-200">
                 <th class="px-4 py-2">Name</th>
                 <th class="px-4 py-2">Category</th>
-                <th class="px-4 py-2">Thumbnail</th>
                 <th class="px-4 py-2">Status</th>
                 <th class="px-4 py-2 w-24">Actions</th>
             </tr>
@@ -42,13 +41,10 @@
         <tbody>
             @foreach ($projects as $project)
                 <tr>
-                    <td class="border px-4 py-2">{{ $project->title }}</td>
-                    <td class="border px-4 py-2">{{ $project->project_category->title }}</td>
                     <td class="border px-4 py-2">
-                        @if ($project->thumbnail)
-                            <img src="{{ asset('storage/' . $project->thumbnail) }}" alt="{{ $project->title }}" class="h-16 w-16 object-cover">
-                        @endif
+                        <x-admin.image-title :name="$project->title" :imagePath="asset('storage/' . $project->thumbnail)" />
                     </td>
+                    <td class="border px-4 py-2">{{ $project->category->name }}</td>
                     <td class="border px-4 py-2">
                         <x-admin.status-badge :is-active="$project->is_active" />
                     </td>

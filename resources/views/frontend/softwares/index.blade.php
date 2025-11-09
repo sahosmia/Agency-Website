@@ -20,7 +20,7 @@
                 <!-- Category Filter Button -->
                 <div class="flex w-full md:w-[288px] items-center p-3 md:p-4 gap-4 border border-secondary-400 rounded-lg justify-between cursor-pointer" id="dropdownButton">
                     <p class="label-text-regular-large truncate">
-                        {{ request('category') ? $software_categories->firstWhere('id', request('category'))->title : 'All Category' }}
+                        {{ request('category') ? $categories->firstWhere('id', request('category'))->title : 'All Category' }}
                     </p>
                     <span><i class="fa-solid fa-arrow-down"></i></span>
                 </div>
@@ -32,7 +32,7 @@
                         <input type="radio" id="category_all" name="category" value="" onchange="this.form.submit()" {{ request('category') == '' ? 'checked' : '' }} />
                         <label for="category_all" class="text-base md:text-lg font-normal leading-6">All Projects</label>
                     </li>
-                    @foreach ($software_categories as $item)
+                    @foreach ($categories as $item)
                         <li class="flex items-center gap-2">
                             <input type="radio" id="category_{{ $item->id }}" name="category" value="{{ $item->id }}" onchange="this.form.submit()" {{ request('category') == $item->id ? 'checked' : '' }} />
                             <label for="category_{{ $item->id }}" class="text-base md:text-lg font-normal leading-6">{{ $item->title }}</label>
@@ -55,7 +55,7 @@
                 <div>
                     <img class="max-h-72 w-full object-cover rounded-xl" src="{{ asset('upload/softwares/card img.png') }}" alt="{{ $software->title }}" />
                     <div class="mt-4">
-                        <button class="px-4 py-2   border rounded-full border-secondary-200 label-text-regular-small text-secondary-800"> {{ $software->software_category->title }} </button>
+                        <button class="px-4 py-2   border rounded-full border-secondary-200 label-text-regular-small text-secondary-800"> {{ $software->category->name }} </button>
                         <h2 class="title-text-bold-medium text-secondary-950 pt-2"> {{ $software->title }} </h2>
                         <p class="body-text-regular-medium text-secondary-600 pt-1"> {{ $software->short_text }} </p>
                     </div>

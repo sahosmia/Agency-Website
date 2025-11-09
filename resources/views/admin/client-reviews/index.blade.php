@@ -34,7 +34,7 @@
         <tr class="bg-gray-200">
             <th class="px-4 py-2">Name</th>
             <th class="px-4 py-2">Designation</th>
-            <th class="px-4 py-2">Avatar</th>
+            <th class="px-4 py-2">Reviewed Item</th>
             <th class="px-4 py-2">Rating</th>
             <th class="px-4 py-2">Status</th>
             <th class="px-4 py-2 w-24">Actions</th>
@@ -43,11 +43,16 @@
     <tbody>
         @forelse ($clientReviews as $clientReview)
         <tr>
-            <td class="border px-4 py-2">{{ $clientReview->name }}</td>
+            <td class="border px-4 py-2">
+                <x-admin.image-title :name="$clientReview->name" :imagePath="$clientReview->avatar_url" />
+            </td>
             <td class="border px-4 py-2">{{ $clientReview->designation }}</td>
             <td class="border px-4 py-2">
-                <img src="{{ $clientReview->avatar_url }}" alt="{{ $clientReview->name }}"
-                    class="h-16 w-16 object-cover">
+                @if ($clientReview->reviewable)
+                    {{ Str::singular(Str::title(Str::snake($clientReview->reviewable_type, ' '))) }}: {{ $clientReview->reviewable->name ?? $clientReview->reviewable->title }}
+                @else
+                    Common
+                @endif
             </td>
             <td class="border px-4 py-2">{{ $clientReview->rating }}</td>
             <td class="border px-4 py-2">

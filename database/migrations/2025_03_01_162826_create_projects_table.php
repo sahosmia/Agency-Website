@@ -26,15 +26,16 @@ return new class extends Migration
             $table->json('screenshots');
             $table->json('images');
             $table->json('thumbnails');
-            $table->unsignedBigInteger('project_category_id'); // Foreign key
-            $table->unsignedBigInteger('client_review_id'); // Foreign key
+            $table->unsignedBigInteger('category_id'); // Foreign key
             $table->boolean('is_active')->default(true);
             $table->integer('sort')->default(0);
+            $table->string('meta_title')->nullable();
+            $table->text('meta_description')->nullable();
             $table->timestamps();
 
             // Setting up the foreign key constraint
-            $table->foreign('project_category_id')->references('id')->on('project_categories')->onDelete('cascade');
-            $table->foreign('client_review_id')->references('id')->on('client_reviews')->onDelete('cascade');
+            $table->foreign('category_id')->references('id')->on('categories')->onDelete('cascade');
+
         });
     }
 

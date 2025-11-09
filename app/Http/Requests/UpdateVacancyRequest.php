@@ -32,7 +32,7 @@ class UpdateVacancyRequest extends FormRequest
     {
         return [
             'title' => 'required|string|max:255',
-            'vacancy_category_id' => 'required|exists:vacancy_categories,id',
+            'category_id' => 'required|exists:categories,id',
             'type' => 'nullable|string',
             'location' => 'nullable|string',
             'end_date' => 'nullable|date',

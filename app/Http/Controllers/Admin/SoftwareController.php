@@ -7,7 +7,7 @@ use App\Http\Controllers\Traits\FileUploadTrait;
 use App\Http\Requests\StoreSoftwareRequest;
 use App\Http\Requests\UpdateSoftwareRequest;
 use App\Models\Software;
-use App\Models\SoftwareCategory;
+use App\Models\Category;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
 
@@ -16,7 +16,7 @@ class SoftwareController extends Controller
      use FileUploadTrait;
     public function index(Request $request)
     {
-        $categories = SoftwareCategory::all();
+        $categories = Category::all();
         $query = Software::with('category');
 
         if ($request->filled('q')) {
@@ -24,7 +24,7 @@ class SoftwareController extends Controller
         }
 
         if ($request->filled('category_id')) {
-            $query->where('software_category_id', $request->category_id);
+            $query->where('category_id', $request->category_id);
         }
 
         if ($request->filled('status')) {
@@ -37,7 +37,7 @@ class SoftwareController extends Controller
 
     public function create()
     {
-        $categories = SoftwareCategory::all();
+        $categories = Category::all();
         return view('admin.softwares.create', compact('categories'));
     }
 
@@ -56,7 +56,7 @@ class SoftwareController extends Controller
 
     public function edit(Software $software)
     {
-        $categories = SoftwareCategory::all();
+        $categories = Category::all();
         return view('admin.softwares.edit', compact('software', 'categories'));
     }
 

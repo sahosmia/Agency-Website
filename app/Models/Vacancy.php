@@ -11,7 +11,7 @@ class Vacancy extends Model
 {
     use HasFactory, HasSlug, ScopeActive;
 
-    protected $fillable = ['title', 'slug', 'type', 'location', 'end_date', 'benefits', 'responsibilities', 'requirements', 'skills_required', 'weekly_holidays', 'salary', 'others', 'vacancy_category_id', 'is_active'];
+    protected $fillable = ['title', 'slug', 'type', 'location', 'end_date', 'benefits', 'responsibilities', 'requirements', 'skills_required', 'weekly_holidays', 'salary', 'others', 'category_id', 'is_active'];
 
     protected $casts = [
         'benefits' => 'array',
@@ -20,8 +20,8 @@ class Vacancy extends Model
         'skills_required' => 'array',
     ];
 
-    public function vacancy_category()
+    public function category()
     {
-        return $this->belongsTo(VacancyCategory::class);
+        return $this->belongsTo(Category::class);
     }
 }

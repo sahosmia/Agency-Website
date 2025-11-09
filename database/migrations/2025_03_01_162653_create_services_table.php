@@ -15,9 +15,11 @@ return new class extends Migration
             $table->id();
             $table->string('name');
             $table->string('slug')->unique();
-                        $table->string('image')->nullable();
-
-            $table->foreignId('service_category_id')->constrained()->onDelete('cascade');
+            $table->string('image')->nullable();
+            $table->text('description')->nullable();
+            $table->foreignId('category_id')->constrained()->onDelete('cascade');
+            $table->string('meta_title')->nullable();
+            $table->text('meta_description')->nullable();
             $table->boolean('is_active')->default(true);
             $table->timestamps();
         });

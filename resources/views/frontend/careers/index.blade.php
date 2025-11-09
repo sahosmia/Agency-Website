@@ -24,7 +24,7 @@
                 <!-- Category Filter Button -->
                 <div class="flex w-[288px] items-center p-4 gap-4 border border-secondary-400 rounded-lg place-content-between cursor-pointer" id="dropdownButton">
                     <p class="hidden md:block label-text-regular-large w-auto mr-5 truncate">
-                        {{ request('category') ? $vacancy_categories->firstWhere('id', request('category'))->title : 'All Category' }}
+                        {{ request('category') ? $categories->firstWhere('id', request('category'))->title : 'All Category' }}
                     </p>
                     <span><i class="fa-solid fa-arrow-down"></i></span>
                 </div>
@@ -37,7 +37,7 @@
                         <input type="radio" id="category_all" name="category" value="" onchange="this.form.submit()" {{ request('category') == '' ? 'checked' : '' }} />
                         <label for="category_all" class="text-lg font-normal leading-6">All Projects</label>
                     </li>
-                    @foreach ($vacancy_categories as $item)
+                    @foreach ($categories as $item)
                         <li class="flex gap-2 px-2 items-center shrink">
                             <input type="radio" id="category_{{ $item->id }}" name="category" value="{{ $item->id }}" onchange="this.form.submit()" {{ request('category') == $item->id ? 'checked' : '' }} />
                             <label for="category_{{ $item->id }}" class="text-lg font-normal leading-6 ">{{ $item->title }}</label>
@@ -55,7 +55,7 @@
                 <div class="border border-secondary-400 rounded-xl p-6 flex flex-col gap-6">
                     <div>
                         <h2 class="sub-title-large-regular text-secondary-950 "> {{ $vacancy->title }} </h2>
-                        <button class="px-4 py-2  mt-2  border rounded-full border-secondary-200 label-text-regular-small text-secondary-800"> {{ $vacancy->vacancy_category->title }} </button>
+                        <button class="px-4 py-2  mt-2  border rounded-full border-secondary-200 label-text-regular-small text-secondary-800"> {{ $vacancy->category->name }} </button>
                     </div>
 
                     <div class="flex flex-col gap-4">

@@ -19,10 +19,10 @@ class HomeController extends Controller
 {
     public function index()
     {
-        $articles = Article::with('article_category:id,title')->latest()->limit(8)->get();
-        $projects = Project::with('project_category:id,title')->orderBy('sort')->limit(8)->get();
-        $softwares = Software::with('software_category:id,title')->latest()->limit(8)->get();
-        $services = Service::with('service_category:id,title')->latest()->limit(8)->get();
+        $articles = Article::with('category:id,title')->latest()->limit(8)->get();
+        $projects = Project::with('category:id,title')->orderBy('sort')->limit(8)->get();
+        $softwares = Software::with('category:id,title')->latest()->limit(8)->get();
+        $services = Service::with('category:id,title')->latest()->limit(8)->get();
         $client_reviews = ClientReview::active()->orderBy('sort')->limit(8)->get();
         $values = Value::latest()->limit(4)->get();
         $working_processes = WorkingProcess::latest()->limit(4)->get();

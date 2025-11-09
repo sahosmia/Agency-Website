@@ -6,7 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Models\PageSetting;
 use App\Models\JobApplication;
 use App\Models\Vacancy;
-use App\Models\VacancyCategory;
+use App\Models\Category;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Session;
 
@@ -15,21 +15,21 @@ class CareerFrontController extends Controller
     // index
     public function index(Request $request)
     {
-        $vacancy_categories = VacancyCategory::get();
+        $categories = Category::get();
 
-        $vacancies = Vacancy::active()->with('vacancy_category:id,title')
+        $vacancies = Vacancy::active()->with('category:id,title')
             ->when($request->search, function ($query) use ($request) {
                 $query->where('title', 'like', '%'.$request->search.'%');
             })
             ->when($request->category, function ($query) use ($request) {
-                $query->where('vacancy_category_id', $request->category);
+                $query->where('category_id', $request->category);
             })
             ->paginate(6);
 
         $careersPage = PageSetting::where('page_name', 'careers')->first();
         $careersSettings = $careersPage ? $careersPage->settings : [];
 
-        return view('frontend.careers.index', ['vacancies' => $vacancies, 'vacancy_categories' => $vacancy_categories, 'careersSettings' => $careersSettings]);
+        return view('frontend.careers.index', ['vacancies' => $vacancies, 'categories' => $categories, 'careersSettings' => $careersSettings]);
     }
 
     // Show
@@ -40,7 +40,7 @@ class CareerFrontController extends Controller
         if (! $careerD) {
             return response()->view('errors.careers-not-found', [], 404);
         }
-        $careerD->load('vacancy_category:id,title');
+        $careerD->load('category:id,title');
 
         return view('frontend.careers.show', ['vacancy' => $careerD]);
     }

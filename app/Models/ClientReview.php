@@ -18,11 +18,13 @@ class ClientReview extends Model
         'review',
         'is_active',
         'sort',
+        'reviewable_id',
+        'reviewable_type',
     ];
 
-    public function projects()
+    public function reviewable()
     {
-        return $this->hasMany(Project::class);
+        return $this->morphTo();
     }
 
     // avatar_url accessor

@@ -7,7 +7,7 @@
 
     <h1 class="w-full lg:w-8/12 heading-text-regular-large  text-secondary-950 mt-20">{{ $article->title }}</h1>
     <div class="mt-7 inline-flex items-center flex-wrap gap-4 ">
-        <div class="hero-badge-desktop">{{ $article->article_category->title }}</div>
+        <div class="hero-badge-desktop">{{ $article->category->name }}</div>
         @foreach ($article->tags as $tag)
         <div class="hero-badge-desktop">{{ $tag->name }}</div>
         @endforeach
@@ -49,7 +49,7 @@
                 <div class="mt-4">
                     <button
                         class="px-4 py-2   border rounded-full border-secondary-200 label-text-regular-small text-secondary-800">
-                        {{ $item->article_category->title }} </button>
+                        {{ $item->category->name }} </button>
                     <h3 class="title-text-bold-medium text-secondary-950 pt-2"> {{ $item->title }} </h3>
                     <p class="body-text-regular-medium text-secondary-600 pt-1"> {{ $item->short_text }} </p>
                 </div>

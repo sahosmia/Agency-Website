@@ -2,10 +2,10 @@
 
 namespace Database\Seeders;
 
-use App\Models\ArticleCategory;
+use App\Models\Category;
 use Illuminate\Database\Seeder;
 
-class ArticleCategorySeeder extends Seeder
+class CategorySeeder extends Seeder
 {
     /**
      * Run the database seeds.
@@ -60,7 +60,7 @@ class ArticleCategorySeeder extends Seeder
         ];
 
         foreach ($datas as $data) {
-            ArticleCategory::create($data);
+            Category::create($data);
         }
     }
 }

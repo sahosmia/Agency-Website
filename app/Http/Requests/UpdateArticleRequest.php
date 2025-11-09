@@ -23,7 +23,7 @@ class UpdateArticleRequest extends FormRequest
     {
         return [
             'title' => 'required|string|max:255',
-            'article_category_id' => 'required|exists:article_categories,id',
+            'category_id' => 'required|exists:categories,id',
             'thumbnail' => 'nullable|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
             'short_text' => 'nullable|string',
             'long_text' => 'nullable|string',

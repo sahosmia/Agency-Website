@@ -69,9 +69,6 @@
                         </svg>
                     </button>
                     <div x-show="open && !sidebarCollapsed" @click.away="open = false" class="bg-gray-700" x-transition>
-                        <a href="{{ route('admin.service-categories.index') }}"
-                            class="block px-8 py-2 text-gray-300 hover:bg-gray-600 {{ request()->routeIs('admin.service-categories.*') ? 'bg-gray-600' : '' }}">Service
-                            Categories</a>
                         <a href="{{ route('admin.services.index') }}"
                             class="block px-8 py-2 text-gray-300 hover:bg-gray-600 {{ request()->routeIs('admin.services.*') ? 'bg-gray-600' : '' }}">Services</a>
                         <a href="{{ route('admin.service-types.index') }}"
@@ -111,85 +108,42 @@
                         </svg>
                     </button>
                     <div x-show="open && !sidebarCollapsed" @click.away="open = false" class="bg-gray-700" x-transition>
-                        <a href="{{ route('admin.project-categories.index') }}"
-                            class="block px-8 py-2 text-gray-300 hover:bg-gray-600 {{ request()->routeIs('admin.project-categories.*') ? 'bg-gray-600' : '' }}">Project
-                            Categories</a>
                         <a href="{{ route('admin.projects.index') }}"
                             class="block px-8 py-2 text-gray-300 hover:bg-gray-600 {{ request()->routeIs('admin.projects.*') ? 'bg-gray-600' : '' }}">Projects</a>
                     </div>
                 </div>
 
-                <div x-data="{ open: @json(request()->routeIs('admin.article-categories.*') || request()->routeIs('admin.articles.*')) }"
-                    class="relative">
-                    <button @click="sidebarCollapsed ? (sidebarCollapsed = false, open = true) : open = !open"
-                        class="w-full text-left flex items-center justify-between px-4 py-2 text-gray-300 hover:bg-gray-700 focus:outline-none">
-                        <span class="flex items-center">
-                            <svg class="h-6 w-6 mr-2" viewBox="0 0 24 24" fill="none"
-                                xmlns="http://www.w3.org/2000/svg">
-                                <path d="M22 2L11 13" stroke="currentColor" stroke-width="2" stroke-linecap="round"
-                                    stroke-linejoin="round"></path>
-                                <path d="M22 2L15 22L11 13L2 9L22 2Z" stroke="currentColor" stroke-width="2"
-                                    stroke-linecap="round" stroke-linejoin="round"></path>
-                            </svg>
-                            <span x-show="!sidebarCollapsed" x-transition:enter="transition ease-out duration-300"
-                                x-transition:enter-start="opacity-0" x-transition:enter-end="opacity-100"
-                                x-transition:leave="transition ease-in duration-200"
-                                x-transition:leave-start="opacity-100"
-                                x-transition:leave-end="opacity-0">Articles</span>
-                        </span>
-                        <svg x-show="!sidebarCollapsed" class="h-4 w-4 transform" :class="{ 'rotate-180': open }"
-                            viewBox="0 0 20 20" fill="currentColor">
-                            <path fill-rule="evenodd"
-                                d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z"
-                                clip-rule="evenodd" />
-                        </svg>
-                    </button>
-                    <div x-show="open && !sidebarCollapsed" @click.away="open = false" class="bg-gray-700" x-transition>
-                        <a href="{{ route('admin.article-categories.index') }}"
-                            class="block px-8 py-2 text-gray-300 hover:bg-gray-600 {{ request()->routeIs('admin.article-categories.*') ? 'bg-gray-600' : '' }}">Article
-                            Categories</a>
-                        <a href="{{ route('admin.articles.index') }}"
-                            class="block px-8 py-2 text-gray-300 hover:bg-gray-600 {{ request()->routeIs('admin.articles.*') ? 'bg-gray-600' : '' }}">Articles</a>
-                    </div>
-                </div>
+                <a href="{{ route('admin.articles.index') }}"
+                    class="flex items-center px-4 py-2 text-gray-300 hover:bg-gray-700 {{ request()->routeIs('admin.articles.*') ? 'bg-gray-700' : '' }}">
+                    <svg class="h-6 w-6 mr-2" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M22 2L11 13" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                            stroke-linejoin="round"></path>
+                        <path d="M22 2L15 22L11 13L2 9L22 2Z" stroke="currentColor" stroke-width="2"
+                            stroke-linecap="round" stroke-linejoin="round"></path>
+                    </svg>
+                    <span x-show="!sidebarCollapsed" x-transition:enter="transition ease-out duration-300"
+                        x-transition:enter-start="opacity-0" x-transition:enter-end="opacity-100"
+                        x-transition:leave="transition ease-in duration-200" x-transition:leave-start="opacity-100"
+                        x-transition:leave-end="opacity-0">Articles</span>
+                </a>
 
-                <div x-data="{ open: @json(request()->routeIs('admin.software-categories.*') || request()->routeIs('admin.softwares.*')) }"
-                    class="relative">
-                    <button @click="sidebarCollapsed ? (sidebarCollapsed = false, open = true) : open = !open"
-                        class="w-full text-left flex items-center justify-between px-4 py-2 text-gray-300 hover:bg-gray-700 focus:outline-none">
-                        <span class="flex items-center">
-                            <svg class="h-6 w-6 mr-2" viewBox="0 0 24 24" fill="none"
-                                xmlns="http://www.w3.org/2000/svg">
-                                <path
-                                    d="M12 2C6.48 2 2 6.48 2 12C2 17.52 6.48 22 12 22C17.52 22 22 17.52 22 12C22 6.48 17.52 2 12 2Z"
-                                    stroke="currentColor" stroke-width="2" stroke-linecap="round"
-                                    stroke-linejoin="round"></path>
-                                <path d="M12 16V12" stroke="currentColor" stroke-width="2" stroke-linecap="round"
-                                    stroke-linejoin="round"></path>
-                                <path d="M12 8H12.01" stroke="currentColor" stroke-width="2" stroke-linecap="round"
-                                    stroke-linejoin="round"></path>
-                            </svg>
-                            <span x-show="!sidebarCollapsed" x-transition:enter="transition ease-out duration-300"
-                                x-transition:enter-start="opacity-0" x-transition:enter-end="opacity-100"
-                                x-transition:leave="transition ease-in duration-200"
-                                x-transition:leave-start="opacity-100"
-                                x-transition:leave-end="opacity-0">Software</span>
-                        </span>
-                        <svg x-show="!sidebarCollapsed" class="h-4 w-4 transform" :class="{ 'rotate-180': open }"
-                            viewBox="0 0 20 20" fill="currentColor">
-                            <path fill-rule="evenodd"
-                                d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z"
-                                clip-rule="evenodd" />
-                        </svg>
-                    </button>
-                    <div x-show="open && !sidebarCollapsed" @click.away="open = false" class="bg-gray-700" x-transition>
-                        <a href="{{ route('admin.software-categories.index') }}"
-                            class="block px-8 py-2 text-gray-300 hover:bg-gray-600 {{ request()->routeIs('admin.software-categories.*') ? 'bg-gray-600' : '' }}">Software
-                            Categories</a>
-                        <a href="{{ route('admin.softwares.index') }}"
-                            class="block px-8 py-2 text-gray-300 hover:bg-gray-600 {{ request()->routeIs('admin.softwares.*') ? 'bg-gray-600' : '' }}">Softwares</a>
-                    </div>
-                </div>
+                <a href="{{ route('admin.softwares.index') }}"
+                    class="flex items-center px-4 py-2 text-gray-300 hover:bg-gray-700 {{ request()->routeIs('admin.softwares.*') ? 'bg-gray-700' : '' }}">
+                    <svg class="h-6 w-6 mr-2" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path
+                            d="M12 2C6.48 2 2 6.48 2 12C2 17.52 6.48 22 12 22C17.52 22 22 17.52 22 12C22 6.48 17.52 2 12 2Z"
+                            stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        </path>
+                        <path d="M12 16V12" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                            stroke-linejoin="round"></path>
+                        <path d="M12 8H12.01" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                            stroke-linejoin="round"></path>
+                    </svg>
+                    <span x-show="!sidebarCollapsed" x-transition:enter="transition ease-out duration-300"
+                        x-transition:enter-start="opacity-0" x-transition:enter-end="opacity-100"
+                        x-transition:leave="transition ease-in duration-200" x-transition:leave-start="opacity-100"
+                        x-transition:leave-end="opacity-0">Software</span>
+                </a>
 
                 <div x-data="{ open: @json(request()->routeIs('admin.teams.*') || request()->routeIs('admin.designations.*')) }"
                     class="relative">
@@ -251,9 +205,6 @@
                         </svg>
                     </button>
                     <div x-show="open && !sidebarCollapsed" @click.away="open = false" class="bg-gray-700" x-transition>
-                        <a href="{{ route('admin.vacancy-categories.index') }}"
-                            class="block px-8 py-2 text-gray-300 hover:bg-gray-600 {{ request()->routeIs('admin.vacancy-categories.*') ? 'bg-gray-600' : '' }}">Vacancy
-                            Categories</a>
                         <a href="{{ route('admin.vacancies.index') }}"
                             class="block px-8 py-2 text-gray-300 hover:bg-gray-600 {{ request()->routeIs('admin.vacancies.*') ? 'bg-gray-600' : '' }}">Vacancies</a>
                         <a href="{{ route('admin.applicants.index') }}"
@@ -289,6 +240,8 @@
                         </svg>
                     </button>
                     <div x-show="open && !sidebarCollapsed" @click.away="open = false" class="bg-gray-700" x-transition>
+                        <a href="{{ route('admin.categories.index') }}"
+                            class="block px-8 py-2 text-gray-300 hover:bg-gray-600 {{ request()->routeIs('admin.categories.*') ? 'bg-gray-600' : '' }}">Categories</a>
                         <a href="{{ route('admin.tags.index') }}"
                             class="block px-8 py-2 text-gray-300 hover:bg-gray-600 {{ request()->routeIs('admin.tags.*') ? 'bg-gray-600' : '' }}">Tags</a>
                         <a href="{{ route('admin.technologies.index') }}"
@@ -401,37 +354,24 @@
                                 class="absolute right-0 mt-2 w-48 bg-white rounded-md shadow-lg py-1 z-10" x-transition>
                                 <a href="{{ route('admin.services.create') }}"
                                     class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">New Service</a>
-                                <a href="{{ route('admin.service-categories.create') }}"
-                                    class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">New Service
-                                    Category</a>
                                 <a href="{{ route('admin.service-types.create') }}"
                                     class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">New Service
                                     Type</a>
                                 <a href="{{ route('admin.projects.create') }}"
                                     class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">New Project</a>
-                                <a href="{{ route('admin.project-categories.create') }}"
-                                    class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">New Project
-                                    Category</a>
                                 <a href="{{ route('admin.softwares.create') }}"
                                     class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">New Software</a>
-                                <a href="{{ route('admin.software-categories.create') }}"
-                                    class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">New Software
-                                    Category</a>
                                 <a href="{{ route('admin.articles.create') }}"
                                     class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">New Article</a>
-                                <a href="{{ route('admin.article-categories.create') }}"
-                                    class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">New Article
-                                    Category</a>
                                 <a href="{{ route('admin.tags.create') }}"
                                     class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">New Tag</a>
                                 <a href="{{ route('admin.vacancies.create') }}"
                                     class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">New Vacancy</a>
-                                <a href="{{ route('admin.vacancy-categories.create') }}"
-                                    class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">New Vacancy
-                                    Category</a>
                                 <a href="{{ route('admin.technologies.create') }}"
                                     class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">New
                                     Technology</a>
+                                <a href="{{ route('admin.categories.create') }}"
+                                    class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">New Category</a>
 
                                 <a href="{{ route('admin.features.create') }}"
                                     class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">New Feature</a>

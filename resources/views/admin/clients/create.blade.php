@@ -4,6 +4,7 @@
 @section('header-title', 'Create Clients')
 
 @section('content')
+    <x-admin.back-button :route="route('admin.clients.index')" />
     <div class="flex justify-between items-center mb-4">
         <h1 class="text-2xl font-bold">Create Client</h1>
     </div>

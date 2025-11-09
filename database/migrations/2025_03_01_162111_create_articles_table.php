@@ -18,12 +18,14 @@ return new class extends Migration
             $table->string('thumbnail');
             $table->text('short_text');
             $table->text('long_text');
-            $table->unsignedBigInteger('article_category_id'); // Foreign key
+            $table->unsignedBigInteger('category_id'); // Foreign key
+            $table->string('meta_title')->nullable();
+            $table->text('meta_description')->nullable();
             $table->boolean('is_active')->default(true);
             $table->timestamps();
 
             // Setting up the foreign key constraint
-            $table->foreign('article_category_id')->references('id')->on('article_categories')->onDelete('cascade');
+            $table->foreign('category_id')->references('id')->on('categories')->onDelete('cascade');
         });
     }
 

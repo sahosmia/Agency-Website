@@ -10,7 +10,7 @@
                 @foreach ($softwareCategories as $category)
                     <button @click="activeTab = {{ $category->id }}"
                         :class="{ 'bg-blue-500 text-white': activeTab === {{ $category->id }}, 'bg-gray-200 text-gray-700': activeTab !== {{ $category->id }} }"
-                        class="px-4 py-2 rounded-md mr-4">{{ $category->title }}</button>
+                        class="px-4 py-2 rounded-md mr-4">{{ $category->name }}</button>
                 @endforeach
             </div>
 

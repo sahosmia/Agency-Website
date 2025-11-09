@@ -3,7 +3,7 @@
 namespace Database\Seeders;
 
 use App\Models\Vacancy;
-use App\Models\VacancyCategory;
+use App\Models\Category;
 use Carbon\Carbon;
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Str;
@@ -15,10 +15,10 @@ class VacancySeeder extends Seeder
      */
     public function run(): void
     {
-        $categories = VacancyCategory::pluck('id');
+        $categories = Category::pluck('id');
         if ($categories->isEmpty()) {
-            $this->call(VacancyCategorySeeder::class);
-            $categories = VacancyCategory::pluck('id');
+            $this->call(CategorySeeder::class);
+            $categories = Category::pluck('id');
         }
 
         $datas = [
@@ -58,7 +58,7 @@ class VacancySeeder extends Seeder
             Vacancy::firstOrCreate(
                 ['slug' => $data['slug']],
                 array_merge($data, [
-                    'vacancy_category_id' => $categories->random(),
+                    'category_id' => $categories->random(),
                 ])
             );
         }

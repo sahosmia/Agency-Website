@@ -14,10 +14,10 @@ class FrontendController extends Controller
     // Home Page
     public function home()
     {
-        $articles = Article::with('article_category:id,title')->latest()->limit(8)->get();
+        $articles = Article::with('category:id,title')->latest()->limit(8)->get();
         $projects = Project::with('category:id,title')->orderBy('sort')->limit(8)->get();
-        $softwares = Software::with('software_category:id,title')->latest()->limit(8)->get();
-        $services = Service::with('service_category:id,title')->latest()->limit(8)->get();
+        $softwares = Software::with('category:id,title')->latest()->limit(8)->get();
+        $services = Service::with('category:id,title')->latest()->limit(8)->get();
         $client_reviews = ClientReview::orderBy('sort')->limit(8)->get();
 
         return view('frontend.home', [

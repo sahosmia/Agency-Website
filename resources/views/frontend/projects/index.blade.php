@@ -2,24 +2,6 @@
 @section('title', $projectsSettings['page_title'] ?? 'Projects')
 
 @section('content')
-<<<<<<< HEAD
-<div class="container mx-auto">
-    <h1 class="text-3xl md:text-[52px] font-medium leading-tight md:leading-[68px] text-center mt-5">
-        Explore our least <span class="text-primary-600">Projects</span>
-    </h1>
-    <!-- Search Form -->
-    <form action="{{ route('projects') }}" method="GET" class="mt-8 md:mt-14">
-        <div class="flex flex-col md:flex-row justify-center items-center gap-4 md:gap-6">
-            <!-- Search Input -->
-            <div class="flex w-full md:w-[496px] items-center p-3 md:p-4 border border-secondary-400 rounded-lg">
-                <input type="text" name="search" value="{{ request('search') }}"
-                    class="label-text-regular-large p-0 flex-1 border-none ring-0 outline-0"
-                    placeholder="Search by any niche">
-                <button type="submit"
-                    class="flex items-center justify-center text-white bg-primary-600 rounded-md px-3 py-2 gap-2">
-                    <span><i class="fa-solid fa-magnifying-glass"></i></span>
-                    <span class="text-lg font-semibold">Search</span>
-=======
     <div class="container mx-auto">
         <h1 class="text-3xl md:text-[52px] font-medium leading-tight md:leading-[68px] text-center mt-5">
             {{ $projectsSettings['title'] ?? '' }}
@@ -38,7 +20,7 @@
                 <!-- Category Filter Button -->
                 <div class="flex w-full md:w-[288px] items-center p-3 md:p-4 gap-4 border border-secondary-400 rounded-lg justify-between cursor-pointer" id="dropdownButton">
                     <p class="label-text-regular-large truncate">
-                        {{ request('category') ? $project_categories->firstWhere('id', request('category'))->title : 'All Category' }}
+                        {{ request('category') ? $categories->firstWhere('id', request('category'))->title : 'All Category' }}
                     </p>
                     <span><i class="fa-solid fa-arrow-down"></i></span>
                 </div>
@@ -50,7 +32,7 @@
                         <input type="radio" id="category_all" name="category" value="" onchange="this.form.submit()" {{ request('category') == '' ? 'checked' : '' }} />
                         <label for="category_all" class="text-base md:text-lg font-normal leading-6">All Projects</label>
                     </li>
-                    @foreach ($project_categories as $item)
+                    @foreach ($categories as $item)
                         <li class="flex items-center gap-2">
                             <input type="radio" id="category_{{ $item->id }}" name="category" value="{{ $item->id }}" onchange="this.form.submit()" {{ request('category') == $item->id ? 'checked' : '' }} />
                             <label for="category_{{ $item->id }}" class="text-base md:text-lg font-normal leading-6">{{ $item->title }}</label>
@@ -79,14 +61,13 @@
             <div class="inline-flex justify-center items-center gap-2 px-6 py-3">
                 <button type="button" class="px-6 py-3 rounded-lg border border-gray-600 text-xl font-semibold leading-7 transition duration-200 hover:bg-gray-700 hover:text-white active:scale-95">
                     See more
->>>>>>> 0663a064afa90305657742c6925db2c1b059ad95
                 </button>
             </div>
             <!-- Category Filter Button -->
             <div class="flex w-full md:w-[288px] items-center p-3 md:p-4 gap-4 border border-secondary-400 rounded-lg justify-between cursor-pointer"
                 id="dropdownButton">
                 <p class="label-text-regular-large truncate">
-                    {{ request('category') ? $project_categories->firstWhere('id', request('category'))->title : 'All
+                    {{ request('category') ? $categories->firstWhere('id', request('category'))->title : 'All
                     Category' }}
                 </p>
                 <span><i class="fa-solid fa-arrow-down"></i></span>
@@ -100,7 +81,7 @@
                         request('category')=='' ? 'checked' : '' }} />
                     <label for="category_all" class="text-base md:text-lg font-normal leading-6">All Projects</label>
                 </li>
-                @foreach ($project_categories as $item)
+                @foreach ($categories as $item)
                 <li class="flex items-center gap-2">
                     <input type="radio" id="category_{{ $item->id }}" name="category" value="{{ $item->id }}"
                         onchange="this.form.submit()" {{ request('category')==$item->id ? 'checked' : '' }} />

@@ -28,7 +28,7 @@
                 id="dropdownButton">
                 <p class="label-text-regular-large truncate">
                     {{ request('category')
-                    ? $service_categories->firstWhere('id', request('category'))->title
+                    ? $categories->firstWhere('id', request('category'))->title
                     : 'All Category' }}
                 </p>
                 <span><i class="fa-solid fa-arrow-down"></i></span>
@@ -45,7 +45,7 @@
                         All Projects
                     </label>
                 </li>
-                @foreach ($service_categories as $item)
+                @foreach ($categories as $item)
                 <li class="flex items-center gap-2">
                     <input type="radio" id="category_{{ $item->id }}" name="category" value="{{ $item->id }}"
                         onchange="this.form.submit()" {{ request('category')==$item->id ? 'checked' : '' }}
@@ -77,7 +77,7 @@
             <div class="mt-4">
                 <button
                     class="px-4 py-2 border rounded-full border-secondary-200 label-text-regular-small text-secondary-800">
-                    {{ $service->service_category->title }}
+                    {{ $service->category->name }}
                 </button>
                 <h2 class="title-text-bold-medium text-secondary-950 pt-2">
                     {{ $service->title }}

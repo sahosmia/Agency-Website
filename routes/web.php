@@ -6,16 +6,12 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\Admin\{
     DashboardController,
+    CategoryController,
     ArticleController,
-    ArticleCategoryController,
     ProjectController,
-    ProjectCategoryController,
     ServiceController,
-    ServiceCategoryController,
     SoftwareController,
-    SoftwareCategoryController,
     VacancyController,
-    VacancyCategoryController,
     TechnologyController,
     KeyFeatureController,
     FeatureController,
@@ -126,18 +122,14 @@ Route::prefix('admin')->name('admin.')->middleware(['auth'])->group(function () 
 
     // Resource Routes
     Route::resources([
+        'categories'          => CategoryController::class,
         'services'            => ServiceController::class,
-        'service-categories'  => ServiceCategoryController::class,
         'service-types'       => ServiceTypeController::class,
         'projects'            => ProjectController::class,
-        'project-categories'  => ProjectCategoryController::class,
         'softwares'           => SoftwareController::class,
-        'software-categories' => SoftwareCategoryController::class,
         'articles'            => ArticleController::class,
-        'article-categories'  => ArticleCategoryController::class,
         'tags'                => TagController::class,
         'vacancies'           => VacancyController::class,
-        'vacancy-categories'  => VacancyCategoryController::class,
         'technologies'        => TechnologyController::class,
         'key-features'        => KeyFeatureController::class,
         'features'            => FeatureController::class,

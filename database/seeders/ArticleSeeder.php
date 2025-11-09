@@ -3,7 +3,7 @@
 namespace Database\Seeders;
 
 use App\Models\Article;
-use App\Models\ArticleCategory;
+use App\Models\Category;
 use App\Models\Tag;
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Str;
@@ -12,12 +12,12 @@ class ArticleSeeder extends Seeder
 {
     public function run()
     {
-        $categories = ArticleCategory::all(); // Get existing categories
+        $categories = Category::all(); // Get existing categories
         $tags = Tag::all();
 
         if ($categories->isEmpty()) {
-            $this->call(ArticleCategorySeeder::class); // Ensure categories exist
-            $categories = ArticleCategory::all();
+            $this->call(CategorySeeder::class); // Ensure categories exist
+            $categories = Category::all();
         }
 
         if ($tags->isEmpty()) {
@@ -32,7 +32,7 @@ class ArticleSeeder extends Seeder
                 'thumbnail' => 'email-campaign-strategies.jpg',
                 'short_text' => 'Discover effective email campaign strategies to boost your marketing efforts.',
                 'long_text' => 'In-depth analysis of successful email marketing campaigns...',
-                'article_category_id' => $categories->first()->id,
+                'category_id' => $categories->first()->id,
                 'meta_title' => 'Marketing Insights: Email Campaign Strategies',
                 'meta_description' => 'Discover effective email campaign strategies to boost your marketing efforts.',
             ],
@@ -42,7 +42,7 @@ class ArticleSeeder extends Seeder
                 'thumbnail' => 'designers-hub-tips.jpg',
                 'short_text' => 'A comprehensive guide for designers to enhance their creative skills.',
                 'long_text' => 'Explore various design techniques and tools to elevate your work...',
-                'article_category_id' => $categories->skip(1)->first()->id,
+                'category_id' => $categories->skip(1)->first()->id,
                 'is_active' => true,
                 'meta_title' => 'Designers Hub: Tips and Tricks for Creatives',
                 'meta_description' => 'A comprehensive guide for designers to enhance their creative skills.',
@@ -53,7 +53,7 @@ class ArticleSeeder extends Seeder
                 'thumbnail' => 'mastering-web-development.jpg',
                 'short_text' => 'Learn the art of web development with practical coding tips and best practices.',
                 'long_text' => 'This article delves into modern web development frameworks and methodologies...',
-                'article_category_id' => $categories->skip(2)->first()->id,
+                'category_id' => $categories->skip(2)->first()->id,
                 'is_active' => true,
                 'meta_title' => 'Code Crafting: Mastering Web Development',
                 'meta_description' => 'Learn the art of web development with practical coding tips and best practices.',
@@ -65,7 +65,7 @@ class ArticleSeeder extends Seeder
                 'thumbnail' => 'web-development-wonders.jpg',
                 'short_text' => 'Explore a variety of web development tutorials and resources for all skill levels.',
                 'long_text' => 'From beginner to advanced, this article covers essential web development topics...',
-                'article_category_id' => $categories->skip(3)->first()->id,
+                'category_id' => $categories->skip(3)->first()->id,
                 'is_active' => true,
                 'meta_title' => 'Web Development Wonders: Tutorials and More',
                 'meta_description' => 'Explore a variety of web development tutorials and resources for all skill levels.',
@@ -76,7 +76,7 @@ class ArticleSeeder extends Seeder
                 'thumbnail' => 'email-campaign-strategies.jpg',
                 'short_text' => 'Join us on a journey to discover breathtaking destinations around the globe.',
                 'long_text' => 'This article shares travel experiences, tips, and must-visit locations...',
-                'article_category_id' => $categories->skip(4)->first()->id,
+                'category_id' => $categories->skip(4)->first()->id,
                 'is_active' => true,
                 'meta_title' => 'Travel Tales: Exploring the World One Destination at a Time',
                 'meta_description' => 'Join us on a journey to discover breathtaking destinations around the globe.',
@@ -87,7 +87,7 @@ class ArticleSeeder extends Seeder
                 'thumbnail' => 'designers-hub-tips.jpg',
                 'short_text' => 'Tips and insights on achieving a balanced and fulfilling lifestyle.',
                 'long_text' => 'Explore various aspects of lifestyle, including health, wellness, and personal growth...',
-                'article_category_id' => $categories->skip(5)->first()->id,
+                'category_id' => $categories->skip(5)->first()->id,
                 'is_active' => true,
                 'meta_title' => 'Lifestyle Lounge: Embracing a Balanced Life',
                 'meta_description' => 'Tips and insights on achieving a balanced and fulfilling lifestyle.',

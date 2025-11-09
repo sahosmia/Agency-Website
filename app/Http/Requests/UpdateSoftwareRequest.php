@@ -23,7 +23,7 @@ class UpdateSoftwareRequest extends FormRequest
     {
         return [
             'name' => 'required|string|max:255',
-            'software_category_id' => 'required|exists:software_categories,id',
+            'category_id' => 'required|exists:categories,id',
             'image' => 'nullable|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
             'meta_title' => 'nullable|string|max:255',
             'meta_description' => 'nullable|string',

@@ -25,12 +25,12 @@ return new class extends Migration
             $table->string('weekly_holidays');
             $table->string('salary');
             $table->text('others')->nullable();
-            $table->unsignedBigInteger('vacancy_category_id'); // Foreign key
+            $table->unsignedBigInteger('category_id'); // Foreign key
             $table->boolean('is_active')->default(true);
             $table->timestamps();
 
             // Setting up the foreign key constraint
-            $table->foreign('vacancy_category_id')->references('id')->on('vacancy_categories')->onDelete('cascade');
+            $table->foreign('category_id')->references('id')->on('categories')->onDelete('cascade');
         });
     }
 

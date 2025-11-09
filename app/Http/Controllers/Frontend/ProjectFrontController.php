@@ -5,21 +5,21 @@ namespace App\Http\Controllers\Frontend;
 use App\Http\Controllers\Controller;
 use App\Models\PageSetting;
 use App\Models\Project;
-use App\Models\ProjectCategory;
+use App\Models\Category;
 use Illuminate\Http\Request;
 
 class ProjectFrontController extends Controller
 {
     public function index(Request $request)
     {
-        $project_categories = ProjectCategory::get();
+        $categories = Category::get();
 
         $projects = Project::active()->with('category:id,title')
             ->when($request->search, function ($query) use ($request) {
                 $query->where('title', 'like', '%'.$request->search.'%');
             })
             ->when($request->category, function ($query) use ($request) {
-                $query->where('project_category_id', $request->category);
+                $query->where('category_id', $request->category);
             })
             ->orderBy('sort')
             ->paginate(6);
@@ -27,7 +27,7 @@ class ProjectFrontController extends Controller
         $projectsPage = PageSetting::where('page_name', 'projects')->first();
         $projectsSettings = $projectsPage ? $projectsPage->settings : [];
 
-        return view('frontend.projects.index', ['projects' => $projects, 'project_categories' => $project_categories, 'projectsSettings' => $projectsSettings]);
+        return view('frontend.projects.index', ['projects' => $projects, 'categories' => $categories, 'projectsSettings' => $projectsSettings]);
     }
 
     public function show(Project $project)
