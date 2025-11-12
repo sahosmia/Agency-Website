@@ -14,6 +14,11 @@
         <x-admin.file-input name="image" label="Image" :value="$software->image" />
         <x-admin.text-input name="meta_title" label="Meta Title" :value="$software->meta_title" />
         <x-admin.textarea name="meta_description" label="Meta Description" :value="$software->meta_description" />
+            <div class="card">
+                <div class="card-body">
+                    <x-admin.faq-repeater :faqs="$software->faqs" />
+                </div>
+            </div>
         <x-admin.checkbox-input name="is_active" label="Active" :value="$software->is_active" />
         <x-admin.submit-button label="Update" />
     </form>

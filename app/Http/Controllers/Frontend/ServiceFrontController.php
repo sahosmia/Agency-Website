@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Models\PageSetting;
 use App\Models\Service;
 use App\Models\Category;
+use App\Models\Faq;
 use Illuminate\Http\Request;
 
 class ServiceFrontController extends Controller
@@ -26,12 +27,17 @@ class ServiceFrontController extends Controller
         $servicesPage = PageSetting::where('page_name', 'services')->first();
         $servicesSettings = $servicesPage ? $servicesPage->settings : [];
 
-        return view('frontend.services.index', ['services' => $services, 'categories' => $categories, 'servicesSettings' => $servicesSettings]);
+
+        $faqs = Faq::where('page', 'service')->orderBy('sort')->get();
+
+        return view('frontend.services.index', ['services' => $services, 'categories' => $categories, 'servicesSettings' => $servicesSettings, 'faqs' => $faqs]);
+
+        
     }
 
     public function show(Service $service)
     {
-        $service->load('category', 'keyFeatures', 'technologies', 'serviceTypes.pricePlans.features');
+        $service->load('category', 'keyFeatures', 'technologies', 'serviceTypes.pricePlans.features', 'faqs');
         $services = Service::active()->with('category')->limit(5)->get();
         $serviceDetailPage = PageSetting::where('page_name', 'service-detail')->first();
         $serviceDetailSettings = $serviceDetailPage ? $serviceDetailPage->settings : [];

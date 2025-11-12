@@ -111,8 +111,16 @@
 </div>
 
 <!-- FAQ Section -->
-<x-frontend.faq />
+<div class="mt-10 md:mt-16 mb-10 md:mb-20 max-w-[95%] md:max-w-3xl lg:max-w-5xl mx-auto px-4" x-data="{ open: 1 }">
+    <!-- Section Title -->
+    <h2
+        class="heading-text-regular-medium text-center text-secondary-900 text-2xl md:text-3xl lg:text-4xl font-semibold">
+        {{ $homeSettings['faq_title'] ?? 'Frequently Asked Questions' }}
+    </h2>
 
+    <x-frontend.faq-accordion :faqs="$faqs" />
+</div>
+{{-- FaQ --}}
 @endsection
 
 @section('extra-js')

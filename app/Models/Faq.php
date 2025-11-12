@@ -11,7 +11,7 @@ class Faq extends Model
 {
     use HasFactory, ScopeActive;
 
-    protected $fillable = ['question', 'answer', 'is_active', 'sort'];
+    protected $fillable = ['question', 'answer', 'is_active', 'sort', 'page'];
 
     public function faqable(): MorphTo
     {

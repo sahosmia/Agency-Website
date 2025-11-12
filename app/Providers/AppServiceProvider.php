@@ -29,9 +29,9 @@ class AppServiceProvider extends ServiceProvider
     public function boot(): void
     {
         if (Schema::hasTable('faqs')) {
-            $faqs = Faq::get();
+            // $faqs = Faq::get();
             $socialMediaLinks = Schema::hasTable('social_media_links') ? SocialMediaLink::get() : collect();
-            View::share('faqs', $faqs);
+            // View::share('faqs', $faqs);
             View::share('socialMediaLinks', $socialMediaLinks);
         }
         View::composer('frontend.layouts.footer', function ($view) {

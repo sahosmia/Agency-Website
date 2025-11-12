@@ -212,7 +212,7 @@
                     </div>
                 </div>
 
-                <div x-data="{ open: @json(request()->routeIs('admin.tags.*') || request()->routeIs('admin.technologies.*') || request()->routeIs('admin.key-features.*') || request()->routeIs('admin.features.*') || request()->routeIs('admin.trusted-companies.*') || request()->routeIs('admin.clients.*') || request()->routeIs('admin.faqs.*') || request()->routeIs('admin.working-processes.*') || request()->routeIs('admin.values.*') || request()->routeIs('admin.social-media-links.*')) }"
+                <div x-data="{ open: @json(request()->routeIs('admin.tags.*') || request()->routeIs('admin.technologies.*') || request()->routeIs('admin.key-features.*') || request()->routeIs('admin.features.*') || request()->routeIs('admin.trusted-companies.*') || request()->routeIs('admin.clients.*') || request()->routeIs('admin.page-faqs.*') || request()->routeIs('admin.working-processes.*') || request()->routeIs('admin.values.*') || request()->routeIs('admin.social-media-links.*')) }"
                     class="relative">
                     <button @click="sidebarCollapsed ? (sidebarCollapsed = false, open = true) : open = !open"
                         class="w-full text-left flex items-center justify-between px-4 py-2 text-gray-300 hover:bg-gray-700 focus:outline-none">
@@ -256,8 +256,9 @@
                             Companies</a>
                         <a href="{{ route('admin.clients.index') }}"
                             class="block px-8 py-2 text-gray-300 hover:bg-gray-600 {{ request()->routeIs('admin.clients.*') ? 'bg-gray-600' : '' }}">Clients</a>
-                        <a href="{{ route('admin.faqs.index') }}"
-                            class="block px-8 py-2 text-gray-300 hover:bg-gray-600 {{ request()->routeIs('admin.faqs.*') ? 'bg-gray-600' : '' }}">FAQs</a>
+                        <a href="{{ route('admin.page-faqs.index') }}"
+                            class="block px-8 py-2 text-gray-300 hover:bg-gray-600 {{ request()->routeIs('admin.page-faqs.*') ? 'bg-gray-600' : '' }}">Page
+                            FAQs</a>
                         <a href="{{ route('admin.client-reviews.index') }}"
                             class="block px-8 py-2 text-gray-300 hover:bg-gray-600 {{ request()->routeIs('admin.client-reviews.*') ? 'bg-gray-600' : '' }}">Testimonials</a>
                         <a href="{{ route('admin.working-processes.index') }}"
@@ -380,8 +381,8 @@
                                     Company</a>
                                 <a href="{{ route('admin.clients.create') }}"
                                     class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">New Client</a>
-                                <a href="{{ route('admin.faqs.create') }}"
-                                    class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">New FAQ</a>
+                                <a href="{{ route('admin.page-faqs.create') }}"
+                                    class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">New Page FAQ</a>
                                 <a href="{{ route('admin.working-processes.create') }}"
                                     class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">New Working
                                     Process</a>

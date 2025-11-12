@@ -10,6 +10,7 @@ use App\Http\Requests\UpdateSoftwareRequest;
 use App\Models\Software;
 use App\Models\Category;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Storage;
 
 class SoftwareController extends Controller
@@ -45,9 +46,16 @@ class SoftwareController extends Controller
 
     public function store(StoreSoftwareRequest $request)
     {
-        $data = $request->validated();
-        $data['image'] = $this->uploadFile($request, 'image', 'softwares');
-        Software::create($data);
+        DB::transaction(function () use ($request) {
+            $data = $request->validated();
+            $data['image'] = $this->uploadFile($request, 'image', 'softwares');
+            $software = Software::create($data);
+
+            if ($request->has('faqs')) {
+                $software->faqs()->createMany($request->faqs);
+            }
+        });
+
         return redirect()->route('admin.softwares.index')->with('success', 'Software created successfully.');
     }
 
@@ -59,14 +67,23 @@ class SoftwareController extends Controller
     public function edit(Software $software)
     {
         $categories = Category::all();
+        $software->load('faqs');
         return view('admin.softwares.edit', compact('software', 'categories'));
     }
 
     public function update(UpdateSoftwareRequest $request, Software $software)
     {
-        $data = $request->validated();
-        $data['image'] = $this->updateFile($request, 'image', 'softwares', $software);
-        $software->update($data);
+        DB::transaction(function () use ($request, $software) {
+            $data = $request->validated();
+            $data['image'] = $this->updateFile($request, 'image', 'softwares', $software);
+            $software->update($data);
+
+            if ($request->has('faqs')) {
+                $software->faqs()->delete();
+                $software->faqs()->createMany($request->faqs);
+            }
+        });
+
         return redirect()->route('admin.softwares.index')->with('success', 'Software updated successfully.');
     }
 

@@ -136,6 +136,8 @@ Route::prefix('admin')->name('admin.')->middleware(['auth'])->group(function () 
         'trusted-companies'   => TrustedCompanyController::class,
         'clients'             => ClientController::class,
         'faqs'                => FaqController::class,
+                'page-faqs'           => FaqController::class,
+
         'working-processes'   => WorkingProcessController::class,
         'values'              => ValueController::class,
         'social-media-links'  => SocialMediaLinkController::class,

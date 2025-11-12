@@ -13,6 +13,29 @@
     margin-inline: auto;
 }
 
+.container {
+    width: 100%;
+    @media (width >= 40rem /* 640px */) {
+        max-width: 40rem /* 640px */;
+    }
+    @media (width >= 48rem /* 768px */) {
+        max-width: 48rem /* 768px */;
+    }
+    @media (width >= 64rem /* 1024px */) {
+        max-width: 64rem /* 1024px */;
+    }
+    @media (width >= 80rem /* 1280px */) {
+        max-width: 80rem /* 1280px */;
+    }
+    @media (width >= 96rem /* 1536px */) {
+        max-width: 80rem /* 1536px */;
+    }
+}
+.container {
+    padding-inline: 10px;
+    margin-inline: auto;
+}
+
 @theme {
     /* color  */
     --color-primary-600: #ea380c;
@@ -200,7 +223,7 @@ input.otp-code {
 }
 
 .hero-card {
-    @apply flex flex-col  rounded-xl border border-secondary-400  p-4 gap-2 text-left;
+    @apply flex flex-col  rounded-xl border border-secondary-400  p-4 gap-2 text-left bg-white;
 }
 
 .reviewer-card {

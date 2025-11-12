@@ -3,11 +3,12 @@
 namespace App\Http\Controllers\Frontend;
 
 use App\Http\Controllers\Controller;
+use App\Models\Achievement;
 use App\Models\PageSetting;
 use App\Models\Team;
 use Illuminate\Http\Request;
 use App\Models\Category;
-use App\Models\Category;
+use App\Models\Faq;
 use App\Models\Feature;
 
 class PageController extends Controller
@@ -22,8 +23,10 @@ class PageController extends Controller
     {
         $teams = Team::active()->get();
         $aboutSettings = $this->getPageSettings('about');
+        $achievements = Achievement::orderBy('sort')->limit(7)->get();
+        $faqs = Faq::where('page', 'about')->orderBy('sort')->get();
 
-        return view('frontend.about', compact('teams', 'aboutSettings'));
+        return view('frontend.about', compact('teams', 'aboutSettings', 'achievements', 'faqs'));
     }
 
     public function terms_conditions()

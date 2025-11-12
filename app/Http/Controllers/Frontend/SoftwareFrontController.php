@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Models\PageSetting;
 use App\Models\Software;
 use App\Models\Category;
+use App\Models\Faq;
 use Illuminate\Http\Request;
 
 class SoftwareFrontController extends Controller
@@ -25,8 +26,8 @@ class SoftwareFrontController extends Controller
 
         $softwaresPage = PageSetting::where('page_name', 'softwares')->first();
         $softwaresSettings = $softwaresPage ? $softwaresPage->settings : [];
-
-        return view('frontend.softwares.index', ['softwares' => $softwares, 'categories' => $categories, 'softwaresSettings' => $softwaresSettings]);
+            $faqs = Faq::where('page', 'software')->orderBy('sort')->get();
+        return view('frontend.softwares.index', ['softwares' => $softwares, 'categories' => $categories, 'softwaresSettings' => $softwaresSettings, 'faqs' => $faqs]);
     }
 
     public function show(Software $software)

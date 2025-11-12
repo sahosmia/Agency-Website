@@ -2,90 +2,111 @@
 @section('title', $softwaresSettings['page_title'] ?? 'Softwares')
 
 @section('content')
-    <div class="container mx-auto">
-        <h1 class="text-3xl md:text-[52px] font-medium leading-tight md:leading-[68px] text-center mt-5">
-            {{ $softwaresSettings['title'] ?? '' }}
-        </h1>
-        <!-- Search Form -->
-        <form action="{{ route('softwares') }}" method="GET" class="mt-8 md:mt-14">
-            <div class="flex flex-col md:flex-row justify-center items-center gap-4 md:gap-6">
-                <!-- Search Input -->
-                <div class="flex w-full md:w-[496px] items-center p-3 md:p-4 border border-secondary-400 rounded-lg">
-                    <input type="text" name="search" value="{{ request('search') }}" class="label-text-regular-large p-0 flex-1 border-none ring-0 outline-0" placeholder="Search by title">
-                    <button type="submit" class="flex items-center justify-center text-white bg-primary-600 rounded-md px-3 py-2 gap-2">
-                        <span><i class="fa-solid fa-magnifying-glass"></i></span>
-                        <span class="text-lg font-semibold">Search</span>
-                    </button>
-                </div>
-                <!-- Category Filter Button -->
-                <div class="flex w-full md:w-[288px] items-center p-3 md:p-4 gap-4 border border-secondary-400 rounded-lg justify-between cursor-pointer" id="dropdownButton">
-                    <p class="label-text-regular-large truncate">
-                        {{ request('category') ? $categories->firstWhere('id', request('category'))->title : 'All Category' }}
-                    </p>
-                    <span><i class="fa-solid fa-arrow-down"></i></span>
-                </div>
-            </div>
-            <!-- Category Filter Dropdown -->
-            <div id="dropdownMenu" class="hidden w-full md:w-10/12 mt-4 mx-auto border border-secondary-400 rounded-2xl">
-                <ul class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4 p-4 md:p-8">
-                    <li class="flex items-center gap-2">
-                        <input type="radio" id="category_all" name="category" value="" onchange="this.form.submit()" {{ request('category') == '' ? 'checked' : '' }} />
-                        <label for="category_all" class="text-base md:text-lg font-normal leading-6">All Projects</label>
-                    </li>
-                    @foreach ($categories as $item)
-                        <li class="flex items-center gap-2">
-                            <input type="radio" id="category_{{ $item->id }}" name="category" value="{{ $item->id }}" onchange="this.form.submit()" {{ request('category') == $item->id ? 'checked' : '' }} />
-                            <label for="category_{{ $item->id }}" class="text-base md:text-lg font-normal leading-6">{{ $item->title }}</label>
-                        </li>
-                    @endforeach
-                </ul>
-            </div>
-        </form>
-
-        @if ($softwares->count() != 0)
-            <div class="w-full md:w-8/12 lg:w-6/12 mt-16 md:mt-20 flex justify-center mx-auto">
-                <p class="sub-title-medium-regular leading-8 text-secondary-800 text-center">
-                    {{ $softwaresSettings['description'] ?? '' }}
-                </p>
-            </div>
-        @endif
-
-        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-x-6 gap-y-10 md:gap-y-[60px] mt-14">
-            @forelse ($softwares as $software)
-                <div>
-                    <img class="max-h-72 w-full object-cover rounded-xl" src="{{ asset('upload/softwares/card img.png') }}" alt="{{ $software->title }}" />
-                    <div class="mt-4">
-                        <button class="px-4 py-2   border rounded-full border-secondary-200 label-text-regular-small text-secondary-800"> {{ $software->category->title }} </button>
-                        <h2 class="title-text-bold-medium text-secondary-950 pt-2"> {{ $software->title }} </h2>
-                        <p class="body-text-regular-medium text-secondary-600 pt-1"> {{ $software->short_text }} </p>
-                    </div>
-
-                    <a href="{{ route('softwares.show', $software->slug) }}" class="inline-block px-3 py-2 rounded-sm border border-secondary-800 label-text-bold-small text-secondary-800 mt-4"> Read more </a>
-                </div>
-            @empty
-                <h3 class="heading-text-regular-large text-secondary-800 m-auto">No software available this area!</h3>
-            @endforelse
-        </div>
-        @if ($softwares->hasMorePages())
-            <div class="inline-flex justify-center items-center gap-2 px-6 py-3">
-                <button type="button" class="px-6 py-3 rounded-lg border border-gray-600 text-xl font-semibold leading-7 transition duration-200 hover:bg-gray-700 hover:text-white active:scale-95">
-                    See more
+<div class="container mx-auto">
+    <h1 class="text-3xl md:text-[52px] font-medium leading-tight md:leading-[68px] text-center mt-5">
+        {{ $softwaresSettings['title'] ?? '' }}
+    </h1>
+    <!-- Search Form -->
+    <form action="{{ route('softwares') }}" method="GET" class="mt-8 md:mt-14">
+        <div class="flex flex-col md:flex-row justify-center items-center gap-4 md:gap-6">
+            <!-- Search Input -->
+            <div class="flex w-full md:w-[496px] items-center p-3 md:p-4 border border-secondary-400 rounded-lg">
+                <input type="text" name="search" value="{{ request('search') }}"
+                    class="label-text-regular-large p-0 flex-1 border-none ring-0 outline-0"
+                    placeholder="Search by title">
+                <button type="submit"
+                    class="flex items-center justify-center text-white bg-primary-600 rounded-md px-3 py-2 gap-2">
+                    <span><i class="fa-solid fa-magnifying-glass"></i></span>
+                    <span class="text-lg font-semibold">Search</span>
                 </button>
             </div>
-        @endif
+            <!-- Category Filter Button -->
+            <div class="flex w-full md:w-[288px] items-center p-3 md:p-4 gap-4 border border-secondary-400 rounded-lg justify-between cursor-pointer"
+                id="dropdownButton">
+                <p class="label-text-regular-large truncate">
+                    {{ request('category') ? $categories->firstWhere('id', request('category'))->title : 'All Category'
+                    }}
+                </p>
+                <span><i class="fa-solid fa-arrow-down"></i></span>
+            </div>
+        </div>
+        <!-- Category Filter Dropdown -->
+        <div id="dropdownMenu" class="hidden w-full md:w-10/12 mt-4 mx-auto border border-secondary-400 rounded-2xl">
+            <ul class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4 p-4 md:p-8">
+                <li class="flex items-center gap-2">
+                    <input type="radio" id="category_all" name="category" value="" onchange="this.form.submit()" {{
+                        request('category')=='' ? 'checked' : '' }} />
+                    <label for="category_all" class="text-base md:text-lg font-normal leading-6">All Projects</label>
+                </li>
+                @foreach ($categories as $item)
+                <li class="flex items-center gap-2">
+                    <input type="radio" id="category_{{ $item->id }}" name="category" value="{{ $item->id }}"
+                        onchange="this.form.submit()" {{ request('category')==$item->id ? 'checked' : '' }} />
+                    <label for="category_{{ $item->id }}" class="text-base md:text-lg font-normal leading-6">{{
+                        $item->title }}</label>
+                </li>
+                @endforeach
+            </ul>
+        </div>
+    </form>
+
+    @if ($softwares->count() != 0)
+    <div class="w-full md:w-8/12 lg:w-6/12 mt-16 md:mt-20 flex justify-center mx-auto">
+        <p class="sub-title-medium-regular leading-8 text-secondary-800 text-center">
+            {{ $softwaresSettings['description'] ?? '' }}
+        </p>
     </div>
+    @endif
 
-    <x-frontend.faq />
+    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-x-6 gap-y-10 md:gap-y-[60px] mt-14">
+        @forelse ($softwares as $software)
+        <div>
+            <img class="max-h-72 w-full object-cover rounded-xl" src="{{ asset('upload/softwares/card img.png') }}"
+                alt="{{ $software->title }}" />
+            <div class="mt-4">
+                <button
+                    class="px-4 py-2   border rounded-full border-secondary-200 label-text-regular-small text-secondary-800">
+                    {{ $software->category->title }} </button>
+                <h2 class="title-text-bold-medium text-secondary-950 pt-2"> {{ $software->title }} </h2>
+                <p class="body-text-regular-medium text-secondary-600 pt-1"> {{ $software->short_text }} </p>
+            </div>
 
+            <a href="{{ route('softwares.show', $software->slug) }}"
+                class="inline-block px-3 py-2 rounded-sm border border-secondary-800 label-text-bold-small text-secondary-800 mt-4">
+                Read more </a>
+        </div>
+        @empty
+        <h3 class="heading-text-regular-large text-secondary-800 m-auto">No software available this area!</h3>
+        @endforelse
+    </div>
+    @if ($softwares->hasMorePages())
+    <div class="inline-flex justify-center items-center gap-2 px-6 py-3">
+        <button type="button"
+            class="px-6 py-3 rounded-lg border border-gray-600 text-xl font-semibold leading-7 transition duration-200 hover:bg-gray-700 hover:text-white active:scale-95">
+            See more
+        </button>
+    </div>
+    @endif
+</div>
 
+<div class="mt-10 md:mt-16 mb-10 md:mb-20 max-w-[95%] md:max-w-3xl lg:max-w-5xl mx-auto px-4" x-data="{ open: 1 }">
+    <!-- Section Title -->
+    <h2
+        class="heading-text-regular-medium text-center text-secondary-900 text-2xl md:text-3xl lg:text-4xl font-semibold">
+        {{ $homeSettings['faq_title'] ?? 'Frequently Asked Questions' }}
+    </h2>
+
+    <x-frontend.faq :faqs="$faqs" />
+</div>
+{{-- FaQ --}}
 @endsection
 @section('extra-js')
-    <script>
-        const dropdownButton = document.getElementById("dropdownButton");
+<script>
+    const dropdownButton = document.getElementById("dropdownButton");
         const dropdownMenu = document.getElementById("dropdownMenu");
 
         dropdownButton.addEventListener("click", () => {
             dropdownMenu.classList.toggle("hidden");
         });
-    </script>
+</script>
 @endsection

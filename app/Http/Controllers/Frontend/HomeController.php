@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Frontend;
 
 use App\Http\Controllers\Controller;
+use App\Models\Achievement;
 use App\Models\Article;
 use App\Models\ClientReview;
 use App\Models\Faq;
@@ -30,13 +31,14 @@ class HomeController extends Controller
         $client_reviews = ClientReview::active()->orderBy('sort')->limit($itemLimit)->get();
         $values = Value::latest()->limit(4)->get();
         $working_processes = WorkingProcess::latest()->limit(4)->get();
-        $faqs = Faq::orderBy('sort')->get();
+        $faqs = Faq::where('page', 'home')->orderBy('sort')->get();
         $trusted_partners = TrustedPartner::latest()->limit(4)->get();
         $business_tags = BusinessTag::latest()->get();
 
         $contactPage = PageSetting::where('page_name', 'contact')->first();
         $contactSettings = $contactPage ? $contactPage->settings : [];
 
+        $achievements = Achievement::where('home_page_show', true)->orderBy('sort')->limit(3)->get();
         return view('frontend.home', [
             'projects' => $projects,
             'softwares' => $softwares,
@@ -50,6 +52,7 @@ class HomeController extends Controller
             'contactSettings' => $contactSettings,
             'trusted_partners' => $trusted_partners,
             'business_tags' => $business_tags,
+            'achievements' => $achievements,
         ]);
     }
 }

@@ -25,6 +25,8 @@ class UpdateFaqRequest extends FormRequest
             'question' => 'required|string|max:255',
             'answer' => 'required|string',
             'is_active' => 'nullable|boolean',
+                        'page' => 'nullable|string|max:255',
+
             'sort' => 'nullable|integer',
         ];
     }

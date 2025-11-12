@@ -13,6 +13,11 @@
         <x-admin.file-input name="image" label="Image" />
         <x-admin.text-input name="meta_title" label="Meta Title" />
         <x-admin.textarea name="meta_description" label="Meta Description" />
+        <div class="card">
+            <div class="card-body">
+                <x-admin.faq-repeater />
+            </div>
+        </div>
         <x-admin.checkbox-input name="is_active" label="Active" checked />
         <x-admin.submit-button label="Create" />
     </form>

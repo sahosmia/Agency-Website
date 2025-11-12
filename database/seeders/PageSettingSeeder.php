@@ -67,17 +67,7 @@ class PageSettingSeeder extends Seeder
 
                     'hero_card_description' => 'We specialize in digital solutions to help your business grow and thrive in the digital landscape.',
 
-                    'hero_card_one_title' => 'Satisfied Customers',
-                    'hero_card_one_value' => '95+',
-                    'hero_card_one_description' => 'We are committed to providing the best solutions to build happy relationships with our customers.',
-
-                    'hero_card_two_title' => 'Projects Completed',
-                    'hero_card_two_value' => '80+',
-                    'hero_card_two_description' => 'Consistently innovating and delivering excellence.',
-
-                    'hero_card_three_title' => 'Industries Served',
-                    'hero_card_three_value' => '17+',
-                    'hero_card_three_description' => 'Expertise tailored to your unique needs—because we’ve done it all.',
+                    
 
                     'search_title' => 'Find the Perfect Service for Your Needs',
                     'values_title' => 'Values we live by',
@@ -85,6 +75,30 @@ class PageSettingSeeder extends Seeder
                     'faq_title' => 'Frequently Asked Questions',
                     'articles_title' => 'Articles',
                     'articles_description' => 'Stay informed with our expert insights! Explore articles on the latest trends, tips, and strategies in web design, digital marketing, and more.',
+
+                    'item_limit' => 8,
+                    'hero_section_is_active' => true,
+                    'hero_card_section_is_active' => true,
+                    'reviewer_card_section_is_active' => true,
+                    'searching_section_is_active' => true,
+                    'values_section_is_active' => true,
+                    'lets_discuss_section_is_active' => true,
+                    'projects_section_is_active' => true,
+                    'services_section_is_active' => true,
+                    'software_solution_section_is_active' => true,
+                    'working_process_section_is_active' => true,
+                    'contact_us_section_is_active' => true,
+                    'trusted_partners_section_is_active' => true,
+                    'clients_around_world_section_is_active' => true,
+                    'client_reviews_section_is_active' => true,
+                    'faq_section_is_active' => true,
+                    'articles_section_is_active' => true,
+                ],
+            ],
+            [
+                'page_name' => 'common_setting',
+                'settings' => [
+                    'admin_pagination' => 10,
                 ],
             ],
             [
@@ -96,7 +110,7 @@ class PageSettingSeeder extends Seeder
                     'contact_email' => 'admin@example.com',
                     'contact_phone' => '+1 123 456 7890',
                     'contact_address' => '123 Main Street, Anytown, USA 12345',
-                    'contact_map_iframe_url' => 'https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d12345.678901234567!2d-74.0059413!3d40.7127837!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2zMTPCsDA3JzQ2LjAiTiA3NMKwMDAnMjEuNCJX!5e0!3m2!1sen!2sus!4v1626882650570!5m2!1sen!2sus',
+                    'contact_map_iframe_url' => 'https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d14604.761962435417!2d90.38718338931882!3d23.776230096004635!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3755b8f3f608843b%3A0xf2c71ff392721324!2sLiberation%20War%20Museum!5e0!3m2!1sen!2sbd!4v1762876774505!5m2!1sen!2sbd',
                 ],
             ],
             [

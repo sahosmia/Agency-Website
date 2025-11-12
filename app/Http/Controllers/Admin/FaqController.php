@@ -10,6 +10,7 @@ use Illuminate\Http\Request;
 
 class FaqController extends Controller
 {
+    public const PAGES = ['home', 'about', 'service', 'software'];
     public function index(Request $request)
     {
         $query = Faq::whereNull('faqable_type');
@@ -22,35 +23,42 @@ class FaqController extends Controller
             $query->where('is_active', $request->status);
         }
 
+        if ($request->filled('page')) {
+            $query->where('page', $request->page);
+        }
+
         $faqs = $query->latest()->paginate(10);
-        return view('admin.faqs.index', compact('faqs'));
+        $pages = self::PAGES;
+        return view('admin.faqs.index', compact('faqs', 'pages'));
     }
 
     public function create()
     {
-        return view('admin.faqs.create');
+        $pages = self::PAGES;
+        return view('admin.faqs.create', compact('pages'));
     }
 
     public function store(StoreFaqRequest $request)
     {
         Faq::create($request->validated() + ['faqable_id' => null, 'faqable_type' => null]);
-        return redirect()->route('admin.faqs.index')->with('success', 'FAQ created successfully.');
+        return redirect()->route('admin.page-faqs.index')->with('success', 'FAQ created successfully.');
     }
 
     public function edit(Faq $faq)
     {
-        return view('admin.faqs.edit', compact('faq'));
+        $pages = self::PAGES;
+        return view('admin.faqs.edit', compact('faq', 'pages'));
     }
 
     public function update(UpdateFaqRequest $request, Faq $faq)
     {
         $faq->update($request->validated());
-        return redirect()->route('admin.faqs.index')->with('success', 'FAQ updated successfully.');
+        return redirect()->route('admin.page-faqs.index')->with('success', 'FAQ updated successfully.');
     }
 
     public function destroy(Faq $faq)
     {
         $faq->delete();
-        return redirect()->route('admin.faqs.index')->with('success', 'FAQ deleted successfully.');
+        return redirect()->route('admin.page-faqs.index')->with('success', 'FAQ deleted successfully.');
     }
 }
