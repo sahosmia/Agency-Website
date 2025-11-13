@@ -47,6 +47,22 @@
             @endif
         </div>
 
+        <div>
+            <x-input-label for="blood_group" :value="__('Blood Group')" />
+            <select id="blood_group" name="blood_group" class="mt-1 block w-full border-gray-300 focus:border-indigo-500 focus:ring-indigo-500 rounded-md shadow-sm">
+                <option value="">Select Blood Group</option>
+                <option value="A+" @selected(old('blood_group', $user->blood_group) == 'A+')>A+</option>
+                <option value="A-" @selected(old('blood_group', $user->blood_group) == 'A-')>A-</option>
+                <option value="B+" @selected(old('blood_group', $user->blood_group) == 'B+')>B+</option>
+                <option value="B-" @selected(old('blood_group', $user->blood_group) == 'B-')>B-</option>
+                <option value="AB+" @selected(old('blood_group', $user->blood_group) == 'AB+')>AB+</option>
+                <option value="AB-" @selected(old('blood_group', $user->blood_group) == 'AB-')>AB-</option>
+                <option value="O+" @selected(old('blood_group', $user->blood_group) == 'O+')>O+</option>
+                <option value="O-" @selected(old('blood_group', $user->blood_group) == 'O-')>O-</option>
+            </select>
+            <x-input-error class="mt-2" :messages="$errors->get('blood_group')" />
+        </div>
+
         <div class="flex items-center gap-4">
             <x-primary-button>{{ __('Save') }}</x-primary-button>
 
