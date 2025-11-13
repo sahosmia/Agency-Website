@@ -1,4 +1,6 @@
-@props(['name', 'label', 'value' => ''])
+@props(['name', 'label', 'value' => '', 'imgClass'=>"h-16 w-16" ])
+
+
 
 <div class="mb-4">
     <label for="{{ $name }}" class="block text-gray-700">{{ $label }}</label>
@@ -6,11 +8,14 @@
         onchange="previewImage(event, '{{ $name }}')">
     <div id="preview-container-{{ $name }}" class="mt-2">
         @if ($value)
+        @php
+        $imagePath = asset('storage/' . $value);
+        @endphp
         <span id="old-image-{{ $name }}">
-            <img src="{{ asset('storage/' . $value) }}" class="h-16 w-16 object-cover">
+            <img src="{{ $imagePath }}" class="object-cover rounded {{ $imgClass }}">
         </span>
         @endif
-        <img id="preview-{{ $name }}" class="h-16 w-16 object-cover" style="display: none;">
+        <img id="preview-{{ $name }}" class="object-cover rounded {{ $imgClass }}" style="display: none;">
     </div>
     <x-admin.error-message :name="$name" />
 </div>

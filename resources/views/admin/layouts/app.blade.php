@@ -425,7 +425,7 @@
             </header>
 
             <!-- Main Content -->
-            <main class="flex-1 p-8 overflow-y-auto">
+            <main class="flex-1 p-8 overflow-y-auto bg-neutral-300">
                 @include('admin.partials.breadcrumbs')
                 <x-admin.status-message />
                 @yield('content')
