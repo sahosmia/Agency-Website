@@ -3,15 +3,16 @@
 @section('title', 'Create Articles')
 @section('header-title', 'Create Articles')
 
-@section('breadcrumbs')
-    <span class="text-gray-500">/</span>
-    <a href="{{ route('admin.articles.index') }}" class="hover:underline">Articles</a>
-    <span class="text-gray-500">/</span>
-    <a href="#" class="hover:underline">Create</a>
+
+@section('back-button')
+<x-admin.button outline :route="route('admin.articles.index')" text="Back" />
 @endsection
 
 @section('content')
-    <x-admin.back-button :route="route('admin.articles.index')" />
+
+{{-- make good design --}}
+<div class="rounded bg-white p-10 w-9/12 mx-auto">
+
     <h1 class="text-2xl font-bold mb-4">Create Article</h1>
 
     <form action="{{ route('admin.articles.store') }}" method="POST" enctype="multipart/form-data">
@@ -24,15 +25,21 @@
         <x-admin.ckeditor name="long_text" label="Long Text" />
         <x-admin.text-input name="meta_title" label="Meta Title" />
         <x-admin.textarea name="meta_description" label="Meta Description" />
-        <x-admin.checkbox-input name="is_active" label="Active" checked />
-        <x-admin.submit-button label="Create" />
+        {{--
+        <x-admin.checkbox-input name="is_active" label="Active" checked /> --}}
+        <x-admin.switch-input name="is_active" label="Active" checked />
+        {{-- Submit button --}}
+        <x-admin.button type="submit" text="Create" class="mt-5" />
+        {{-- cancle button --}}
+        <x-admin.button outline :route="route('admin.articles.index')" text="Cancel" class="mt-5 ml-2" />
     </form>
+</div>
 @endsection
 
 @push('scripts')
-    <script>
-        $(document).ready(function() {
+<script>
+    $(document).ready(function() {
             $('#tags').select2();
         });
-    </script>
+</script>
 @endpush

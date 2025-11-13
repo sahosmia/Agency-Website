@@ -48,6 +48,7 @@ class ArticleController extends Controller
 
     public function store(StoreArticleRequest $request)
     {
+        // return $request->validated();
         $data = $request->validated();
         $data['thumbnail'] = $this->uploadFile($request, 'thumbnail', 'articles');
         $article = Article::create($data);
@@ -63,6 +64,7 @@ class ArticleController extends Controller
 
     public function edit(Article $article)
     {
+
         $categories = Category::all();
         $tags = Tag::all();
         $article->load('tags');
