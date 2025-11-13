@@ -18,18 +18,18 @@
         </form>
     </div>
 
-    <table class="w-full bg-white shadow-md rounded-lg">
-        <thead>
-            <tr class="bg-gray-200">
-                <th class="px-4 py-2">Name</th>
-                <th class="px-4 py-2 w-24">Actions</th>
+    <x-admin.table>
+        <x-slot name="head">
+            <tr>
+                <th class="px-5 py-3 text-left font-medium text-gray-600">Name</th>
+                <th class="px-5 py-3 text-right font-medium text-gray-600 w-24">Actions</th>
             </tr>
-        </thead>
-        <tbody>
+        </x-slot>
+        <x-slot name="body">
             @foreach ($tags as $tag)
-                <tr>
-                    <td class="border px-4 py-2">{{ $tag->name }}</td>
-                    <td class="border px-4 py-2">
+                <tr class="hover:bg-gray-50 transition">
+                    <td class="px-5 py-3">{{ $tag->name }}</td>
+                    <td class="px-5 py-3 text-right">
                         <x-admin.actions-dropdown
                             :editUrl="route('admin.tags.edit', $tag)"
                             :deleteRoute="route('admin.tags.destroy', $tag)"
@@ -37,8 +37,8 @@
                     </td>
                 </tr>
             @endforeach
-        </tbody>
-    </table>
+        </x-slot>
+    </x-admin.table>
 
 <div class="mt-4">
     {{ $tags->links() }}

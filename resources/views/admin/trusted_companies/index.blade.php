@@ -23,24 +23,24 @@
         </form>
     </div>
 
-    <table class="w-full bg-white shadow-md rounded-lg">
-        <thead>
-            <tr class="bg-gray-200">
-                <th class="px-4 py-2">Name</th>
-                <th class="px-4 py-2">Status</th>
-                <th class="px-4 py-2 w-24">Actions</th>
+    <x-admin.table>
+        <x-slot name="head">
+            <tr>
+                <th class="px-5 py-3 text-left font-medium text-gray-600">Name</th>
+                <th class="px-5 py-3 text-center font-medium text-gray-600">Status</th>
+                <th class="px-5 py-3 text-right font-medium text-gray-600 w-24">Actions</th>
             </tr>
-        </thead>
-        <tbody>
+        </x-slot>
+        <x-slot name="body">
             @foreach ($trustedCompanies as $trustedCompany)
-                <tr>
-                    <td class="border px-4 py-2">
+                <tr class="hover:bg-gray-50 transition">
+                    <td class="px-5 py-3">
                         <x-admin.image-title :name="$trustedCompany->name" :imagePath="asset('storage/' . $trustedCompany->logo)" />
                     </td>
-                    <td class="border px-4 py-2">
+                    <td class="px-5 py-3 text-center">
                         <x-admin.status-badge :is-active="$trustedCompany->is_active" />
                     </td>
-                    <td class="border px-4 py-2">
+                    <td class="px-5 py-3 text-right">
                         <x-admin.actions-dropdown
                             :editUrl="route('admin.trusted-companies.edit', $trustedCompany)"
                             :deleteRoute="route('admin.trusted-companies.destroy', $trustedCompany)"
@@ -48,8 +48,8 @@
                     </td>
                 </tr>
             @endforeach
-        </tbody>
-    </table>
+        </x-slot>
+    </x-admin.table>
 
 <div class="mt-4">
     {{ $trustedCompanies->appends(request()->query())->links() }}
