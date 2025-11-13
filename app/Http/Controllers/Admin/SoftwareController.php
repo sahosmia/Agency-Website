@@ -9,13 +9,14 @@ use App\Http\Requests\StoreSoftwareRequest;
 use App\Http\Requests\UpdateSoftwareRequest;
 use App\Models\Software;
 use App\Models\Category;
+use App\Traits\HandleIsActive;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Storage;
 
 class SoftwareController extends Controller
 {
-     use FileUploadTrait, AdminPagination;
+     use FileUploadTrait, AdminPagination, HandleIsActive;
     public function index(Request $request)
     {
         $adminPagination = $this->getAdminPagination();
@@ -47,7 +48,7 @@ class SoftwareController extends Controller
     public function store(StoreSoftwareRequest $request)
     {
         DB::transaction(function () use ($request) {
-            $data = $request->validated();
+            $data = $this->handleIsActive($request, $request->validated());
             $data['image'] = $this->uploadFile($request, 'image', 'softwares');
             $software = Software::create($data);
 
@@ -74,7 +75,7 @@ class SoftwareController extends Controller
     public function update(UpdateSoftwareRequest $request, Software $software)
     {
         DB::transaction(function () use ($request, $software) {
-            $data = $request->validated();
+            $data = $this->handleIsActive($request, $request->validated());
             $data['image'] = $this->updateFile($request, 'image', 'softwares', $software);
             $software->update($data);
 

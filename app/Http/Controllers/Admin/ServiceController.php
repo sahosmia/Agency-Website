@@ -9,13 +9,14 @@ use App\Http\Requests\StoreServiceRequest;
 use App\Http\Requests\UpdateServiceRequest;
 use App\Models\Service;
 use App\Models\Category;
+use App\Traits\HandleIsActive;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Storage;
 
 class ServiceController extends Controller
 {
-    use FileUploadTrait, AdminPagination;
+    use FileUploadTrait, AdminPagination, HandleIsActive;
     public function index(Request $request)
     {
                 $adminPagination = $this->getAdminPagination();
@@ -48,7 +49,7 @@ class ServiceController extends Controller
     public function store(StoreServiceRequest $request)
     {
         DB::transaction(function () use ($request) {
-            $data = $request->validated();
+            $data = $this->handleIsActive($request, $request->validated());
             $data['thumbnail'] = $this->uploadFile($request, 'thumbnail', 'services');
 
             $service = Service::create($data);
@@ -76,7 +77,7 @@ class ServiceController extends Controller
     public function update(UpdateServiceRequest $request, Service $service)
     {
         DB::transaction(function () use ($request, $service) {
-            $data = $request->validated();
+            $data = $this->handleIsActive($request, $request->validated());
             $data['thumbnail'] = $this->updateFile($request, 'thumbnail', 'services', $service);
             $service->update($data);
 

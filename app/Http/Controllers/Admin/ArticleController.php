@@ -9,12 +9,13 @@ use App\Http\Requests\UpdateArticleRequest;
 use App\Models\Article;
 use App\Models\Category;
 use App\Models\Tag;
+use App\Traits\HandleIsActive;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Traits\FileUploadTrait;
 
 class ArticleController extends Controller
 {
-    use FileUploadTrait, AdminPagination;
+    use FileUploadTrait, AdminPagination, HandleIsActive;
 
     public function index(Request $request)
     {
@@ -48,7 +49,7 @@ class ArticleController extends Controller
 
     public function store(StoreArticleRequest $request)
     {
-        $data = $request->validated();
+        $data = $this->handleIsActive($request, $request->validated());
         $data['thumbnail'] = $this->uploadFile($request, 'thumbnail', 'articles');
         $article = Article::create($data);
         $article->tags()->attach($request->tags);
@@ -71,7 +72,7 @@ class ArticleController extends Controller
 
     public function update(UpdateArticleRequest $request, Article $article)
     {
-        $data = $request->validated();
+        $data = $this->handleIsActive($request, $request->validated());
         $data['thumbnail'] = $this->updateFile($request, 'thumbnail', 'articles', $article);
         $article->update($data);
         $article->tags()->sync($request->tags);
