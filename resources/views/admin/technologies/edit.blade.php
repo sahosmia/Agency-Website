@@ -20,7 +20,7 @@
                             <x-admin.bootstrap.text-input name="name" label="Name" :value="$technology->name" required />
                             <x-admin.bootstrap.textarea name="description" label="Description" :value="$technology->description" />
                             <x-admin.bootstrap.file-input name="image" label="Image" :value="$technology->image" />
-                            <x-admin.bootstrap.checkbox-input name="is_active" label="Active" :value="$technology->is_active" />
+                            <x-admin.switch-input name="is_active" label="Active" :checked="$technology->is_active" />
                             <x-admin.bootstrap.submit-button label="Update" />
                         </form>
                     </div>

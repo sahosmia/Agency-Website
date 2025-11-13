@@ -15,7 +15,7 @@
         <x-admin.text-input name="meta_title" label="Meta Title" :value="$project->meta_title" />
         <x-admin.textarea name="meta_description" label="Meta Description" :value="$project->meta_description" />
         <x-admin.text-input name="sort" label="Sort Order" type="number" :value="$project->sort" />
-        <x-admin.checkbox-input name="is_active" label="Active" :value="$project->is_active" />
+        <x-admin.switch-input name="is_active" label="Active" :checked="$project->is_active" />
 
         <div class="card">
             <div class="card-body">

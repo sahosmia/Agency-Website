@@ -24,7 +24,7 @@
         <img src="{{ $team->avatar_url }}" alt="{{ $team->name }}" class="h-16 w-16 object-cover mt-2">
         @endif
     </div>
-    <x-admin.checkbox-input name="is_active" label="Active" :checked="$team->is_active" />
+    <x-admin.switch-input name="is_active" label="Active" :checked="$team->is_active" />
 
     <x-admin.submit-button label="Update" />
 </form>

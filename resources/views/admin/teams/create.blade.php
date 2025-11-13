@@ -15,7 +15,7 @@
         <x-admin.text-input name="name" label="Name" required />
         <x-admin.select name="designation_id" label="Designation" :options="$designations->pluck('title', 'id')" required />
         <x-admin.file-input name="avatar" label="Avatar" />
-        <x-admin.checkbox-input name="is_active" label="Active" checked />
+        <x-admin.switch-input name="is_active" label="Active" checked />
 
         <x-admin.submit-button label="Create" />
     </form>

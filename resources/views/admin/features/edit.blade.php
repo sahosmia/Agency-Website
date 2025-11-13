@@ -17,7 +17,7 @@
                             @method('PUT')
                             <x-admin.bootstrap.text-input name="name" label="Name" :value="$feature->name" required />
                             <x-admin.bootstrap.textarea name="description" label="Description" :value="$feature->description" />
-                            <x-admin.bootstrap.checkbox-input name="is_active" label="Active" :value="$feature->is_active" />
+                            <x-admin.switch-input name="is_active" label="Active" :checked="$feature->is_active" />
                             <x-admin.bootstrap.submit-button label="Update" />
                         </form>
                     </div>

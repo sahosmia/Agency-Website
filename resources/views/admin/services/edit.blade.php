@@ -16,7 +16,7 @@
     <x-admin.file-input name="image" label="Image" :value="$service->image" />
     <x-admin.text-input name="meta_title" label="Meta Title" :value="$service->meta_title" />
     <x-admin.textarea name="meta_description" label="Meta Description" :value="$service->meta_description" />
-    <x-admin.checkbox-input name="is_active" label="Active" :value="$service->is_active" />
+    <x-admin.switch-input name="is_active" label="Active" :checked="$service->is_active" />
 
     <div class="card">
         <div class="card-body">

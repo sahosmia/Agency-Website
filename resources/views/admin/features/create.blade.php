@@ -16,7 +16,7 @@
                             @csrf
                             <x-admin.bootstrap.text-input name="name" label="Name" required />
                             <x-admin.bootstrap.textarea name="description" label="Description" />
-                            <x-admin.bootstrap.checkbox-input name="is_active" label="Active" checked />
+                            <x-admin.switch-input name="is_active" label="Active" checked />
                             <x-admin.bootstrap.submit-button label="Create" />
                         </form>
                     </div>

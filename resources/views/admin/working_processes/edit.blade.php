@@ -16,7 +16,7 @@
         <x-admin.text-input name="title" label="Title" :value="$workingProcess->title" required />
         <x-admin.textarea name="description" label="Description" :value="$workingProcess->description" />
         <x-admin.text-input name="icon" label="Icon" :value="$workingProcess->icon" required />
-        <x-admin.checkbox-input name="is_active" label="Active" :value="$workingProcess->is_active" />
+        <x-admin.switch-input name="is_active" label="Active" :checked="$workingProcess->is_active" />
         <x-admin.submit-button label="Update" />
     </form>
 @endsection

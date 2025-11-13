@@ -46,7 +46,7 @@
                 <p class="text-red-500 text-xs mt-1">{{ $message }}</p>
             @enderror
         </div>
-        <x-admin.checkbox-input name="is_active" label="Active" :value="$pricePlan->is_active" />
+        <x-admin.switch-input name="is_active" label="Active" :checked="$pricePlan->is_active" />
         <x-admin.submit-button label="Update" />
     </form>
 

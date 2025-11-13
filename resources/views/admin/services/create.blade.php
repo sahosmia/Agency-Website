@@ -15,7 +15,7 @@
     <x-admin.file-input name="image" label="Image" />
     <x-admin.text-input name="meta_title" label="Meta Title" />
     <x-admin.textarea name="meta_description" label="Meta Description" />
-    <x-admin.checkbox-input name="is_active" label="Active" checked />
+    <x-admin.switch-input name="is_active" label="Active" checked />
 
     <div class="card">
         <div class="card-body">

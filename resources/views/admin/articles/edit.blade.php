@@ -18,7 +18,7 @@
         <x-admin.ckeditor name="long_text" label="Long Text" :value="$article->long_text" />
         <x-admin.text-input name="meta_title" label="Meta Title" :value="$article->meta_title" />
         <x-admin.textarea name="meta_description" label="Meta Description" :value="$article->meta_description" />
-        <x-admin.checkbox-input name="is_active" label="Active" :value="$article->is_active" />
+        <x-admin.switch-input name="is_active" label="Active" :checked="$article->is_active" />
         <x-admin.submit-button label="Update" />
     </form>
 @endsection

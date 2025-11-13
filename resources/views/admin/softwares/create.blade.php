@@ -18,7 +18,7 @@
                 <x-admin.faq-repeater />
             </div>
         </div>
-        <x-admin.checkbox-input name="is_active" label="Active" checked />
+        <x-admin.switch-input name="is_active" label="Active" checked />
         <x-admin.submit-button label="Create" />
     </form>
 @endsection

@@ -32,7 +32,7 @@
         </div>
 
         <x-admin.text-input name="sort" label="Sort Order" type="number" :value="$clientReview->sort" />
-        <x-admin.checkbox-input name="is_active" label="Active" :checked="$clientReview->is_active" />
+        <x-admin.switch-input name="is_active" label="Active" :checked="$clientReview->is_active" />
 
         <x-admin.submit-button label="Update" />
     </form>

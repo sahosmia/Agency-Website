@@ -19,7 +19,7 @@
                     <x-admin.faq-repeater :faqs="$software->faqs" />
                 </div>
             </div>
-        <x-admin.checkbox-input name="is_active" label="Active" :value="$software->is_active" />
+        <x-admin.switch-input name="is_active" label="Active" :checked="$software->is_active" />
         <x-admin.submit-button label="Update" />
     </form>
 @endsection
