@@ -33,38 +33,38 @@
     </form>
 </div>
 
-<table class="w-full bg-white shadow-md rounded-lg">
-    <thead>
-        <tr class="bg-gray-200">
-            <th class="px-4 py-2">Name</th>
-            <th class="px-4 py-2">Designation</th>
-            <th class="px-4 py-2">Status</th>
-            <th class="px-4 py-2 w-24">Actions</th>
-        </tr>
-    </thead>
-    <tbody>
-        @forelse ($teams as $team)
+<x-admin.table>
+    <x-slot name="head">
         <tr>
-            <td class="border px-4 py-2">
+            <th class="px-5 py-3 text-left font-medium text-gray-600">Name</th>
+            <th class="px-5 py-3 text-left font-medium text-gray-600">Designation</th>
+            <th class="px-5 py-3 text-center font-medium text-gray-600">Status</th>
+            <th class="px-5 py-3 text-right font-medium text-gray-600 w-24">Actions</th>
+        </tr>
+    </x-slot>
+    <x-slot name="body">
+        @forelse ($teams as $team)
+        <tr class="hover:bg-gray-50 transition">
+            <td class="px-5 py-3">
                 <x-admin.image-title :name="$team->name" :imagePath="$team->avatar_url" />
             </td>
-            <td class="border px-4 py-2">{{ $team->designation->title }}</td>
+            <td class="px-5 py-3">{{ $team->designation->title }}</td>
 
-            <td class="border px-4 py-2">
+            <td class="px-5 py-3 text-center">
                 <x-admin.status-badge :is-active="$team->is_active" />
             </td>
-            <td class="border px-4 py-2">
+            <td class="px-5 py-3 text-right">
                 <x-admin.actions-dropdown :editUrl="route('admin.teams.edit', $team)"
                     :deleteRoute="route('admin.teams.destroy', $team)" />
             </td>
         </tr>
         @empty
         <tr>
-            <td colspan="5" class="text-center border py-4">No team members found.</td>
+            <td colspan="5" class="text-center py-4">No team members found.</td>
         </tr>
         @endforelse
-    </tbody>
-</table>
+    </x-slot>
+</x-admin.table>
 
 <div class="mt-4">
     {{ $teams->appends(request()->query())->links() }}

@@ -23,26 +23,26 @@
         </form>
     </div>
 
-    <table class="w-full bg-white shadow-md rounded-lg">
-        <thead>
-            <tr class="bg-gray-200">
-                <th class="px-4 py-2">Title</th>
-                <th class="px-4 py-2">Description</th>
-                <th class="px-4 py-2">Icon</th>
-                <th class="px-4 py-2">Status</th>
-                <th class="px-4 py-2 w-24">Actions</th>
+    <x-admin.table>
+        <x-slot name="head">
+            <tr>
+                <th class="px-5 py-3 text-left font-medium text-gray-600">Title</th>
+                <th class="px-5 py-3 text-left font-medium text-gray-600">Description</th>
+                <th class="px-5 py-3 text-left font-medium text-gray-600">Icon</th>
+                <th class="px-5 py-3 text-center font-medium text-gray-600">Status</th>
+                <th class="px-5 py-3 text-right font-medium text-gray-600 w-24">Actions</th>
             </tr>
-        </thead>
-        <tbody>
+        </x-slot>
+        <x-slot name="body">
             @foreach ($workingProcesses as $workingProcess)
-                <tr>
-                    <td class="border px-4 py-2">{{ $workingProcess->title }}</td>
-                    <td class="border px-4 py-2">{{ $workingProcess->description }}</td>
-                    <td class="border px-4 py-2">{{ $workingProcess->icon }}</td>
-                    <td class="border px-4 py-2">
+                <tr class="hover:bg-gray-50 transition">
+                    <td class="px-5 py-3">{{ $workingProcess->title }}</td>
+                    <td class="px-5 py-3">{{ $workingProcess->description }}</td>
+                    <td class="px-5 py-3">{{ $workingProcess->icon }}</td>
+                    <td class="px-5 py-3 text-center">
                         <x-admin.status-badge :is-active="$workingProcess->is_active" />
                     </td>
-                    <td class="border px-4 py-2">
+                    <td class="px-5 py-3 text-right">
                         <x-admin.actions-dropdown
                             :editUrl="route('admin.working-processes.edit', $workingProcess)"
                             :deleteRoute="route('admin.working-processes.destroy', $workingProcess)"
@@ -50,8 +50,8 @@
                     </td>
                 </tr>
             @endforeach
-        </tbody>
-    </table>
+        </x-slot>
+    </x-admin.table>
 
 <div class="mt-4">
     {{ $workingProcesses->appends(request()->query())->links() }}

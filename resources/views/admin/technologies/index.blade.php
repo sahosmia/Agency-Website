@@ -28,39 +28,35 @@
                                 </div>
                             </form>
                         </div>
-                        <table class="table table-bordered">
-                            <thead>
+                        <x-admin.table>
+                            <x-slot name="head">
                                 <tr>
-                                    <th>Name</th>
-                                    <th>Description</th>
-                                    <th>Image</th>
-                                     <th>Status</th>
-                                    <th style="width: 100px;">Actions</th>
+                                    <th class="px-5 py-3 text-left font-medium text-gray-600">Name</th>
+                                    <th class="px-5 py-3 text-left font-medium text-gray-600">Description</th>
+                                    <th class="px-5 py-3 text-center font-medium text-gray-600">Status</th>
+                                    <th class="px-5 py-3 text-right font-medium text-gray-600 w-24">Actions</th>
                                 </tr>
-                            </thead>
-                            <tbody>
+                            </x-slot>
+                            <x-slot name="body">
                                 @foreach ($technologies as $technology)
-                                    <tr>
-                                        <td>{{ $technology->name }}</td>
-                                        <td>{{ $technology->description }}</td>
-                                        <td>
-                                            @if ($technology->image)
-                                                <img src="{{ asset('storage/technologies/' . $technology->image) }}" alt="{{ $technology->name }}" width="100">
-                                            @endif
+                                    <tr class="hover:bg-gray-50 transition">
+                                        <td class="px-5 py-3">
+                                            <x-admin.image-title :name="$technology->name" :imagePath="$technology->image ? asset('storage/technologies/' . $technology->image) : ''" />
                                         </td>
-                                        <td>
-                                            <x-admin.bootstrap.status-badge :is-active="$technology->is_active" />
+                                        <td class="px-5 py-3">{{ $technology->description }}</td>
+                                        <td class="px-5 py-3 text-center">
+                                            <x-admin.status-badge :is-active="$technology->is_active" />
                                         </td>
-                                        <td>
-                                            <x-admin.bootstrap.actions-dropdown
+                                        <td class="px-5 py-3 text-right">
+                                            <x-admin.actions-dropdown
                                                 :editUrl="route('admin.technologies.edit', $technology)"
                                                 :deleteRoute="route('admin.technologies.destroy', $technology)"
                                             />
                                         </td>
                                     </tr>
                                 @endforeach
-                            </tbody>
-                        </table>
+                            </x-slot>
+                        </x-admin.table>
                         <div class="mt-4">
                             {{ $technologies->appends(request()->query())->links() }}
                         </div>
