@@ -7,11 +7,12 @@ use App\Http\Requests\Admin\TeamRequest;
 use App\Models\Team;
 use App\Models\Designation;
 use App\Http\Controllers\Traits\FileUploadTrait;
+use App\Traits\HandleIsActive;
 use Illuminate\Http\Request;
 
 class TeamController extends Controller
 {
-    use FileUploadTrait;
+    use FileUploadTrait, HandleIsActive;
 
     public function index(Request $request)
     {
@@ -43,13 +44,10 @@ class TeamController extends Controller
 
     public function store(TeamRequest $request)
     {
-        $team = new Team($request->except('avatar'));
-
-        if ($request->hasFile('avatar')) {
-            $team->avatar = $this->uploadFile($request->file('avatar'), 'uploads/teams');
-        }
-
-        $team->save();
+        $data = $request->except('avatar');
+        $this->handleIsActive($request, $data);
+        $data['avatar'] = $this->uploadFile($request, 'avatar', 'teams');
+        Team::create($data);
 
         return redirect()->route('admin.teams.index')->with('success', 'Team member created successfully.');
     }
@@ -62,14 +60,10 @@ class TeamController extends Controller
 
     public function update(TeamRequest $request, Team $team)
     {
-        $team->fill($request->except('avatar'));
-
-        if ($request->hasFile('avatar')) {
-            $this->deleteFile($team->avatar, 'uploads/teams');
-            $team->avatar = $this->uploadFile($request->file('avatar'), 'uploads/teams');
-        }
-
-        $team->save();
+        $data = $request->except('avatar');
+        $this->handleIsActive($request, $data);
+        $data['avatar'] = $this->updateFile($request, 'avatar', 'teams', $team);
+        $team->update($data);
 
         return redirect()->route('admin.teams.index')->with('success', 'Team member updated successfully.');
     }

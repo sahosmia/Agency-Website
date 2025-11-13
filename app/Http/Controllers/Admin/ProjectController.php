@@ -9,12 +9,13 @@ use App\Http\Requests\UpdateProjectRequest;
 use App\Models\Project;
 use App\Models\Category;
 use App\Http\Controllers\Traits\FileUploadTrait;
+use App\Traits\HandleIsActive;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 
 class ProjectController extends Controller
 {
-    use FileUploadTrait, AdminPagination;
+    use FileUploadTrait, AdminPagination, HandleIsActive;
 
     public function index(Request $request)
     {
@@ -49,6 +50,7 @@ class ProjectController extends Controller
     {
         DB::transaction(function () use ($request) {
             $data = $request->validated();
+            $this->handleIsActive($request, $data);
             $data['thumbnail'] = $this->uploadFile($request, 'thumbnail', 'projects');
             $project = Project::create($data);
 
@@ -75,6 +77,7 @@ class ProjectController extends Controller
     {
         DB::transaction(function () use ($request, $project) {
             $data = $request->validated();
+            $this->handleIsActive($request, $data);
             $data['thumbnail'] = $this->updateFile($request, 'thumbnail', 'projects', $project);
             $project->update($data);
 

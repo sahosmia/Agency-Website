@@ -1,15 +1,15 @@
 @extends('admin.layouts.app')
 
-@section('title', 'Create Testimonial')
-@section('header-title', 'Create Testimonial')
-@section('breadcrumbs')
-    <div class="breadcrumb-item"><a href="{{ route('admin.client-reviews.index') }}">Testimonials</a></div>
-    <div class="breadcrumb-item">Create</div>
+@section('title', 'Create Client Review')
+@section('header-title', 'Create Client Review')
+
+@section('back-button')
+    <x-admin.button outline :route="route('admin.client-reviews.index')" text="Back" />
 @endsection
 
 @section('content')
-    <x-admin.back-button :route="route('admin.client-reviews.index')" />
-    <h1 class="text-2xl font-bold mb-4">Create Testimonial</h1>
+<div class="rounded bg-white p-10 w-9/12 mx-auto">
+    <h1 class="text-2xl font-bold mb-4">Create Client Review</h1>
 
     <form action="{{ route('admin.client-reviews.store') }}" method="POST" enctype="multipart/form-data">
         @csrf
@@ -25,10 +25,12 @@
         </div>
 
         <x-admin.text-input name="sort" label="Sort Order" type="number" value="0" />
-        <x-admin.checkbox-input name="is_active" label="Active" checked />
+        <x-admin.switch-input name="is_active" label="Active" checked />
 
-        <x-admin.submit-button label="Create" />
+        <x-admin.button type="submit" text="Create" class="mt-5" />
+        <x-admin.button outline :route="route('admin.client-reviews.index')" text="Cancel" class="mt-5 ml-2" />
     </form>
+</div>
 @endsection
 
 @push('scripts')

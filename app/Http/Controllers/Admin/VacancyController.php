@@ -8,11 +8,12 @@ use App\Http\Requests\StoreVacancyRequest;
 use App\Http\Requests\UpdateVacancyRequest;
 use App\Models\Vacancy;
 use App\Models\Category;
+use App\Traits\HandleIsActive;
 use Illuminate\Http\Request;
 
 class VacancyController extends Controller
 {
-    use AdminPagination;
+    use AdminPagination, HandleIsActive;
     public function index(Request $request)
     {
         $adminPagination = $this->getAdminPagination();
@@ -43,7 +44,9 @@ class VacancyController extends Controller
 
     public function store(StoreVacancyRequest $request)
     {
-        Vacancy::create($request->validated());
+        $data = $request->validated();
+        $this->handleIsActive($request, $data);
+        Vacancy::create($data);
         return redirect()->route('admin.vacancies.index')->with('success', 'Vacancy created successfully.');
     }
 
@@ -60,7 +63,9 @@ class VacancyController extends Controller
 
     public function update(UpdateVacancyRequest $request, Vacancy $vacancy)
     {
-        $vacancy->update($request->validated());
+        $data = $request->validated();
+        $this->handleIsActive($request, $data);
+        $vacancy->update($data);
         return redirect()->route('admin.vacancies.index')->with('success', 'Vacancy updated successfully.');
     }
 

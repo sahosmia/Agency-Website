@@ -3,11 +3,11 @@
 @section('title', 'Index Services')
 @section('header-title', 'Index Services')
 
-@section('content')
-<div class="flex justify-between items-center mb-4">
-    <h1 class="text-2xl font-bold">Services</h1>
+@section('back-button')
     <x-admin.create-button :route="route('admin.services.create')" />
-</div>
+@endsection
+
+@section('content')
 
 
 

@@ -2,15 +2,12 @@
 
 @section('title', 'Team Members')
 @section('header-title', 'Team Members')
-@section('breadcrumbs')
-<div class="breadcrumb-item">Team Members</div>
+
+@section('back-button')
+    <x-admin.create-button :route="route('admin.teams.create')" />
 @endsection
 
 @section('content')
-<div class="flex justify-between items-center mb-4">
-    <h1 class="text-2xl font-bold">Team Members</h1>
-    <x-admin.create-button :route="route('admin.teams.create')" />
-</div>
 
 <x-admin.status-message />
 <div class="mb-4">

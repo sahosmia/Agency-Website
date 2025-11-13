@@ -3,12 +3,11 @@
 @section('title', 'Index Projects')
 @section('header-title', 'Index Projects')
 
-@section('content')
-    <div class="flex justify-between items-center mb-4">
-        <h1 class="text-2xl font-bold">Projects</h1>
-        <x-admin.create-button :route="route('admin.projects.create')" />
-    </div>
+@section('back-button')
+    <x-admin.create-button :route="route('admin.projects.create')" />
+@endsection
 
+@section('content')
     <div class="mb-4">
         <form action="{{ route('admin.projects.index') }}" method="GET">
             <div class="flex items-center">
