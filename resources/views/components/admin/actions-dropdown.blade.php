@@ -1,21 +1,124 @@
 @props(['showUrl' => null, 'editUrl' => null, 'deleteRoute'])
 
-<div x-data="{ open: false }" class="relative">
-    <button @click="open = !open" class="text-gray-500 hover:text-gray-700 focus:outline-none">
-        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 5v.01M12 12v.01M12 19v.01M12 6a1 1 0 110-2 1 1 0 010 2zm0 7a1 1 0 110-2 1 1 0 010 2zm0 7a1 1 0 110-2 1 1 0 010 2z"></path>
+<div x-data="actionsDropdown()" class="relative" x-init="init($refs.trigger, $refs.menu)">
+    <!-- Trigger Button -->
+    <button x-ref="trigger" @click="toggle($event)"
+        class="flex items-center justify-center w-8 h-8 rounded-md border border-gray-200 bg-white shadow-sm text-gray-600 hover:text-gray-800 hover:bg-gray-50 focus:outline-none transition"
+        aria-haspopup="true" aria-expanded="false">
+        <svg class="w-5 h-5" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M12 5h.01M12 12h.01M12 19h.01" />
         </svg>
     </button>
 
-    <div x-show="open" @click.away="open = false" class="absolute right-0 z-10 w-48 mt-2 origin-top-right bg-white rounded-md shadow-lg" x-cloak>
-        <div class="py-1">
-            @if ($showUrl)
-                <a href="{{ $showUrl }}" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">Show</a>
-            @endif
-            @if ($editUrl)
-                <a href="{{ $editUrl }}" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">Edit</a>
-            @endif
-            <x-admin.delete-button :route="$deleteRoute" display-as="link" class="w-full" />
+    <!-- Teleported Dropdown -->
+    <template x-teleport="body">
+        <div x-ref="menu" x-show="open" x-transition:enter="transition ease-out duration-100"
+            x-transition:enter-start="transform opacity-0 scale-95"
+            x-transition:enter-end="transform opacity-100 scale-100" x-transition:leave="transition ease-in duration-75"
+            x-transition:leave-start="transform opacity-100 scale-100"
+            x-transition:leave-end="transform opacity-0 scale-95" @click.away="close()" x-cloak
+            :style="`position: absolute; top: ${top}px; left: ${left}px;`"
+            class="z-50 w-44 bg-white border border-gray-200 rounded-xl shadow-lg ring-1 ring-black/5 overflow-hidden">
+            <div class="py-1">
+                @if ($showUrl)
+                <a href="{{ $showUrl }}"
+                    class="flex items-center gap-2 px-4 py-2.5 text-sm text-gray-700 hover:bg-gray-50 transition">
+                    <svg class="w-4 h-4 text-gray-500" fill="none" stroke="currentColor" stroke-width="1.8"
+                        viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round"
+                            d="M15 12H9m12 0A9 9 0 113 12a9 9 0 0118 0z" />
+                    </svg>
+                    View
+                </a>
+                @endif
+
+                @if ($editUrl)
+                <a href="{{ $editUrl }}"
+                    class="flex items-center gap-2 px-4 py-2.5 text-sm text-gray-700 hover:bg-gray-50 transition">
+                    <svg class="w-4 h-4 text-gray-500" fill="none" stroke="currentColor" stroke-width="1.8"
+                        viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round"
+                            d="M15.232 5.232l3.536 3.536M9 13l6-6 3 3-6 6H9v-3z" />
+                    </svg>
+                    Edit
+                </a>
+                @endif
+
+                <div class="border-t border-gray-100 my-1"></div>
+
+                <x-admin.delete-button :route="$deleteRoute" display-as="link"
+                    class="flex items-center gap-2 px-4 py-2.5 text-sm text-red-600 hover:bg-red-50 w-full transition">
+                    <svg class="w-4 h-4 text-red-500" fill="none" stroke="currentColor" stroke-width="1.8"
+                        viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" d="M6 7h12M9 7V4h6v3m2 0v13H8V7h10z" />
+                    </svg>
+                    Delete
+                </x-admin.delete-button>
+            </div>
         </div>
-    </div>
+    </template>
 </div>
+
+<script>
+    function actionsDropdown() {
+        return {
+            open: false,
+            top: 0,
+            left: 0,
+            menuWidth: 176, // approximate width of the menu (44 * 4)
+            triggerRef: null,
+            menuRef: null,
+
+            init(trigger, menu) {
+                this.triggerRef = trigger;
+                this.menuRef = menu;
+
+                // reposition on resize / scroll to keep in view
+                window.addEventListener('resize', () => this.position());
+                window.addEventListener('scroll', () => this.position());
+            },
+
+            toggle(e) {
+                this.open = !this.open;
+                if (this.open) {
+                    this.position();
+                }
+            },
+
+            close() {
+                this.open = false;
+            },
+
+            position() {
+                if (!this.triggerRef) return;
+
+                const rect = this.triggerRef.getBoundingClientRect();
+                const scrollY = window.scrollY || window.pageYOffset;
+                const scrollX = window.scrollX || window.pageXOffset;
+
+                // Default place the menu below the trigger aligned to the right edge
+                const desiredTop = rect.bottom + scrollY + 8; // 8px gap
+                let desiredLeft = rect.right + scrollX - this.menuWidth;
+
+                // If menu would overflow right edge, shift it left
+                const viewportWidth = document.documentElement.clientWidth;
+                if (desiredLeft + this.menuWidth > viewportWidth) {
+                    desiredLeft = Math.max(8, viewportWidth - this.menuWidth - 8);
+                }
+
+                // If menu would overflow bottom, open above the trigger
+                const menuHeightEstimate = this.menuRef ? this.menuRef.offsetHeight : 200;
+                const viewportHeight = document.documentElement.clientHeight + scrollY;
+                if (desiredTop + menuHeightEstimate > viewportHeight) {
+                    // place above
+                    this.top = rect.top + scrollY - menuHeightEstimate - 8;
+                    if (this.top < 8) this.top = 8;
+                } else {
+                    this.top = desiredTop;
+                }
+
+                this.left = desiredLeft;
+            }
+        }
+    }
+</script>

@@ -3,67 +3,92 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
-use App\Http\Requests\StoreClientRequest;
-use App\Http\Requests\UpdateClientRequest;
-use App\Models\Client;
-use Illuminate\Http\Request;
+use App\Http\Controllers\Traits\AdminPagination;
+use App\Models\ClientReview;
 use App\Http\Controllers\Traits\FileUploadTrait;
+use App\Http\Requests\StoreClientReviewRequest;
+use App\Http\Requests\UpdateClientReviewRequest;
+use Illuminate\Http\Request;
 
-class ClientController extends Controller
+class ClientReviewController extends Controller
 {
-    use FileUploadTrait;
+    use FileUploadTrait, AdminPagination;
 
     public function index(Request $request)
     {
-        $query = Client::query();
+        $adminPagination = $this->getAdminPagination();
+
+        $query = ClientReview::query();
 
         if ($request->filled('q')) {
-            $query->where('name', 'like', '%' . $request->q . '%');
+            $query->where('name', 'like', "%{$request->q}%");
         }
 
         if ($request->filled('status')) {
             $query->where('is_active', $request->status);
         }
 
-        $clients = $query->latest()->paginate(10);
-        return view('admin.clients.index', compact('clients'));
+        $clientReviews = $query->latest()->paginate($adminPagination);
+
+        return view('admin.client-reviews.index', compact('clientReviews'));
     }
 
     public function create()
     {
-        return view('admin.clients.create');
+        $services = \App\Models\Service::pluck('name', 'id');
+        $projects = \App\Models\Project::pluck('title', 'id');
+        $softwares = \App\Models\Software::pluck('name', 'id');
+        return view('admin.client-reviews.create', compact('services', 'projects', 'softwares'));
     }
 
-    public function store(StoreClientRequest $request)
+    public function store(StoreClientReviewRequest $request)
     {
         $data = $request->validated();
-        $data['image'] = $this->uploadFile($request, 'image', 'clients');
-        Client::create($data);
-        return redirect()->route('admin.clients.index')->with('success', 'Client created successfully.');
+        $data['avatar'] = $this->uploadFile($request, 'avatar', 'client-reviews');
+        $clientReview = new ClientReview($data);
+
+        if ($request->reviewable_type) {
+            $clientReview->reviewable_id = $request->reviewable_id;
+            $clientReview->reviewable_type = $request->reviewable_type;
+        }
+
+        $clientReview->save();
+
+        return redirect()->route('admin.client-reviews.index')->with('success', 'Client Review created successfully.');
     }
 
-    public function show(Client $client)
+    public function edit(ClientReview $clientReview)
     {
-        return view('admin.clients.show', compact('client'));
+        $services = \App\Models\Service::pluck('name', 'id');
+        $projects = \App\Models\Project::pluck('title', 'id');
+        $softwares = \App\Models\Software::pluck('name', 'id');
+        return view('admin.client-reviews.edit', compact('clientReview', 'services', 'projects', 'softwares'));
     }
 
-    public function edit(Client $client)
-    {
-        return view('admin.clients.edit', compact('client'));
-    }
-
-    public function update(UpdateClientRequest $request, Client $client)
+    public function update(UpdateClientReviewRequest $request, ClientReview $clientReview)
     {
         $data = $request->validated();
-        $data['image'] = $this->updateFile($request, 'image', 'clients', $client);
-        $client->update($data);
-        return redirect()->route('admin.clients.index')->with('success', 'Client updated successfully.');
+        $data['avatar'] = $this->updateFile($request, 'avatar', 'client-reviews', $clientReview);
+        $clientReview->fill($data);
+
+        if ($request->reviewable_type) {
+            $clientReview->reviewable_id = $request->reviewable_id;
+            $clientReview->reviewable_type = $request->reviewable_type;
+        } else {
+            $clientReview->reviewable_id = null;
+            $clientReview->reviewable_type = null;
+        }
+
+        $clientReview->save();
+
+        return redirect()->route('admin.client-reviews.index')->with('success', 'Client Review updated successfully.');
     }
 
-    public function destroy(Client $client)
+    public function destroy(ClientReview $clientReview)
     {
-        $this->deleteFile($client, 'image');
-        $client->delete();
-        return redirect()->route('admin.clients.index')->with('success', 'Client deleted successfully.');
+        $this->deleteFile($clientReview->avatar, 'uploads/client_reviews');
+        $clientReview->delete();
+
+        return redirect()->route('admin.client-reviews.index')->with('success', 'Testimonial deleted successfully.');
     }
 }
