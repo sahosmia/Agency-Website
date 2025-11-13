@@ -14,7 +14,7 @@
         @csrf
         <x-admin.text-input name="name" label="Name" required />
         <x-admin.file-input name="logo" label="Logo" />
-        <x-admin.checkbox-input name="is_active" label="Active" checked />
+        <x-admin.checkbox name="is_active" label="Active" value="1" checked />
         <x-admin.submit-button label="Create" />
     </form>
 @endsection

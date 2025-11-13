@@ -5,7 +5,11 @@
 
 @section('content')
 <x-admin.back-button :route="route('admin.services.index')" />
-<h1 class="text-2xl font-bold mb-4">Create Service</h1>
+<div class="flex justify-between items-center mb-4">
+    <h1 class="text-2xl font-bold">Create Service</h1>
+</div>
+
+<x-admin.validation-errors />
 
 <form action="{{ route('admin.services.store') }}" method="POST" enctype="multipart/form-data">
     @csrf
@@ -15,7 +19,7 @@
     <x-admin.file-input name="image" label="Image" />
     <x-admin.text-input name="meta_title" label="Meta Title" />
     <x-admin.textarea name="meta_description" label="Meta Description" />
-    <x-admin.checkbox-input name="is_active" label="Active" checked />
+    <x-admin.checkbox name="is_active" label="Active" value="1" checked />
 
     <div class="card">
         <div class="card-body">

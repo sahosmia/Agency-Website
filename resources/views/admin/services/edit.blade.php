@@ -4,7 +4,11 @@
 @section('header-title', 'Edit Services')
 
 @section('content')
-<h1 class="text-2xl font-bold mb-4">Edit Service</h1>
+<div class="flex justify-between items-center mb-4">
+    <h1 class="text-2xl font-bold">Edit Service</h1>
+</div>
+
+<x-admin.validation-errors />
 
 <form action="{{ route('admin.services.update', $service) }}" method="POST" enctype="multipart/form-data">
     @csrf
@@ -16,7 +20,7 @@
     <x-admin.file-input name="image" label="Image" :value="$service->image" />
     <x-admin.text-input name="meta_title" label="Meta Title" :value="$service->meta_title" />
     <x-admin.textarea name="meta_description" label="Meta Description" :value="$service->meta_description" />
-    <x-admin.checkbox-input name="is_active" label="Active" :value="$service->is_active" />
+    <x-admin.checkbox name="is_active" label="Active" value="1" :checked="$service->is_active" />
 
     <div class="card">
         <div class="card-body">

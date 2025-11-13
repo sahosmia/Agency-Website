@@ -4,7 +4,11 @@
 @section('header-title', 'Edit Projects')
 
 @section('content')
-    <h1 class="text-2xl font-bold mb-4">Edit Project</h1>
+<div class="flex justify-between items-center mb-4">
+    <h1 class="text-2xl font-bold">Edit Project</h1>
+</div>
+
+<x-admin.validation-errors />
 
     <form action="{{ route('admin.projects.update', $project) }}" method="POST" enctype="multipart/form-data">
         @csrf
@@ -15,7 +19,7 @@
         <x-admin.text-input name="meta_title" label="Meta Title" :value="$project->meta_title" />
         <x-admin.textarea name="meta_description" label="Meta Description" :value="$project->meta_description" />
         <x-admin.text-input name="sort" label="Sort Order" type="number" :value="$project->sort" />
-        <x-admin.checkbox-input name="is_active" label="Active" :value="$project->is_active" />
+        <x-admin.checkbox name="is_active" label="Active" value="1" :checked="$project->is_active" />
 
         <div class="card">
             <div class="card-body">

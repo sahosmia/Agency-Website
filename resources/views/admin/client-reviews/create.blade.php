@@ -9,7 +9,11 @@
 
 @section('content')
     <x-admin.back-button :route="route('admin.client-reviews.index')" />
-    <h1 class="text-2xl font-bold mb-4">Create Testimonial</h1>
+<div class="flex justify-between items-center mb-4">
+    <h1 class="text-2xl font-bold">Create Testimonial</h1>
+</div>
+
+<x-admin.validation-errors />
 
     <form action="{{ route('admin.client-reviews.store') }}" method="POST" enctype="multipart/form-data">
         @csrf
@@ -25,7 +29,7 @@
         </div>
 
         <x-admin.text-input name="sort" label="Sort Order" type="number" value="0" />
-        <x-admin.checkbox-input name="is_active" label="Active" checked />
+        <x-admin.checkbox name="is_active" label="Active" value="1" checked />
 
         <x-admin.submit-button label="Create" />
     </form>

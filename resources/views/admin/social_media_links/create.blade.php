@@ -15,7 +15,7 @@
         <x-admin.text-input name="name" label="Name" required />
         <x-admin.text-input name="url" label="URL" required />
         <x-admin.file-input name="icon" label="Icon" />
-        <x-admin.checkbox-input name="is_active" label="Active" checked />
+        <x-admin.checkbox name="is_active" label="Active" value="1" checked />
         <x-admin.submit-button label="Create" />
     </form>
 @endsection

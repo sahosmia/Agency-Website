@@ -8,7 +8,11 @@
 @endsection
 
 @section('content')
-<h1 class="text-2xl font-bold mb-4">Edit Team Member</h1>
+<div class="flex justify-between items-center mb-4">
+    <h1 class="text-2xl font-bold">Edit Team Member</h1>
+</div>
+
+<x-admin.validation-errors />
 
 <form action="{{ route('admin.teams.update', $team) }}" method="POST" enctype="multipart/form-data">
     @csrf
@@ -24,7 +28,7 @@
         <img src="{{ $team->avatar_url }}" alt="{{ $team->name }}" class="h-16 w-16 object-cover mt-2">
         @endif
     </div>
-    <x-admin.checkbox-input name="is_active" label="Active" :checked="$team->is_active" />
+    <x-admin.checkbox name="is_active" label="Active" value="1" :checked="$team->is_active" />
 
     <x-admin.submit-button label="Update" />
 </form>

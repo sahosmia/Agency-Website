@@ -1,32 +1,23 @@
 @extends('admin.layouts.app')
 
-@section('title', 'Edit Key Features')
-@section('header-title', 'Edit Key Features')
+@section('title', 'Edit Key Feature')
+@section('header-title', 'Edit Key Feature')
 
 @section('content')
-    <div class="container-fluid">
-        <div class="row">
-            <div class="col-12">
-                <div class="card">
-                    <div class="card-header">
-                        <h3 class="card-title">Edit Key Feature</h3>
-                    </div>
-                    <!-- /.card-header -->
-                    <div class="card-body">
-                        <form action="{{ route('admin.key-features.update', $keyFeature->id) }}" method="POST"
-                            enctype="multipart/form-data">
-                            @csrf
-                            @method('PUT')
-                            <x-admin.bootstrap.text-input name="name" label="Name" :value="$keyFeature->name" required />
-                            <x-admin.bootstrap.textarea name="description" label="Description" :value="$keyFeature->description" />
-                            <x-admin.bootstrap.file-input name="image" label="Image" :value="$keyFeature->image" />
-                            <x-admin.bootstrap.checkbox-input name="is_active" label="Active" :value="$keyFeature->is_active" />
-                            <x-admin.bootstrap.submit-button label="Update" />
-                        </form>
-                    </div>
-                    <!-- /.card-body -->
-                </div>
-            </div>
-        </div>
+    <x-admin.back-button :route="route('admin.key_features.index')" />
+    <div class="flex justify-between items-center mb-4">
+        <h1 class="text-2xl font-bold">Edit Key Feature</h1>
     </div>
+
+    <x-admin.validation-errors />
+
+    <form action="{{ route('admin.key_features.update', $keyFeature) }}" method="POST" enctype="multipart/form-data">
+        @csrf
+        @method('PUT')
+        <x-admin.text-input name="name" label="Name" :value="$keyFeature->name" required />
+        <x-admin.textarea name="description" label="Description" :value="$keyFeature->description" />
+        <x-admin.file-input name="image" label="Image" :value="$keyFeature->image" />
+        <x-admin.checkbox name="is_active" label="Active" value="1" :checked="$keyFeature->is_active" />
+        <x-admin.submit-button label="Update" />
+    </form>
 @endsection

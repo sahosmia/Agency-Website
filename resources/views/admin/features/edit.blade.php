@@ -1,28 +1,22 @@
 @extends('admin.layouts.app')
 
-@section('title', 'Edit Features')
-@section('header-title', 'Edit Features')
+@section('title', 'Edit Feature')
+@section('header-title', 'Edit Feature')
 
 @section('content')
-    <div class="container-fluid">
-        <div class="row">
-            <div class="col-12">
-                <div class="card">
-                    <div class="card-header">
-                        <h3 class="card-title">Edit Feature</h3>
-                    </div>
-                    <div class="card-body">
-                        <form action="{{ route('admin.features.update', $feature->id) }}" method="POST">
-                            @csrf
-                            @method('PUT')
-                            <x-admin.bootstrap.text-input name="name" label="Name" :value="$feature->name" required />
-                            <x-admin.bootstrap.textarea name="description" label="Description" :value="$feature->description" />
-                            <x-admin.bootstrap.checkbox-input name="is_active" label="Active" :value="$feature->is_active" />
-                            <x-admin.bootstrap.submit-button label="Update" />
-                        </form>
-                    </div>
-                </div>
-            </div>
-        </div>
+    <x-admin.back-button :route="route('admin.features.index')" />
+    <div class="flex justify-between items-center mb-4">
+        <h1 class="text-2xl font-bold">Edit Feature</h1>
     </div>
+
+    <x-admin.validation-errors />
+
+    <form action="{{ route('admin.features.update', $feature) }}" method="POST">
+        @csrf
+        @method('PUT')
+        <x-admin.text-input name="name" label="Name" :value="$feature->name" required />
+        <x-admin.textarea name="description" label="Description" :value="$feature->description" />
+        <x-admin.checkbox name="is_active" label="Active" value="1" :checked="$feature->is_active" />
+        <x-admin.submit-button label="Update" />
+    </form>
 @endsection

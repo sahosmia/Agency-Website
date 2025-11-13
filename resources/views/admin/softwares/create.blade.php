@@ -4,7 +4,11 @@
 @section('header-title', 'Create Softwares')
 
 @section('content')
-    <h1 class="text-2xl font-bold mb-4">Create Software</h1>
+<div class="flex justify-between items-center mb-4">
+    <h1 class="text-2xl font-bold">Create Software</h1>
+</div>
+
+<x-admin.validation-errors />
 
     <form action="{{ route('admin.softwares.store') }}" method="POST" enctype="multipart/form-data">
         @csrf
@@ -18,7 +22,7 @@
                 <x-admin.faq-repeater />
             </div>
         </div>
-        <x-admin.checkbox-input name="is_active" label="Active" checked />
+        <x-admin.checkbox name="is_active" label="Active" value="1" checked />
         <x-admin.submit-button label="Create" />
     </form>
 @endsection

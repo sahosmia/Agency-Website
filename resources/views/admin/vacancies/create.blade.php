@@ -4,7 +4,11 @@
 @section('header-title', 'Create Vacancies')
 
 @section('content')
-    <h1 class="text-2xl font-bold mb-4">Create Vacancy</h1>
+<div class="flex justify-between items-center mb-4">
+    <h1 class="text-2xl font-bold">Create Vacancy</h1>
+</div>
+
+<x-admin.validation-errors />
 
     <form action="{{ route('admin.vacancies.store') }}" method="POST">
         @csrf
@@ -22,7 +26,7 @@
         <x-admin.textarea name="requirements" label="Requirements" />
         <x-admin.textarea name="skills_required" label="Skills Required" />
         <x-admin.textarea name="others" label="Others" />
-        <x-admin.checkbox-input name="is_active" label="Active" checked />
+        <x-admin.checkbox name="is_active" label="Active" value="1" checked />
         <x-admin.submit-button label="Create" />
     </form>
 @endsection

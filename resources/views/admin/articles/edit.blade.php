@@ -5,7 +5,11 @@
 
 @section('content')
     <x-admin.back-button :route="route('admin.articles.index')" />
-    <h1 class="text-2xl font-bold mb-4">Edit Article</h1>
+<div class="flex justify-between items-center mb-4">
+    <h1 class="text-2xl font-bold">Edit Article</h1>
+</div>
+
+<x-admin.validation-errors />
 
     <form action="{{ route('admin.articles.update', $article) }}" method="POST" enctype="multipart/form-data">
         @csrf
@@ -18,7 +22,7 @@
         <x-admin.ckeditor name="long_text" label="Long Text" :value="$article->long_text" />
         <x-admin.text-input name="meta_title" label="Meta Title" :value="$article->meta_title" />
         <x-admin.textarea name="meta_description" label="Meta Description" :value="$article->meta_description" />
-        <x-admin.checkbox-input name="is_active" label="Active" :value="$article->is_active" />
+        <x-admin.checkbox name="is_active" label="Active" value="1" :checked="$article->is_active" />
         <x-admin.submit-button label="Update" />
     </form>
 @endsection

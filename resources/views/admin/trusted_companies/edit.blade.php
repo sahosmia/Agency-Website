@@ -15,7 +15,7 @@
         @method('PUT')
         <x-admin.text-input name="name" label="Name" :value="$trustedCompany->name" required />
         <x-admin.file-input name="logo" label="Logo" :value="$trustedCompany->logo" />
-        <x-admin.checkbox-input name="is_active" label="Active" :value="$trustedCompany->is_active" />
+        <x-admin.checkbox name="is_active" label="Active" value="1" :checked="$trustedCompany->is_active" />
         <x-admin.submit-button label="Update" />
     </form>
 @endsection

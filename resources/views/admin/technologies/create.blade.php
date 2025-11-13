@@ -1,30 +1,22 @@
 @extends('admin.layouts.app')
 
-@section('title', 'Create Technologies')
-@section('header-title', 'Create Technologies')
+@section('title', 'Create Technology')
+@section('header-title', 'Create Technology')
 
 @section('content')
-    <div class="container-fluid">
-        <div class="row">
-            <div class="col-12">
-                <div class="card">
-                    <div class="card-header">
-                        <h3 class="card-title">Create Technology</h3>
-                    </div>
-                    <!-- /.card-header -->
-                    <div class="card-body">
-                        <form action="{{ route('admin.technologies.store') }}" method="POST" enctype="multipart/form-data">
-                            @csrf
-                            <x-admin.bootstrap.text-input name="name" label="Name" required />
-                            <x-admin.bootstrap.textarea name="description" label="Description" />
-                            <x-admin.bootstrap.file-input name="image" label="Image" />
-                            <x-admin.bootstrap.checkbox-input name="is_active" label="Active" checked />
-                            <x-admin.bootstrap.submit-button label="Create" />
-                        </form>
-                    </div>
-                    <!-- /.card-body -->
-                </div>
-            </div>
-        </div>
+    <x-admin.back-button :route="route('admin.technologies.index')" />
+    <div class="flex justify-between items-center mb-4">
+        <h1 class="text-2xl font-bold">Create Technology</h1>
     </div>
+
+    <x-admin.validation-errors />
+
+    <form action="{{ route('admin.technologies.store') }}" method="POST" enctype="multipart/form-data">
+        @csrf
+        <x-admin.text-input name="name" label="Name" required />
+        <x-admin.textarea name="description" label="Description" />
+        <x-admin.file-input name="image" label="Image" />
+        <x-admin.checkbox name="is_active" label="Active" value="1" checked />
+        <x-admin.submit-button label="Create" />
+    </form>
 @endsection

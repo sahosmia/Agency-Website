@@ -9,7 +9,11 @@
 
 @section('content')
     <x-admin.back-button :route="route('admin.client-reviews.index')" />
-    <h1 class="text-2xl font-bold mb-4">Edit Testimonial</h1>
+<div class="flex justify-between items-center mb-4">
+    <h1 class="text-2xl font-bold">Edit Testimonial</h1>
+</div>
+
+<x-admin.validation-errors />
 
     <form action="{{ route('admin.client-reviews.update', $clientReview) }}" method="POST" enctype="multipart/form-data">
         @csrf
@@ -32,7 +36,7 @@
         </div>
 
         <x-admin.text-input name="sort" label="Sort Order" type="number" :value="$clientReview->sort" />
-        <x-admin.checkbox-input name="is_active" label="Active" :checked="$clientReview->is_active" />
+        <x-admin.checkbox name="is_active" label="Active" value="1" :checked="$clientReview->is_active" />
 
         <x-admin.submit-button label="Update" />
     </form>

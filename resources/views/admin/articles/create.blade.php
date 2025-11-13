@@ -12,7 +12,11 @@
 
 @section('content')
     <x-admin.back-button :route="route('admin.articles.index')" />
-    <h1 class="text-2xl font-bold mb-4">Create Article</h1>
+<div class="flex justify-between items-center mb-4">
+    <h1 class="text-2xl font-bold">Create Article</h1>
+</div>
+
+<x-admin.validation-errors />
 
     <form action="{{ route('admin.articles.store') }}" method="POST" enctype="multipart/form-data">
         @csrf
@@ -24,7 +28,7 @@
         <x-admin.ckeditor name="long_text" label="Long Text" />
         <x-admin.text-input name="meta_title" label="Meta Title" />
         <x-admin.textarea name="meta_description" label="Meta Description" />
-        <x-admin.checkbox-input name="is_active" label="Active" checked />
+        <x-admin.checkbox name="is_active" label="Active" value="1" checked />
         <x-admin.submit-button label="Create" />
     </form>
 @endsection

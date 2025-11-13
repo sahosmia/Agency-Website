@@ -4,7 +4,11 @@
 @section('header-title', 'Edit Vacancies')
 
 @section('content')
-<h1 class="text-2xl font-bold mb-4">Edit Vacancy</h1>
+<div class="flex justify-between items-center mb-4">
+    <h1 class="text-2xl font-bold">Edit Vacancy</h1>
+</div>
+
+<x-admin.validation-errors />
 {{-- @dd($vacancy->toArray()); --}}
 <form action="{{ route('admin.vacancies.update', $vacancy) }}" method="POST">
     @csrf
@@ -26,7 +30,7 @@
     <x-admin.textarea name="requirements" label="Requirements":value="is_array($vacancy->requirements) ? implode(', ', $vacancy->requirements) : $vacancy->requirements"/>
     <x-admin.textarea name="skills_required" label="Skills Required" :value="is_array($vacancy->skills_required) ? implode(', ', $vacancy->skills_required) : $vacancy->skills_required" />
     <x-admin.textarea name="others" label="Others" :value="$vacancy->others" />
-    <x-admin.checkbox-input name="is_active" label="Active" :value="$vacancy->is_active" />
+    <x-admin.checkbox name="is_active" label="Active" value="1" :checked="$vacancy->is_active" />
     <x-admin.submit-button label="Update" />
 </form>
 @endsection

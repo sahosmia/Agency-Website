@@ -4,7 +4,11 @@
 @section('header-title', 'Edit Price Plans')
 
 @section('content')
-    <h1 class="text-2xl font-bold mb-4">Edit Price Plan</h1>
+<div class="flex justify-between items-center mb-4">
+    <h1 class="text-2xl font-bold">Edit Price Plan</h1>
+</div>
+
+<x-admin.validation-errors />
 
     <form action="{{ route('admin.price-plans.update', $pricePlan) }}" method="POST">
         @csrf
@@ -46,7 +50,7 @@
                 <p class="text-red-500 text-xs mt-1">{{ $message }}</p>
             @enderror
         </div>
-        <x-admin.checkbox-input name="is_active" label="Active" :value="$pricePlan->is_active" />
+        <x-admin.checkbox name="is_active" label="Active" value="1" :checked="$pricePlan->is_active" />
         <x-admin.submit-button label="Update" />
     </form>
 
