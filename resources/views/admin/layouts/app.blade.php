@@ -15,7 +15,7 @@
     <div x-data="{ sidebarOpen: true, sidebarCollapsed: false }" class="flex h-screen">
         <!-- Sidebar -->
         <aside :class="{ 'w-64': !sidebarCollapsed, 'w-20': sidebarCollapsed }"
-            class="bg-gray-800 text-white shrink-0 transition-all duration-300">
+            class="bg-gray-800 text-white shrink-0 transition-all duration-300 h-screen overflow-y-auto rounded-r-lg">
             <div class="p-4">
                 <h1 class="text-2xl font-bold" x-show="!sidebarCollapsed"
                     x-transition:enter="transition ease-out duration-300" x-transition:enter-start="opacity-0"
