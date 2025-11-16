@@ -25,8 +25,10 @@
                 x-transition:leave-end="opacity-0">Dashboard</span>
         </a>
 
-        <div x-data="{ open: @json(request()->routeIs('admin.service-categories.*') || request()->routeIs('admin.services.*') || request()->routeIs('admin.service-types.*') || request()->routeIs('admin.price-plans.*')) }"
-            class="relative">
+        <div x-data="{ open: @json(request()->routeIs('admin.service-categories.*') ||
+                request()->routeIs('admin.services.*') ||
+                request()->routeIs('admin.service-types.*') ||
+                request()->routeIs('admin.price-plans.*')) }" class="relative">
             <button @click="sidebarCollapsed ? (sidebarCollapsed = false, open = true) : open = !open"
                 class="w-full text-left flex items-center justify-between px-4 py-2 text-gray-300 hover:bg-gray-700 focus:outline-none">
                 <span class="flex items-center">
@@ -62,8 +64,7 @@
             </div>
         </div>
 
-        <div x-data="{ open: @json(request()->routeIs('admin.project-categories.*') || request()->routeIs('admin.projects.*')) }"
-            class="relative">
+        <div x-data="{ open: @json(request()->routeIs('admin.project-categories.*') || request()->routeIs('admin.projects.*')) }" class="relative">
             <button @click="sidebarCollapsed ? (sidebarCollapsed = false, open = true) : open = !open"
                 class="w-full text-left flex items-center justify-between px-4 py-2 text-gray-300 hover:bg-gray-700 focus:outline-none">
                 <span class="flex items-center">
@@ -124,8 +125,7 @@
                 x-transition:leave-end="opacity-0">Software</span>
         </a>
 
-        <div x-data="{ open: @json(request()->routeIs('admin.teams.*') || request()->routeIs('admin.designations.*')) }"
-            class="relative">
+        <div x-data="{ open: @json(request()->routeIs('admin.teams.*') || request()->routeIs('admin.designations.*')) }" class="relative">
             <button @click="sidebarCollapsed ? (sidebarCollapsed = false, open = true) : open = !open"
                 class="w-full text-left flex items-center justify-between px-4 py-2 text-gray-300 hover:bg-gray-700 focus:outline-none">
                 <span class="flex items-center">
@@ -154,8 +154,9 @@
             </div>
         </div>
 
-        <div x-data="{ open: @json(request()->routeIs('admin.vacancy-categories.*') || request()->routeIs('admin.vacancies.*') || request()->routeIs('admin.applicants.*')) }"
-            class="relative">
+        <div x-data="{ open: @json(request()->routeIs('admin.vacancy-categories.*') ||
+                request()->routeIs('admin.vacancies.*') ||
+                request()->routeIs('admin.applicants.*')) }" class="relative">
             <button @click="sidebarCollapsed ? (sidebarCollapsed = false, open = true) : open = !open"
                 class="w-full text-left flex items-center justify-between px-4 py-2 text-gray-300 hover:bg-gray-700 focus:outline-none">
                 <span class="flex items-center">
@@ -187,8 +188,16 @@
             </div>
         </div>
 
-        <div x-data="{ open: @json(request()->routeIs('admin.tags.*') || request()->routeIs('admin.technologies.*') || request()->routeIs('admin.key-features.*') || request()->routeIs('admin.features.*') || request()->routeIs('admin.trusted-companies.*') || request()->routeIs('admin.clients.*') || request()->routeIs('admin.page-faqs.*') || request()->routeIs('admin.working-processes.*') || request()->routeIs('admin.values.*') || request()->routeIs('admin.social-media-links.*')) }"
-            class="relative">
+        <div x-data="{ open: @json(request()->routeIs('admin.tags.*') ||
+                request()->routeIs('admin.technologies.*') ||
+                request()->routeIs('admin.key-features.*') ||
+                request()->routeIs('admin.features.*') ||
+                request()->routeIs('admin.trusted-companies.*') ||
+                request()->routeIs('admin.clients.*') ||
+                request()->routeIs('admin.page-faqs.*') ||
+                request()->routeIs('admin.working-processes.*') ||
+                request()->routeIs('admin.values.*') ||
+                request()->routeIs('admin.social-media-links.*')) }" class="relative">
             <button @click="sidebarCollapsed ? (sidebarCollapsed = false, open = true) : open = !open"
                 class="w-full text-left flex items-center justify-between px-4 py-2 text-gray-300 hover:bg-gray-700 focus:outline-none">
                 <span class="flex items-center">
@@ -215,6 +224,10 @@
             <div x-show="open && !sidebarCollapsed" @click.away="open = false" class="bg-gray-700" x-transition>
                 <a href="{{ route('admin.categories.index') }}"
                     class="block px-8 py-2 text-gray-300 hover:bg-gray-600 {{ request()->routeIs('admin.categories.*') ? 'bg-gray-600' : '' }}">Categories</a>
+                <a href="{{ route('admin.achievements.index') }}"
+                    class="block px-8 py-2 text-gray-300 hover:bg-gray-600 {{ request()->routeIs('admin.achievements.*') ? 'bg-gray-600' : '' }}">Achievements</a>
+
+
                 <a href="{{ route('admin.tags.index') }}"
                     class="block px-8 py-2 text-gray-300 hover:bg-gray-600 {{ request()->routeIs('admin.tags.*') ? 'bg-gray-600' : '' }}">Tags</a>
                 <a href="{{ route('admin.technologies.index') }}"

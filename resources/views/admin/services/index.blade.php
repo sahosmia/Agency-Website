@@ -34,34 +34,35 @@
     </form>
 </div>
 
-<table class="w-full bg-white shadow-md rounded-lg">
-    <thead>
+<x-admin.table>
+    <x-slot name="head">
         <tr class="bg-gray-200">
-            <th class="px-4 py-2">Name</th>
-            <th class="px-4 py-2">Category</th>
-            <th class="px-4 py-2">Status</th>
-            <th class="px-4 py-2 w-24">Actions</th>
+            <th class="px-5 py-3 text-left font-medium text-gray-600">Name</th>
+            <th class="px-5 py-3 text-left font-medium text-gray-600">Category</th>
+            <th class="px-5 py-3 text-left font-medium text-gray-600">Status</th>
+            <th class="px-5 py-3 text-left font-medium text-gray-600 w-24">Actions</th>
         </tr>
-    </thead>
-    <tbody>
+    </x-slot>
+    <x-slot name="body">
         @foreach ($services as $service)
-        <tr>
-            <td class="border px-4 py-2">
+        <tr class="hover:bg-gray-50 transition">
+            <td class="px-5 py-3">
                 <x-admin.image-title :name="$service->name" :imagePath="asset('storage/' . $service->image)" />
             </td>
-            <td class="border px-4 py-2">{{ $service->category->title }}</td>
-            <td class="border px-4 py-2">
+            <td class="px-5 py-3">{{ $service->category->title }}</td>
+            <td class="px-5 py-3">
                 <x-admin.status-badge :is-active="$service->is_active" />
             </td>
-            <td class="border px-4 py-2">
+            <td class="px-5 py-3">
                 <x-admin.actions-dropdown :showUrl="route('admin.services.show', $service)"
                     :editUrl="route('admin.services.edit', $service)"
                     :deleteRoute="route('admin.services.destroy', $service)" />
             </td>
         </tr>
         @endforeach
-    </tbody>
-</table>
+    </x-slot>
+    </table>
+</x-admin.table>
 
 <div class="mt-4">
     {{ $services->appends(request()->query())->links() }}
