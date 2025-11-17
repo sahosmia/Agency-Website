@@ -30,11 +30,11 @@ class ArticleSeeder extends Seeder
                 'title' => 'Marketing Insights: Email Campaign Strategies',
                 'slug' => Str::slug('Marketing Insights: Email Campaign Strategies'),
                 'thumbnail' => 'email-campaign-strategies.jpg',
-                'short_text' => 'Discover effective email campaign strategies to boost your marketing efforts.',
+                'short_text' => 'They report concept the we of packed, place service. Well commas, with instead .',
                 'long_text' => 'In-depth analysis of successful email marketing campaigns...',
                 'category_id' => $categories->first()->id,
                 'meta_title' => 'Marketing Insights: Email Campaign Strategies',
-                'meta_description' => 'Discover effective email campaign strategies to boost your marketing efforts.',
+                'meta_description' => 'They report concept the we of packed, place service. Well commas, with instead .',
             ],
             [
                 'title' => 'Designers Hub: Tips and Tricks for Creatives',

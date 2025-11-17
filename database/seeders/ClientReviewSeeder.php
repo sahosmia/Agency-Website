@@ -17,27 +17,27 @@ class ClientReviewSeeder extends Seeder
     {
         $datas = [
             [
-                'name' => 'John Doe',
-                'designation' => 'CEO, Tech Solutions',
+                'name' => 'Harper Jackson',
+                'designation' => 'Founder & CEO & Dcode agency',
                 'avatar' => 'avatars/john_doe.jpg',
                 'rating' => '5',
-                'review' => 'Excellent service! The team was highly professional and delivered beyond expectations.',
+                'review' => 'Working with this agency has been a game-changer for our business. They revamped our website and managed our digital marketing campaigns, resulting in a 60% increase in leads.',
                 'is_active' => true,
             ],
             [
-                'name' => 'Sarah Smith',
-                'designation' => 'Marketing Manager, Bright Ads',
+                'name' => 'Mason Carter',
+                'designation' => 'Creative Director, PixelForge',
                 'avatar' => 'avatars/sarah_smith.jpg',
                 'rating' => '4.5',
-                'review' => 'Great experience! Very responsive and dedicated to quality work.',
+                'review' => 'The team is incredibly skilled and communicative. They understood our requirements perfectly and delivered a website that not only looks amazing but also performs flawlessly.',
                 'is_active' => true,
             ],
             [
-                'name' => 'Michael Johnson',
-                'designation' => 'CTO, InnovateX',
+                'name' => 'Liam Hayes',
+                'designation' => 'Product Manager, NexTech& CEO & Dcode agency',
                 'avatar' => 'avatars/michael_johnson.jpg',
                 'rating' => '4',
-                'review' => 'Good service overall. There were some minor issues, but they were resolved quickly.',
+                'review' => 'Their expertise in UI/UX design and digital marketing helped us stand out in a competitive market.',
                 'is_active' => true,
             ],
             [

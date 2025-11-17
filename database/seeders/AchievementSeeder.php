@@ -13,25 +13,25 @@ class AchievementSeeder extends Seeder
     public function run(): void
     {
         Achievement::updateOrCreate(['id' => 1], [
-            'title' => 'Projects Done',
-            'description' => 'We have successfully completed over 100 projects for our clients.',
-            'value' => '20%',
+            'title' => 'Satisfied Customers',
+            'description' => 'We are committed to providing the best solutions to build happy relationships with our customers.',
+            'value' => '95%',
             'home_page_show' => true,
             'sort' => 1,
         ]);
 
         Achievement::updateOrCreate(['id' => 2], [
-            'title' => 'Happy Clients',
-            'description' => 'We have a long list of happy clients who are satisfied with our work.',
-            'value' => '20%',
+            'title' => 'Projects Completed',
+            'description' => 'Consistently innovating and delivering excellence.',
+            'value' => '80+',
             'home_page_show' => true,
             'sort' => 2,
         ]);
 
         Achievement::updateOrCreate(['id' => 3], [
-            'title' => 'Years of Experience',
-            'description' => 'We have over 10 years of experience in the industry.',
-            'value' => '20%',
+            'title' => 'Industries Served',
+            'description' => 'Expertise tailored to your unique needs—because we’ve done it all.',
+            'value' => '17+',
             'home_page_show' => true,
             'sort' => 3,
         ]);
@@ -40,7 +40,7 @@ class AchievementSeeder extends Seeder
             'title' => 'Expert Team',
             'description' => 'We have a team of experts who are dedicated to providing the best solutions.',
             'value' => '20%',
-            'home_page_show' => true,
+            'home_page_show' => false,
             'sort' => 4,
         ]);
     }
