@@ -3,30 +3,40 @@
 @section('title', 'Edit Articles')
 @section('header-title', 'Edit Articles')
 
+
+
+
+@section('back-button')
+<x-admin.button outline :route="route('admin.articles.index')" text="Back" />
+@endsection
 @section('content')
-    <x-admin.back-button :route="route('admin.articles.index')" />
+<div class="rounded bg-white p-10 w-9/12 mx-auto">
     <h1 class="text-2xl font-bold mb-4">Edit Article</h1>
 
     <form action="{{ route('admin.articles.update', $article) }}" method="POST" enctype="multipart/form-data">
         @csrf
         @method('PUT')
         <x-admin.text-input name="title" label="Title" :value="$article->title" required />
-        <x-admin.select name="category_id" label="Category" :options="$categories->pluck('title', 'id')" :value="$article->category_id" required />
-        <x-admin.multi-select name="tags" label="Tags" :options="$tags->pluck('name', 'id')" :values="$article->tags->pluck('id')->toArray()" />
+        <x-admin.select name="category_id" label="Category" :options="$categories->pluck('title', 'id')"
+            :value="$article->category_id" required />
+        <x-admin.multi-select name="tags" label="Tags" :options="$tags->pluck('name', 'id')"
+            :values="$article->tags->pluck('id')->toArray()" />
         <x-admin.file-input name="thumbnail" label="Thumbnail" :value="$article->thumbnail" />
         <x-admin.textarea name="short_text" label="Short Text" :value="$article->short_text" />
         <x-admin.ckeditor name="long_text" label="Long Text" :value="$article->long_text" />
         <x-admin.text-input name="meta_title" label="Meta Title" :value="$article->meta_title" />
         <x-admin.textarea name="meta_description" label="Meta Description" :value="$article->meta_description" />
-        <x-admin.checkbox-input name="is_active" label="Active" :value="$article->is_active" />
-        <x-admin.submit-button label="Update" />
+        <x-admin.switch-input name="is_active" label="Active" :value="$article->is_active" />
+        <x-admin.button type="submit" text="Update Article" class="mt-5" />
+        <x-admin.button outline :route="route('admin.articles.index')" text="Cancel" />
     </form>
+</div>
 @endsection
 
 @push('scripts')
-    <script>
-        $(document).ready(function() {
+<script>
+    $(document).ready(function() {
             $('#tags').select2();
         });
-    </script>
+</script>
 @endpush

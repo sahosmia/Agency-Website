@@ -14,6 +14,7 @@ class Article extends Model
     use HasFactory, HasSlug, ScopeActive;
 
     protected $fillable = ['title', 'slug', 'short_text', 'long_text', 'category_id', 'thumbnail', 'is_active', 'meta_title', 'meta_description'];
+    
     protected $appends = ['thumbnail_url'];
 
     public function getThumbnailUrlAttribute()

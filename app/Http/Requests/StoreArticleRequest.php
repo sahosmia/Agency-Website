@@ -26,12 +26,12 @@ class StoreArticleRequest extends FormRequest
             'category_id' => 'required|exists:categories,id',
             'thumbnail' => 'nullable|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
             'short_text' => 'nullable|string',
-            'long_text' => 'nullable|string',
+            'long_text' => 'required|string',
             'meta_title' => 'nullable|string|max:255',
             'meta_description' => 'nullable|string',
             'tags' => 'nullable|array',
             'tags.*' => 'exists:tags,id',
-            'is_active' => 'nullable|boolean',
+            'is_active' => 'boolean',
         ];
     }
 }

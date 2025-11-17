@@ -3,55 +3,87 @@
 @section('title', 'Index Trusted Companies')
 @section('header-title', 'Index Trusted Companies')
 
+@section('back-button')
+{{-- Using the standardized admin button component --}}
+<x-admin.button :route="route('admin.trusted-companies.create')" text="Create" />
+@endsection
+
 @section('content')
-    <div class="flex justify-between items-center mb-4">
-        <h1 class="text-2xl font-bold">Trusted Companies</h1>
-        <x-admin.create-button :route="route('admin.trusted-companies.create')" />
-    </div>
+<x-admin.status-message />
 
-    <div class="mb-4">
-        <form action="{{ route('admin.trusted-companies.index') }}" method="GET">
-            <div class="flex items-center">
-                <input type="text" name="q" value="{{ request()->q }}" class="border border-gray-300 rounded-l-md px-4 py-2 w-1/2" placeholder="Search by name...">
-                <select name="status" class="border border-gray-300 px-4 py-2 w-1/2">
-                    <option value="">All Statuses</option>
-                    <option value="1" {{ request()->status == '1' ? 'selected' : '' }}>Active</option>
-                    <option value="0" {{ request()->status == '0' ? 'selected' : '' }}>Inactive</option>
-                </select>
-                <button type="submit" class="bg-blue-500 hover:bg-blue-600 text-white font-bold py-2 px-4 rounded-r-md">Filter</button>
-            </div>
-        </form>
-    </div>
+{{-- Filter Section styled consistently with shadow, background, and responsive layout --}}
+<div class="mb-6 bg-white border border-gray-200 rounded-xl shadow-sm p-4">
+    <form action="{{ route('admin.trusted-companies.index') }}" method="GET"
+        class="flex flex-col sm:flex-row sm:items-end gap-4">
 
-    <table class="w-full bg-white shadow-md rounded-lg">
-        <thead>
-            <tr class="bg-gray-200">
-                <th class="px-4 py-2">Name</th>
-                <th class="px-4 py-2">Status</th>
-                <th class="px-4 py-2 w-24">Actions</th>
+        {{-- Search Input --}}
+        <div class="flex-1">
+            <label for="q" class="block text-gray-600 text-sm font-medium mb-1">Search by Name</label>
+            <input type="text" name="q" id="q" value="{{ request()->q }}"
+                class="w-full px-4 py-2 border border-gray-300 rounded-md text-sm text-gray-700 focus:outline-none focus:ring-2 focus:ring-indigo-300 focus:border-indigo-500 transition"
+                placeholder="Search by name...">
+        </div>
+
+        {{-- Status Select --}}
+        <div class="w-full sm:w-1/4">
+            <label for="status" class="block text-gray-600 text-sm font-medium mb-1">Status</label>
+            <select name="status" id="status"
+                class="w-full px-4 py-2 border border-gray-300 rounded-md text-sm text-gray-700 focus:outline-none focus:ring-2 focus:ring-indigo-300 focus:border-indigo-500 transition">
+                <option value="">All Statuses</option>
+                <option value="1" {{ request()->status == '1' ? 'selected' : '' }}>Active</option>
+                <option value="0" {{ request()->status == '0' ? 'selected' : '' }}>Inactive</option>
+            </select>
+        </div>
+
+        {{-- Filter Button styled with indigo color --}}
+        <div class="flex">
+            <button type="submit"
+                class="w-full sm:w-auto bg-indigo-600 hover:bg-indigo-700 text-white text-sm font-medium px-5 py-2.5 rounded-md transition-colors duration-200 shadow-sm hover:shadow-md">
+                Filter
+            </button>
+        </div>
+    </form>
+</div>
+
+{{-- Table structure styled consistently, removing x-admin.table component --}}
+<div class="bg-white border border-gray-100 shadow-sm rounded-xl overflow-hidden">
+    <table class="w-full text-sm text-gray-700">
+        <thead class="bg-gray-50 border-b border-gray-200">
+            <tr>
+                <th class="px-5 py-3 text-left font-medium text-gray-600">Name</th>
+                <th class="px-5 py-3 text-center font-medium text-gray-600">Status</th>
+                <th class="px-5 py-3 text-right font-medium text-gray-600 w-24">Actions</th>
             </tr>
         </thead>
-        <tbody>
-            @foreach ($trustedCompanies as $trustedCompany)
-                <tr>
-                    <td class="border px-4 py-2">
-                        <x-admin.image-title :name="$trustedCompany->name" :imagePath="asset('storage/' . $trustedCompany->logo)" />
-                    </td>
-                    <td class="border px-4 py-2">
-                        <x-admin.status-badge :is-active="$trustedCompany->is_active" />
-                    </td>
-                    <td class="border px-4 py-2">
-                        <x-admin.actions-dropdown
-                            :editUrl="route('admin.trusted-companies.edit', $trustedCompany)"
-                            :deleteRoute="route('admin.trusted-companies.destroy', $trustedCompany)"
-                        />
-                    </td>
-                </tr>
-            @endforeach
+
+        <tbody class="divide-y divide-gray-100">
+            @forelse ($trustedCompanies as $trustedCompany)
+            <tr class="hover:bg-gray-50 transition">
+                <td class="px-5 py-3">
+                    <x-admin.image-title :name="$trustedCompany->name"
+                        :imagePath="asset('storage/' . $trustedCompany->logo)" />
+                </td>
+                <td class="px-5 py-3 text-center">
+                    <x-admin.status-badge :is-active="$trustedCompany->is_active" />
+                </td>
+                <td class="px-5 py-3 text-right">
+                    <x-admin.actions-dropdown :editUrl="route('admin.trusted-companies.edit', $trustedCompany)"
+                        :deleteRoute="route('admin.trusted-companies.destroy', $trustedCompany)" />
+                </td>
+            </tr>
+            @empty
+            <tr>
+                <td colspan="3" class="px-5 py-6 text-center text-gray-500">
+                    No trusted companies found.
+                </td>
+            </tr>
+            @endforelse
         </tbody>
     </table>
+</div>
 
-<div class="mt-4">
+{{-- Pagination container --}}
+<div class="mt-6">
     {{ $trustedCompanies->appends(request()->query())->links() }}
 </div>
 @endsection

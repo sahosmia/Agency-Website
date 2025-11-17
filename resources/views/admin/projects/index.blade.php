@@ -1,66 +1,104 @@
 @extends('admin.layouts.app')
 
-@section('title', 'Index Projects')
-@section('header-title', 'Index Projects')
+@section('title', 'Projects')
+@section('header-title', 'Projects')
+
+@section('back-button')
+<x-admin.button :route="route('admin.projects.create')" text="Create Project" />
+@endsection
 
 @section('content')
-    <div class="flex justify-between items-center mb-4">
-        <h1 class="text-2xl font-bold">Projects</h1>
-        <x-admin.create-button :route="route('admin.projects.create')" />
-    </div>
+<x-admin.status-message />
 
-    <div class="mb-4">
-        <form action="{{ route('admin.projects.index') }}" method="GET">
-            <div class="flex items-center">
-                <input type="text" name="q" value="{{ request()->q }}" class="border border-gray-300 rounded-l-md px-4 py-2 w-1/2" placeholder="Search by name...">
-                <select name="category_id" class="border border-gray-300 px-4 py-2 w-1/3">
-                    <option value="">All Categories</option>
-                    @foreach($categories as $category)
-                        <option value="{{ $category->id }}" {{ request()->category_id == $category->id ? 'selected' : '' }}>{{ $category->title }}</option>
-                    @endforeach
-                </select>
-                <select name="status" class="border border-gray-300 px-4 py-2 w-1/3">
-                    <option value="">All Statuses</option>
-                    <option value="1" {{ request()->status == '1' ? 'selected' : '' }}>Active</option>
-                    <option value="0" {{ request()->status == '0' ? 'selected' : '' }}>Inactive</option>
-                </select>
-                <button type="submit" class="bg-blue-500 hover:bg-blue-600 text-white font-bold py-2 px-4 rounded-r-md">Filter</button>
-            </div>
-        </form>
-    </div>
+{{-- Filter Section --}}
+<div class="mb-6 bg-white border border-gray-200 rounded-xl shadow-sm p-4">
+    <form action="{{ route('admin.projects.index') }}" method="GET"
+        class="flex flex-col md:flex-row md:items-end gap-4">
 
-    <table class="w-full bg-white shadow-md rounded-lg">
-        <thead>
-            <tr class="bg-gray-200">
-                <th class="px-4 py-2">Name</th>
-                <th class="px-4 py-2">Category</th>
-                <th class="px-4 py-2">Status</th>
-                <th class="px-4 py-2 w-24">Actions</th>
+        {{-- Search Input --}}
+        <div class="flex-1">
+            <label for="q" class="block text-gray-600 text-sm font-medium mb-1">Search by Name</label>
+            <input type="text" name="q" id="q" value="{{ request()->q }}"
+                class="w-full px-4 py-2 border border-gray-300 rounded-md text-sm text-gray-700 focus:outline-none focus:ring-2 focus:ring-indigo-300 focus:border-indigo-500 transition"
+                placeholder="Search by name...">
+        </div>
+
+        {{-- Category Select --}}
+        <div class="w-full md:w-1/4">
+            <label for="category_id" class="block text-gray-600 text-sm font-medium mb-1">Category</label>
+            <select name="category_id" id="category_id"
+                class="w-full px-4 py-2 border border-gray-300 rounded-md text-sm text-gray-700 focus:outline-none focus:ring-2 focus:ring-indigo-300 focus:border-indigo-500 transition">
+                <option value="">All Categories</option>
+                @foreach($categories as $category)
+                <option value="{{ $category->id }}" {{ request()->category_id == $category->id ? 'selected' : '' }}>
+                    {{ $category->title }}
+                </option>
+                @endforeach
+            </select>
+        </div>
+
+        {{-- Status Select --}}
+        <div class="w-full md:w-1/5">
+            <label for="status" class="block text-gray-600 text-sm font-medium mb-1">Status</label>
+            <select name="status" id="status"
+                class="w-full px-4 py-2 border border-gray-300 rounded-md text-sm text-gray-700 focus:outline-none focus:ring-2 focus:ring-indigo-300 focus:border-indigo-500 transition">
+                <option value="">All Statuses</option>
+                <option value="1" {{ request()->status == '1' ? 'selected' : '' }}>Active</option>
+                <option value="0" {{ request()->status == '0' ? 'selected' : '' }}>Inactive</option>
+            </select>
+        </div>
+
+        {{-- Filter Button --}}
+        <div class="flex">
+            <button type="submit"
+                class="w-full md:w-auto bg-indigo-600 hover:bg-indigo-700 text-white text-sm font-medium px-5 py-2.5 rounded-md transition-colors duration-200 shadow-sm hover:shadow-md">
+                Filter
+            </button>
+        </div>
+
+    </form>
+</div>
+
+{{-- Table --}}
+<div class="bg-white border border-gray-100 shadow-sm rounded-xl overflow-hidden">
+    <table class="w-full text-sm text-gray-700">
+        <thead class="bg-gray-50 border-b border-gray-200">
+            <tr>
+                <th class="px-5 py-3 text-left font-medium text-gray-600">Name</th>
+                <th class="px-5 py-3 text-left font-medium text-gray-600">Category</th>
+                <th class="px-5 py-3 text-center font-medium text-gray-600">Status</th>
+                <th class="px-5 py-3 text-right font-medium text-gray-600 w-24">Actions</th>
             </tr>
         </thead>
-        <tbody>
-            @foreach ($projects as $project)
-                <tr>
-                    <td class="border px-4 py-2">
-                        <x-admin.image-title :name="$project->title" :imagePath="asset('storage/' . $project->thumbnail)" />
-                    </td>
-                    <td class="border px-4 py-2">{{ $project->category->title }}</td>
-                    <td class="border px-4 py-2">
-                        <x-admin.status-badge :is-active="$project->is_active" />
-                    </td>
-                    <td class="border px-4 py-2">
-                        <x-admin.actions-dropdown
-                            :showUrl="route('admin.projects.show', $project)"
-                            :editUrl="route('admin.projects.edit', $project)"
-                            :deleteRoute="route('admin.projects.destroy', $project)"
-                        />
-                    </td>
-                </tr>
-            @endforeach
+        <tbody class="divide-y divide-gray-100">
+            @forelse ($projects as $project)
+            <tr class="hover:bg-gray-50 transition">
+                <td class="px-5 py-3">
+                    <x-admin.image-title :name="$project->title" :imagePath="asset('storage/' . $project->thumbnail)" />
+                </td>
+                <td class="px-5 py-3">{{ $project->category->title }}</td>
+                <td class="px-5 py-3 text-center">
+                    <x-admin.status-badge :is-active="$project->is_active" />
+                </td>
+                <td class="px-5 py-3 text-right">
+                    <x-admin.actions-dropdown :showUrl="route('admin.projects.show', $project)"
+                        :editUrl="route('admin.projects.edit', $project)"
+                        :deleteRoute="route('admin.projects.destroy', $project)" />
+                </td>
+            </tr>
+            @empty
+            <tr>
+                <td colspan="4" class="px-5 py-6 text-center text-gray-500">
+                    No projects found.
+                </td>
+            </tr>
+            @endforelse
         </tbody>
     </table>
+</div>
 
-<div class="mt-4">
+{{-- Pagination --}}
+<div class="mt-6">
     {{ $projects->appends(request()->query())->links() }}
 </div>
 @endsection

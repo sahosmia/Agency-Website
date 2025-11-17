@@ -5,6 +5,7 @@ use Illuminate\Support\Facades\Route;
 // ========== Controllers ==========
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\Admin\{
+    AchievementController,
     DashboardController,
     CategoryController,
     ArticleController,
@@ -123,6 +124,7 @@ Route::prefix('admin')->name('admin.')->middleware(['auth'])->group(function () 
     // Resource Routes
     Route::resources([
         'categories'          => CategoryController::class,
+        'achievements'         => AchievementController::class,
         'services'            => ServiceController::class,
         'service-types'       => ServiceTypeController::class,
         'projects'            => ProjectController::class,
