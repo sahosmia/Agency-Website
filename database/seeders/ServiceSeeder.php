@@ -26,8 +26,8 @@ class ServiceSeeder extends Seeder
                 'image' => 'service (1).png',
                 'description' => 'We offer bespoke website design services tailored to your brand identity and business goals.',
                 'is_active' => true,
-                'meta_title' => 'Custom Website Design',
-                'meta_description' => 'Custom Website Design',
+                'meta_title' => 'Web Design & Development',
+                'meta_description' => 'We create visually stunning and responsive websites tailored to your brand, ensuring seamless user experiences and high performance across all devices.',
             ],
             [
                 'name' => 'Custom Website Development',
@@ -35,8 +35,8 @@ class ServiceSeeder extends Seeder
                 'description' => 'Our team specializes in developing custom websites that are scalable, secure, and optimized for performance.',
                 'image' => 'service (2).png',
                 'is_active' => true,
-                'meta_title' => 'Custom Website Development',
-                'meta_description' => 'Custom Website Development',
+                'meta_title' => 'Mobile App Development ',
+                'meta_description' => 'From concept to deployment, we design and develop intuitive mobile applications for iOS and Android, tailored to your business goals.',
             ],
             [
                 'name' => 'Landing Page Design',
@@ -44,8 +44,8 @@ class ServiceSeeder extends Seeder
                 'description' => 'We create high-converting landing pages designed to capture leads and drive sales for your marketing campaigns.',
                 'image' => 'service (3).png',
                 'is_active' => true,
-                'meta_title' => 'Landing Page Design',
-                'meta_description' => 'Landing Page Design',
+                'meta_title' => 'UX/UI Design ',
+                'meta_description' => 'We craft user-centered designs that are both functional and aesthetically pleasing, enhancing usability and engagement for your digital products.',
             ],
             [
                 'name' => 'Website Maintenance and Support',

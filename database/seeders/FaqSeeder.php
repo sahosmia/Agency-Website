@@ -26,6 +26,26 @@ class FaqSeeder extends Seeder
                     'answer' => 'We have experience working with various industries such as Healthcare, Finance, E-commerce, Education, and others.',
                     'is_active' => true,
                 ],
+                [
+                    'question' => 'Do you work with international clients?',
+                    'answer' => 'We have experience working with various industries such as Healthcare, Finance, E-commerce, Education, and others.',
+                    'is_active' => true,
+                ],
+                [
+                    'question' => 'What makes your company stand out?',
+                    'answer' => 'We have experience working with various industries such as Healthcare, Finance, E-commerce, Education, and others.',
+                    'is_active' => true,
+                ],
+                [
+                    'question' => 'Do you provide support after project completion?',
+                    'answer' => 'We have experience working with various industries such as Healthcare, Finance, E-commerce, Education, and others.',
+                    'is_active' => true,
+                ],
+                [
+                    'question' => 'How can I get started with your services?',
+                    'answer' => 'We have experience working with various industries such as Healthcare, Finance, E-commerce, Education, and others.',
+                    'is_active' => true,
+                ],
             ],
             'about' => [
                 [
