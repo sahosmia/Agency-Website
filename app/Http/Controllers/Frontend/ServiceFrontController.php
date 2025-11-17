@@ -22,7 +22,7 @@ class ServiceFrontController extends Controller
             ->when($request->category, function ($query) use ($request) {
                 $query->where('category_id', $request->category);
             })
-            ->paginate(6);
+            ->paginate(20);
 
         $servicesPage = PageSetting::where('page_name', 'services')->first();
         $servicesSettings = $servicesPage ? $servicesPage->settings : [];
@@ -32,7 +32,7 @@ class ServiceFrontController extends Controller
 
         return view('frontend.services.index', ['services' => $services, 'categories' => $categories, 'servicesSettings' => $servicesSettings, 'faqs' => $faqs]);
 
-        
+
     }
 
     public function show(Service $service)

@@ -8,8 +8,7 @@
 
     <div class="flex flex-col mx-auto items-center justify-center mt-20">
         <div class="w-8/12 ">
-            <img class="rounded-lg m-auto w-full h-auto object-cover"
-                src="{{ asset('storage/services/' . $service->image) }}" alt="{{ $service->name }}">
+
         </div>
     </div>
 

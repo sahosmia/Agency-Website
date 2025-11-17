@@ -20,7 +20,7 @@
         @if ($value)
         @php $imagePath = asset('storage/' . $value); @endphp
         <span id="old-image-{{ $name }}">
-            <img src="{{ $imagePath }}" class="object-cover rounded-lg shadow-sm {{ $imgClass }}">
+            <img src="{{ $value }}" class="object-cover rounded-lg shadow-sm {{ $imgClass }}">
         </span>
         @endif
         <img id="preview-{{ $name }}" class="object-cover rounded-lg shadow-sm {{ $imgClass }}" style="display: none;">

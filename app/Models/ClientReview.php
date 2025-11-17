@@ -28,12 +28,17 @@ class ClientReview extends Model
     }
 
     // avatar_url accessor
-    protected $appends = ['avatar_url'];
-    public function getAvatarUrlAttribute()
-    {
-        if ($this->avatar && file_exists(public_path('uploads/client_reviews/' . $this->avatar))) {
-            return asset('uploads/client_reviews/' . $this->avatar);
-        }
-        return asset('images/default-client-avatar.jpg');
+ protected $appends = ['avatar_url'];
+
+public function getAvatarUrlAttribute()
+{
+    $path = 'storage/client_reviews/' . $this->avatar;
+
+    if ($this->avatar && file_exists(public_path($path))) {
+        return asset($path);
     }
+
+    return asset('images/default-client-avatar.jpg');
+}
+
 }

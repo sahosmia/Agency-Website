@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Models\PageSetting;
 use App\Models\Project;
 use App\Models\Category;
+use App\Models\Faq;
 use Illuminate\Http\Request;
 
 class ProjectFrontController extends Controller
@@ -24,10 +25,12 @@ class ProjectFrontController extends Controller
             ->orderBy('sort')
             ->paginate(6);
 
+        $faqs = Faq::where('page', 'service')->orderBy('sort')->get();
         $projectsPage = PageSetting::where('page_name', 'projects')->first();
+
         $projectsSettings = $projectsPage ? $projectsPage->settings : [];
 
-        return view('frontend.projects.index', ['projects' => $projects, 'categories' => $categories, 'projectsSettings' => $projectsSettings]);
+        return view('frontend.projects.index', compact('projects', 'categories', 'projectsSettings', 'faqs'));
     }
 
     public function show(Project $project)

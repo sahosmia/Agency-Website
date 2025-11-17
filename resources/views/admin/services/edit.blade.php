@@ -10,7 +10,6 @@
 @section('content')
 <div class="rounded bg-white p-10 w-9/12 mx-auto">
     <h1 class="text-2xl font-bold mb-4">Edit Service</h1>
-
     <form action="{{ route('admin.services.update', $service) }}" method="POST" enctype="multipart/form-data">
         @csrf
         @method('PUT')
@@ -18,7 +17,7 @@
         <x-admin.select name="category_id" label="Category" :options="$categories->pluck('title', 'id')"
             :value="$service->category_id" required />
         <x-admin.textarea name="description" label="Description" :value="$service->description" />
-        <x-admin.file-input name="image" label="Image" :value="$service->image" />
+        <x-admin.file-input name="image" label="Image" :value="$service->image_url" />
         <x-admin.text-input name="meta_title" label="Meta Title" :value="$service->meta_title" />
         <x-admin.textarea name="meta_description" label="Meta Description" :value="$service->meta_description" />
         <x-admin.switch-input name="is_active" label="Active" :value="$service->is_active" />

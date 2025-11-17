@@ -71,19 +71,20 @@
     <!-- Service List -->
     <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-x-6 gap-y-10 md:gap-y-[60px] mt-14">
         @forelse ($services as $service)
-        <div>
-            <img class="max-h-72 w-full object-cover rounded-xl" src="{{ asset('upload/services/card-img.png') }}"
-                alt="{{ $service->title }}" />
+        <div class="border border-secondary-400 rounded-xl p-6">
+
+            <img class="max-h-72 w-full object-cover rounded" src="{{ $service->image_url }}"
+                alt="{{ $service->name }}" />
             <div class="mt-4">
                 <button
                     class="px-4 py-2 border rounded-full border-secondary-200 label-text-regular-small text-secondary-800">
                     {{ $service->category->title }}
                 </button>
                 <h2 class="title-text-bold-medium text-secondary-950 pt-2">
-                    {{ $service->title }}
+                    {{ $service->name }}
                 </h2>
                 <p class="body-text-regular-medium text-secondary-600 pt-1">
-                    {{ $service->short_text }}
+                    {{ $service->description }}
                 </p>
             </div>
 
@@ -99,15 +100,7 @@
         @endforelse
     </div>
 
-    <!-- Pagination -->
-    @if ($services->hasMorePages())
-    <div class="inline-flex justify-center items-center gap-2 px-6 py-3 mt-10">
-        <button type="button"
-            class="px-6 py-3 rounded-lg border border-gray-600 text-xl font-semibold leading-7 transition duration-200 hover:bg-gray-700 hover:text-white active:scale-95">
-            See more
-        </button>
-    </div>
-    @endif
+   
 </div>
 
 <!-- FAQ Section -->

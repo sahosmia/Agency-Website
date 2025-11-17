@@ -10,9 +10,7 @@
 @section('content')
 <x-admin.status-message />
 
----
 
-## 🔍 Filter Services
 {{-- Filter Section styled with background, border, and shadow --}}
 <div class="mb-6 bg-white border border-gray-200 rounded-xl shadow-sm p-4">
     <form action="{{ route('admin.services.index') }}" method="GET"
@@ -62,9 +60,8 @@
     </form>
 </div>
 
----
 
-## 📋 Services Table
+
 {{-- Table structure styled according to the client reviews index --}}
 <div class="bg-white border border-gray-100 shadow-sm rounded-xl overflow-hidden">
     <table class="w-full text-sm text-gray-700">
@@ -81,16 +78,15 @@
             @forelse ($services as $service)
             <tr class="hover:bg-gray-50 transition">
                 <td class="px-5 py-3">
-                    <x-admin.image-title :name="$service->name" :imagePath="asset('storage/' . $service->image)" />
+                    <x-admin.image-title :name="$service->name" :imagePath="$service->image_url" />
                 </td>
                 <td class="px-5 py-3">{{ $service->category->title }}</td>
                 <td class="px-5 py-3 text-center">
                     <x-admin.status-badge :is-active="$service->is_active" />
                 </td>
                 <td class="px-5 py-3 text-right">
-                    <x-admin.actions-dropdown
-                    :showUrl="route('admin.services.show', $service)"
-                    :editUrl="route('admin.services.edit', $service)"
+                    <x-admin.actions-dropdown :showUrl="route('admin.services.show', $service)"
+                        :editUrl="route('admin.services.edit', $service)"
                         :deleteRoute="route('admin.services.destroy', $service)" />
                 </td>
             </tr>
@@ -105,9 +101,7 @@
     </table>
 </div>
 
----
 
-## 🔢 Pagination
 <div class="mt-6">
     {{ $services->appends(request()->query())->links() }}
 </div>

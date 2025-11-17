@@ -24,14 +24,26 @@ class Service extends Model
     ];
 
     // image_url accessor
-    protected $appends = ['image_url'];
+    protected $appends = ['image_url', 'thumbnail_url'];
     public function getImageUrlAttribute()
     {
-        if ($this->image && file_exists(public_path('uploads/services/' . $this->image))) {
-            return asset('uploads/services/' . $this->image);
+        $path = 'storage/services/images/' . $this->image;
 
+        if ($this->image && file_exists(public_path($path))) {
+            return asset($path);
         }
-        return asset('images/default-service-image.jpg');
+
+        return asset('images/default/service.webp');
+    }
+    public function getThumbnailUrlAttribute()
+    {
+        $path = 'storage/services/thumbnails/' . $this->thumbnail;
+
+        if ($this->thumbnail && file_exists(public_path($path))) {
+            return asset($path);
+        }
+
+        return asset('images/default/service_thumbnail.webp');
     }
 
     public function getSlugSourceField(): string

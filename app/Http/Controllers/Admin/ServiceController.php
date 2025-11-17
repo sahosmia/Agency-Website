@@ -18,7 +18,7 @@ class ServiceController extends Controller
     use FileUploadTrait, AdminPagination;
     public function index(Request $request)
     {
-                $adminPagination = $this->getAdminPagination();
+        $adminPagination = $this->getAdminPagination();
 
         $categories = Category::all();
         $query = Service::with('category');
@@ -49,7 +49,9 @@ class ServiceController extends Controller
     {
         DB::transaction(function () use ($request) {
             $data = $request->validated();
-            $data['thumbnail'] = $this->uploadFile($request, 'thumbnail', 'services');
+               // image upload in services folder images folder store only image name in DB
+            $data['thumbnail'] = $this->uploadFile($request, 'thumbnail', 'services/thumbnails');
+            $data['image'] = $this->uploadFile($request, 'image', 'services/images');
 
             $service = Service::create($data);
 
@@ -77,7 +79,8 @@ class ServiceController extends Controller
     {
         DB::transaction(function () use ($request, $service) {
             $data = $request->validated();
-            $data['thumbnail'] = $this->updateFile($request, 'thumbnail', 'services', $service);
+            $data['thumbnail'] = $this->updateFile($request, 'thumbnail', 'services/thumbnails', $service);
+            $data['image'] = $this->updateFile($request, 'image', 'services/images', $service);
             $service->update($data);
 
             if ($request->has('faqs')) {
@@ -92,7 +95,10 @@ class ServiceController extends Controller
     public function destroy(Service $service)
     {
         if ($service->image) {
-            Storage::disk('public')->delete($service->image);
+            $this->deleteFile($service, 'image', 'services/images');
+        }
+        if ($service->thumbnail) {
+            $this->deleteFile($service, 'thumbnail', 'services/thumbnails');
         }
         $service->delete();
         return redirect()->route('admin.services.index')->with('success', 'Service deleted successfully.');
