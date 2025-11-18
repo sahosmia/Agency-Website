@@ -11,65 +11,31 @@
             <h1 class="text-xl font-semibold text-gray-700 ml-4">@yield('header-title', 'Dashboard')</h1>
         </div>
         <div class="flex items-center space-x-4">
-            <div x-data="{ open: false }" class="relative">
-                <button @click="open = !open"
-                    class="flex items-center space-x-2 px-4 py-2 bg-blue-500 text-white rounded-md hover:bg-blue-600 focus:outline-none">
-                    <svg class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
-                        <path fill-rule="evenodd"
-                            d="M10 5a1 1 0 011 1v3h3a1 1 0 110 2h-3v3a1 1 0 11-2 0v-3H6a1 1 0 110-2h3V6a1 1 0 011-1z"
-                            clip-rule="evenodd" />
-                    </svg>
-                    <span>Quick Create</span>
-                </button>
-                <div x-show="open" @click.away="open = false"
-                    class="absolute right-0 mt-2 w-48 bg-white rounded-md shadow-lg py-1 z-10" x-transition>
-                    <a href="{{ route('admin.services.create') }}"
-                        class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">New Service</a>
-                    <a href="{{ route('admin.service-types.create') }}"
-                        class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">New Service
-                        Type</a>
-                    <a href="{{ route('admin.projects.create') }}"
-                        class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">New Project</a>
-                    <a href="{{ route('admin.softwares.create') }}"
-                        class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">New Software</a>
-                    <a href="{{ route('admin.articles.create') }}"
-                        class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">New Article</a>
-                    <a href="{{ route('admin.tags.create') }}"
-                        class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">New Tag</a>
-                    <a href="{{ route('admin.vacancies.create') }}"
-                        class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">New Vacancy</a>
-                    <a href="{{ route('admin.technologies.create') }}"
-                        class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">New
-                        Technology</a>
-                    <a href="{{ route('admin.categories.create') }}"
-                        class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">New Category</a>
+            <x-admin.dropdown label="Quick Create">
 
-                    <a href="{{ route('admin.features.create') }}"
-                        class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">New Feature</a>
-                    <a href="{{ route('admin.trusted-companies.create') }}"
-                        class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">New Trusted
-                        Company</a>
-                    <a href="{{ route('admin.clients.create') }}"
-                        class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">New Client</a>
-                    <a href="{{ route('admin.page-faqs.create') }}"
-                        class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">New Page FAQ</a>
-                    <a href="{{ route('admin.working-processes.create') }}"
-                        class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">New Working
-                        Process</a>
+                <x-admin.dropdown-item route="admin.services.create">New Service</x-admin.dropdown-item>
+                <x-admin.dropdown-item route="admin.service-types.create">New Service Type</x-admin.dropdown-item>
+                <x-admin.dropdown-item route="admin.projects.create">New Project</x-admin.dropdown-item>
+                <x-admin.dropdown-item route="admin.softwares.create">New Software</x-admin.dropdown-item>
+                <x-admin.dropdown-item route="admin.articles.create">New Article</x-admin.dropdown-item>
+                <x-admin.dropdown-item route="admin.tags.create">New Tag</x-admin.dropdown-item>
+                <x-admin.dropdown-item route="admin.vacancies.create">New Vacancy</x-admin.dropdown-item>
+                <x-admin.dropdown-item route="admin.technologies.create">New Technology</x-admin.dropdown-item>
+                <x-admin.dropdown-item route="admin.categories.create">New Category</x-admin.dropdown-item>
 
-                    <a href="{{ route('admin.social-media-links.create') }}"
-                        class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">New Social
-                        Media Link</a>
-                    <a href="{{ route('admin.price-plans.create') }}"
-                        class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">New Price
-                        Plan</a>
+                <x-admin.dropdown-item route="admin.features.create">New Feature</x-admin.dropdown-item>
+                <x-admin.dropdown-item route="admin.trusted-companies.create">New Trusted Company</x-admin.dropdown-item>
+                <x-admin.dropdown-item route="admin.clients.create">New Client</x-admin.dropdown-item>
+                <x-admin.dropdown-item route="admin.page-faqs.create">New Page FAQ</x-admin.dropdown-item>
+                <x-admin.dropdown-item route="admin.working-processes.create">New Working Process</x-admin.dropdown-item>
 
-                    <a href="{{ route('admin.teams.create') }}"
-                        class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">New Team Member</a>
-                    <a href="{{ route('admin.client-reviews.create') }}"
-                        class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">New Testimonial</a>
-                </div>
-            </div>
+                <x-admin.dropdown-item route="admin.social-media-links.create">New Social Media Link</x-admin.dropdown-item>
+                <x-admin.dropdown-item route="admin.price-plans.create">New Price Plan</x-admin.dropdown-item>
+
+                <x-admin.dropdown-item route="admin.teams.create">New Team Member</x-admin.dropdown-item>
+                <x-admin.dropdown-item route="admin.client-reviews.create">New Testimonial</x-admin.dropdown-item>
+
+            </x-admin.dropdown>
             <div x-data="{ open: false }" class="relative">
                 <button @click="open = !open" class="flex items-center space-x-2 focus:outline-none">
                     <span>{{ Auth::user()->name }}</span>

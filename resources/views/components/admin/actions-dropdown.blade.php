@@ -1,8 +1,8 @@
 @props(['showUrl' => null, 'editUrl' => null, 'deleteRoute'])
 
-<div x-data="actionsDropdown()" class="relative" x-init="init($refs.trigger, $refs.menu)">
+<div x-data="actionsDropdown()" class="relative">
     <!-- Trigger Button -->
-    <button x-ref="trigger" @click="toggle($event)"
+    <button x-ref="trigger" @click="toggle()"
         class="flex items-center justify-center w-8 h-8 rounded-md border border-gray-200 bg-white shadow-sm text-gray-600 hover:text-gray-800 hover:bg-gray-50 focus:outline-none transition"
         aria-haspopup="true" aria-expanded="false">
         <svg class="w-5 h-5" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
@@ -12,14 +12,16 @@
 
     <!-- Teleported Dropdown -->
     <template x-teleport="body">
-        <div x-ref="menu" x-show="open" x-transition:enter="transition ease-out duration-100"
+        <div :id="`menu-${uid}`" x-ref="menu" x-show="open" @click.away="close()"
+            x-transition:enter="transition ease-out duration-100"
             x-transition:enter-start="transform opacity-0 scale-95"
             x-transition:enter-end="transform opacity-100 scale-100" x-transition:leave="transition ease-in duration-75"
             x-transition:leave-start="transform opacity-100 scale-100"
-            x-transition:leave-end="transform opacity-0 scale-95" @click.away="close()" x-cloak
+            x-transition:leave-end="transform opacity-0 scale-95" x-cloak
             :style="`position: absolute; top: ${top}px; left: ${left}px;`"
             class="z-50 w-44 bg-white border border-gray-200 rounded-xl shadow-lg ring-1 ring-black/5 overflow-hidden">
             <div class="py-1">
+
                 @if ($showUrl)
                 <a href="{{ $showUrl }}"
                     class="flex items-center gap-2 px-4 py-2.5 text-sm text-gray-700 hover:bg-gray-50 transition">
@@ -65,20 +67,30 @@
             open: false,
             top: 0,
             left: 0,
-            menuWidth: 176, // approximate width of the menu (44 * 4)
+            menuWidth: 176,
+            uid: crypto.randomUUID(), // unique ID per dropdown
             triggerRef: null,
             menuRef: null,
 
-            init(trigger, menu) {
-                this.triggerRef = trigger;
-                this.menuRef = menu;
+            init() {
+                this.triggerRef = this.$refs.trigger;
 
-                // reposition on resize / scroll to keep in view
-                window.addEventListener('resize', () => this.position());
-                window.addEventListener('scroll', () => this.position());
+                // Wait until teleport finishes
+                this.$nextTick(() => {
+                    this.menuRef = document.getElementById(`menu-${this.uid}`);
+                });
+
+                window.addEventListener('resize', () => {
+                    if (this.open) this.position();
+                });
+
+                // Use capture mode scroll to detect scrolling inside containers
+                window.addEventListener('scroll', () => {
+                    if (this.open) this.position();
+                }, true);
             },
 
-            toggle(e) {
+            toggle() {
                 this.open = !this.open;
                 if (this.open) {
                     this.position();
@@ -90,29 +102,28 @@
             },
 
             position() {
-                if (!this.triggerRef) return;
+                if (!this.triggerRef || !this.menuRef) return;
 
                 const rect = this.triggerRef.getBoundingClientRect();
-                const scrollY = window.scrollY || window.pageYOffset;
-                const scrollX = window.scrollX || window.pageXOffset;
+                const scrollY = window.scrollY;
+                const scrollX = window.scrollX;
 
-                // Default place the menu below the trigger aligned to the right edge
-                const desiredTop = rect.bottom + scrollY + 8; // 8px gap
+                const desiredTop = rect.bottom + scrollY + 8;
                 let desiredLeft = rect.right + scrollX - this.menuWidth;
 
-                // If menu would overflow right edge, shift it left
                 const viewportWidth = document.documentElement.clientWidth;
+
+                // prevent overflow right side
                 if (desiredLeft + this.menuWidth > viewportWidth) {
-                    desiredLeft = Math.max(8, viewportWidth - this.menuWidth - 8);
+                    desiredLeft = viewportWidth - this.menuWidth - 8;
                 }
 
-                // If menu would overflow bottom, open above the trigger
-                const menuHeightEstimate = this.menuRef ? this.menuRef.offsetHeight : 200;
-                const viewportHeight = document.documentElement.clientHeight + scrollY;
-                if (desiredTop + menuHeightEstimate > viewportHeight) {
-                    // place above
-                    this.top = rect.top + scrollY - menuHeightEstimate - 8;
-                    if (this.top < 8) this.top = 8;
+                const menuHeight = this.menuRef.offsetHeight || 200;
+                const viewportHeight = window.innerHeight + scrollY;
+
+                // if bottom overflow → open upward
+                if (desiredTop + menuHeight > viewportHeight) {
+                    this.top = rect.top + scrollY - menuHeight - 8;
                 } else {
                     this.top = desiredTop;
                 }

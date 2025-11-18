@@ -25,6 +25,8 @@ class Service extends Model
 
     // image_url accessor
     protected $appends = ['image_url', 'thumbnail_url'];
+
+    
     public function getImageUrlAttribute()
     {
         $path = 'storage/services/images/' . $this->image;

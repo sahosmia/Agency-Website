@@ -372,8 +372,7 @@
                 <div class="service-item">
                     <div class="flex flex-col gap-5 p-6 bg-white border rounded-md border-secondary-400">
                         <div class="w-full">
-                            <img class="rounded w-full" src="{{ asset('storage/' . $service->image) }}"
-                                alt="{{ $service->name }}">
+                            <img class="rounded w-full" src="{{ $service->image_url}}" alt="{{ $service->name }}">
                         </div>
                         <div class="gap-2">
                             <h1 class="title-text-bold-medium text-secondary-600">{{ $service->name }}</h1>
