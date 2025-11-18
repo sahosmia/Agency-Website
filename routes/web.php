@@ -156,7 +156,7 @@ Route::prefix('admin')->name('admin.')->middleware(['auth'])->group(function () 
         ->prefix('pages')->name('pages.')
         ->group(function () {
             Route::get('/{pageName}', 'index')->name('index');
-            Route::post('/{pageName}', 'update')->name('update');
+            Route::put('/{pageName}/{sectionKey}', 'updateSection')->name('update-section');
         });
 });
 
