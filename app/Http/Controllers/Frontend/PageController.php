@@ -21,7 +21,9 @@ class PageController extends Controller
 
     public function about()
     {
-        $teams = Team::active()->get();
+
+        $teams = Team::with('designation')->active()->get();
+        //return $teams;
         $aboutSettings = $this->getPageSettings('about');
         $achievements = Achievement::orderBy('sort')->limit(7)->get();
         $faqs = Faq::where('page', 'about')->orderBy('sort')->get();

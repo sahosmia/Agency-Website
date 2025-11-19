@@ -49,9 +49,29 @@ class FaqSeeder extends Seeder
             ],
             'about' => [
                 [
-                    'question' => 'What is your company mission?',
+                    'question' => 'Can you work with wireframes or our existing designs?',
                     'answer' => 'Our mission is to empower businesses with innovative and effective digital solutions.',
                     'is_active' => true,
+                ],
+                [
+                    'question' => 'I have an agency. Can I outsource work to you?',
+                    'answer' => 'Our mission is to empower businesses with innovative and effective digital solutions.',
+                    'is_active' => false,
+                ],
+                [
+                    'question' => 'What happens after the design is read & I approve it?',
+                    'answer' => 'Our mission is to empower businesses with innovative and effective digital solutions.',
+                    'is_active' => false,
+                ],
+                [
+                    'question' => 'What do I need to give you to get started?',
+                    'answer' => 'Our mission is to empower businesses with innovative and effective digital solutions.',
+                    'is_active' => false,
+                ],
+                [
+                    'question' => 'Do you charge for additional revisions?',
+                    'answer' => 'Our mission is to empower businesses with innovative and effective digital solutions.',
+                    'is_active' => false,
                 ],
             ],
             'service' => [
