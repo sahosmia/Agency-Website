@@ -11,10 +11,11 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('page_settings', function (Blueprint $table) {
+        Schema::create('reviewers', function (Blueprint $table) {
             $table->id();
-            $table->string('page_name')->unique();
-            $table->json('settings')->nullable();
+            $table->string('name');
+            $table->integer('rating')->default(0);
+            $table->string('image');
             $table->timestamps();
         });
     }
@@ -24,6 +25,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('page_settings');
+        Schema::dropIfExists('reviewers');
     }
 };

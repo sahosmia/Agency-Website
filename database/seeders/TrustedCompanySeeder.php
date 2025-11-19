@@ -14,20 +14,20 @@ class TrustedCompanySeeder extends Seeder
     {
         $datas = [
             [
-                'name' => 'Company A',
-                'logo' => 'logo-a.png',
+                'name' => 'Envato',
+                'image' => 'envato.png',
             ],
             [
-                'name' => 'Company B',
-                'logo' => 'logo-b.png',
+                'name' => 'Fiverr',
+                'image' => 'fiverr.png',
             ],
             [
-                'name' => 'Company C',
-                'logo' => 'logo-c.png',
+                'name' => 'Upwork',
+                'image' => 'upwork.png',
             ],
             [
-                'name' => 'Company D',
-                'logo' => 'logo-d.png',
+                'name' => 'Govt of Bangladesh',
+                'image' => 'govt.png',
             ],
         ];
 

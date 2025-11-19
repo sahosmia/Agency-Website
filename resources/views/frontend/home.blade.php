@@ -54,67 +54,30 @@
         {{-- reviewer card --}}
         @if ($homeSettings['reviewer_card_section_is_active'] ?? false)
         <div class="grid grid-cols-2 lg:grid-cols-4 gap-10 py-10 md:py-20">
+            {{-- foreach all reviewers --}}
+            @foreach ($reviewers as $reviewer)
             <div class="reviewer-card">
-                @if (isset($homeSettings['reviewer_one_image']))
-                <img class="" src="{{ asset('uploads/home/' . $homeSettings['reviewer_one_image']) }}" alt="Reviewer 1">
+                @if (isset($reviewer->image))
+                <img src="{{  $reviewer->image_url }}" alt="{{ $reviewer->name }}">
                 @endif
                 <div>
+                    <div class="flex gap-1">
+                        @for ($i = 1; $i <= 5; $i++) @if ($i <=floor($reviewer->rating))
+                            <i class="fa-solid fa-star"></i>
+                            @elseif ($i - $reviewer->rating < 1) <i class="fa-solid fa-star-half-alt"></i>
+                                @else
+                                <i class="fa-regular fa-star"></i>
+                                @endif
+                                @endfor
+                    </div>
+                    <p class="title-text-bold-medium text-secondary-800 text-center">{{ number_format($reviewer->rating,
+                        1) }}/5</p>
+                </div>
+            </div>
+            @endforeach
+            {{-- foreach all reviewers --}}
 
-                    <div class="flex gap-1">
-                        <i class="fa-solid fa-star"></i>
-                        <i class="fa-solid fa-star"></i>
-                        <i class="fa-solid fa-star"></i>
-                        <i class="fa-solid fa-star"></i>
-                        <i class="fa-solid fa-star"></i>
-                    </div>
-                    <p class="title-text-bold-medium text-secondary-800 text-center">5/5</p>
-                </div>
-            </div>
-            <div class="reviewer-card">
-                @if (isset($homeSettings['reviewer_two_image']))
-                <img src="{{ asset('uploads/home/' . $homeSettings['reviewer_two_image']) }}" alt="Reviewer 2">
-                @endif
-                <div>
-                    <div class="flex gap-1">
-                        <i class="fa-solid fa-star"></i>
-                        <i class="fa-solid fa-star"></i>
-                        <i class="fa-solid fa-star"></i>
-                        <i class="fa-solid fa-star"></i>
-                        <i class="fa-solid fa-star"></i>
-                    </div>
-                    <p class="title-text-bold-medium text-secondary-800 text-center">5/5</p>
-                </div>
-            </div>
-            <div class="reviewer-card">
-                @if (isset($homeSettings['reviewer_three_image']))
-                <img src="{{ asset('uploads/home/' . $homeSettings['reviewer_three_image']) }}" alt="Reviewer 3">
-                @endif
-                <div>
-                    <div class="flex gap-1">
-                        <i class="fa-solid fa-star"></i>
-                        <i class="fa-solid fa-star"></i>
-                        <i class="fa-solid fa-star"></i>
-                        <i class="fa-solid fa-star"></i>
-                        <i class="fa-solid fa-star"></i>
-                    </div>
-                    <p class="title-text-bold-medium text-secondary-800 text-center">5/5</p>
-                </div>
-            </div>
-            <div class="reviewer-card">
-                @if (isset($homeSettings['reviewer_four_image']))
-                <img src="{{ asset('uploads/home/' . $homeSettings['reviewer_four_image']) }}" alt="Reviewer 4">
-                @endif
-                <div>
-                    <div class="flex gap-1">
-                        <i class="fa-solid fa-star"></i>
-                        <i class="fa-solid fa-star"></i>
-                        <i class="fa-solid fa-star"></i>
-                        <i class="fa-solid fa-star"></i>
-                        <i class="fa-solid fa-star-half-alt"></i>
-                    </div>
-                    <p class="title-text-bold-medium text-secondary-800 text-center">4.9/5</p>
-                </div>
-            </div>
+
         </div>
         @endif
         {{-- reviewer card --}}
@@ -583,9 +546,12 @@
         </h2>
         <p class="sub-title-medium-regular text-center text-secondary-600 w-full md:w-8/12 lg:w-7/12 mx-auto mt-4">
             {{ $homeSettings['trusted_partners_description'] ?? '' }}</p>
-        <div class="flex flex-wrap justify-center items-center gap-10 sm:gap-20 mt-8">
-            @foreach ($trusted_partners as $partner)
-            <img src="{{ $partner->logo_url }}" alt="{{ $partner->name }}">
+        <div class="flex w-full flex-wrap justify-center items-center gap-10 sm:gap-20 mt-8">
+            @foreach ($trusted_companies as $company)
+            <div class=" flex justify-center items-center ">
+
+                <img src="{{ $company->image_url }}" alt="{{ $company->name }}">
+            </div>
             @endforeach
         </div>
     </div>
@@ -600,23 +566,13 @@
         </h2>
         <p class="sub-title-medium-regular text-center text-secondary-600 w-full md:w-8/12 lg:w-7/12 mx-auto mt-4">
             {{ $homeSettings['clients_around_world_description'] ?? '' }}</p>
-        <div class="flex flex-wrap justify-center items-center gap-10 mt-8">
-            @if (isset($homeSettings['client_country_one_image']))
-            <img src="{{ asset('uploads/home/' . $homeSettings['client_country_one_image']) }}" alt="Client Country 1">
-            @endif
-            @if (isset($homeSettings['client_country_two_image']))
-            <img src="{{ asset('uploads/home/' . $homeSettings['client_country_two_image']) }}" alt="Client Country 2">
-            @endif
-            @if (isset($homeSettings['client_country_three_image']))
-            <img src="{{ asset('uploads/home/' . $homeSettings['client_country_three_image']) }}"
-                alt="Client Country 3">
-            @endif
-            @if (isset($homeSettings['client_country_four_image']))
-            <img src="{{ asset('uploads/home/' . $homeSettings['client_country_four_image']) }}" alt="Client Country 4">
-            @endif
-            @if (isset($homeSettings['client_country_five_image']))
-            <img src="{{ asset('uploads/home/' . $homeSettings['client_country_five_image']) }}" alt="Client Country 5">
-            @endif
+        <div class="flex justify-center items-center gap-10 mt-8 w-full flex-wrap">
+            @foreach ($clients as $client)
+            <div class=" flex justify-center items-center ">
+
+                <img src="{{ $client->image_url }}" alt="{{ $client->name }}">
+            </div>
+            @endforeach
         </div>
     </div>
     @endif

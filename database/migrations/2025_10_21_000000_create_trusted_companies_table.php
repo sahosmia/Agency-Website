@@ -14,8 +14,7 @@ return new class extends Migration
         Schema::create('trusted_companies', function (Blueprint $table) {
             $table->id();
             $table->string('name');
-            $table->string('logo');
-            $table->boolean('is_active')->default(true);
+            $table->string('image');
             $table->timestamps();
         });
     }

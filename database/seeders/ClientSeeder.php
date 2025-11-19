@@ -14,23 +14,26 @@ class ClientSeeder extends Seeder
     {
         $datas = [
             [
-                'name' => 'John Doe',
-                'location' => 'New York, USA',
-                'image' => 'client1.jpg',
-                'is_active' => true,
+                'name' => 'United States',
+                'image' => 'United States Flag.png',
             ],
             [
-                'name' => 'Jane Smith',
-                'location' => 'London, UK',
-                'image' => 'client2.jpg',
-                'is_active' => true,
+                'name' => 'Canada',
+                'image' => 'Canada Flag.png',
             ],
             [
-                'name' => 'Mike Johnson',
-                'location' => 'Sydney, Australia',
-                'image' => 'client3.jpg',
-                'is_active' => true,
+                'name' => 'Australia',
+                'image' => 'Australia Flag.png',
             ],
+            [
+                'name' => 'United Arab Emirates',
+                'image' => 'United Arab Emirates Flag.png',
+            ],
+            [
+                'name' => 'Bangladesh',
+                'image' => 'Bangladesh Flag.png',
+            ],
+
         ];
 
         foreach ($datas as $data) {

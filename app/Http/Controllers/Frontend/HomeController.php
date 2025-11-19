@@ -12,6 +12,9 @@ use App\Models\Project;
 use App\Models\Service;
 use App\Models\Software;
 use App\Models\BusinessTag;
+use App\Models\Client;
+use App\Models\Reviewer;
+use App\Models\TrustedCompany;
 use App\Models\TrustedPartner;
 use App\Models\Value;
 use App\Models\WorkingProcess;
@@ -32,13 +35,17 @@ class HomeController extends Controller
         $values = Value::latest()->limit(4)->get();
         $working_processes = WorkingProcess::latest()->limit(4)->get();
         $faqs = Faq::where('page', 'home')->orderBy('sort')->get();
-        $trusted_partners = TrustedPartner::latest()->limit(4)->get();
         $business_tags = BusinessTag::latest()->get();
 
         $contactPage = PageSetting::where('page_name', 'contact')->first();
         $contactSettings = $contactPage ? $contactPage->settings : [];
 
         $achievements = Achievement::where('home_page_show', true)->orderBy('sort')->limit(3)->get();
+        $reviewers = Reviewer::limit(4)->get();
+        // clients and trusted companies
+        $clients = Client::limit(5)->get();
+        $trusted_companies = TrustedCompany::limit(4)->get();
+
         return view('frontend.home', [
             'projects' => $projects,
             'softwares' => $softwares,
@@ -50,9 +57,11 @@ class HomeController extends Controller
             'working_processes' => $working_processes,
             'faqs' => $faqs,
             'contactSettings' => $contactSettings,
-            'trusted_partners' => $trusted_partners,
             'business_tags' => $business_tags,
             'achievements' => $achievements,
+            'reviewers' => $reviewers,
+            'clients' => $clients,
+            'trusted_companies' => $trusted_companies,
         ]);
     }
 }

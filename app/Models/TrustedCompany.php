@@ -2,24 +2,20 @@
 
 namespace App\Models;
 
-use App\Traits\ScopeActive;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
 class TrustedCompany extends Model
 {
-    use HasFactory, ScopeActive;
+    use HasFactory;
 
-    protected $fillable = ['name', 'logo', 'is_active'];
+    protected $fillable = ['name', 'image'];
 
-    // logo_url accessor
-    protected $appends = ['logo_url'];
-    public function getLogoUrlAttribute()
+    // image_url accessor
+    protected $appends = ['image_url'];
+    public function getImageUrlAttribute()
     {
-        if ($this->logo && file_exists(public_path('uploads/trusted_companies/' . $this->logo))) {
-            return asset('uploads/trusted_companies/' . $this->logo);
-        }
-        return asset('images/default-trusted-company-logo.jpg');
+        return asset('storage/trusted_companies/' . $this->image);
     }
 
 }

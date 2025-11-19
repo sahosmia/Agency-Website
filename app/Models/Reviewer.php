@@ -4,17 +4,21 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
-
-class Client extends Model
+class Reviewer extends Model
 {
     use HasFactory;
 
-    protected $fillable = ['name', 'image'];
+    protected $fillable = [
+        'name',
+        'rating',
+        'image',
+    ];
 
-    // image_utl accessor
+    // append image_url attribute
     protected $appends = ['image_url'];
+
     public function getImageUrlAttribute()
     {
-        return asset('storage/clients/' . $this->image);
+        return asset('storage/reviewers/' . $this->image);
     }
 }

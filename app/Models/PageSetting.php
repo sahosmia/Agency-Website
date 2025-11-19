@@ -15,6 +15,6 @@ class PageSetting extends Model
     ];
 
     protected $casts = [
-        'settings' => 'json',
+        'settings' => 'array',
     ];
 }
