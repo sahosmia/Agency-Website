@@ -18,6 +18,7 @@ class Software extends Model
         'slug',
         'category_id',
         'image',
+        'sort_description',
         'is_active',
         'meta_title',
         'meta_description',
@@ -27,10 +28,13 @@ class Software extends Model
     protected $appends = ['image_url'];
     public function getImageUrlAttribute()
     {
-        if ($this->image && file_exists(public_path('uploads/softwares/' . $this->image))) {
-            return asset('uploads/softwares/' . $this->image);
+        $path = 'storage/softwares/' . $this->image;
+
+        if ($this->image && file_exists(public_path($path))) {
+            return asset($path);
         }
-        return asset('images/default-software-image.jpg');
+
+        return asset('images/default/service.webp');
     }
 
     public function getSlugSourceField(): string

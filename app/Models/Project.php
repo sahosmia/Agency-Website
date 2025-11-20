@@ -44,8 +44,9 @@ class Project extends Model
     protected $appends = ['thumbnail_url', 'screenshots_urls', 'images_urls', 'thumbnails_urls'];
     public function getThumbnailUrlAttribute()
     {
-        if ($this->thumbnail && file_exists(public_path('uploads/projects/' . $this->thumbnail))) {
-            return asset('uploads/projects/' . $this->thumbnail);
+        $thumbnail = 'storage/projects/thumbnail/' . $this->thumbnail;
+        if ($this->thumbnail && file_exists(public_path($thumbnail))) {
+            return asset($thumbnail);
         }
         return asset('images/default-project-thumbnail.jpg');
     }

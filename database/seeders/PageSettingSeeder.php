@@ -67,7 +67,7 @@ class PageSettingSeeder extends Seeder
 
                     'hero_card_description' => 'We specialize in digital solutions to help your business grow and thrive in the digital landscape.',
 
-                    
+
 
                     'search_title' => 'Find the Perfect Service for Your Needs',
                     'values_title' => 'Values we live by',
@@ -142,7 +142,7 @@ class PageSettingSeeder extends Seeder
                 'page_name' => 'services',
                 'settings' => [
                     'page_title' => 'Services',
-                    'title' => 'Our Services',
+                    'title' => 'We provide end-to-end <span>Digital Solutions</span>',
                     'description' => 'We offer a wide range of services to help you grow your business. Our services include web design, web development, digital marketing, and more.',
                 ],
             ],
@@ -158,7 +158,7 @@ class PageSettingSeeder extends Seeder
                 'page_name' => 'softwares',
                 'settings' => [
                     'page_title' => 'Softwares',
-                    'title' => 'Our Softwares',
+                    'title' => 'We provide Ready-Made <span>Software Solutions</span>',
                     'description' => 'We have developed a wide range of software to help you manage your business. Our software is easy to use and can be customized to meet your specific needs.',
                 ],
             ],

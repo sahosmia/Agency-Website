@@ -17,7 +17,7 @@ class ServiceFrontController extends Controller
 
         $services = Service::active()->with('category:id,title')
             ->when($request->search, function ($query) use ($request) {
-                $query->where('title', 'like', '%'.$request->search.'%');
+                $query->where('name', 'like', '%'.$request->search.'%');
             })
             ->when($request->category, function ($query) use ($request) {
                 $query->where('category_id', $request->category);

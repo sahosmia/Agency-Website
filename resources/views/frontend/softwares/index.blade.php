@@ -3,9 +3,13 @@
 
 @section('content')
 <div class="container mx-auto">
-    <h1 class="text-3xl md:text-[52px] font-medium leading-tight md:leading-[68px] text-center mt-5">
-        {{ $softwaresSettings['title'] ?? '' }}
-    </h1>
+    <div class="w-full md:w-10/12 lg:w-9/12 mt-16 md:mt-20 mx-auto">
+
+        <x-frontend.cusotm-heading :text="$softwaresSettings['title'] ?? ''" />
+        <p class="sub-title-medium-regular leading-8 text-secondary-800 text-center">
+            {{ $softwaresSettings['description'] ?? '' }}
+        </p>
+    </div>
     <!-- Search Form -->
     <form action="{{ route('softwares') }}" method="GET" class="mt-8 md:mt-14">
         <div class="flex flex-col md:flex-row justify-center items-center gap-4 md:gap-6">
@@ -20,59 +24,29 @@
                     <span class="text-lg font-semibold">Search</span>
                 </button>
             </div>
-            <!-- Category Filter Button -->
-            <div class="flex w-full md:w-[288px] items-center p-3 md:p-4 gap-4 border border-secondary-400 rounded-lg justify-between cursor-pointer"
-                id="dropdownButton">
-                <p class="label-text-regular-large truncate">
-                    {{ request('category') ? $categories->firstWhere('id', request('category'))->title : 'All Category'
-                    }}
-                </p>
-                <span><i class="fa-solid fa-arrow-down"></i></span>
-            </div>
+
         </div>
-        <!-- Category Filter Dropdown -->
-        <div id="dropdownMenu" class="hidden w-full md:w-10/12 mt-4 mx-auto border border-secondary-400 rounded-2xl">
-            <ul class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4 p-4 md:p-8">
-                <li class="flex items-center gap-2">
-                    <input type="radio" id="category_all" name="category" value="" onchange="this.form.submit()" {{
-                        request('category')=='' ? 'checked' : '' }} />
-                    <label for="category_all" class="text-base md:text-lg font-normal leading-6">All Projects</label>
-                </li>
-                @foreach ($categories as $item)
-                <li class="flex items-center gap-2">
-                    <input type="radio" id="category_{{ $item->id }}" name="category" value="{{ $item->id }}"
-                        onchange="this.form.submit()" {{ request('category')==$item->id ? 'checked' : '' }} />
-                    <label for="category_{{ $item->id }}" class="text-base md:text-lg font-normal leading-6">{{
-                        $item->title }}</label>
-                </li>
-                @endforeach
-            </ul>
-        </div>
+
     </form>
 
-    @if ($softwares->count() != 0)
-    <div class="w-full md:w-8/12 lg:w-6/12 mt-16 md:mt-20 flex justify-center mx-auto">
-        <p class="sub-title-medium-regular leading-8 text-secondary-800 text-center">
-            {{ $softwaresSettings['description'] ?? '' }}
-        </p>
-    </div>
-    @endif
+
 
     <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-x-6 gap-y-10 md:gap-y-[60px] mt-14">
         @forelse ($softwares as $software)
-        <div>
-            <img class="max-h-72 w-full object-cover rounded-xl" src="{{ asset('upload/softwares/card img.png') }}"
+        <div class="relative pb-20 flex flex-col gap-5 p-6 bg-white border rounded-md border-secondary-400">
+            <img class="h-72 w-full object-cover rounded border border-secondary-400" src="{{ $software->image_url }}"
                 alt="{{ $software->title }}" />
             <div class="mt-4">
                 <button
                     class="px-4 py-2   border rounded-full border-secondary-200 label-text-regular-small text-secondary-800">
                     {{ $software->category->title }} </button>
-                <h2 class="title-text-bold-medium text-secondary-950 pt-2"> {{ $software->title }} </h2>
-                <p class="body-text-regular-medium text-secondary-600 pt-1"> {{ $software->short_text }} </p>
+                <h2 class="title-text-bold-medium text-secondary-950 pt-2"> {{ $software->name }} </h2>
+                <p class="body-text-regular-medium text-secondary-600 pt-1"> {{ $software->sort_description }} </p>
             </div>
 
+
             <a href="{{ route('softwares.show', $software->slug) }}"
-                class="inline-block px-3 py-2 rounded-sm border border-secondary-800 label-text-bold-small text-secondary-800 mt-4">
+                class="inline-block mx-auto absolute left-1/2 bottom-4 -translate-x-1/2 px-3 py-2 rounded-sm border border-secondary-800 label-text-bold-small text-secondary-800 ">
                 Read more </a>
         </div>
         @empty

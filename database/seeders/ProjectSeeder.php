@@ -30,7 +30,7 @@ class ProjectSeeder extends Seeder
             [
                 'title' => 'E-Commerce Website',
                 'slug' => 'e-commerce-website',
-                'thumbnail' => 'ecommerce.png',
+                'thumbnail' => '1.png',
                 'live_preview_link' => 'https://example.com/ecommerce',
                 'short_text' => 'An online shopping platform with seamless user experience.',
                 'project_overview' => '<p>This project involved developing a scalable e-commerce platform.</p>
@@ -63,7 +63,7 @@ class ProjectSeeder extends Seeder
             [
                 'title' => 'Portfolio Website',
                 'slug' => 'portfolio-website',
-                'thumbnail' => 'portfolio_website.png',
+                'thumbnail' => '2.png',
                 'live_preview_link' => 'https://example.com/portfolio',
                 'short_text' => 'A modern portfolio website for showcasing work and skills.',
                 'project_overview' => '<p>This project involved developing a scalable e-commerce platform.</p>
@@ -96,7 +96,7 @@ class ProjectSeeder extends Seeder
             [
                 'title' => 'SaaS Dashboard',
                 'slug' => 'saas-dashboard',
-                'thumbnail' => 'saas_dashboard.png',
+                'thumbnail' => '3.png',
                 'live_preview_link' => 'https://example.com/saas',
                 'short_text' => 'A cloud-based analytics dashboard for businesses.',
                 'project_overview' => '<p>This project involved developing a scalable e-commerce platform.</p>
@@ -125,6 +125,107 @@ class ProjectSeeder extends Seeder
                 'is_active' => true,
                 'meta_title' => 'SaaS Dashboard',
                 'meta_description' => 'A cloud-based analytics dashboard for businesses.',
+            ],
+
+            // make more  3 item 
+            [
+                'title' => 'Project Management Tool',
+                'slug' => 'project-management-tool',
+                'thumbnail' => '4.png',
+                'live_preview_link' => 'https://example.com/project-management',
+                'short_text' => 'A collaborative tool for managing projects and teams effectively.',
+                'project_overview' => '<p>This project involved developing a scalable e-commerce platform.</p>
+                               <ul>
+                                   <li>Integrated secure payment gateways</li>
+                                   <li>Implemented real-time order tracking</li>
+                                   <li>Optimized for mobile and tablet users</li>
+                               </ul>',
+                'problem' => '<p>The client needed a high-performance and secure platform for large-scale transactions.</p>',
+                'challenge' => '<p>Ensuring smooth checkout and real-time inventory updates.</p>',
+                'workflow_scenario' => '<p>Our workflow included:</p>
+                                <ul>
+                                    <li>UI/UX design in Figma</li>
+                                    <li>Development using Laravel and Vue.js</li>
+                                    <li>Testing and deployment on AWS</li>
+                                </ul>',
+                'solutions' => '<p>We implemented:</p>
+                        <ul>
+                            <li><strong>Optimized database queries</strong> for faster performance</li>
+                            <li><strong>JWT authentication</strong> for security</li>
+                            <li><strong>Stripe integration</strong> for smooth payments</li>
+                        </ul>',
+                'screenshots' => ['project_management_1.png', 'project_management_2.png', 'project_management_3.png'],
+                'images' => ['project_management_1.png', 'project_management_2.png', 'project_management_3.png', 'project_management_4.png'],
+                'thumbnails' => ['project_management_1.png', 'project_management_2.png', 'project_management_3.png', 'project_management_4.png'],
+                'is_active' => true,
+                'meta_title' => 'Project Management Tool',
+                'meta_description' => 'A collaborative tool for managing projects and teams effectively.',
+            ],
+            [
+                'title' => 'Social Networking Site',
+                'slug' => 'social-networking-site',
+                'thumbnail' => '5.png',
+                'live_preview_link' => 'https://example.com/social-network',
+                'short_text' => 'A platform for connecting people and sharing content globally.',
+                'project_overview' => '<p>This project involved developing a scalable e-commerce platform.</p>
+                               <ul>
+                                   <li>Integrated secure payment gateways</li>
+                                   <li>Implemented real-time order tracking</li>
+                                   <li>Optimized for mobile and tablet users</li>
+                               </ul>',
+                'problem' => '<p>The client needed a high-performance and secure platform for large-scale transactions.</p>',
+                'challenge' => '<p>Ensuring smooth checkout and real-time inventory updates.</p>',
+                'workflow_scenario' => '<p>Our workflow included:</p>
+                                <ul>
+                                    <li>UI/UX design in Figma</li>
+                                    <li>Development using Laravel and Vue.js</li>
+                                    <li>Testing and deployment on AWS</li>
+                                </ul>',
+                'solutions' => '<p>We implemented:</p>
+                        <ul>
+                            <li><strong>Optimized database queries</strong> for faster performance</li>
+                            <li><strong>JWT authentication</strong> for security</li>
+                            <li><strong>Stripe integration</strong> for smooth payments</li>
+                        </ul>',
+                'screenshots' => ['social_network_1.png', 'social_network_2.png', 'social_network_3.png'],
+                'images' => ['social_network_1.png', 'social_network_2.png', 'social_network_3.png', 'social_network_4.png'],
+                'thumbnails' => ['social_network_1.png', 'social_network_2.png', 'social_network_3.png', 'social_network_4.png'],
+                'is_active' => true,
+                'meta_title' => 'Social Networking Site',
+                'meta_description' => 'A platform for connecting people and sharing content globally.',
+            ],
+            [
+                'title' => 'Online Learning Platform',
+                'slug' => 'online-learning-platform',
+                'thumbnail' => '6.png',
+                'live_preview_link' => 'https://example.com/online-learning',
+                'short_text' => 'An interactive platform for online courses and skill development.',
+                'project_overview' => '<p>This project involved developing a scalable e-commerce platform.</p>
+                               <ul>
+                                   <li>Integrated secure payment gateways</li>
+                                   <li>Implemented real-time order tracking</li>
+                                   <li>Optimized for mobile and tablet users</li>
+                               </ul>',
+                'problem' => '<p>The client needed a high-performance and secure platform for large-scale transactions.</p>',
+                'challenge' => '<p>Ensuring smooth checkout and real-time inventory updates.</p>',
+                'workflow_scenario' => '<p>Our workflow included:</p>
+                                <ul>
+                                    <li>UI/UX design in Figma</li>
+                                    <li>Development using Laravel and Vue.js</li>
+                                    <li>Testing and deployment on AWS</li>
+                                </ul>',
+                'solutions' => '<p>We implemented:</p>
+                        <ul>
+                            <li><strong>Optimized database queries</strong> for faster performance</li>
+                            <li><strong>JWT authentication</strong> for security</li>
+                            <li><strong>Stripe integration</strong> for smooth payments</li>
+                        </ul>',
+                'screenshots' => ['online_learning_1.png', 'online_learning_2.png', 'online_learning_3.png'],
+                'images' => ['online_learning_1.png', 'online_learning_2.png', 'online_learning_3.png', 'online_learning_4.png'],
+                'thumbnails' => ['online_learning_1.png', 'online_learning_2.png', 'online_learning_3.png', 'online_learning_4.png'],
+                'is_active' => true,
+                'meta_title' => 'Online Learning Platform',
+                'meta_description' => 'An interactive platform for online courses and skill development.',
             ],
         ];
 

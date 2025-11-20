@@ -1,11 +1,18 @@
 @extends('frontend.layouts.app')
-@section('title', $servicesSettings['page_title'] ?? 'Services')
+@section('page_title', $servicesSettings['page_title'] ?? 'Services')
+@section('meta_title', $servicesSettings['meta_title'] ?? 'Our Services')
+@section('meta_description', $servicesSettings['meta_description'] ?? 'Explore our range of services.')
+
 
 @section('content')
 <div class="container mx-auto">
-    <h1 class="text-3xl md:text-[52px] font-medium leading-tight md:leading-[68px] text-center mt-5">
-        {{ $servicesSettings['title'] ?? '' }}
-    </h1>
+    <div class="w-full md:w-10/12 lg:w-8/12 mt-16 md:mt-20 mx-auto">
+        <x-frontend.cusotm-heading :text="$servicesSettings['title'] ?? ''" />
+
+        <p class="sub-title-medium-regular leading-8 text-secondary-800 text-center">
+            {{ $servicesSettings['description'] ?? '' }}
+        </p>
+    </div>
 
     <!-- Search & Category Filter -->
     <form action="{{ route('services') }}" method="GET" class="mt-8 md:mt-14">
@@ -23,84 +30,54 @@
                 </button>
             </div>
 
-            <!-- Category Filter Button -->
-            <div class="flex w-full md:w-[288px] items-center p-3 md:p-4 gap-4 border border-secondary-400 rounded-lg justify-between cursor-pointer"
-                id="dropdownButton">
-                <p class="label-text-regular-large truncate">
-                    {{ request('category')
-                    ? $categories->firstWhere('id', request('category'))->title
-                    : 'All Category' }}
-                </p>
-                <span><i class="fa-solid fa-arrow-down"></i></span>
-            </div>
+
         </div>
 
-        <!-- Category Filter Dropdown -->
-        <div id="dropdownMenu" class="hidden w-full md:w-10/12 mt-4 mx-auto border border-secondary-400 rounded-2xl">
-            <ul class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4 p-4 md:p-8">
-                <li class="flex items-center gap-2">
-                    <input type="radio" id="category_all" name="category" value="" onchange="this.form.submit()" {{
-                        request('category')=='' ? 'checked' : '' }} />
-                    <label for="category_all" class="text-base md:text-lg font-normal leading-6">
-                        All Projects
-                    </label>
-                </li>
-                @foreach ($categories as $item)
-                <li class="flex items-center gap-2">
-                    <input type="radio" id="category_{{ $item->id }}" name="category" value="{{ $item->id }}"
-                        onchange="this.form.submit()" {{ request('category')==$item->id ? 'checked' : '' }}
-                    />
-                    <label for="category_{{ $item->id }}" class="text-base md:text-lg font-normal leading-6">
-                        {{ $item->title }}
-                    </label>
-                </li>
-                @endforeach
-            </ul>
-        </div>
+
     </form>
 
-    <!-- Page Description -->
-    @if ($services->count() != 0)
-    <div class="w-full md:w-8/12 lg:w-6/12 mt-16 md:mt-20 flex justify-center mx-auto">
-        <p class="sub-title-medium-regular leading-8 text-secondary-800 text-center">
-            {{ $servicesSettings['description'] ?? '' }}
-        </p>
-    </div>
-    @endif
+
 
     <!-- Service List -->
-    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-x-6 gap-y-10 md:gap-y-[60px] mt-14">
-        @forelse ($services as $service)
-        <div class="border border-secondary-400 rounded-xl p-6">
+    <div class="mt-14">
+        @if ($services->count() > 0)
 
-            <img class="max-h-72 w-full object-cover rounded" src="{{ $service->image_url }}"
-                alt="{{ $service->name }}" />
-            <div class="mt-4">
-                <button
-                    class="px-4 py-2 border rounded-full border-secondary-200 label-text-regular-small text-secondary-800">
-                    {{ $service->category->title }}
-                </button>
-                <h2 class="title-text-bold-medium text-secondary-950 pt-2">
-                    {{ $service->name }}
-                </h2>
-                <p class="body-text-regular-medium text-secondary-600 pt-1">
-                    {{ $service->description }}
-                </p>
+        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-x-6 gap-y-10 md:gap-y-[60px] ">
+            @foreach ($services as $service)
+            <div class="border border-secondary-400 rounded-xl p-6">
+
+                <img class="max-h-72 w-full object-cover rounded" src="{{ $service->image_url }}"
+                    alt="{{ $service->name }}" />
+                <div class="mt-4">
+                    <button
+                        class="px-4 py-2 border rounded-full border-secondary-200 label-text-regular-small text-secondary-800">
+                        {{ $service->category->title }}
+                    </button>
+                    <h2 class="title-text-bold-medium text-secondary-950 pt-2">
+                        {{ $service->name }}
+                    </h2>
+                    <p class="body-text-regular-medium text-secondary-600 pt-1">
+                        {{ $service->description }}
+                    </p>
+                </div>
+
+                <a href="{{ route('services.show', $service->slug) }}"
+                    class="inline-block px-3 py-2 rounded-sm border border-secondary-800 label-text-bold-small text-secondary-800 mt-4">
+                    Read more
+                </a>
             </div>
-
-            <a href="{{ route('services.show', $service->slug) }}"
-                class="inline-block px-3 py-2 rounded-sm border border-secondary-800 label-text-bold-small text-secondary-800 mt-4">
-                Read more
-            </a>
+            @endforeach
         </div>
-        @empty
+        @else
+
+
         <h3 class="heading-text-regular-large text-secondary-800 m-auto">
-            No service available this area!
+            This service is not available on our website!
         </h3>
-        @endforelse
+        @endif
     </div>
 
-   
+
 </div>
 
 <!-- FAQ Section -->

@@ -19,32 +19,32 @@ class TechnologySeeder extends Seeder
             [
                 'name' => 'Front-End Development',
                 'description' => 'HTML, CSS, JavaScript: Core technologies for responsive and engaging designs. Frameworks: React.js, Angular, and Vue.js for creating dynamic user interfaces.',
-                'image' => 'frontend.jpg',
+                'image' => '1.png',
             ],
             [
                 'name' => 'Back-End Development',
                 'description' => 'Programming Languages: Node.js, Python, PHP, Ruby on Rails for server-side logic. Databases: MySQL, PostgreSQL, MongoDB for secure and efficient data storage.',
-                'image' => 'backend.jpg',
+                'image' => '2.png',
             ],
             [
                 'name' => 'Content Management Systems (CMS)',
                 'description' => 'WordPress, Drupal, and Joomla for easy content management and updates.',
-                'image' => 'cms.jpg',
+                'image' => '3.png',
             ],
             [
                 'name' => 'Hosting and Deployment',
                 'description' => 'AWS, Google Cloud, and Microsoft Azure for reliable and scalable hosting. Docker and Kubernetes for seamless deployment and scalability.',
-                'image' => 'hosting.jpg',
+                'image' => '4.png',
             ],
             [
                 'name' => 'SEO Tools and Integration',
                 'description' => 'Yoast SEO, Ahrefs, and SEMrush for search engine optimization and analytics.',
-                'image' => 'seo.jpg',
+                'image' => '5.png',
             ],
             [
                 'name' => 'Analytics and Tracking',
                 'description' => 'Google Analytics, Hotjar, and Mixpanel for real-time tracking and user behavior analysis.',
-                'image' => 'analytics.jpg',
+                'image' => '6.png',
             ],
         ];
 

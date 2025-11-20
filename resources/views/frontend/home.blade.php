@@ -4,8 +4,13 @@
 
 @section('content')
 
-<div class="container" x-data="{ videoOpen: false, closeVideo() { this.videoOpen = false;
-            this.$refs.videoFrame.src = '' } }">
+<div class="container" x-data="{
+        videoOpen: false,
+        closeVideo() {
+            this.videoOpen = false;
+            this.$refs.videoFrame.src = ''
+        }
+    }">
     <div class="py-10 md:py-20">
 
         {{-- hero section --}}
@@ -58,7 +63,7 @@
             @foreach ($reviewers as $reviewer)
             <div class="reviewer-card">
                 @if (isset($reviewer->image))
-                <img src="{{  $reviewer->image_url }}" alt="{{ $reviewer->name }}">
+                <img src="{{ $reviewer->image_url }}" alt="{{ $reviewer->name }}">
                 @endif
                 <div>
                     <div class="flex gap-1">
@@ -70,8 +75,8 @@
                                 @endif
                                 @endfor
                     </div>
-                    <p class="title-text-bold-medium text-secondary-800 text-center">{{ number_format($reviewer->rating,
-                        1) }}/5</p>
+                    <p class="title-text-bold-medium text-secondary-800 text-center">
+                        {{ number_format($reviewer->rating, 1) }}/5</p>
                 </div>
             </div>
             @endforeach
@@ -335,7 +340,7 @@
                 <div class="service-item">
                     <div class="flex flex-col gap-5 p-6 bg-white border rounded-md border-secondary-400">
                         <div class="w-full">
-                            <img class="rounded w-full" src="{{ $service->image_url}}" alt="{{ $service->name }}">
+                            <img class="rounded w-full" src="{{ $service->image_url }}" alt="{{ $service->name }}">
                         </div>
                         <div class="gap-2">
                             <h1 class="title-text-bold-medium text-secondary-600">{{ $service->name }}</h1>
@@ -378,317 +383,311 @@
             </div>
 
             <div class="software-container flex gap-6">
-                @for ($i = 0; $i < 4; $i++) <div class="softwer-item">
+                @foreach ($softwares as $software)
+                <div class="softwer-item">
                     <div class="flex flex-col gap-5 p-6 bg-white border rounded-md border-secondary-400">
                         <div class="w-full">
-                            @if (isset($homeSettings['software_solution_image']))
-                            <img class="rounded w-full"
-                                src="{{ asset('uploads/home/' . $homeSettings['software_solution_image']) }}"
-                                alt="Software Solution">
-                            @endif
+                            <img class="rounded w-full" src="{{ $software->image_url }}" alt="{{ $software->name }}">
+
                         </div>
                         <div class="gap-2">
-                            <h3 class="title-text-bold-medium text-secondary-600">Custom made Software for Your
-                                Needs
-                            </h3>
-                            <p class="body-text-regular-medium text-secondary-600">
-                                Our custom software development services are designed to create solutions that
-                                align
-                                perfectly
-                                with your business objectives. Whether you need to enhance efficiency, improve
-                                customer
-                                experiences, or scale operations, we’re here to deliver.
-                            </p>
+                            <h3 class="title-text-bold-medium text-secondary-600">{{$software->name}} </h3>
+                            <p class="body-text-regular-medium text-secondary-600">{{$software->sort_description}} </p>
                         </div>
                         <div class="w-full flex justify-center mt-8">
                             <button class="button-label px-4 py-2">See plan</button>
                         </div>
                     </div>
+                </div>
+                @endforeach
             </div>
-            @endfor
-        </div>
 
-        <div class="flex justify-center items-center mt-14">
-            <a href="{{ route('softwares') }}" class="button-label px-7 py-3 label-text-bold-large">See
-                details</a>
+            <div class="flex justify-center items-center mt-14">
+                <a href="{{ route('softwares') }}" class="button-label px-7 py-3 label-text-bold-large">See
+                    details</a>
+            </div>
+            @endif
+        </div>
+        {{-- Software's Solution --}}
+
+        {{-- Working process start --}}
+        @if ($homeSettings['working_process_section_is_active'] ?? false)
+        <div class="mt-10 md:mt-15 mb-10 md:mb-20">
+            <h2 class="heading-text-regular-medium text-center text-secondary-900 text-2xl md:text-3xl">
+                {{ $homeSettings['working_process_title'] ?? '' }}</h2>
+            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8 mt-8">
+                @foreach ($working_processes as $process)
+                <div class="working-process-card">
+                    <div class="w-12 h-12 bg-primary-100 rounded-full flex justify-center items-center">
+                        <span class="title-text-bold-medium text-primary-600">{{ $loop->iteration }}</span>
+                    </div>
+                    <h3 class="title-text-bold-medium text-secondary-950 mt-4">{{ $process->title }}</h3>
+                    <p class="body-text-regular-medium text-secondary-600 mt-2">{{ $process->description }}</p>
+                </div>
+                @endforeach
+            </div>
         </div>
         @endif
-    </div>
-    {{-- Software's Solution --}}
+        {{-- Working process end --}}
 
-    {{-- Working process start --}}
-    @if ($homeSettings['working_process_section_is_active'] ?? false)
-    <div class="mt-10 md:mt-15 mb-10 md:mb-20">
-        <h2 class="heading-text-regular-medium text-center text-secondary-900 text-2xl md:text-3xl">
-            {{ $homeSettings['working_process_title'] ?? '' }}</h2>
-        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8 mt-8">
-            @foreach ($working_processes as $process)
-            <div class="working-process-card">
-                <div class="w-12 h-12 bg-primary-100 rounded-full flex justify-center items-center">
-                    <span class="title-text-bold-medium text-primary-600">{{ $loop->iteration }}</span>
-                </div>
-                <h3 class="title-text-bold-medium text-secondary-950 mt-4">{{ $process->title }}</h3>
-                <p class="body-text-regular-medium text-secondary-600 mt-2">{{ $process->description }}</p>
-            </div>
-            @endforeach
-        </div>
-    </div>
-    @endif
-    {{-- Working process end --}}
+        {{-- Contact us start --}}
+        @if ($homeSettings['contact_us_section_is_active'] ?? false)
+        <div class="mt-10 md:mt-15 mb-10 md:mb-20">
+            <h2 class="heading-text-regular-medium text-center text-secondary-900 mb-8 text-2xl md:text-3xl">
+                {{ $homeSettings['contact_title'] ?? '' }}</h2>
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-8">
+                <div class="flex flex-col gap-6">
+                    <div>
+                        <p class="body-text-regular-medium text-secondary-600">Email</p>
+                        <p class="body-text-bold-large text-secondary-900">
+                            {{ $contactSettings['contact_email'] ?? '' }}
+                        </p>
+                    </div>
+                    <div>
+                        <p class="body-text-regular-medium text-secondary-600">Phone</p>
+                        <p class="body-text-bold-large text-secondary-900">
+                            {{ $contactSettings['contact_phone'] ?? '' }}
+                        </p>
+                    </div>
+                    <div>
+                        <p class="body-text-regular-medium text-secondary-600">Office location</p>
+                        <p class="body-text-bold-large text-secondary-900">
+                            {{ $contactSettings['contact_address'] ?? '' }}
+                        </p>
+                    </div>
 
-    {{-- Contact us start --}}
-    @if ($homeSettings['contact_us_section_is_active'] ?? false)
-    <div class="mt-10 md:mt-15 mb-10 md:mb-20">
-        <h2 class="heading-text-regular-medium text-center text-secondary-900 mb-8 text-2xl md:text-3xl">
-            {{ $homeSettings['contact_title'] ?? '' }}</h2>
-        <div class="grid grid-cols-1 lg:grid-cols-2 gap-8">
-            <div class="flex flex-col gap-6">
-                <div>
-                    <p class="body-text-regular-medium text-secondary-600">Email</p>
-                    <p class="body-text-bold-large text-secondary-900">
-                        {{ $contactSettings['contact_email'] ?? '' }}
-                    </p>
-                </div>
-                <div>
-                    <p class="body-text-regular-medium text-secondary-600">Phone</p>
-                    <p class="body-text-bold-large text-secondary-900">
-                        {{ $contactSettings['contact_phone'] ?? '' }}
-                    </p>
-                </div>
-                <div>
-                    <p class="body-text-regular-medium text-secondary-600">Office location</p>
-                    <p class="body-text-bold-large text-secondary-900">
-                        {{ $contactSettings['contact_address'] ?? '' }}
-                    </p>
-                </div>
-
-                <div class="w-96">
-                    <h4 class="body-text-bold-large text-secondary-900 text-left">Follow us</h4>
-                    <div class="pt-2 grid grid-cols-2  lg:grid-cols-2 gap-4">
-                        @forelse ($socialMediaLinks as $link)
-                        <a class="flex justify-center items-center gap-2 rounded-sm border border-secondary-800 h-9 group"
-                            href="{{ $link->url }}">
-                            <img src="{{ asset('storage/social_media_links/' . $link->icon) }}" alt="{{ $link->name }}">
-                            <span class="text-secondary-800 label-text-bold-small group-hover:text-secondary-950">{{
-                                $link->name }}</span>
-                        </a>
-                        @empty
-                        <p class="text-secondary-800 label-text-bold-small">No Social Media Links Found</p>
-                        @endforelse
+                    <div class="w-96">
+                        <h4 class="body-text-bold-large text-secondary-900 text-left">Follow us</h4>
+                        <div class="pt-2 grid grid-cols-2  lg:grid-cols-2 gap-4">
+                            @forelse ($socialMediaLinks as $link)
+                            <a class="flex justify-center items-center gap-2 rounded-sm border border-secondary-800 h-9 group"
+                                href="{{ $link->url }}">
+                                <img src="{{ asset('storage/social_media_links/' . $link->icon) }}"
+                                    alt="{{ $link->name }}">
+                                <span class="text-secondary-800 label-text-bold-small group-hover:text-secondary-950">{{
+                                    $link->name }}</span>
+                            </a>
+                            @empty
+                            <p class="text-secondary-800 label-text-bold-small">No Social Media Links Found</p>
+                            @endforelse
+                        </div>
                     </div>
                 </div>
-            </div>
 
-            <div>
-                <form action="" class="p-6 border border-secondary-400 rounded-2xl space-y-6">
-                    <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                <div>
+                    <form action="" class="p-6 border border-secondary-400 rounded-2xl space-y-6">
+                        <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                            <div>
+                                <label class="inpul-label" for="name">Your name</label>
+                                <input type="text" id="name" placeholder="e.g Jhon brgke" class="w-full">
+                            </div>
+                            <div>
+                                <label class="inpul-label" for="email">Your e-mail</label>
+                                <input type="email" id="email" placeholder="e.g jhonbrgke@gmail.com" class="w-full">
+                            </div>
+                        </div>
+
                         <div>
-                            <label class="inpul-label" for="name">Your name</label>
-                            <input type="text" id="name" placeholder="e.g Jhon brgke" class="w-full">
+                            <label class="inpul-label">What services you want</label>
+                            <div class="grid grid-cols-1 md:grid-cols-2 gap-4 mt-2">
+                                <label class="flex items-center"><input type="checkbox" class="mr-2"> Web Design &
+                                    Development</label>
+                                <label class="flex items-center"><input type="checkbox" class="mr-2"> Mobile App
+                                    Development</label>
+                                <label class="flex items-center"><input type="checkbox" class="mr-2"> UX/UI
+                                    Design</label>
+                                <label class="flex items-center"><input type="checkbox" class="mr-2"> Digital
+                                    Marketing
+                                    &
+                                    SEO</label>
+                            </div>
                         </div>
+
                         <div>
-                            <label class="inpul-label" for="email">Your e-mail</label>
-                            <input type="email" id="email" placeholder="e.g jhonbrgke@gmail.com" class="w-full">
+                            <label class="inpul-label">What software's you want</label>
+                            <div class="grid grid-cols-1 md:grid-cols-2 gap-4 mt-2">
+                                <label class="flex items-center"><input type="checkbox" class="mr-2"> Custom Made
+                                    Software</label>
+                                <label class="flex items-center"><input type="checkbox" class="mr-2"> Restaurant
+                                    Management</label>
+                                <label class="flex items-center"><input type="checkbox" class="mr-2"> School
+                                    Management</label>
+                                <label class="flex items-center"><input type="checkbox" class="mr-2"> NGO
+                                    Management</label>
+                            </div>
                         </div>
-                    </div>
 
-                    <div>
-                        <label class="inpul-label">What services you want</label>
-                        <div class="grid grid-cols-1 md:grid-cols-2 gap-4 mt-2">
-                            <label class="flex items-center"><input type="checkbox" class="mr-2"> Web Design &
-                                Development</label>
-                            <label class="flex items-center"><input type="checkbox" class="mr-2"> Mobile App
-                                Development</label>
-                            <label class="flex items-center"><input type="checkbox" class="mr-2"> UX/UI
-                                Design</label>
-                            <label class="flex items-center"><input type="checkbox" class="mr-2"> Digital
-                                Marketing
-                                &
-                                SEO</label>
+                        <div>
+                            <label class="inpul-label" for="description">Project description</label>
+                            <textarea id="description" rows="4" placeholder="Write your message here"
+                                class="w-full"></textarea>
                         </div>
-                    </div>
 
-                    <div>
-                        <label class="inpul-label">What software's you want</label>
-                        <div class="grid grid-cols-1 md:grid-cols-2 gap-4 mt-2">
-                            <label class="flex items-center"><input type="checkbox" class="mr-2"> Custom Made
-                                Software</label>
-                            <label class="flex items-center"><input type="checkbox" class="mr-2"> Restaurant
-                                Management</label>
-                            <label class="flex items-center"><input type="checkbox" class="mr-2"> School
-                                Management</label>
-                            <label class="flex items-center"><input type="checkbox" class="mr-2"> NGO
-                                Management</label>
-                        </div>
-                    </div>
-
-                    <div>
-                        <label class="inpul-label" for="description">Project description</label>
-                        <textarea id="description" rows="4" placeholder="Write your message here"
-                            class="w-full"></textarea>
-                    </div>
-
-                    <hr class="w-full h-px bg-secondary-400 border-0">
-                    <button class="btn-outline-full w-full">Submit now <span><i
-                                class="fa-solid fa-arrow-right"></i></span></button>
-                </form>
+                        <hr class="w-full h-px bg-secondary-400 border-0">
+                        <button class="btn-outline-full w-full">Submit now <span><i
+                                    class="fa-solid fa-arrow-right"></i></span></button>
+                    </form>
+                </div>
             </div>
         </div>
-    </div>
-    @endif
-    {{-- Contact us end --}}
+        @endif
+        {{-- Contact us end --}}
 
-    {{-- Companies who trust us start --}}
-    @if ($homeSettings['trusted_partners_section_is_active'] ?? false)
-    <div class="mt-10 md:mt-15 mb-10 md:mb-20">
-        <h2 class="heading-text-regular-medium text-center text-secondary-900 text-2xl md:text-3xl">
-            {{ $homeSettings['trusted_partners_title'] ?? '' }}
-        </h2>
-        <p class="sub-title-medium-regular text-center text-secondary-600 w-full md:w-8/12 lg:w-7/12 mx-auto mt-4">
-            {{ $homeSettings['trusted_partners_description'] ?? '' }}</p>
-        <div class="flex w-full flex-wrap justify-center items-center gap-10 sm:gap-20 mt-8">
-            @foreach ($trusted_companies as $company)
-            <div class=" flex justify-center items-center ">
+        {{-- Companies who trust us start --}}
+        @if ($homeSettings['trusted_partners_section_is_active'] ?? false)
+        <div class="mt-10 md:mt-15 mb-10 md:mb-20">
+            <h2 class="heading-text-regular-medium text-center text-secondary-900 text-2xl md:text-3xl">
+                {{ $homeSettings['trusted_partners_title'] ?? '' }}
+            </h2>
+            <p class="sub-title-medium-regular text-center text-secondary-600 w-full md:w-8/12 lg:w-7/12 mx-auto mt-4">
+                {{ $homeSettings['trusted_partners_description'] ?? '' }}</p>
+            <div class="flex w-full flex-wrap justify-center items-center gap-10 sm:gap-20 mt-8">
+                @foreach ($trusted_companies as $company)
+                <div class=" flex justify-center items-center ">
 
-                <img src="{{ $company->image_url }}" alt="{{ $company->name }}">
-            </div>
-            @endforeach
-        </div>
-    </div>
-    @endif
-    {{-- Companies who trust us end --}}
-
-    {{-- Clients around the world start --}}
-    @if ($homeSettings['clients_around_world_section_is_active'] ?? false)
-    <div class="mt-10 md:mt-15 mb-10 md:mb-20">
-        <h2 class="heading-text-regular-medium text-center text-secondary-900 text-2xl md:text-3xl">
-            {{ $homeSettings['clients_around_world_title'] ?? '' }}
-        </h2>
-        <p class="sub-title-medium-regular text-center text-secondary-600 w-full md:w-8/12 lg:w-7/12 mx-auto mt-4">
-            {{ $homeSettings['clients_around_world_description'] ?? '' }}</p>
-        <div class="flex justify-center items-center gap-10 mt-8 w-full flex-wrap">
-            @foreach ($clients as $client)
-            <div class=" flex justify-center items-center ">
-
-                <img src="{{ $client->image_url }}" alt="{{ $client->name }}">
-            </div>
-            @endforeach
-        </div>
-    </div>
-    @endif
-    {{-- Clients around the world end --}}
-
-    {{-- Client Reviews start --}}
-    @if ($homeSettings['client_reviews_section_is_active'] ?? false)
-    <div class="slider-container mt-10 md:mt-20 mb-10 md:mb-20 overflow-hidden">
-        <h2 class="heading-text-regular-medium text-center text-secondary-900 text-2xl md:text-3xl">
-            {{ $homeSettings['client_reviews_title'] ?? '' }}</h2>
-        <div class="flex flex-col md:flex-row justify-between my-8 gap-5">
-            <p class="body-text-regular-medium text-secondary-800 w-full md:w-1/2">
-                {{ $homeSettings['client_reviews_description'] ?? '' }}</p>
-            <div class="button-group flex justify-center md:justify-end gap-4">
-                <button
-                    class="prev-btn-client-reviews button-label w-9 px-3 py-2 border-secondary-600 text-secondary-600"><i
-                        class="w-5 h-5 fa-solid fa-circle-chevron-left"></i></button>
-                <button
-                    class="next-btn-client-reviews button-label w-9 px-3 py-2 border-secondary-600 text-secondary-600"><i
-                        class="w-5 h-5 fa-solid fa-circle-chevron-right"></i></button>
+                    <img src="{{ $company->image_url }}" alt="{{ $company->name }}">
+                </div>
+                @endforeach
             </div>
         </div>
+        @endif
+        {{-- Companies who trust us end --}}
 
-        <div class="client-reviews-container flex gap-6">
-            @foreach ($client_reviews as $client_review)
-            <div class="client-reviews-item">
-                <x-frontend.client-review :review="$client_review" />
-            </div>
-            @endforeach
-        </div>
-    </div>
-    @endif
-    {{-- Client Reviews end --}}
+        {{-- Clients around the world start --}}
+        @if ($homeSettings['clients_around_world_section_is_active'] ?? false)
+        <div class="mt-10 md:mt-15 mb-10 md:mb-20">
+            <h2 class="heading-text-regular-medium text-center text-secondary-900 text-2xl md:text-3xl">
+                {{ $homeSettings['clients_around_world_title'] ?? '' }}
+            </h2>
+            <p class="sub-title-medium-regular text-center text-secondary-600 w-full md:w-8/12 lg:w-7/12 mx-auto mt-4">
+                {{ $homeSettings['clients_around_world_description'] ?? '' }}</p>
+            <div class="flex justify-center items-center gap-10 mt-8 w-full flex-wrap">
+                @foreach ($clients as $client)
+                <div class=" flex justify-center items-center ">
 
-    {{-- FAQ start --}}
-    @if ($homeSettings['faq_section_is_active'] ?? false)
-    <div class="mt-10 md:mt-16 mb-10 md:mb-20 max-w-[95%] md:max-w-3xl lg:max-w-5xl mx-auto px-4" x-data="{ open: 1 }">
-        <!-- Section Title -->
-        <h2
-            class="heading-text-regular-medium text-center text-secondary-900 text-2xl md:text-3xl lg:text-4xl font-semibold">
-            {{ $homeSettings['faq_title'] ?? 'Frequently Asked Questions' }}
-        </h2>
-
-        <!-- FAQ Items -->
-        <x-frontend.faq-accordion :faqs="$faqs" />
-    </div>
-    @endif
-    {{-- FAQ end --}}
-
-    {{-- Articles start --}}
-    @if ($homeSettings['articles_section_is_active'] ?? false)
-    <div class="slider-container mt-10 md:mt-15 mb-10 md:mb-20 overflow-hidden">
-        <h2 class="heading-text-regular-medium text-center text-secondary-900 text-2xl md:text-3xl">
-            {{ $homeSettings['articles_title'] ?? '' }}</h2>
-        <div class="flex flex-col md:flex-row justify-between my-8 gap-5">
-            <p class="body-text-regular-medium text-secondary-800 w-full md:w-1/2">
-                {{ $homeSettings['articles_description'] ?? '' }}</p>
-            <div class="button-group flex justify-center md:justify-end gap-4">
-                <button class="prev-btn-article button-label w-9 px-3 py-2 border-secondary-600 text-secondary-600"><i
-                        class="w-5 h-5 fa-solid fa-circle-chevron-left"></i></button>
-                <button class="next-btn-article button-label w-9 px-3 py-2 border-secondary-600 text-secondary-600"><i
-                        class="w-5 h-5 fa-solid fa-circle-chevron-right"></i></button>
+                    <img src="{{ $client->image_url }}" alt="{{ $client->name }}">
+                </div>
+                @endforeach
             </div>
         </div>
+        @endif
+        {{-- Clients around the world end --}}
 
-        <div class="articles-container flex gap-10">
-            @foreach ($articles as $article)
-            <div class="article-item">
-                <img class="h-72 w-full object-cover rounded-xl self-start" src="{{ $article->thumbnail_url }}"
-                    alt="{{ $article->title }}" />
-                <div class="mt-4">
+        {{-- Client Reviews start --}}
+        @if ($homeSettings['client_reviews_section_is_active'] ?? false)
+        <div class="slider-container mt-10 md:mt-20 mb-10 md:mb-20 overflow-hidden">
+            <h2 class="heading-text-regular-medium text-center text-secondary-900 text-2xl md:text-3xl">
+                {{ $homeSettings['client_reviews_title'] ?? '' }}</h2>
+            <div class="flex flex-col md:flex-row justify-between my-8 gap-5">
+                <p class="body-text-regular-medium text-secondary-800 w-full md:w-1/2">
+                    {{ $homeSettings['client_reviews_description'] ?? '' }}</p>
+                <div class="button-group flex justify-center md:justify-end gap-4">
                     <button
-                        class="px-4 py-2 border rounded-full border-secondary-200 label-text-regular-small text-secondary-800">{{
-                        $article->category->title }}</button>
-                    <h3 class="title-text-bold-medium text-secondary-950 pt-2">{{ $article->title }}</h3>
-                    <p class="body-text-regular-medium text-secondary-600 pt-1">{{ $article->short_text }}</p>
+                        class="prev-btn-client-reviews button-label w-9 px-3 py-2 border-secondary-600 text-secondary-600"><i
+                            class="w-5 h-5 fa-solid fa-circle-chevron-left"></i></button>
+                    <button
+                        class="next-btn-client-reviews button-label w-9 px-3 py-2 border-secondary-600 text-secondary-600"><i
+                            class="w-5 h-5 fa-solid fa-circle-chevron-right"></i></button>
                 </div>
-                <a href="{{ route('articles.show', $article->slug) }}"
-                    class="inline-block px-3 py-2 rounded-sm border border-secondary-800 label-text-bold-small text-secondary-800 mt-4">Read
-                    more</a>
             </div>
-            @endforeach
-        </div>
-    </div>
-    @endif
-    {{-- Articles end --}}
 
-    {{-- Video Modal --}}
-    <div x-show="videoOpen" x-cloak class="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50"
-        @click.away="closeVideo()">
-        <div class="bg-white rounded-lg p-8 max-w-2xl w-full relative">
-            <div class="flex justify-between items-center mb-4">
-                <h2 class="text-2xl font-bold">Video title</h2>
-                <button @click="closeVideo()" class="text-gray-500 hover:text-gray-700">
-                    <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24"
-                        stroke="currentColor">
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                            d="M6 18L18 6M6 6l12 12" />
-                    </svg>
-                </button>
-            </div>
-            <div class="relative" style="padding-top: 56.25%;">
-                <iframe x-ref="videoFrame" class="absolute top-0 left-0 w-full h-full" src="" frameborder="0"
-                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-                    allowfullscreen></iframe>
+            <div class="client-reviews-container flex gap-6">
+                @foreach ($client_reviews as $client_review)
+                <div class="client-reviews-item">
+                    <x-frontend.client-review :review="$client_review" />
+                </div>
+                @endforeach
             </div>
         </div>
+        @endif
+        {{-- Client Reviews end --}}
+
+        {{-- FAQ start --}}
+        @if ($homeSettings['faq_section_is_active'] ?? false)
+        <div class="mt-10 md:mt-16 mb-10 md:mb-20 max-w-[95%] md:max-w-3xl lg:max-w-5xl mx-auto px-4"
+            x-data="{ open: 1 }">
+            <!-- Section Title -->
+            <h2
+                class="heading-text-regular-medium text-center text-secondary-900 text-2xl md:text-3xl lg:text-4xl font-semibold">
+                {{ $homeSettings['faq_title'] ?? 'Frequently Asked Questions' }}
+            </h2>
+
+            <!-- FAQ Items -->
+            <x-frontend.faq-accordion :faqs="$faqs" />
+        </div>
+        @endif
+        {{-- FAQ end --}}
+
+        {{-- Articles start --}}
+        @if ($homeSettings['articles_section_is_active'] ?? false)
+        <div class="slider-container mt-10 md:mt-15 mb-10 md:mb-20 overflow-hidden">
+            <h2 class="heading-text-regular-medium text-center text-secondary-900 text-2xl md:text-3xl">
+                {{ $homeSettings['articles_title'] ?? '' }}</h2>
+            <div class="flex flex-col md:flex-row justify-between my-8 gap-5">
+                <p class="body-text-regular-medium text-secondary-800 w-full md:w-1/2">
+                    {{ $homeSettings['articles_description'] ?? '' }}</p>
+                <div class="button-group flex justify-center md:justify-end gap-4">
+                    <button
+                        class="prev-btn-article button-label w-9 px-3 py-2 border-secondary-600 text-secondary-600"><i
+                            class="w-5 h-5 fa-solid fa-circle-chevron-left"></i></button>
+                    <button
+                        class="next-btn-article button-label w-9 px-3 py-2 border-secondary-600 text-secondary-600"><i
+                            class="w-5 h-5 fa-solid fa-circle-chevron-right"></i></button>
+                </div>
+            </div>
+
+            <div class="articles-container flex gap-10">
+                @foreach ($articles as $article)
+                <div class="article-item">
+                    <img class="h-72 w-full object-cover rounded-xl self-start" src="{{ $article->thumbnail_url }}"
+                        alt="{{ $article->title }}" />
+                    <div class="mt-4">
+                        <button
+                            class="px-4 py-2 border rounded-full border-secondary-200 label-text-regular-small text-secondary-800">{{
+                            $article->category->title }}</button>
+                        <h3 class="title-text-bold-medium text-secondary-950 pt-2">{{ $article->title }}</h3>
+                        <p class="body-text-regular-medium text-secondary-600 pt-1">{{ $article->short_text }}</p>
+                    </div>
+                    <a href="{{ route('articles.show', $article->slug) }}"
+                        class="inline-block px-3 py-2 rounded-sm border border-secondary-800 label-text-bold-small text-secondary-800 mt-4">Read
+                        more</a>
+                </div>
+                @endforeach
+            </div>
+        </div>
+        @endif
+        {{-- Articles end --}}
+
+        {{-- Video Modal --}}
+        <div x-show="videoOpen" x-cloak
+            class="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50"
+            @click.away="closeVideo()">
+            <div class="bg-white rounded-lg p-8 max-w-2xl w-full relative">
+                <div class="flex justify-between items-center mb-4">
+                    <h2 class="text-2xl font-bold">Video title</h2>
+                    <button @click="closeVideo()" class="text-gray-500 hover:text-gray-700">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24"
+                            stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                d="M6 18L18 6M6 6l12 12" />
+                        </svg>
+                    </button>
+                </div>
+                <div class="relative" style="padding-top: 56.25%;">
+                    <iframe x-ref="videoFrame" class="absolute top-0 left-0 w-full h-full" src="" frameborder="0"
+                        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                        allowfullscreen></iframe>
+                </div>
+            </div>
+        </div>
     </div>
-</div>
 
 
-@endsection
+    @endsection
 
-@section('extra-js')
-<script>
-    $(document).ready(function() {
+    @section('extra-js')
+    <script>
+        $(document).ready(function() {
             // project Slider
             let project_visible = 2;
 
@@ -869,5 +868,5 @@
                 $('.articles-container').slick('slickSetOption', 'slidesToShow', article_visible, true);
             });
         });
-</script>
-@endsection
+    </script>
+    @endsection
