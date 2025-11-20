@@ -18,11 +18,16 @@ class Team extends Model
     }
     // avatar_url accessor
     protected $appends = ['avatar_url'];
-    public function getAvatarUrlAttribute()
+
+     public function getAvatarUrlAttribute()
     {
-        if ($this->avatar && file_exists(public_path('uploads/teams/' . $this->avatar))) {
-            return asset('uploads/teams/' . $this->avatar);
+        $path = 'storage/teams/' . $this->avatar;
+
+        if ($this->avatar && file_exists(public_path($path))) {
+            return asset($path);
         }
-        return asset('images/default-team-avatar.jpg');
+
+        return asset('images/default/service.webp');
     }
+
 }

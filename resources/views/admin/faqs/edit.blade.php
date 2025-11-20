@@ -4,14 +4,16 @@
 @section('header-title', 'Edit Faqs')
 
 @section('content')
-<x-admin.back-button :route="route('admin.page-faqs.index')" />
+
+<x-admin.button outline :route="route('admin.page-faqs.index')" text="Back"  />
+
 <div class="flex justify-between items-center mb-4">
     <h1 class="text-2xl font-bold">Edit FAQ</h1>
 </div>
 
 <x-admin.validation-errors />
 
-<form action="{{ route('admin.page-faqs.update', $faq) }}" method="POST">
+<form action="{{ route('admin.page-faqs.update', $faq->id) }}" method="POST">
     @csrf
     @method('PUT')
     <x-admin.select name="page" label="Page" :options="array_combine($pages, array_map('ucfirst', $pages))"

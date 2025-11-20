@@ -95,7 +95,7 @@
                 <img class="rounded-md" src="{{ $team->avatar_url }}" alt="{{ $team->name }}">
                 <div>
                     <h3 class="title-text-bold-medium text-secondary-950">{{ $team->name }}</h3>
-                    <p class="body-text-bold-large text-secondary-800">{{ $team->designation->name }}</p>
+                    <p class="body-text-bold-large text-secondary-800">{{ $team->designation->title }}</p>
                 </div>
             </div>
             @endforeach

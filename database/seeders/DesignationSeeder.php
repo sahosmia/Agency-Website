@@ -16,7 +16,7 @@ class DesignationSeeder extends Seeder
             [
                 'title' => 'Founder, CEO',
                 'slug' => 'founder-ceo',
-                'description' => 'We offer web development, SEO, branding, and digital marketing services.',
+                'description' => '',
             ],
             [
                 'title' => 'Co Founder Managing Director',
@@ -26,27 +26,37 @@ class DesignationSeeder extends Seeder
             [
                 'title' => 'Co Founder Coo',
                 'slug' => 'co-founder-coo',
-                'description' => 'Yes, we build custom software tailored to your business needs.',
-            ],
-            [
-                'title' => 'Creative director',
-                'slug' => 'creative-director',
-                'description' => 'Our pricing depends on project complexity. Contact us for a quote.',
-            ],
-
-            [
-                'title' => 'Brand Manager',
-                'slug' => 'brand-manager',
                 'description' => '',
             ],
             [
-                'title' => 'Digital Marketing Specialist',
-                'slug' => 'digital-marketing-specialist',
+                'title' => 'Creative director',
+                'slug' => 'Creative director',
                 'description' => '',
             ],
             [
                 'title' => 'CMO',
-                'slug' => 'cmo',
+                'slug' => 'CMO',
+                'description' => '',
+            ],
+
+            [
+                'title' => 'Digital Marketing Specialist',
+                'slug' => 'Digital Marketing Specialist',
+                'description' => '',
+            ],
+            [
+                'title' => 'Product Marketing Manager',
+                'slug' => 'Product Marketing Manager',
+                'description' => '',
+            ],
+            [
+                'title' => 'Brand Manager',
+                'slug' => 'Brand Manager',
+                'description' => '',
+            ],
+            [
+                'title' => 'Marketing Analyst',
+                'slug' => 'Marketing Analyst',
                 'description' => '',
             ],
         ];

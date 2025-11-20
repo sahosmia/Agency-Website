@@ -43,5 +43,33 @@ class AchievementSeeder extends Seeder
             'home_page_show' => false,
             'sort' => 4,
         ]);
+        Achievement::updateOrCreate(['id' => 5], [
+            'title' => 'Customized Solutions Delivered',
+            'description' => 'Expertise tailored to your unique needs—because we’ve done it all.',
+            'value' => '450+',
+            'home_page_show' => false,
+            'sort' => 4,
+        ]);
+        Achievement::updateOrCreate(['id' => 6], [
+            'title' => 'Exceptional In-house Employees',
+            'description' => 'Expertise tailored to your unique needs—because we’ve done it all.',
+            'value' => '200+',
+            'home_page_show' => false,
+            'sort' => 4,
+        ]);
+        Achievement::updateOrCreate(['id' => 7], [
+            'title' => 'Industries Served',
+            'description' => 'Expertise tailored to your unique needs—because we’ve done it all.',
+            'value' => '17+',
+            'home_page_show' => false,
+            'sort' => 4,
+        ]);
+        Achievement::updateOrCreate(['id' => 8], [
+            'title' => 'Industries Served',
+            'description' => 'Expertise tailored to your unique needs—because we’ve done it all.',
+            'value' => '17+',
+            'home_page_show' => false,
+            'sort' => 4,
+        ]);
     }
 }
