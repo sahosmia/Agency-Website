@@ -7,18 +7,20 @@ use App\Http\Requests\Admin\ServiceTypeRequest;
 use App\Models\Service;
 use App\Models\ServiceType;
 use Illuminate\Http\Request;
+use App\Services\ServiceTypeService;
 
 class ServiceTypeController extends Controller
 {
+    protected $serviceTypeService;
+
+    public function __construct(ServiceTypeService $serviceTypeService)
+    {
+        $this->serviceTypeService = $serviceTypeService;
+    }
+
     public function index(Request $request)
     {
-        $query = ServiceType::with('service');
-
-        if ($request->filled('q')) {
-            $query->where('name', 'like', '%' . $request->q . '%');
-        }
-
-        $serviceTypes = $query->latest()->paginate(10);
+        $serviceTypes = $this->serviceTypeService->getServiceTypes($request->all(), 10);
         return view('admin.service-types.index', compact('serviceTypes'));
     }
 
@@ -30,7 +32,7 @@ class ServiceTypeController extends Controller
 
     public function store(ServiceTypeRequest $request)
     {
-        ServiceType::create($request->validated());
+        $this->serviceTypeService->storeServiceType($request->validated());
 
         return redirect()->route('admin.service-types.index')->with('success', 'Service Type created successfully.');
     }
@@ -43,14 +45,14 @@ class ServiceTypeController extends Controller
 
     public function update(ServiceTypeRequest $request, ServiceType $serviceType)
     {
-        $serviceType->update($request->validated());
+        $this->serviceTypeService->updateServiceType($serviceType, $request->validated());
 
         return redirect()->route('admin.service-types.index')->with('success', 'Service Type updated successfully.');
     }
 
     public function destroy(ServiceType $serviceType)
     {
-        $serviceType->delete();
+        $this->serviceTypeService->deleteServiceType($serviceType);
         return redirect()->route('admin.service-types.index')->with('success', 'Service Type deleted successfully.');
     }
 }

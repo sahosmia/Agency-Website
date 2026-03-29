@@ -3,14 +3,22 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
-use App\Http\Controllers\Traits\FileUploadTrait;
 use App\Models\PageSetting;
 use Illuminate\Http\Request;
 use Illuminate\Support\Str;
+use App\Services\PageSettingService;
+use App\Http\Controllers\Traits\FileUploadTrait;
 
 class PageSettingController extends Controller
 {
     use FileUploadTrait;
+
+    protected $pageSettingService;
+
+    public function __construct(PageSettingService $pageSettingService)
+    {
+        $this->pageSettingService = $pageSettingService;
+    }
 
     private function getPageFields($pageName)
     {
@@ -184,8 +192,7 @@ class PageSettingController extends Controller
 
     public function index($pageName)
     {
-        $page = PageSetting::where('page_name', $pageName)->first();
-        $settings = $page ? $page->settings : [];
+        $settings = $this->pageSettingService->getSettings($pageName);
         $fields = $this->getPageFields($pageName);
         $pageTitle = Str::of($pageName)->replace('_', ' ')->title();
 
@@ -202,33 +209,33 @@ class PageSettingController extends Controller
         );
         $request->validate($validationRules);
 
-        $this->updatePageSettings($request, $pageName, array_keys($fields['text_fields']), $fields['upload_paths'], array_keys($fields['checkbox_fields']));
+        $settings = $this->pageSettingService->getSettings($pageName);
 
-        return redirect()->back()->with('success', Str::of($pageName)->replace('_', ' ')->title() . ' settings updated successfully.');
-    }
-
-    private function updatePageSettings(Request $request, $pageName, $fields, $imageFields = [], $checkboxFields = [])
-    {
-        $page = PageSetting::firstOrNew(['page_name' => $pageName]);
-        $settings = $page->settings ?? [];
-
-        foreach ($fields as $field) {
+        // Update text fields
+        foreach (array_keys($fields['text_fields']) as $field) {
             if ($request->has($field)) {
                 $settings[$field] = $request->input($field);
             }
         }
 
-        foreach ($imageFields as $imageField) {
-            if ($request->hasFile($imageField['name'])) {
-                $settings[$imageField['name']] = $this->uploadFile($request, $imageField['name'], $imageField['path']);
+        // Update image fields
+        if (isset($fields['upload_paths'])) {
+            foreach ($fields['upload_paths'] as $imageField) {
+                if ($request->hasFile($imageField['name'])) {
+                    $settings[$imageField['name']] = $this->uploadFile($request, $imageField['name'], $imageField['path']);
+                }
             }
         }
 
-        foreach ($checkboxFields as $checkboxField) {
-            $settings[$checkboxField] = $request->has($checkboxField);
+        // Update checkbox fields
+        if (isset($fields['checkbox_fields'])) {
+            foreach (array_keys($fields['checkbox_fields']) as $checkboxField) {
+                $settings[$checkboxField] = $request->has($checkboxField);
+            }
         }
 
-        $page->settings = $settings;
-        $page->save();
+        $this->pageSettingService->updatePageSettings($pageName, $settings);
+
+        return redirect()->back()->with('success', Str::of($pageName)->replace('_', ' ')->title() . ' settings updated successfully.');
     }
 }

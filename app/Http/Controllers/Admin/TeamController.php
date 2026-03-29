@@ -6,30 +6,24 @@ use App\Http\Controllers\Controller;
 use App\Http\Requests\Admin\TeamRequest;
 use App\Models\Team;
 use App\Models\Designation;
-use App\Http\Controllers\Traits\FileUploadTrait;
 use Illuminate\Http\Request;
+use App\Services\TeamService;
+use App\Http\Controllers\Traits\FileUploadTrait;
 
 class TeamController extends Controller
 {
     use FileUploadTrait;
 
+    protected $teamService;
+
+    public function __construct(TeamService $teamService)
+    {
+        $this->teamService = $teamService;
+    }
+
     public function index(Request $request)
     {
-        $query = Team::query()->with('designation');
-
-        if ($request->filled('q')) {
-            $query->where('name', 'like', "%{$request->q}%");
-        }
-
-        if ($request->filled('designation_id')) {
-            $query->where('designation_id', $request->designation_id);
-        }
-
-        if ($request->filled('status')) {
-            $query->where('is_active', $request->status);
-        }
-
-        $teams = $query->latest()->paginate(10);
+        $teams = $this->teamService->getTeams($request->all(), 10);
         $designations = Designation::all();
 
         return view('admin.teams.index', compact('teams', 'designations'));
@@ -43,14 +37,12 @@ class TeamController extends Controller
 
     public function store(TeamRequest $request)
     {
-        $team = new Team($request->except('avatar'));
-
+        $data = $request->validated();
         if ($request->hasFile('avatar')) {
-            $team->avatar = $this->uploadFile($request->file('avatar'), 'uploads/teams');
+            $data['avatar'] = $this->uploadFile($request, 'avatar', 'uploads/teams');
         }
 
-        $team->save();
-
+        $this->teamService->storeTeam($data);
         return redirect()->route('admin.teams.index')->with('success', 'Team member created successfully.');
     }
 
@@ -62,23 +54,20 @@ class TeamController extends Controller
 
     public function update(TeamRequest $request, Team $team)
     {
-        $team->fill($request->except('avatar'));
-
+        $data = $request->validated();
         if ($request->hasFile('avatar')) {
             $this->deleteFile($team->avatar, 'uploads/teams');
-            $team->avatar = $this->uploadFile($request->file('avatar'), 'uploads/teams');
+            $data['avatar'] = $this->uploadFile($request, 'avatar', 'uploads/teams');
         }
 
-        $team->save();
-
+        $this->teamService->updateTeam($team, $data);
         return redirect()->route('admin.teams.index')->with('success', 'Team member updated successfully.');
     }
 
     public function destroy(Team $team)
     {
         $this->deleteFile($team->avatar, 'uploads/teams');
-        $team->delete();
-
+        $this->teamService->deleteTeam($team);
         return redirect()->route('admin.teams.index')->with('success', 'Team member deleted successfully.');
     }
 }

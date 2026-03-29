@@ -8,23 +8,22 @@ use App\Http\Requests\StoreSocialMediaLinkRequest;
 use App\Http\Requests\UpdateSocialMediaLinkRequest;
 use App\Models\SocialMediaLink;
 use Illuminate\Http\Request;
+use App\Services\SocialMediaLinkService;
 
 class SocialMediaLinkController extends Controller
 {
     use FileUploadTrait;
+
+    protected $socialMediaLinkService;
+
+    public function __construct(SocialMediaLinkService $socialMediaLinkService)
+    {
+        $this->socialMediaLinkService = $socialMediaLinkService;
+    }
+
     public function index(Request $request)
     {
-        $query = SocialMediaLink::query();
-
-        if ($request->filled('q')) {
-            $query->where('name', 'like', '%' . $request->q . '%');
-        }
-
-        if ($request->filled('status')) {
-            $query->where('is_active', $request->status);
-        }
-
-        $socialMediaLinks = $query->latest()->paginate(10);
+        $socialMediaLinks = $this->socialMediaLinkService->getSocialMediaLinks($request->all(), 10);
         return view('admin.social_media_links.index', compact('socialMediaLinks'));
     }
 
@@ -39,7 +38,7 @@ class SocialMediaLinkController extends Controller
         if ($request->hasFile('icon')) {
             $data['icon'] = $this->uploadFile($request, 'icon', 'social_media_links');
         }
-        SocialMediaLink::create($data);
+        $this->socialMediaLinkService->storeSocialMediaLink($data);
         return redirect()->route('admin.social-media-links.index')->with('success', 'Social Media Link created successfully.');
     }
 
@@ -57,15 +56,13 @@ class SocialMediaLinkController extends Controller
             }
             $data['icon'] = $this->uploadFile($request, 'icon', 'social_media_links');
         }
-        $socialMediaLink->update($data);
+        $this->socialMediaLinkService->updateSocialMediaLink($socialMediaLink, $data);
         return redirect()->route('admin.social-media-links.index')->with('success', 'Social Media Link updated successfully.');
     }
 
     public function destroy(SocialMediaLink $socialMediaLink)
     {
-                $this->deleteFile($socialMediaLink, 'icon');
-
-        $socialMediaLink->delete();
+        $this->socialMediaLinkService->deleteSocialMediaLink($socialMediaLink);
         return redirect()->route('admin.social-media-links.index')->with('success', 'Social Media Link deleted successfully.');
     }
 }

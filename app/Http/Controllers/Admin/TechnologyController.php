@@ -8,27 +8,25 @@ use App\Http\Requests\StoreTechnologyRequest;
 use App\Http\Requests\UpdateTechnologyRequest;
 use App\Models\Technology;
 use Illuminate\Http\Request;
+use App\Services\TechnologyService;
 
 class TechnologyController extends Controller
 {
     use FileUploadTrait;
+
+    protected $technologyService;
+
+    public function __construct(TechnologyService $technologyService)
+    {
+        $this->technologyService = $technologyService;
+    }
 
     /**
      * Display a listing of the resource.
      */
     public function index(Request $request)
     {
-        $query = Technology::query();
-
-        if ($request->filled('q')) {
-            $query->where('name', 'like', '%' . $request->q . '%');
-        }
-
-        if ($request->filled('status')) {
-            $query->where('is_active', $request->status);
-        }
-
-        $technologies = $query->latest()->paginate(10);
+        $technologies = $this->technologyService->getTechnologies($request->all(), 10);
         return view('admin.technologies.index', compact('technologies'));
     }
 
@@ -47,7 +45,7 @@ class TechnologyController extends Controller
     {
         $data = $request->validated();
         $data['image'] = $this->uploadFile($request, 'image', 'technologies');
-        Technology::create($data);
+        $this->technologyService->storeTechnology($data);
         return redirect()->route('admin.technologies.index')->with('success', 'Technology created successfully.');
     }
 
@@ -76,7 +74,7 @@ class TechnologyController extends Controller
         if ($request->hasFile('image')) {
             $data['image'] = $this->updateFile($request, 'image', 'technologies', $technology->image);
         }
-        $technology->update($data);
+        $this->technologyService->updateTechnology($technology, $data);
         return redirect()->route('admin.technologies.index')->with('success', 'Technology updated successfully.');
     }
 
@@ -88,7 +86,7 @@ class TechnologyController extends Controller
         if ($technology->image) {
             $this->deleteFile('technologies', $technology->image);
         }
-        $technology->delete();
+        $this->technologyService->deleteTechnology($technology);
         return redirect()->route('admin.technologies.index')->with('success', 'Technology deleted successfully.');
     }
 }

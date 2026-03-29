@@ -8,24 +8,23 @@ use App\Http\Requests\StoreTrustedCompanyRequest;
 use App\Http\Requests\UpdateTrustedCompanyRequest;
 use App\Models\TrustedCompany;
 use Illuminate\Http\Request;
+use App\Services\TrustedCompanyService;
 use Illuminate\Support\Facades\Storage;
 
 class TrustedCompanyController extends Controller
 {
     use FileUploadTrait;
+
+    protected $trustedCompanyService;
+
+    public function __construct(TrustedCompanyService $trustedCompanyService)
+    {
+        $this->trustedCompanyService = $trustedCompanyService;
+    }
+
     public function index(Request $request)
     {
-        $query = TrustedCompany::query();
-
-        if ($request->filled('q')) {
-            $query->where('name', 'like', '%' . $request->q . '%');
-        }
-
-        if ($request->filled('status')) {
-            $query->where('is_active', $request->status);
-        }
-
-        $trustedCompanies = $query->latest()->paginate(10);
+        $trustedCompanies = $this->trustedCompanyService->getTrustedCompanies($request->all(), 10);
         return view('admin.trusted_companies.index', compact('trustedCompanies'));
     }
 
@@ -38,7 +37,7 @@ class TrustedCompanyController extends Controller
     {
         $data = $request->validated();
         $data['logo'] = $this->uploadFile($request, 'logo', 'trusted_companies');
-        TrustedCompany::create($data);
+        $this->trustedCompanyService->storeTrustedCompany($data);
         return redirect()->route('admin.trusted-companies.index')->with('success', 'Trusted Company created successfully.');
     }
 
@@ -51,7 +50,7 @@ class TrustedCompanyController extends Controller
     {
         $data = $request->validated();
         $data['logo'] = $this->updateFile($request, 'logo', 'trusted_companies', $trustedCompany);
-        $trustedCompany->update($data);
+        $this->trustedCompanyService->updateTrustedCompany($trustedCompany, $data);
         return redirect()->route('admin.trusted-companies.index')->with('success', 'Trusted Company updated successfully.');
     }
 
@@ -60,7 +59,7 @@ class TrustedCompanyController extends Controller
         if ($trustedCompany->logo) {
             Storage::disk('public')->delete($trustedCompany->logo);
         }
-        $trustedCompany->delete();
+        $this->trustedCompanyService->deleteTrustedCompany($trustedCompany);
         return redirect()->route('admin.trusted-companies.index')->with('success', 'Trusted Company deleted successfully.');
     }
 }

@@ -4,14 +4,19 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use App\Traits\HasSlug;
 
 class Category extends Model
 {
-    use HasFactory;
+    use HasFactory, HasSlug;
 
     protected $fillable = [
-        'name',
+        'title',
         'slug',
-        'is_active',
     ];
+
+    public function getSlugSourceField(): string
+    {
+        return 'title';
+    }
 }

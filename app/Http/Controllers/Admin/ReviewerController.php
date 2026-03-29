@@ -6,16 +6,24 @@ use App\Http\Controllers\Controller;
 use App\Http\Requests\Admin\ReviewerRequest;
 use App\Models\Reviewer;
 use Illuminate\Http\Request;
+use App\Services\ReviewerService;
 use Illuminate\Support\Facades\Storage;
 
 class ReviewerController extends Controller
 {
+    protected $reviewerService;
+
+    public function __construct(ReviewerService $reviewerService)
+    {
+        $this->reviewerService = $reviewerService;
+    }
+
     /**
      * Display a listing of the resource.
      */
     public function index()
     {
-        $reviewers = Reviewer::all();
+        $reviewers = $this->reviewerService->getAllReviewers();
         return view('admin.reviewers.index', compact('reviewers'));
     }
     /**
@@ -34,7 +42,7 @@ class ReviewerController extends Controller
         if ($request->hasFile('image')) {
             $data['image'] = $request->file('image')->store('reviewers', 'public');
         }
-        Reviewer::create($data);
+        $this->reviewerService->storeReviewer($data);
         return redirect()->route('admin.reviewers.index')->with('success', 'Reviewer created successfully.');
     }
     /**
@@ -57,7 +65,7 @@ class ReviewerController extends Controller
             }
             $data['image'] = $request->file('image')->store('reviewers', 'public');
         }
-        $reviewer->update($data);
+        $this->reviewerService->updateReviewer($reviewer, $data);
         return redirect()->route('admin.reviewers.index')->with('success', 'Reviewer updated successfully.');
     }
     /**
@@ -65,11 +73,7 @@ class ReviewerController extends Controller
      */
     public function destroy(Reviewer $reviewer)
     {
-        // Delete image
-        if ($reviewer->image) {
-            Storage::disk('public')->delete($reviewer->image);
-        }
-        $reviewer->delete();
+        $this->reviewerService->deleteReviewer($reviewer);
         return redirect()->route('admin.reviewers.index')->with('success', 'Reviewer deleted successfully.');
     }
 }

@@ -7,27 +7,22 @@ use App\Http\Requests\StoreFaqRequest;
 use App\Http\Requests\UpdateFaqRequest;
 use App\Models\Faq;
 use Illuminate\Http\Request;
+use App\Services\FaqService;
 
 class FaqController extends Controller
 {
     public const PAGES = ['home', 'about', 'service', 'software'];
+
+    protected $faqService;
+
+    public function __construct(FaqService $faqService)
+    {
+        $this->faqService = $faqService;
+    }
+
     public function index(Request $request)
     {
-        $query = Faq::whereNull('faqable_type');
-
-        if ($request->filled('q')) {
-            $query->where('question', 'like', '%' . $request->q . '%');
-        }
-
-        if ($request->filled('status')) {
-            $query->where('is_active', $request->status);
-        }
-
-        if ($request->filled('page')) {
-            $query->where('page', $request->page);
-        }
-
-        $faqs = $query->latest()->paginate(10);
+        $faqs = $this->faqService->getFaqs($request->all(), 10);
         $pages = self::PAGES;
         return view('admin.faqs.index', compact('faqs', 'pages'));
     }
@@ -40,7 +35,7 @@ class FaqController extends Controller
 
     public function store(StoreFaqRequest $request)
     {
-        Faq::create($request->validated() + ['faqable_id' => null, 'faqable_type' => null]);
+        $this->faqService->storeFaq($request->validated());
         return redirect()->route('admin.page-faqs.index')->with('success', 'FAQ created successfully.');
     }
 
@@ -52,13 +47,13 @@ class FaqController extends Controller
 
     public function update(UpdateFaqRequest $request, Faq $faq)
     {
-        $faq->update($request->validated());
+        $this->faqService->updateFaq($faq, $request->validated());
         return redirect()->route('admin.page-faqs.index')->with('success', 'FAQ updated successfully.');
     }
 
     public function destroy(Faq $faq)
     {
-        $faq->delete();
+        $this->faqService->deleteFaq($faq);
         return redirect()->route('admin.page-faqs.index')->with('success', 'FAQ deleted successfully.');
     }
 }
