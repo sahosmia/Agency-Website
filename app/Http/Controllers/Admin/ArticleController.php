@@ -10,31 +10,25 @@ use App\Models\Article;
 use App\Models\Category;
 use App\Models\Tag;
 use Illuminate\Http\Request;
+use App\Services\ArticleService;
 use App\Http\Controllers\Traits\FileUploadTrait;
 
 class ArticleController extends Controller
 {
-    use FileUploadTrait, AdminPagination;
+    use AdminPagination, FileUploadTrait;
+
+    protected $articleService;
+
+    public function __construct(ArticleService $articleService)
+    {
+        $this->articleService = $articleService;
+    }
 
     public function index(Request $request)
     {
         $adminPagination = $this->getAdminPagination();
         $categories = Category::all();
-        $query = Article::with('category');
-
-        if ($request->filled('q')) {
-            $query->where('title', 'like', '%' . $request->q . '%');
-        }
-
-        if ($request->filled('category_id')) {
-            $query->where('category_id', $request->category_id);
-        }
-
-        if ($request->filled('status')) {
-            $query->where('is_active', $request->status);
-        }
-
-        $articles = $query->latest()->paginate($adminPagination);
+        $articles = $this->articleService->getArticles($request->all(), $adminPagination);
 
         return view('admin.articles.index', compact('articles', 'categories'));
     }
@@ -48,11 +42,11 @@ class ArticleController extends Controller
 
     public function store(StoreArticleRequest $request)
     {
-        // return $request->validated();
         $data = $request->validated();
         $data['thumbnail'] = $this->uploadFile($request, 'thumbnail', 'articles');
-        $article = Article::create($data);
-        $article->tags()->attach($request->tags);
+        $data['tags'] = $request->tags;
+
+        $this->articleService->storeArticle($data);
         return redirect()->route('admin.articles.index')->with('success', 'Article created successfully.');
     }
 
@@ -64,7 +58,6 @@ class ArticleController extends Controller
 
     public function edit(Article $article)
     {
-
         $categories = Category::all();
         $tags = Tag::all();
         $article->load('tags');
@@ -75,15 +68,16 @@ class ArticleController extends Controller
     {
         $data = $request->validated();
         $data['thumbnail'] = $this->updateFile($request, 'thumbnail', 'articles', $article);
-        $article->update($data);
-        $article->tags()->sync($request->tags);
+        $data['tags'] = $request->tags;
+
+        $this->articleService->updateArticle($article, $data);
         return redirect()->route('admin.articles.index')->with('success', 'Article updated successfully.');
     }
 
     public function destroy(Article $article)
     {
         $this->deleteFile($article, 'thumbnail');
-        $article->delete();
+        $this->articleService->deleteArticle($article);
         return redirect()->route('admin.articles.index')->with('success', 'Article deleted successfully.');
     }
 }

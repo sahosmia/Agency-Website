@@ -5,18 +5,22 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use App\Models\Tag;
 use Illuminate\Http\Request;
+use App\Services\TagService;
+use App\Http\Requests\StoreTagRequest;
+use App\Http\Requests\UpdateTagRequest;
 
 class TagController extends Controller
 {
+    protected $tagService;
+
+    public function __construct(TagService $tagService)
+    {
+        $this->tagService = $tagService;
+    }
+
     public function index(Request $request)
     {
-        $query = Tag::query();
-
-        if ($request->filled('q')) {
-            $query->where('name', 'like', '%' . $request->q . '%');
-        }
-
-        $tags = $query->latest()->paginate(10);
+        $tags = $this->tagService->getTags($request->all(), 10);
         return view('admin.tags.index', compact('tags'));
     }
 
@@ -25,13 +29,9 @@ class TagController extends Controller
         return view('admin.tags.create');
     }
 
-    public function store(Request $request)
+    public function store(StoreTagRequest $request)
     {
-        $request->validate([
-            'name' => 'required|string|max:255|unique:tags,name',
-        ]);
-
-        Tag::create($request->all());
+        $this->tagService->storeTag($request->validated());
         return redirect()->route('admin.tags.index')->with('success', 'Tag created successfully.');
     }
 
@@ -40,19 +40,15 @@ class TagController extends Controller
         return view('admin.tags.edit', compact('tag'));
     }
 
-    public function update(Request $request, Tag $tag)
+    public function update(UpdateTagRequest $request, Tag $tag)
     {
-        $request->validate([
-            'name' => 'required|string|max:255|unique:tags,name,' . $tag->id,
-        ]);
-
-        $tag->update($request->all());
+        $this->tagService->updateTag($tag, $request->validated());
         return redirect()->route('admin.tags.index')->with('success', 'Tag updated successfully.');
     }
 
     public function destroy(Tag $tag)
     {
-        $tag->delete();
+        $this->tagService->deleteTag($tag);
         return redirect()->route('admin.tags.index')->with('success', 'Tag deleted successfully.');
     }
 }

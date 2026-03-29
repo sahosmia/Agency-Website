@@ -8,24 +8,22 @@ use App\Http\Requests\StoreWorkingProcessRequest;
 use App\Http\Requests\UpdateWorkingProcessRequest;
 use App\Models\WorkingProcess;
 use Illuminate\Http\Request;
+use App\Services\WorkingProcessService;
 
 class WorkingProcessController extends Controller
 {
     use FileUploadTrait;
 
+    protected $workingProcessService;
+
+    public function __construct(WorkingProcessService $workingProcessService)
+    {
+        $this->workingProcessService = $workingProcessService;
+    }
+
     public function index(Request $request)
     {
-        $query = WorkingProcess::query();
-
-        if ($request->filled('q')) {
-            $query->where('title', 'like', '%' . $request->q . '%');
-        }
-
-        if ($request->filled('status')) {
-            $query->where('is_active', $request->status);
-        }
-
-        $workingProcesses = $query->latest()->paginate(10);
+        $workingProcesses = $this->workingProcessService->getWorkingProcesses($request->all(), 10);
         return view('admin.working_processes.index', compact('workingProcesses'));
     }
 
@@ -38,7 +36,7 @@ class WorkingProcessController extends Controller
     {
         $data = $request->validated();
         $data['icon'] = $this->uploadFile($request, 'icon', 'working_processes');
-        WorkingProcess::create($data);
+        $this->workingProcessService->storeWorkingProcess($data);
 
         return redirect()->route('admin.working-processes.index')->with('success', 'Working Process created successfully.');
     }
@@ -52,13 +50,13 @@ class WorkingProcessController extends Controller
     {
         $data = $request->validated();
         $data['icon'] = $this->updateFile($request, 'icon', 'working_processes', $workingProcess);
-        $workingProcess->update($data);
+        $this->workingProcessService->updateWorkingProcess($workingProcess, $data);
         return redirect()->route('admin.working-processes.index')->with('success', 'Working Process updated successfully.');
     }
 
     public function destroy(WorkingProcess $workingProcess)
     {
-        $workingProcess->delete();
+        $this->workingProcessService->deleteWorkingProcess($workingProcess);
         return redirect()->route('admin.working-processes.index')->with('success', 'Working Process deleted successfully.');
     }
 }

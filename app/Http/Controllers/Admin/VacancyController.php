@@ -9,29 +9,25 @@ use App\Http\Requests\UpdateVacancyRequest;
 use App\Models\Vacancy;
 use App\Models\Category;
 use Illuminate\Http\Request;
+use App\Services\VacancyService;
 
 class VacancyController extends Controller
 {
     use AdminPagination;
+
+    protected $vacancyService;
+
+    public function __construct(VacancyService $vacancyService)
+    {
+        $this->vacancyService = $vacancyService;
+    }
+
     public function index(Request $request)
     {
         $adminPagination = $this->getAdminPagination();
         $categories = Category::all();
-        $query = Vacancy::with('category');
+        $vacancies = $this->vacancyService->getVacancies($request->all(), $adminPagination);
 
-        if ($request->filled('q')) {
-            $query->where('title', 'like', '%' . $request->q . '%');
-        }
-
-        if ($request->filled('category_id')) {
-            $query->where('category_id', $request->category_id);
-        }
-
-        if ($request->filled('status')) {
-            $query->where('is_active', $request->status);
-        }
-
-        $vacancies = $query->latest()->paginate($adminPagination);
         return view('admin.vacancies.index', compact('vacancies', 'categories'));
     }
 
@@ -43,7 +39,7 @@ class VacancyController extends Controller
 
     public function store(StoreVacancyRequest $request)
     {
-        Vacancy::create($request->validated());
+        $this->vacancyService->storeVacancy($request->validated());
         return redirect()->route('admin.vacancies.index')->with('success', 'Vacancy created successfully.');
     }
 
@@ -60,13 +56,13 @@ class VacancyController extends Controller
 
     public function update(UpdateVacancyRequest $request, Vacancy $vacancy)
     {
-        $vacancy->update($request->validated());
+        $this->vacancyService->updateVacancy($vacancy, $request->validated());
         return redirect()->route('admin.vacancies.index')->with('success', 'Vacancy updated successfully.');
     }
 
     public function destroy(Vacancy $vacancy)
     {
-        $vacancy->delete();
+        $this->vacancyService->deleteVacancy($vacancy);
         return redirect()->route('admin.vacancies.index')->with('success', 'Vacancy deleted successfully!');
     }
 }

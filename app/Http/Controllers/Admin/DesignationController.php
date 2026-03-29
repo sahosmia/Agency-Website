@@ -7,18 +7,20 @@ use App\Http\Controllers\Controller;
 use App\Http\Requests\StoreDesignationRequest;
 use App\Http\Requests\UpdateDesignationRequest;
 use Illuminate\Http\Request;
+use App\Services\DesignationService;
 
 class DesignationController extends Controller
 {
+    protected $designationService;
+
+    public function __construct(DesignationService $designationService)
+    {
+        $this->designationService = $designationService;
+    }
+
     public function index(Request $request)
     {
-        $query = Designation::query();
-
-        if ($request->filled('q')) {
-            $query->where('title', 'like', "%{$request->q}%");
-        }
-
-        $designations = $query->latest()->paginate(10);
+        $designations = $this->designationService->getDesignations($request->all(), 10);
 
         return view('admin.designations.index', compact('designations'));
     }
@@ -30,7 +32,7 @@ class DesignationController extends Controller
 
     public function store(StoreDesignationRequest $request)
     {
-        Designation::create($request->validated());
+        $this->designationService->storeDesignation($request->validated());
 
         return redirect()->route('admin.designations.index')->with('success', 'Designation created successfully.');
     }
@@ -42,14 +44,14 @@ class DesignationController extends Controller
 
     public function update(UpdateDesignationRequest $request, Designation $designation)
     {
-        $designation->update($request->validated());
+        $this->designationService->updateDesignation($designation, $request->validated());
 
         return redirect()->route('admin.designations.index')->with('success', 'Designation updated successfully.');
     }
 
     public function destroy(Designation $designation)
     {
-        $designation->delete();
+        $this->designationService->deleteDesignation($designation);
 
         return redirect()->route('admin.designations.index')->with('success', 'Designation deleted successfully.');
     }

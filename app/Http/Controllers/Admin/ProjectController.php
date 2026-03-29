@@ -8,34 +8,27 @@ use App\Http\Requests\StoreProjectRequest;
 use App\Http\Requests\UpdateProjectRequest;
 use App\Models\Project;
 use App\Models\Category;
-use App\Http\Controllers\Traits\FileUploadTrait;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\DB;
+use App\Services\ProjectService;
+use App\Http\Controllers\Traits\FileUploadTrait;
 
 class ProjectController extends Controller
 {
-    use FileUploadTrait, AdminPagination;
+    use AdminPagination, FileUploadTrait;
+
+    protected $projectService;
+
+    public function __construct(ProjectService $projectService)
+    {
+        $this->projectService = $projectService;
+    }
 
     public function index(Request $request)
     {
-                $adminPagination = $this->getAdminPagination();
-
+        $adminPagination = $this->getAdminPagination();
         $categories = Category::all();
-        $query = Project::with('category');
+        $projects = $this->projectService->getProjects($request->all(), $adminPagination);
 
-        if ($request->filled('q')) {
-            $query->where('title', 'like', '%' . $request->q . '%');
-        }
-
-        if ($request->filled('category_id')) {
-            $query->where('category_id', $request->category_id);
-        }
-
-        if ($request->filled('status')) {
-            $query->where('is_active', $request->status);
-        }
-
-        $projects = $query->latest()->paginate($adminPagination);
         return view('admin.projects.index', compact('projects', 'categories'));
     }
 
@@ -47,16 +40,11 @@ class ProjectController extends Controller
 
     public function store(StoreProjectRequest $request)
     {
-        DB::transaction(function () use ($request) {
-            $data = $request->validated();
-            $data['thumbnail'] = $this->uploadFile($request, 'thumbnail', 'projects');
-            $project = Project::create($data);
+        $data = $request->validated();
+        $data['thumbnail'] = $this->uploadFile($request, 'thumbnail', 'projects');
+        $data['faqs'] = $request->faqs;
 
-            if ($request->has('faqs')) {
-                $project->faqs()->createMany($request->faqs);
-            }
-        });
-
+        $this->projectService->storeProject($data);
         return redirect()->route('admin.projects.index')->with('success', 'Project created successfully.');
     }
 
@@ -73,24 +61,18 @@ class ProjectController extends Controller
 
     public function update(UpdateProjectRequest $request, Project $project)
     {
-        DB::transaction(function () use ($request, $project) {
-            $data = $request->validated();
-            $data['thumbnail'] = $this->updateFile($request, 'thumbnail', 'projects', $project);
-            $project->update($data);
+        $data = $request->validated();
+        $data['thumbnail'] = $this->updateFile($request, 'thumbnail', 'projects', $project);
+        $data['faqs'] = $request->faqs;
 
-            if ($request->has('faqs')) {
-                $project->faqs()->delete();
-                $project->faqs()->createMany($request->faqs);
-            }
-        });
-
+        $this->projectService->updateProject($project, $data);
         return redirect()->route('admin.projects.index')->with('success', 'Project updated successfully.');
     }
 
     public function destroy(Project $project)
     {
         $this->deleteFile($project, 'thumbnail');
-        $project->delete();
+        $this->projectService->deleteProject($project);
         return redirect()->route('admin.projects.index')->with('success', 'Project deleted successfully.');
     }
 }

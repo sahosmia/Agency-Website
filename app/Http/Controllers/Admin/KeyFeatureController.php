@@ -8,27 +8,25 @@ use App\Http\Requests\StoreKeyFeatureRequest;
 use App\Http\Requests\UpdateKeyFeatureRequest;
 use App\Models\KeyFeature;
 use Illuminate\Http\Request;
+use App\Services\KeyFeatureService;
 
 class KeyFeatureController extends Controller
 {
     use FileUploadTrait;
+
+    protected $keyFeatureService;
+
+    public function __construct(KeyFeatureService $keyFeatureService)
+    {
+        $this->keyFeatureService = $keyFeatureService;
+    }
 
     /**
      * Display a listing of the resource.
      */
     public function index(Request $request)
     {
-        $query = KeyFeature::query();
-
-        if ($request->filled('q')) {
-            $query->where('title', 'like', '%' . $request->q . '%');
-        }
-
-        if ($request->filled('status')) {
-            $query->where('is_active', $request->status);
-        }
-
-        $keyFeatures = $query->latest()->paginate(10);
+        $keyFeatures = $this->keyFeatureService->getKeyFeatures($request->all(), 10);
         return view('admin.key_features.index', compact('keyFeatures'));
     }
 
@@ -47,7 +45,7 @@ class KeyFeatureController extends Controller
     {
         $data = $request->validated();
         $data['image'] = $this->uploadFile($request, 'image', 'key_features');
-        KeyFeature::create($data);
+        $this->keyFeatureService->storeKeyFeature($data);
         return redirect()->route('admin.key_features.index')->with('success', 'Key Feature created successfully.');
     }
 
@@ -76,7 +74,7 @@ class KeyFeatureController extends Controller
         if ($request->hasFile('image')) {
             $data['image'] = $this->updateFile($request, 'image', 'key_features', $keyFeature->image);
         }
-        $keyFeature->update($data);
+        $this->keyFeatureService->updateKeyFeature($keyFeature, $data);
         return redirect()->route('admin.key_features.index')->with('success', 'Key Feature updated successfully.');
     }
 
@@ -88,7 +86,7 @@ class KeyFeatureController extends Controller
         if ($keyFeature->image) {
             $this->deleteFile('key_features', $keyFeature->image);
         }
-        $keyFeature->delete();
+        $this->keyFeatureService->deleteKeyFeature($keyFeature);
         return redirect()->route('admin.key_features.index')->with('success', 'Key Feature deleted successfully.');
     }
 }

@@ -7,22 +7,20 @@ use App\Http\Requests\StoreValueRequest;
 use App\Http\Requests\UpdateValueRequest;
 use App\Models\Value;
 use Illuminate\Http\Request;
+use App\Services\ValueService;
 
 class ValueController extends Controller
 {
+    protected $valueService;
+
+    public function __construct(ValueService $valueService)
+    {
+        $this->valueService = $valueService;
+    }
+
     public function index(Request $request)
     {
-        $query = Value::query();
-
-        if ($request->filled('q')) {
-            $query->where('title', 'like', '%' . $request->q . '%');
-        }
-
-        if ($request->filled('status')) {
-            $query->where('is_active', $request->status);
-        }
-
-        $values = $query->latest()->paginate(10);
+        $values = $this->valueService->getValues($request->all(), 10);
         return view('admin.values.index', compact('values'));
     }
 
@@ -33,7 +31,7 @@ class ValueController extends Controller
 
     public function store(StoreValueRequest $request)
     {
-        Value::create($request->validated());
+        $this->valueService->storeValue($request->validated());
         return redirect()->route('admin.values.index')->with('success', 'Value created successfully.');
     }
 
@@ -44,13 +42,13 @@ class ValueController extends Controller
 
     public function update(UpdateValueRequest $request, Value $value)
     {
-        $value->update($request->validated());
+        $this->valueService->updateValue($value, $request->validated());
         return redirect()->route('admin.values.index')->with('success', 'Value updated successfully.');
     }
 
     public function destroy(Value $value)
     {
-        $value->delete();
+        $this->valueService->deleteValue($value);
         return redirect()->route('admin.values.index')->with('success', 'Value deleted successfully.');
     }
 }

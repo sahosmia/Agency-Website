@@ -6,25 +6,23 @@ use App\Http\Controllers\Controller;
 use App\Http\Requests\Admin\FeatureRequest;
 use App\Models\Feature;
 use Illuminate\Http\Request;
+use App\Services\FeatureService;
 
 class FeatureController extends Controller
 {
+    protected $featureService;
+
+    public function __construct(FeatureService $featureService)
+    {
+        $this->featureService = $featureService;
+    }
+
     /**
      * Display a listing of the resource.
      */
     public function index(Request $request)
     {
-        $query = Feature::query();
-
-        if ($request->filled('q')) {
-            $query->where('name', 'like', '%' . $request->q . '%');
-        }
-
-        if ($request->filled('status')) {
-            $query->where('is_active', $request->status);
-        }
-
-        $features = $query->latest()->paginate(10);
+        $features = $this->featureService->getFeatures($request->all(), 10);
         return view('admin.features.index', compact('features'));
     }
 
@@ -41,7 +39,7 @@ class FeatureController extends Controller
      */
     public function store(FeatureRequest $request)
     {
-        Feature::create($request->validated());
+        $this->featureService->storeFeature($request->validated());
 
         return redirect()->route('admin.features.index')->with('success', 'Feature created successfully.');
     }
@@ -67,7 +65,7 @@ class FeatureController extends Controller
      */
     public function update(FeatureRequest $request, Feature $feature)
     {
-        $feature->update($request->validated());
+        $this->featureService->updateFeature($feature, $request->validated());
 
         return redirect()->route('admin.features.index')->with('success', 'Feature updated successfully.');
     }
@@ -77,7 +75,7 @@ class FeatureController extends Controller
      */
     public function destroy(Feature $feature)
     {
-        $feature->delete();
+        $this->featureService->deleteFeature($feature);
 
         return redirect()->route('admin.features.index')->with('success', 'Feature deleted successfully.');
     }

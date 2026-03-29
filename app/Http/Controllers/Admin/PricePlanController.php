@@ -9,22 +9,20 @@ use App\Models\ServiceType;
 use App\Models\Software;
 use App\Models\Feature;
 use Illuminate\Http\Request;
+use App\Services\PricePlanService;
 
 class PricePlanController extends Controller
 {
+    protected $pricePlanService;
+
+    public function __construct(PricePlanService $pricePlanService)
+    {
+        $this->pricePlanService = $pricePlanService;
+    }
+
     public function index(Request $request)
     {
-        $query = PricePlan::with('planable');
-
-        if ($request->filled('q')) {
-            $query->where('name', 'like', '%' . $request->q . '%');
-        }
-
-        if ($request->filled('status')) {
-            $query->where('is_active', $request->status);
-        }
-
-        $pricePlans = $query->latest()->paginate(10);
+        $pricePlans = $this->pricePlanService->getPricePlans($request->all(), 10);
         return view('admin.price-plans.index', compact('pricePlans'));
     }
 
@@ -39,22 +37,12 @@ class PricePlanController extends Controller
     public function store(PricePlanRequest $request)
     {
         $data = $request->validated();
-
         if ($request->type === 'free' || $request->type === 'custom') {
             $data['price'] = null;
         }
+        $data['features'] = $request->features;
 
-        $pricePlan = PricePlan::create($data);
-
-        if ($request->has('features')) {
-            $features = [];
-            foreach ($request->features as $featureId => $featureData) {
-                if (isset($featureData['id'])) {
-                    $features[$featureId] = ['is_active' => $featureData['is_active']];
-                }
-            }
-            $pricePlan->features()->sync($features);
-        }
+        $this->pricePlanService->storePricePlan($data);
 
         return redirect()->route('admin.price-plans.index')->with('success', 'Price Plan created successfully.');
     }
@@ -70,31 +58,19 @@ class PricePlanController extends Controller
     public function update(PricePlanRequest $request, PricePlan $pricePlan)
     {
         $data = $request->validated();
-
         if ($request->type === 'free' || $request->type === 'custom') {
             $data['price'] = null;
         }
+        $data['features'] = $request->features;
 
-        $pricePlan->update($data);
-
-        if ($request->has('features')) {
-            $features = [];
-            foreach ($request->features as $featureId => $featureData) {
-                if (isset($featureData['id'])) {
-                    $features[$featureId] = ['is_active' => $featureData['is_active']];
-                }
-            }
-            $pricePlan->features()->sync($features);
-        } else {
-            $pricePlan->features()->sync([]);
-        }
+        $this->pricePlanService->updatePricePlan($pricePlan, $data);
 
         return redirect()->route('admin.price-plans.index')->with('success', 'Price Plan updated successfully.');
     }
 
     public function destroy(PricePlan $pricePlan)
     {
-        $pricePlan->delete();
+        $this->pricePlanService->deletePricePlan($pricePlan);
         return redirect()->route('admin.price-plans.index')->with('success', 'Price Plan deleted successfully.');
     }
 }

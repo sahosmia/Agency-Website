@@ -10,32 +10,25 @@ use App\Http\Requests\UpdateServiceRequest;
 use App\Models\Service;
 use App\Models\Category;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\DB;
-use Illuminate\Support\Facades\Storage;
+use App\Services\ServiceService;
 
 class ServiceController extends Controller
 {
     use FileUploadTrait, AdminPagination;
+
+    protected $serviceService;
+
+    public function __construct(ServiceService $serviceService)
+    {
+        $this->serviceService = $serviceService;
+    }
+
     public function index(Request $request)
     {
         $adminPagination = $this->getAdminPagination();
-
         $categories = Category::all();
-        $query = Service::with('category');
+        $services = $this->serviceService->getServices($request->all(), $adminPagination);
 
-        if ($request->filled('q')) {
-            $query->where('name', 'like', '%' . $request->q . '%');
-        }
-
-        if ($request->filled('category_id')) {
-            $query->where('category_id', $request->category_id);
-        }
-
-        if ($request->filled('status')) {
-            $query->where('is_active', $request->status);
-        }
-
-        $services = $query->latest()->paginate($adminPagination);
         return view('admin.services.index', compact('services', 'categories'));
     }
 
@@ -47,19 +40,12 @@ class ServiceController extends Controller
 
     public function store(StoreServiceRequest $request)
     {
-        DB::transaction(function () use ($request) {
-            $data = $request->validated();
-               // image upload in services folder images folder store only image name in DB
-            $data['thumbnail'] = $this->uploadFile($request, 'thumbnail', 'services/thumbnails');
-            $data['image'] = $this->uploadFile($request, 'image', 'services/images');
+        $data = $request->validated();
+        $data['thumbnail'] = $this->uploadFile($request, 'thumbnail', 'services/thumbnails');
+        $data['image'] = $this->uploadFile($request, 'image', 'services/images');
+        $data['faqs'] = $request->faqs;
 
-            $service = Service::create($data);
-
-            if ($request->has('faqs')) {
-                $service->faqs()->createMany($request->faqs);
-            }
-        });
-
+        $this->serviceService->storeService($data);
         return redirect()->route('admin.services.index')->with('success', 'Service created successfully.');
     }
 
@@ -77,18 +63,12 @@ class ServiceController extends Controller
 
     public function update(UpdateServiceRequest $request, Service $service)
     {
-        DB::transaction(function () use ($request, $service) {
-            $data = $request->validated();
-            $data['thumbnail'] = $this->updateFile($request, 'thumbnail', 'services/thumbnails', $service);
-            $data['image'] = $this->updateFile($request, 'image', 'services/images', $service);
-            $service->update($data);
+        $data = $request->validated();
+        $data['thumbnail'] = $this->updateFile($request, 'thumbnail', 'services/thumbnails', $service);
+        $data['image'] = $this->updateFile($request, 'image', 'services/images', $service);
+        $data['faqs'] = $request->faqs;
 
-            if ($request->has('faqs')) {
-                $service->faqs()->delete();
-                $service->faqs()->createMany($request->faqs);
-            }
-        });
-
+        $this->serviceService->updateService($service, $data);
         return redirect()->route('admin.services.index')->with('success', 'Service updated successfully.');
     }
 
@@ -100,7 +80,7 @@ class ServiceController extends Controller
         if ($service->thumbnail) {
             $this->deleteFile($service, 'thumbnail', 'services/thumbnails');
         }
-        $service->delete();
+        $this->serviceService->deleteService($service);
         return redirect()->route('admin.services.index')->with('success', 'Service deleted successfully.');
     }
 }

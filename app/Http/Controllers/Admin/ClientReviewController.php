@@ -5,31 +5,27 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use App\Http\Controllers\Traits\AdminPagination;
 use App\Models\ClientReview;
-use App\Http\Controllers\Traits\FileUploadTrait;
 use App\Http\Requests\StoreClientReviewRequest;
 use App\Http\Requests\UpdateClientReviewRequest;
 use Illuminate\Http\Request;
-use Illuminate\Support\Str;
+use App\Services\ClientReviewService;
+use App\Http\Controllers\Traits\FileUploadTrait;
 
 class ClientReviewController extends Controller
 {
-    use FileUploadTrait, AdminPagination;
+    use AdminPagination, FileUploadTrait;
+
+    protected $clientReviewService;
+
+    public function __construct(ClientReviewService $clientReviewService)
+    {
+        $this->clientReviewService = $clientReviewService;
+    }
 
     public function index(Request $request)
     {
         $adminPagination = $this->getAdminPagination();
-
-        $query = ClientReview::query();
-
-        if ($request->filled('q')) {
-            $query->where('name', 'like', "%{$request->q}%");
-        }
-
-        if ($request->filled('status')) {
-            $query->where('is_active', $request->status);
-        }
-
-        $clientReviews = $query->latest()->paginate($adminPagination);
+        $clientReviews = $this->clientReviewService->getClientReviews($request->all(), $adminPagination);
 
         return view('admin.client-reviews.index', compact('clientReviews'));
     }
@@ -44,21 +40,17 @@ class ClientReviewController extends Controller
 
     public function store(StoreClientReviewRequest $request)
     {
-        $clientReview = new ClientReview($request->validated());
-        $clientReview->is_active = $request->boolean('is_active');
+        $data = $request->validated();
+        $data['is_active'] = $request->boolean('is_active');
+        $data['avatar'] = $this->uploadFile($request, 'avatar', 'uploads/client_reviews');
 
         if ($request->reviewable_type) {
-            $clientReview->reviewable_id = $request->reviewable_id;
-            $clientReview->reviewable_type = $request->reviewable_type;
+            $data['reviewable_id'] = $request->reviewable_id;
+            $data['reviewable_type'] = $request->reviewable_type;
         }
 
-        if ($request->hasFile('avatar')) {
-            $clientReview->avatar = $this->uploadFile($request->file('avatar'), 'uploads/client_reviews');
-        }
-
-        $clientReview->save();
-
-        return redirect()->route('admin.client-reviews.index')->with('success', 'Testimonial created successfully.');
+        $this->clientReviewService->storeClientReview($data);
+        return redirect()->route('admin.client-reviews.index')->with('success', 'Client Review created successfully.');
     }
 
     public function edit(ClientReview $clientReview)
@@ -71,32 +63,27 @@ class ClientReviewController extends Controller
 
     public function update(UpdateClientReviewRequest $request, ClientReview $clientReview)
     {
-        $clientReview->fill($request->validated());
-        $clientReview->is_active = $request->boolean('is_active');
-
-        if ($request->reviewable_type) {
-            $clientReview->reviewable_id = $request->reviewable_id;
-            $clientReview->reviewable_type = $request->reviewable_type;
-        } else {
-            $clientReview->reviewable_id = null;
-            $clientReview->reviewable_type = null;
-        }
+        $data = $request->validated();
+        $data['is_active'] = $request->boolean('is_active');
 
         if ($request->hasFile('avatar')) {
             $this->deleteFile($clientReview->avatar, 'uploads/client_reviews');
-            $clientReview->avatar = $this->uploadFile($request->file('avatar'), 'uploads/client_reviews');
+            $data['avatar'] = $this->uploadFile($request, 'avatar', 'uploads/client_reviews');
         }
 
-        $clientReview->save();
+        if ($request->reviewable_type) {
+            $data['reviewable_id'] = $request->reviewable_id;
+            $data['reviewable_type'] = $request->reviewable_type;
+        }
 
-        return redirect()->route('admin.client-reviews.index')->with('success', 'Testimonial updated successfully.');
+        $this->clientReviewService->updateClientReview($clientReview, $data);
+        return redirect()->route('admin.client-reviews.index')->with('success', 'Client Review updated successfully.');
     }
 
     public function destroy(ClientReview $clientReview)
     {
         $this->deleteFile($clientReview->avatar, 'uploads/client_reviews');
-        $clientReview->delete();
-
-        return redirect()->route('admin.client-reviews.index')->with('success', 'Testimonial deleted successfully.');
+        $this->clientReviewService->deleteClientReview($clientReview);
+        return redirect()->route('admin.client-reviews.index')->with('success', 'Client Review deleted successfully.');
     }
 }
